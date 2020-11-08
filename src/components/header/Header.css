@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: 1px 1px 4px 1px rgb(221, 216, 216);
+}
+
+.header-into {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 100px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+.header-into a{
+    color: black;
+    text-decoration: none;
+}
