@@ -57,7 +57,7 @@
     text-decoration: none;
     outline: none;
     display: inline-block;
-    width: 140px;
+    min-width: 140px;
     height: 45px;
     line-height: 45px;
     border-radius: 45px;
