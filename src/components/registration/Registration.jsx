@@ -1,7 +1,13 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
+import { useState } from "react";
+import {registration} from '../../actions/users';
 
 const Registration = () => {
+    const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <div>
                <div className="login-wrapper">
@@ -9,12 +15,12 @@ const Registration = () => {
                     <div className="login-inputs">
                         <h1>Зарегистрироваться</h1>
                         <label htmlFor="name">name</label>
-                        <input id="name" type="text" />
+                        <input defaultValue={name}  onChange={e => setName(e.target.value)} id="name" type="text" />
                         <label htmlFor="email">email</label>
-                        <input id="email" type="text" />
+                        <input defaultValue={email}  onChange={e => setEmail(e.target.value)} id="email" type="text" />
                         <label htmlFor="password">password</label>
-                        <input type="password" />
-                        <button>Зарегистрироваться</button>
+                        <input defaultValue={password}  onChange={e => setPassword(e.target.value)} type="password" />
+                        <button onClick={() => registration(name, email, password)}>Зарегистрироваться</button>
                     </div>
                 </div>
                 <div className="registration">
