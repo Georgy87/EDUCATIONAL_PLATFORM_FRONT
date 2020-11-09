@@ -2,23 +2,27 @@
     position: absolute;
     min-height: 730px;
     position: fixed;
-    top: 75px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-size: cover;
     background-position: center;
-    background-color: rgb(235, 235, 235);
+    background-image: url('../../assets/Снимок\ экрана\ 2020-11-09\ в\ 14.48.29.png');
+    /* background-color: rgb(235, 235, 235); */
 }
 .login {
-    display: flex;
-    margin: 0 auto;
-    margin-top: 100px;
+    /* display: flex; */
+    /* margin: 750px; */
+    position: absolute;
+    right: 12%;
+
+    margin-top: 20px;
     background-color: rgb(255, 255, 255);
     border-radius: 4px;
     width: 500px;
     height: 500px;
-    box-shadow: 1px 1px 6px 1px rgb(214, 216, 211);
+    box-shadow: 1px 5px 40px 10px rgb(22, 22, 22);
 }
 .login-inputs {
     display: flex;
@@ -26,6 +30,7 @@
     align-items: start;
     margin: 0 auto;
     margin-top: 15%;
+    padding: 40px;
 }
 .login-inputs h1 {
     font-size: 24px;
@@ -74,22 +79,25 @@
     transition: 0.3s;
 }
 .login button:hover {
-    background: #81dfb9;
-    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    background: #364f94;
+    box-shadow: 0 15px 20px rgba(46, 104, 229, 0.4);
     color: white;
     cursor: pointer;
     transform: translateY(-3px);
 }
 .registration {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    right: 20%;
+    top: 75%;
+    /* display: flex;
+    justify-content: flex-end; */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 10px;
     font-size: 15px;
 }
 .registration a{
     padding-left: 5px;
-    color: black;
+    color: rgb(40, 40, 90);
     text-decoration: none;
     font-weight: 800;
 }

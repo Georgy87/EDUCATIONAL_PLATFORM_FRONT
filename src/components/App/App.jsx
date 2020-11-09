@@ -4,10 +4,18 @@ import Header from "../header/Header";
 import LoginPage from "../LoginPage/LoginPage";
 import MainPage from "../MainPage/MainPage";
 import Registration from "../registration/Registration";
+import { useDispatch } from "react-redux";
+import { useEffect} from "react";
 
 import "./App.css";
+import { auth } from '../../actions/users';
 
 const App = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(auth());
+    }, []);
     return (
         <BrowserRouter>
             <div className="App">
