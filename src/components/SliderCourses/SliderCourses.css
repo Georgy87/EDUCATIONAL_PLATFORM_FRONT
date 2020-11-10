@@ -1,0 +1,10 @@
+.slider-wrapper {
+    /* width: 700px; */
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.slider-items {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
