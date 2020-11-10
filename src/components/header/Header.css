@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: flex-end;
-    box-shadow: 1px 1px 4px 1px rgb(221, 216, 216);
+    /* box-shadow: 1px 1px 1px 0px rgb(221, 216, 216); */
 }
 
 .header-into {
