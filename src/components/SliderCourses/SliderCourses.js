@@ -18,32 +18,38 @@ export default class SimpleSlider extends Component {
             slidesToShow: 3,
             slidesToScroll: 1,
             pauseOnFocus: true,
-
             // variableWidth: true
         };
 
         const element = this.props.props.map((el) => {
-            console.log(el)
+
             return (
                 <div>
-                    <img
-                        style={{
-                            width: "250px",
-                            height: "150px",
-                            backgroundPosition: "center",
-                            margin: "0 auto",
-							borderRadius: "5px",
-							boxShadow: "0px 1px 2px"
-                        }}
-                        src={`http://localhost:5000/${el.name}`}
-                        alt=""
-                    />
+                    <div className="my-settings-slider">
+                        <img
+                            style={{
+                                width: "250px",
+                                height: "150px",
+                                backgroundPosition: "center",
+                                margin: "0 auto",
+                                borderRadius: "5px",
+                                boxShadow: "0px 1px 2px"
+                            }}
+                            src={`http://localhost:5000/${el.name}`}
+                            alt=""
+                        />
+                        <div className="my-settings-slider-items">
+                            <div className="my-settings-slider-item" style={{fontWeight: "Bold"}}>{el.profession}</div>
+                            <div className="my-settings-slider-item-descr">{el.shortDescription}</div>
+                            {/* <div className="my-settings-slider-item">{el.courseDescription}</div> */}
+                        </div>
+                    </div>
                 </div>
             );
         });
 
         return (
-            <div style={{ backgroundColor: "white", height: "300px" }}>
+            <div className="items" style={{ backgroundColor: "white", height: "300px" }}>
                 <div
                     style={{
                         width: "1000px",

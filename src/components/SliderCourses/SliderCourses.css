@@ -3,8 +3,23 @@
     margin: 0 auto;
     margin-top: 60px;
 }
-.slider-items {
-    height: 200px;
-    width: 200px;
-    margin: 0 auto;
+.my-settings-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 250px;
+}
+.my-settings-slider-items {
+    margin-top: 6px;
+}
+.my-settings-slider-item {
+    word-break: break-all;
+    padding-bottom: 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.9rem;
+}
+.my-settings-slider-item-descr {
+    color: rgb(97, 94, 94);
+    margin-top: 4px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
@@ -8,6 +8,11 @@ const Header = () => {
             <div className="header-into">
                 <NavLink to="/login">
                     <span>Войти</span>
+                </NavLink>
+            </div>
+            <div>
+                <NavLink to="/privatoffice">
+                    <span>Личный кабинет</span>
                 </NavLink>
             </div>
         </div>
