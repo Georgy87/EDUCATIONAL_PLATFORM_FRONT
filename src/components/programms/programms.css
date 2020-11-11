@@ -1,10 +1,11 @@
 .programms {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    margin-top: 60px;
 }
 .programms h1 {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
     font-size: 70px;
 }
 .programms-line {
@@ -18,21 +19,22 @@
 }
 .directions {
     display: flex;
+    margin-top: 40px;
 }
 .directions-titles {
     display: flex;
     flex-direction: column;
-	width: 300px;
+    width: 300px;
 }
 .directions-content .items {
     display: flex;
     width: 900px;
-    /* flex-direction: row; */
     justify-content: space-between;
 }
-.directions-content .item{
+.directions-content .item {
     display: flex;
-    margin: 0 auto;
+    justify-content: space-between;
+    margin-top: 50px;
 }
 .directions-titles button {
     text-decoration: none;
@@ -40,7 +42,6 @@
     display: inline-block;
     min-width: 140px;
     height: 45px;
-    line-height: 45px;
     border-radius: 45px;
     margin-top: 30px;
     font-family: "Montserrat", sans-serif;
@@ -48,18 +49,27 @@
     text-transform: uppercase;
     text-align: center;
     letter-spacing: 3px;
-    font-weight: 600;
+    font-weight: 500;
     color: #524f4e;
     background: white;
-    box-shadow: 0 14px 15px rgba(43, 11, 11, 0.1);
+    box-shadow: 0 14px 15px rgba(202, 59, 59, 0.1);
     transition: 0.3s;
+    padding: 5px 10px;
 }
 .directions-titles button:hover {
-    background: #13bda6;
-    box-shadow: 0 15px 20px rgba(229, 150, 46, 0.4);
+    background: #68c565;
+    box-shadow: 0 10px 10px rgba(169, 189, 161, 0.4);
     color: white;
     cursor: pointer;
     transform: translateY(-3px);
 }
-
-
+.directions-content .item img {
+    width: 420px;
+    height: 200px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(149, 153, 147, 0.4);
+    transition: 0.6s all;
+}
+.directions-content .item img:hover {
+    transform: translateY(-3px);
+}
