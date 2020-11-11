@@ -9,7 +9,7 @@ import { useEffect} from "react";
 import "./App.css";
 import { auth } from '../../actions/users';
 import PrivateOffice from '../ PrivateOffice/PrivateOffice';
-import SliderCourses from '../SliderCourses/SliderCourses';
+import Programms from "../programms/programms";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -21,12 +21,13 @@ const App = () => {
         <BrowserRouter>
             <div className="app">
                 <Header />
-                <PrivateOffice />
                 <Switch>
+                    <Route path="/privatoffice" component={PrivateOffice } />
                     <Route exact path="/main" component={MainPage} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
                 </Switch>
+
             </div>
             <Redirect to="/main" />
         </BrowserRouter>

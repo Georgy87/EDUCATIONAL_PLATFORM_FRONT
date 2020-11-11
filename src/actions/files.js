@@ -1,15 +1,15 @@
 import axios from 'axios';
 import {addFiles, setFiles} from "../reducers/filesReducer";
 
-export const uploadFiles = (file, profession, shortDescription, courseDescription) => {
+export const uploadFiles = (file, profession, author, price) => {
 
     return async (dispatch) => {
         try {
             const formData = new FormData();
             formData.append('file', file);
             formData.append('profession', profession);
-            formData.append('shortDescription', shortDescription);
-            // formData.append('courseDescription', courseDescription);
+            formData.append('author',  author);
+            formData.append('price', price);
 
             const response = await axios.post(
                 "http://localhost:5000/api/file/upload", formData,

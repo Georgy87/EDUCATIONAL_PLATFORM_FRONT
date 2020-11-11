@@ -19,6 +19,7 @@
     font-size: 0.9rem;
 }
 .my-settings-slider-item-descr {
+    word-break: break-all;
     color: rgb(97, 94, 94);
     margin-top: 4px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

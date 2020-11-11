@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getFiles } from "../../actions/files";
 import SimpleSlider from "../SliderCourses/SliderCourses";
+import Programms from "../programms/programms";
 
 const MainPage = () => {
     const state = useSelector((state) => state.files.files);
@@ -16,6 +17,7 @@ const MainPage = () => {
     return (
         <div>
             <SimpleSlider props={state} />
+            <Programms />
         </div>
     );
 };

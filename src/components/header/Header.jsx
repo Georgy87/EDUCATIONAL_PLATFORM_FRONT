@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import "./Header.css";
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
             </div>
             <div>
                 <NavLink to="/privatoffice">
-                    <span>Личный кабинет</span>
+                    <HomeWorkIcon style={{marginTop: '21px'}}/>
                 </NavLink>
             </div>
         </div>

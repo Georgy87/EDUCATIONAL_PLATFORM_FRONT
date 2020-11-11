@@ -15,7 +15,7 @@ export default class SimpleSlider extends Component {
             dots: true,
             infinite: true,
             speed: 500,
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
             pauseOnFocus: true,
             // variableWidth: true
@@ -32,16 +32,16 @@ export default class SimpleSlider extends Component {
                                 height: "150px",
                                 backgroundPosition: "center",
                                 margin: "0 auto",
-                                borderRadius: "5px",
-                                boxShadow: "0px 1px 2px"
+                                borderRadius: "4px",
+                                // boxShadow: "0px 0px 0px 0px"
                             }}
                             src={`http://localhost:5000/${el.name}`}
                             alt=""
                         />
                         <div className="my-settings-slider-items">
                             <div className="my-settings-slider-item" style={{fontWeight: "Bold"}}>{el.profession}</div>
-                            <div className="my-settings-slider-item-descr">{el.shortDescription}</div>
-                            {/* <div className="my-settings-slider-item">{el.courseDescription}</div> */}
+                            <div className="my-settings-slider-item-descr">{el.author}</div>
+                            <div className="my-settings-slider-item">{`Цена: ${el.price} руб`}</div>
                         </div>
                     </div>
                 </div>
@@ -52,10 +52,10 @@ export default class SimpleSlider extends Component {
             <div className="items" style={{ backgroundColor: "white", height: "300px" }}>
                 <div
                     style={{
-                        width: "1000px",
+                        minWidth: "100%",
                         margin: "0 auto",
                         marginTop: "150px",
-                        padding: "30px",
+                        // padding: "30px",
                     }}
                 >
                     <Slider {...settings}>{element}</Slider>
