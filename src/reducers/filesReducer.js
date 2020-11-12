@@ -1,6 +1,8 @@
 const initialState = {
     files: [],
-    filesDirections: []
+    filesDirections: [],
+    filterByDirection: [],
+    isFilter: false
 }
 const filesReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -24,6 +26,12 @@ const filesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filesDirections: [...state.filesDirections, action.payload],
+            }
+        case  "SET-FILTER-BY-DIRECTIONS":
+            return {
+                ...state,
+                filterByDirection: action.payload,
+                isFilter: true
             }
         default :
             return state
@@ -54,6 +62,13 @@ export const setFilesDirections = (files) => {
 export const addFilesDirections = (files) => {
     return {
         type: "ADD-FILES-DIRECTIONS",
+        payload: files
+    }
+}
+
+export const setFilterByDirections = (files) => {
+    return {
+        type: "SET-FILTER-BY-DIRECTIONS",
         payload: files
     }
 }

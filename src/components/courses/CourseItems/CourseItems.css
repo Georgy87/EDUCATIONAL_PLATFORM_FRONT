@@ -1,0 +1,21 @@
+.course-container {
+    display: flex;
+}
+.course-show img{
+    display: flex;
+    width: 320px;
+    height: 200px;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(223, 172, 147, 0.4);
+    transition: 0.6s all;
+}
+.course-title {
+    word-break: break-all;
+    padding-bottom: 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: Bold;
+    color: rgb(66, 65, 65);
+}
+.course-descr {
+    margin-left: 20px;
+}

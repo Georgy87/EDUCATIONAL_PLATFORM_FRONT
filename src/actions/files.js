@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {addFiles, addFilesDirections, setFiles, setFilesDirections} from "../reducers/filesReducer";
+import {addFiles, addFilesDirections, setFiles, setFilesDirections, setFilterByDirections} from "../reducers/filesReducer";
 
-export const uploadFiles = (file, profession, author, price) => {
+export const uploadFiles = (file, profession, author, price, smallDescription, fullDescription) => {
 
     return async (dispatch) => {
         try {
@@ -10,6 +10,8 @@ export const uploadFiles = (file, profession, author, price) => {
             formData.append('profession', profession);
             formData.append('author',  author);
             formData.append('price', price);
+            formData.append('smallDescription', smallDescription);
+            formData.append('fullDescription', fullDescription);
 
             const response = await axios.post(
                 "http://localhost:5000/api/file/upload", formData,
@@ -45,7 +47,6 @@ export const getFiles = () => {
 };
 
 export const uploadFilesDirections = (file, direction) => {
-
     return async (dispatch) => {
         try {
             const formData = new FormData();
@@ -79,6 +80,25 @@ export const getFilesDirections = () => {
                 }
             );
             dispatch(setFilesDirections(response.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const filterByDirection = (search) => {
+    
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/api/file/search?search=${search}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                }
+            );
+            dispatch(setFilterByDirections(response.data));
         } catch (e) {
             console.log(e);
         }

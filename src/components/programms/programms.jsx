@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilesDirections } from "../../actions/files";
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/Search";
 
-import "./programms.css";
+import "./Programms.css";
+import ProgrammsItems from "./ProgrammsItems/ProgrammsItems";
 const Programms = () => {
     const state = useSelector((state) => state.files.filesDirections);
     const dispatch = useDispatch();
@@ -18,9 +19,9 @@ const Programms = () => {
                 <div className="programms-line"></div>
                 <div className="directions">
                     <div className="directions-titles">
-                    <label htmlFor="">
-                        <input type="text" placeholder="Search" />
-                    </label>
+                        <label htmlFor="">
+                            <input type="text" placeholder="Search" />
+                        </label>
                         <div className="directions-item">
                             <button>Instagram-маркетолог</button>
                         </div>
@@ -51,14 +52,7 @@ const Programms = () => {
                         <div className="items">
                             <div className="item">
                                 {state.map((el) => {
-                                    return (
-                                        <div key={el._id}className="courses-wrap">
-                                            <img
-                                                src={`http://localhost:5000/${el.name}`}
-                                            />
-                                            <div className="title">{el.direction}</div>
-                                        </div>
-                                    );
+                                    return <ProgrammsItems key={el._id} props={el}/>;
                                 })}
                             </div>
                         </div>

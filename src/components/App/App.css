@@ -4,4 +4,5 @@ body {
 .app {
     margin: 0 auto;
     max-width: 1200px;
+    margin-bottom: 80px;
 }

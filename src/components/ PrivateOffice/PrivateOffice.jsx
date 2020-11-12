@@ -10,6 +10,8 @@ const PrivateOffice = () => {
     const [profession, setProfession] = useState("");
     const [author, setAuthor] = useState("");
     const [price, setPrice] = useState("");
+    const [shotDescription, setShotDescription] = useState("");
+    const [fullDescription, setFullDescription] = useState("");
 
     const [direction, setDirection] = useState("");
     const dispatch = useDispatch();
@@ -39,12 +41,24 @@ const PrivateOffice = () => {
                     defaultValue={price}
                     onChange={(e) => setPrice(e.target.value)}
                 />
+                <textarea
+                    placeholder="Краткое описание"
+                    type="text"
+                    defaultValue={shotDescription}
+                    onChange={(e) => setShotDescription(e.target.value)}
+                />
+                 <textarea
+                    placeholder="Полное описание"
+                    type="text"
+                    defaultValue={fullDescription}
+                    onChange={(e) => setFullDescription(e.target.value)}
+                />
                 <NavLink style={{ textDecoration: "none" }} to="/main">
                     <button
                         className="office-items"
                         onClick={() =>
                             dispatch(
-                                uploadFiles(file, profession, author, price)
+                                uploadFiles(file, profession, author, price, shotDescription, fullDescription)
                             )
                         }
                     >

@@ -23,12 +23,14 @@ export default class SimpleSlider extends Component {
         };
 
         const element = this.props.props.map((el) => {
-            console.log(el._id);
-            return  <SliderItems  props={el} key={el._id}/>;
+            return <SliderItems props={el} key={el._id} />;
         });
 
         return (
-            <div className="items" style={{ backgroundColor: "white", height: "300px" }}>
+            <div
+                className="items"
+                style={{ backgroundColor: "white", height: "300px" }}
+            >
                 <div
                     style={{
                         minWidth: "100%",
@@ -36,11 +38,10 @@ export default class SimpleSlider extends Component {
                         marginTop: "150px",
                     }}
                 >
-                    <Slider  {...settings}>{element}</Slider>
+                    <Slider {...settings}>{element}</Slider>
                     <div className="slider-line"></div>
                 </div>
             </div>
         );
     }
 }
-

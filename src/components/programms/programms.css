@@ -76,7 +76,7 @@
 .directions-content .item img:hover {
     transform: translateY(-3px);
 }
-.directions-content .courses-wrap {
+.directions-content .direction-wrap {
     margin-top: 40px;
     padding: 10px;
     padding-left: 0;
@@ -92,4 +92,5 @@
     height: 30px;
     margin-bottom: 40px;
     border-radius: 4px;
+    width: 300px;
 }
