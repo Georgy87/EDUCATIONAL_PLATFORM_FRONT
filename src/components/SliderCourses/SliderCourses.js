@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderCourses.css";
+import SliderItems from "./SliderItems/SliderItems";
 export default class SimpleSlider extends Component {
     constructor(props) {
         super(props);
@@ -23,30 +24,8 @@ export default class SimpleSlider extends Component {
 
         const element = this.props.props.map((el) => {
             console.log(el._id);
-            return (
-                <div key={el._id}>
-                    <div  className="my-settings-slider">
-                        <img
-                            style={{
-                                width: "250px",
-                                height: "150px",
-                                backgroundPosition: "center",
-                                margin: "0 auto",
-                                borderRadius: "4px",
-                            }}
-                            src={`http://localhost:5000/${el.name}`}
-                            alt=""
-                        />
-                        <div className="my-settings-slider-items">
-                            <div className="my-settings-slider-item" style={{fontWeight: "Bold"}}>{el.profession}</div>
-                            <div className="my-settings-slider-item-descr">{el.author}</div>
-                            <div className="my-settings-slider-item">{`Цена: ${el.price} руб`}</div>
-                        </div>
-                    </div>
-                </div>
-            );
+            return  <SliderItems  props={el} key={el._id}/>;
         });
-
 
         return (
             <div className="items" style={{ backgroundColor: "white", height: "300px" }}>
@@ -55,7 +34,6 @@ export default class SimpleSlider extends Component {
                         minWidth: "100%",
                         margin: "0 auto",
                         marginTop: "150px",
-                        // padding: "30px",
                     }}
                 >
                     <Slider  {...settings}>{element}</Slider>
