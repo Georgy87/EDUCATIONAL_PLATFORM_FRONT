@@ -21,6 +21,9 @@
     display: flex;
     margin-top: 40px;
 }
+.directions-content {
+    margin-top: 70px;
+}
 .directions-titles {
     display: flex;
     flex-direction: column;
@@ -28,13 +31,13 @@
 }
 .directions-content .items {
     display: flex;
-    width: 900px;
-    justify-content: space-between;
+    margin-top: 40px;
 }
 .directions-content .item {
     display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
+    max-width: 1000px;
+    flex-wrap: wrap;
+    margin-top: 35px;
 }
 .directions-titles button {
     text-decoration: none;
@@ -57,7 +60,7 @@
     padding: 5px 10px;
 }
 .directions-titles button:hover {
-    background: #68c565;
+    background: #db7bab;
     box-shadow: 0 10px 10px rgba(169, 189, 161, 0.4);
     color: white;
     cursor: pointer;
@@ -67,9 +70,26 @@
     width: 420px;
     height: 200px;
     border-radius: 5px;
-    box-shadow: 0 10px 10px rgba(149, 153, 147, 0.4);
+    box-shadow: 0 10px 10px rgba(223, 172, 147, 0.4);
     transition: 0.6s all;
 }
 .directions-content .item img:hover {
     transform: translateY(-3px);
+}
+.directions-content .courses-wrap {
+    margin-top: 40px;
+    padding: 10px;
+    padding-left: 0;
+}
+.directions-content .title {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+    margin-top: 10px;
+}
+.directions input{
+    border: none;
+    background-color: rgba(222, 197, 236, 0.2);
+    height: 30px;
+    margin-bottom: 40px;
+    border-radius: 4px;
 }

@@ -22,10 +22,10 @@ export default class SimpleSlider extends Component {
         };
 
         const element = this.props.props.map((el) => {
-
+            console.log(el._id);
             return (
-                <div>
-                    <div className="my-settings-slider">
+                <div key={el._id}>
+                    <div  className="my-settings-slider">
                         <img
                             style={{
                                 width: "250px",
@@ -33,7 +33,6 @@ export default class SimpleSlider extends Component {
                                 backgroundPosition: "center",
                                 margin: "0 auto",
                                 borderRadius: "4px",
-                                // boxShadow: "0px 0px 0px 0px"
                             }}
                             src={`http://localhost:5000/${el.name}`}
                             alt=""
@@ -48,6 +47,7 @@ export default class SimpleSlider extends Component {
             );
         });
 
+
         return (
             <div className="items" style={{ backgroundColor: "white", height: "300px" }}>
                 <div
@@ -58,7 +58,7 @@ export default class SimpleSlider extends Component {
                         // padding: "30px",
                     }}
                 >
-                    <Slider {...settings}>{element}</Slider>
+                    <Slider  {...settings}>{element}</Slider>
                     <div className="slider-line"></div>
                 </div>
             </div>

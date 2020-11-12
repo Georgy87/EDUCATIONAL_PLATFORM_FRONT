@@ -9,7 +9,6 @@ import { useEffect} from "react";
 import "./App.css";
 import { auth } from '../../actions/users';
 import PrivateOffice from '../ PrivateOffice/PrivateOffice';
-import Programms from "../programms/programms";
 
 const App = () => {
     const dispatch = useDispatch();
