@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { uploadFiles, uploadFilesDirections } from "../../actions/files";
+import { uploadFiles, uploadFilesDirections } from "../../actions/courses";
 import { useState } from "react";
 import "./PrivateOffice.css";
 import { NavLink } from "react-router-dom";

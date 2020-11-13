@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { filterByDirection } from "../../../actions/files";
+import { filterByDirection } from "../../../actions/courses";
 import { NavLink } from "react-router-dom";
 
 const ProgrammsItems = ({ props }) => {

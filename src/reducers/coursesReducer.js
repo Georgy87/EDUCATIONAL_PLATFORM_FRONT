@@ -1,31 +1,30 @@
 const initialState = {
-    files: [],
-    filesDirections: [],
+    courses: [],
+    courseDirections: [],
     filterByDirection: [],
     isFilter: false
 }
 const filesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case  "SET-FILES":
+        case  "SET-COURSES":
             return {
                 ...state,
-                files: action.payload
+                courses: action.payload
             }
-        case  "ADD-FILES":
+        case  "ADD-COURSES":
             return {
                 ...state,
-                files: [...state.files, action.payload],
+                courses: [...state.courses, action.payload],
             }
-
-        case  "SET-FILES-DIRECTIONS":
+        case  "SET-COURSE-DIRECTIONS":
             return {
                 ...state,
-                filesDirections: action.payload
+                courseDirections: action.payload
             }
-        case  "ADD-FILES-DIRECTIONS":
+        case  "ADD-COURSE-DIRECTIONS":
             return {
                 ...state,
-                filesDirections: [...state.filesDirections, action.payload],
+                courseDirections: [...state.courseDirections, action.payload],
             }
         case  "SET-FILTER-BY-DIRECTIONS":
             return {
@@ -38,31 +37,31 @@ const filesReducer = (state = initialState, action) => {
     }
 }
 
-export const setFiles = (files) => {
+export const setCourses = (courses) => {
     return {
-        type: "SET-FILES",
-        payload: files
+        type: "SET-COURSES",
+        payload: courses
     }
 }
 
-export const addFiles = (files) => {
+export const addCourses = (course) => {
     return {
-        type: "ADD-FILES",
-        payload: files
+        type: "ADD-COURSES",
+        payload: course
     }
 }
 
-export const setFilesDirections = (files) => {
+export const setCourseDirections = (directions) => {
     return {
-        type: "SET-FILES-DIRECTIONS",
-        payload: files
+        type: "SET-COURSE-DIRECTIONS",
+        payload: directions
     }
 }
 
-export const addFilesDirections = (files) => {
+export const addCourseDirections = (directions) => {
     return {
-        type: "ADD-FILES-DIRECTIONS",
-        payload: files
+        type: "ADD-COURSE-DIRECTIONS",
+        payload: directions
     }
 }
 

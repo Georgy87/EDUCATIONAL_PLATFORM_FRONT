@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFilesDirections } from "../../actions/files";
+import { getCourseDirections } from "../../actions/courses";
 import SearchIcon from "@material-ui/icons/Search";
 
 import "./Programms.css";
 import ProgrammsItems from "./ProgrammsItems/ProgrammsItems";
 const Programms = () => {
-    const state = useSelector((state) => state.files.filesDirections);
+    const state = useSelector((state) => state.course.courseDirections);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getFilesDirections());
+        dispatch(getCourseDirections());
     }, []);
 
     return (
@@ -22,6 +22,7 @@ const Programms = () => {
                         <label htmlFor="">
                             <input type="text" placeholder="Search" />
                         </label>
+
                         <div className="directions-item">
                             <button>Instagram-маркетолог</button>
                         </div>
