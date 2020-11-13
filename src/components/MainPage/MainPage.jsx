@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCourses } from "../../actions/courses";
-import SimpleSlider from "../SliderCourses/SliderCourses";
+import SimpleSlider from "../sliderCourses/SliderCourses";
 import Programms from "../programms/Programms";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Courses from "../courses/Courses";

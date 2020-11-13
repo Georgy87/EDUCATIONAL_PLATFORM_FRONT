@@ -1,22 +1,11 @@
 const initialState = {
-    courses: [],
     courseDirections: [],
     filterByDirection: [],
     isFilter: false
 }
 
-const filesReducer = (state = initialState, action) => {
+const directionsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case  "SET-COURSES":
-            return {
-                ...state,
-                courses: action.payload
-            }
-        case  "ADD-COURSES":
-            return {
-                ...state,
-                courses: [...state.courses, action.payload],
-            }
         case  "SET-COURSE-DIRECTIONS":
             return {
                 ...state,
@@ -38,18 +27,25 @@ const filesReducer = (state = initialState, action) => {
     }
 }
 
-export const setCourses = (courses) => {
+export const setCourseDirections = (directions) => {
     return {
-        type: "SET-COURSES",
-        payload: courses
+        type: "SET-COURSE-DIRECTIONS",
+        payload: directions
     }
 }
 
-export const addCourses = (course) => {
+export const addCourseDirections = (directions) => {
     return {
-        type: "ADD-COURSES",
-        payload: course
+        type: "ADD-COURSE-DIRECTIONS",
+        payload: directions
     }
 }
 
-export default filesReducer;
+export const setFilterByDirections = (files) => {
+    return {
+        type: "SET-FILTER-BY-DIRECTIONS",
+        payload: files
+    }
+}
+
+export default directionsReducer;

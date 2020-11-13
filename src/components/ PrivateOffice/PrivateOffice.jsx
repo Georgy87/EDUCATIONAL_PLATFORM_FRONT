@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { uploadFiles, uploadFilesDirections } from "../../actions/courses";
+import { uploadCourses, uploadFiles, uploadFilesDirections } from "../../actions/courses";
 import { useState } from "react";
 import "./PrivateOffice.css";
 import { NavLink } from "react-router-dom";
@@ -58,7 +58,7 @@ const PrivateOffice = () => {
                         className="office-items"
                         onClick={() =>
                             dispatch(
-                                uploadFiles(file, profession, author, price, shotDescription, fullDescription)
+                                uploadCourses(file, profession, author, price, shotDescription, fullDescription)
                             )
                         }
                     >

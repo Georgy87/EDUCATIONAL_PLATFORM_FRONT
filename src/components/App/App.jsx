@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { useEffect} from "react";
 import "./App.css";
 import { auth } from '../../actions/users';
-import PrivateOffice from '../ PrivateOffice/PrivateOffice';
+import PrivateOffice from '../ privateOffice/PrivateOffice';
 import Courses from '../courses/Courses';
 
 const App = () => {

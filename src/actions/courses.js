@@ -1,13 +1,15 @@
 import axios from "axios";
 import {
     setCourses,
-    setCourseDirections,
     addCourses,
+} from "../reducers/coursesReducer";
+import {
+    setCourseDirections,
     setFilterByDirections,
     addCourseDirections,
-} from "../reducers/coursesReducer";
+} from "../reducers/directionsReducer";
 
-export const uploadFiles = (
+export const uploadCourses = (
     file,
     profession,
     author,
