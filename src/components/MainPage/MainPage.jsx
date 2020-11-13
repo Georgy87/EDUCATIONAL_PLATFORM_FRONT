@@ -7,6 +7,7 @@ import SimpleSlider from "../SliderCourses/SliderCourses";
 import Programms from "../programms/Programms";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Courses from '../courses/Courses';
+import ProgrammsItems from "../programms/ProgrammsItems/ProgrammsItems";
 
 const MainPage = () => {
     const state = useSelector((state) => state.files.files);
@@ -18,14 +19,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <BrowserRouter>
-                <SimpleSlider props={state} />
-                    <Switch>
-                        <Route exact path="/main" component={Programms } />
-                        <Route exact path="/courses" component={Courses } />
-                    </Switch>
-                <Redirect to="/main" />
-            </BrowserRouter>
+            <Programms/>
         </div>
     );
 };

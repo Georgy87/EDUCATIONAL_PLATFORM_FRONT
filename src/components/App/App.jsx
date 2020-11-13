@@ -13,7 +13,6 @@ import Courses from '../courses/Courses';
 
 const App = () => {
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(auth());
     }, []);
@@ -26,8 +25,8 @@ const App = () => {
                     <Route exact path="/main" component={MainPage} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
+                    <Route path="/courses" component={Courses } />
                 </Switch>
-
             </div>
             <Redirect to="/main" />
         </BrowserRouter>
