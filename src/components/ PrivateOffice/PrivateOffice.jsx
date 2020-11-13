@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { uploadCourses, uploadFiles, uploadFilesDirections } from "../../actions/courses";
+import { uploadCourseDirections } from "../../actions/directions";
+import { uploadCourses } from "../../actions/courses";
 import { useState } from "react";
 import "./PrivateOffice.css";
 import { NavLink } from "react-router-dom";
@@ -47,7 +48,7 @@ const PrivateOffice = () => {
                     defaultValue={shotDescription}
                     onChange={(e) => setShotDescription(e.target.value)}
                 />
-                 <textarea
+                <textarea
                     placeholder="Полное описание"
                     type="text"
                     defaultValue={fullDescription}
@@ -58,7 +59,14 @@ const PrivateOffice = () => {
                         className="office-items"
                         onClick={() =>
                             dispatch(
-                                uploadCourses(file, profession, author, price, shotDescription, fullDescription)
+                                uploadCourses(
+                                    file,
+                                    profession,
+                                    author,
+                                    price,
+                                    shotDescription,
+                                    fullDescription
+                                )
                             )
                         }
                     >
@@ -84,7 +92,7 @@ const PrivateOffice = () => {
                     <button
                         className="office-items"
                         onClick={() =>
-                            dispatch(uploadFilesDirections(file, direction))
+                            dispatch(uploadCourseDirections(file, direction))
                         }
                     >
                         Добавить направление

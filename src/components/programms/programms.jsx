@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourseDirections } from "../../actions/courses";
+import { getCourseDirections } from "../../actions/directions";
 import SearchIcon from "@material-ui/icons/Search";
 
 import "./Programms.css";

@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Header from "../header/Header";
-import LoginPage from "../LoginPage/LoginPage";
-import MainPage from "../MainPage/MainPage";
+import LoginPage from "../loginPage/LoginPage";
+import MainPage from "../mainPage/MainPage";
 import Registration from "../registration/Registration";
 import { useDispatch } from "react-redux";
 import { useEffect} from "react";
