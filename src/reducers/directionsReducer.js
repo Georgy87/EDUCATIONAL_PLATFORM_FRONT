@@ -22,6 +22,13 @@ const directionsReducer = (state = initialState, action) => {
                 filterByDirection: action.payload,
                 isFilter: true
             }
+        case  "DELETE-FILTER-BY-DIRECTIONS":
+            return {
+                ...state,
+                filterByDirection: [
+                    ...state.filterByDirection.filter(course => course._id !== action.payload)
+                ]
+            }
         default :
             return state
     }
@@ -45,6 +52,14 @@ export const setFilterByDirections = (files) => {
     return {
         type: "SET-FILTER-BY-DIRECTIONS",
         payload: files
+    }
+}
+
+export const deleteFilterByDirections = (course) => {
+    console.log(course);
+    return {
+        type: "DELETE-FILTER-BY-DIRECTIONS",
+        payload: course
     }
 }
 

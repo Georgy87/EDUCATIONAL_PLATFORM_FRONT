@@ -21,9 +21,8 @@ export default class SimpleSlider extends Component {
             pauseOnFocus: true,
             // variableWidth: true
         };
-        console.log(this.props);
+        
         const element = this.props.props.map((el) => {
-            console.log(el)
             return <SliderItems props={el} key={el._id} />;
         });
 

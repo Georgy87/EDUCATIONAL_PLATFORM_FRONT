@@ -10,9 +10,11 @@ import "./App.css";
 import { auth } from '../../actions/users';
 import PrivateOffice from '../ privateOffice/PrivateOffice';
 import Courses from '../courses/Courses';
+import { getCourses } from "../../actions/courses";
 
 const App = () => {
     const dispatch = useDispatch();
+    dispatch(getCourses());
     useEffect(() => {
         dispatch(auth());
     }, []);

@@ -33,6 +33,13 @@ const filesReducer = (state = initialState, action) => {
                 filterByDirection: action.payload,
                 isFilter: true
             }
+        case "DELETE-COURSE":
+            return {
+                ...state,
+                courses: [
+                    ...state.courses.filter(course => course._id !== action.payload)
+                ]
+            }
         default :
             return state
     }
@@ -49,6 +56,14 @@ export const addCourses = (course) => {
     return {
         type: "ADD-COURSES",
         payload: course
+    }
+}
+
+export const deleteCourseAction = (courseId) => {
+    console.log(courseId);
+    return {
+        type: "DELETE-COURSE",
+        payload: courseId
     }
 }
 

@@ -9,7 +9,7 @@ export const uploadCourseDirections = (file, direction) => {
             formData.append("direction", direction);
 
             const response = await axios.post(
-                "http://localhost:5000/api/file/direction",
+                "http://localhost:5000/api/direction/upload",
                 formData,
                 {
                     headers: {
@@ -30,7 +30,7 @@ export const getCourseDirections = () => {
     return async (dispatch) => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/file/get",
+                "http://localhost:5000/api/direction/",
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -50,7 +50,7 @@ export const filterByDirection = (search) => {
     return async (dispatch) => {
         try {
             const response = await axios.get(
-                `http://localhost:5000/api/file/search?search=${search}`,
+                `http://localhost:5000/api/direction/search?search=${search}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(

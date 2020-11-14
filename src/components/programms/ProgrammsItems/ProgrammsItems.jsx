@@ -15,6 +15,7 @@ const ProgrammsItems = ({ props }) => {
                     <img src={`http://localhost:5000/${props.name}`} />
                 </NavLink>
                 <div className="title">{props.direction}</div>
+                <button onClick={() => deleteDirections(props._id)}>Удалить направление</button>
             </div>
         </div>
     );

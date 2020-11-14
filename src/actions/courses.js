@@ -1,13 +1,7 @@
 import axios from "axios";
-import {
-    setCourses,
-    addCourses,
-} from "../reducers/coursesReducer";
-import {
-    setCourseDirections,
-    setFilterByDirections,
-    addCourseDirections,
-} from "../reducers/directionsReducer";
+import { setCourses, addCourses } from "../reducers/coursesReducer";
+import {deleteCourseAction} from "../reducers/coursesReducer";
+import { deleteFilterByDirections } from "../reducers/directionsReducer";
 
 export const uploadCourses = (
     file,
@@ -28,7 +22,7 @@ export const uploadCourses = (
             formData.append("fullDescription", fullDescription);
 
             const response = await axios.post(
-                "http://localhost:5000/api/file/upload",
+                "http://localhost:5000/api/course/upload",
                 formData,
                 {
                     headers: {
@@ -48,11 +42,16 @@ export const uploadCourses = (
 export const getCourses = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get("http://localhost:5000/api/file", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            });
+            const response = await axios.get(
+                "http://localhost:5000/api/course",
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
             dispatch(setCourses(response.data));
         } catch (e) {
             console.log(e);
@@ -60,3 +59,23 @@ export const getCourses = () => {
     };
 };
 
+export const deleteCourse = (courseId, name) => {
+    return async (dispatch) => {
+        try {
+            const response = axios.delete(
+                `http://localhost:5000/api/course?id=${courseId}&name=${name}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            dispatch(deleteCourseAction(courseId));
+            dispatch(deleteFilterByDirections(courseId));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
