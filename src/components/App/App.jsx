@@ -11,6 +11,7 @@ import { auth } from '../../actions/users';
 import PrivateOffice from '../ privateOffice/PrivateOffice';
 import Courses from '../courses/Courses';
 import { getCourses } from "../../actions/courses";
+import ProfileCourse from "../profileCourse/ProfileCourse";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const App = () => {
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/courses" component={Courses } />
+                    <Route path="/profile" component={ProfileCourse} />
                 </Switch>
             </div>
             <Redirect to="/main" />

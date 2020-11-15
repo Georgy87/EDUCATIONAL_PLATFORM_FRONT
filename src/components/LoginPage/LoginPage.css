@@ -1,25 +1,26 @@
+
+.login-container {
+    display: flex;
+}
+
 .login-wrapper {
-    position: absolute;
-    min-height: 730px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+.login-background {
+    display: flex;
     background-size: cover;
     background-position: center;
-    background-image: url('../../assets/Снимок\ экрана\ 2020-11-09\ в\ 14.48.29.png');
-    /* background-color: rgb(235, 235, 235); */
+    background-image: url('../../assets/Снимок\ экрана\ 2020-11-15\ в\ 15.41.33.png');
+    width: 60%;
 }
 .login {
-    position: absolute;
-    right: 12%;
+    width: 30%;
     margin-top: 20px;
     background-color: rgb(255, 255, 255);
     border-radius: 4px;
     width: 500px;
     height: 500px;
-    box-shadow: 1px 1px 5px 0px rgb(22, 22, 22);
 }
 .login-inputs {
     display: flex;
@@ -82,15 +83,17 @@
     cursor: pointer;
     transform: translateY(-3px);
 }
-.registration {
-    position: absolute;
-    right: 20%;
-    top: 75%;
+.login-registrations {
+    margin: 0 auto;
+    text-align: center;
+}
+.login-registrations span{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 10px;
+    /* padding: 10px; */
+    text-align: center;
     font-size: 15px;
 }
-.registration a{
+.login-registrations a{
     padding-left: 5px;
     color: rgb(40, 40, 90);
     text-decoration: none;

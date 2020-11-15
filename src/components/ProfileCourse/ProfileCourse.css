@@ -1,0 +1,50 @@
+.profile-container {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 70px;
+
+}
+.profile-info-main {
+    width: 70%;
+    height: 500px;
+    background-color: rgb(102, 90, 77);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.profile-info-dop {
+    width: 55%;
+    height: 500px;
+    /* margin-top: 90px; */
+    background-color: rgb(74, 187, 202);
+
+    background-size: cover;
+    background-position: center;
+    /* background: linear-gradient(1deg, #5ed1c2, #4395bb); */
+    background-image: url('../../assets/Снимок\ экрана\ 2020-11-15\ в\ 15.41.33.png');
+}
+.profile-info-middle {
+    width: 5%;
+    height: 500px;
+}
+
+.profile-second {
+    width: 40%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../../assets/Снимок\ экрана\ 2020-11-15\ в\ 15.43.04.png');
+}
+.profile-middle-second {
+    width: 60%;
+    height: 500px;
+    /* margin-top: 90px; */
+    background-size: cover;
+    background-position: center;
+    background-color: rgb(74, 187, 202);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    /* background: linear-gradient(1deg, #5ed1c2, #4395bb); */
+
+}
+.profile-dop-second {
+    width: 5%;
+    height: 500px;
+}

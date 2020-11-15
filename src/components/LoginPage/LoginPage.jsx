@@ -10,9 +10,10 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     return (
-        <div>
-            <div className="login-wrapper">
-                <div className="login">
+        <div className="login-container">
+            <div className="login-background"></div>
+            <div className="login">
+                <div className="login-wrapper">
                     <div className="login-inputs">
                         <h1>Войти</h1>
                         <label htmlFor="email">email</label>
@@ -37,7 +38,7 @@ const LoginPage = () => {
                         </NavLink>
                     </div>
                 </div>
-                <div className="registration">
+                <div className="login-registrations">
                     <span>Новый пользователь?</span>
                     <NavLink to="/registration">Зарегистрируйтесь</NavLink>
                 </div>
