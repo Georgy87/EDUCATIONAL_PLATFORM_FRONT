@@ -55,7 +55,7 @@ export const auth = () => {
             localStorage.setItem("token", response.data.token);
         } catch (e) {
             console.log(e);
-            localStorage.removeItem("token");
+            // localStorage.removeItem("token");
         }
     };
 };

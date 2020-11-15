@@ -2,11 +2,12 @@
     display: flex;
     min-width: 1200px;
     margin-top: 30px;
+    cursor: pointer;
 }
 .course-show img{
     display: flex;
-    width: 320px;
-    height: 200px;
+    width: 290px;
+    height: 160px;
     border-radius: 5px;
     box-shadow: 0 1px 1px rgba(223, 172, 147, 0.4);
     transition: 0.6s all;
@@ -33,4 +34,18 @@
 }
 .course-delete {
     margin-top: 12px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-left: auto;
+}
+
+.course-delete svg{
+    display: none;
+    color: rgb(184, 52, 52);
+    width: 25px;
+    height: 25px;
+}
+.course-container:hover .course-delete svg{
+    display: block;
 }

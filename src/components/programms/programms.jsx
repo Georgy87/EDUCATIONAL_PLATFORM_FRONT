@@ -6,7 +6,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import "./Programms.css";
 import ProgrammsItems from "./ProgrammsItems/ProgrammsItems";
 const Programms = () => {
-    const state = useSelector((state) => state.course.courseDirections);
+    const state = useSelector((state) => state.directions.courseDirections);
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCourseDirections());

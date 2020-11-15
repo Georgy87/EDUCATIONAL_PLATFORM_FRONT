@@ -28,9 +28,10 @@ const CourseItems = ({ props }) => {
                 <div className="course-descr">
                     <div className="course-title">{props.smallDescription}</div>
                     <div className="course-author">{props.author}</div>
-                    <div className="course-delete">
-                        <DeleteForeverIcon style={{color: 'red'}} onClick={(e) => onDeleteFile(e)} />
-                    </div>
+                </div>
+                <div className="course-delete">
+                    <DeleteForeverIcon onClick={(e) => onDeleteFile(e)} />
+                    {/* <img src="https://www.pngkey.com/png/full/11-111133_delete-trash-icon-waste.png" alt=""/> */}
                 </div>
             </div>
             <div className="course-line"></div>
