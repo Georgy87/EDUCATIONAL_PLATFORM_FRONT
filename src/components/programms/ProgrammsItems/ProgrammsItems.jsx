@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteDirection, filterByDirection } from "../../../actions/directions";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { NavLink } from "react-router-dom";
+import "./ProgrammsItems.css"
 
 const ProgrammsItems = ({ props }) => {
     const dispatch = useDispatch();
@@ -15,7 +17,9 @@ const ProgrammsItems = ({ props }) => {
                     <img src={`http://localhost:5000/${props.name}`} />
                 </NavLink>
                 <div className="title">{props.direction}</div>
-                <DeleteForeverIcon onClick={() => dispatch(deleteDirection(props._id, props.direction))} onClick={(e) => onDeleteFile(e)} />
+                <div className="direction-delete">
+                    <DeleteForeverIcon onClick={() => dispatch(deleteDirection(props._id, props.direction))}/>
+                </div>
             </div>
         </div>
     );

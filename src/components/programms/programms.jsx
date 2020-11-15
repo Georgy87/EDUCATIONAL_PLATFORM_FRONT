@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCourseDirections } from "../../actions/directions";
 import SearchIcon from "@material-ui/icons/Search";
 
+
 import "./Programms.css";
 import ProgrammsItems from "./ProgrammsItems/ProgrammsItems";
+import DirectionTitles from "./DirectionsTitles/DirectionTitles";
 const Programms = () => {
     const state = useSelector((state) => state.directions.courseDirections);
 
@@ -12,7 +14,6 @@ const Programms = () => {
     useEffect(() => {
         dispatch(getCourseDirections());
     }, []);
-
     return (
         <div>
             <div className="programms">
@@ -23,31 +24,9 @@ const Programms = () => {
                         <label htmlFor="">
                             <input type="text" placeholder="Search" />
                         </label>
-
-                        <div className="directions-item">
-                            <button>Instagram-маркетолог</button>
-                        </div>
-                        <div className="directions-item">
-                            <button>Smm</button>
-                        </div>
-                        <div className="directions-item">
-                            <button>Сторисмейкер</button>
-                        </div>
-                        <div className="directions-item">
-                            <button>Копирайтер</button>
-                        </div>
-                        <div className="directions-item">
-                            <button>Менеджер блогера</button>
-                        </div>
-                        <div className="directions-item">
-                            <button>Визуальщик</button>
-                        </div>
-                        <div className="directions-item">
-                            <button>Продюсер</button>
-                        </div>
-                        <div className="directions-item">
-                            <button>Контентмейкер</button>
-                        </div>
+                        {state.map(el => {
+                            return  <DirectionTitles key={el._id} direction={el.direction}/>
+                        })}
                     </div>
                     <div className="directions-content">
                         <h1 style={{ fontSize: "40px" }}>Профессии</h1>

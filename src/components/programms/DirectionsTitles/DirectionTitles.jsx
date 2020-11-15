@@ -1,11 +1,11 @@
 import React from "react";
 
-const DirectionTitles = ({ props }) => {
-  
+const DirectionTitles = (props) => {
+    const { direction } = props;
     return (
         <div>
             <div className="directions-item">
-                <button>smm</button>
+                <button>{direction}</button>
             </div>
         </div>
     );

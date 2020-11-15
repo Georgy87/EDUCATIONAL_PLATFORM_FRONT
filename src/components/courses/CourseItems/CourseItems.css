@@ -41,11 +41,14 @@
 }
 
 .course-delete svg{
-    display: none;
     color: rgb(184, 52, 52);
     width: 25px;
     height: 25px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1s opacity, 1s visibility;
 }
 .course-container:hover .course-delete svg{
-    display: block;
+    opacity: 1;
+    visibility: visible;
 }

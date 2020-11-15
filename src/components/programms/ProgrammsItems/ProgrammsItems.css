@@ -1,3 +1,15 @@
-.direction-wrap {
-    
+
+
+.direction-delete svg{
+    margin-top: 5px;
+    color: rgb(184, 52, 52);
+    width: 25px;
+    height: 25px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1s opacity, 1s visibility;
+}
+.direction-wrap:hover .direction-delete  svg{
+    opacity: 1;
+    visibility: visible;
 }

@@ -31,7 +31,6 @@ const CourseItems = ({ props }) => {
                 </div>
                 <div className="course-delete">
                     <DeleteForeverIcon onClick={(e) => onDeleteFile(e)} />
-                    {/* <img src="https://www.pngkey.com/png/full/11-111133_delete-trash-icon-waste.png" alt=""/> */}
                 </div>
             </div>
             <div className="course-line"></div>
