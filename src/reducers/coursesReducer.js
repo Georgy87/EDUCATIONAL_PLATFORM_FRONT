@@ -2,6 +2,7 @@ const initialState = {
     courses: [],
     courseDirections: [],
     filterByDirection: [],
+    courseProfile: null,
     isFilter: false
 }
 
@@ -40,6 +41,13 @@ const filesReducer = (state = initialState, action) => {
                     ...state.courses.filter(course => course._id !== action.payload)
                 ]
             }
+        case "SET-COURSE-PROFILE":
+            return {
+                ...state,
+                courseProfile: [
+                    ...state.courses.filter(course => course._id == action.payload)
+                ]
+            }
         default :
             return state
     }
@@ -63,6 +71,14 @@ export const deleteCourseAction = (courseId) => {
     console.log(courseId);
     return {
         type: "DELETE-COURSE",
+        payload: courseId
+    }
+}
+
+export const setCourseProfile = (courseId) => {
+    console.log(courseId);
+    return {
+        type: "SET-COURSE-PROFILE",
         payload: courseId
     }
 }

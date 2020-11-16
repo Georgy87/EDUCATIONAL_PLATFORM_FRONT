@@ -1,7 +1,7 @@
 import React from "react";
 import "./CourseItems.css";
 import { NavLink } from "react-router-dom";
-import { deleteCourse } from "../../../actions/courses";
+import { deleteCourse, getProfileCourse } from "../../../actions/courses";
 import { useDispatch } from "react-redux";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { useSelector } from "react-redux";
@@ -14,9 +14,10 @@ const CourseItems = ({ props }) => {
         e.stopPropagation();
         dispatch(deleteCourse(props._id, props.name));
     };
+
     return (
         <div>
-            <div className="course-container">
+            <div className="course-container" onClick={() => dispatch(getProfileCourse(props._id))}>
                 <NavLink to="/profile">
                     <div className="course-show">
                         <img

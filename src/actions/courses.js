@@ -1,6 +1,6 @@
 import axios from "axios";
-import { setCourses, addCourses } from "../reducers/coursesReducer";
-import {deleteCourseAction} from "../reducers/coursesReducer";
+import { setCourses, addCourses, setCourseProfile } from "../reducers/coursesReducer";
+import { deleteCourseAction } from "../reducers/coursesReducer";
 import { deleteFilterByDirections } from "../reducers/directionsReducer";
 
 export const uploadCourses = (
@@ -76,6 +76,16 @@ export const deleteCourse = (courseId, name) => {
             dispatch(deleteFilterByDirections(courseId));
         } catch (e) {
             console.log(e);
+        }
+    };
+};
+
+export const getProfileCourse = (courseId) => {
+    return (dispatch) => {
+        try {
+            dispatch(setCourseProfile(courseId));
+        } catch (error) {
+            console.log(error);
         }
     };
 };
