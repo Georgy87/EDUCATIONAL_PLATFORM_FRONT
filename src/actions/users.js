@@ -60,28 +60,24 @@ export const auth = () => {
 };
 
 export const uploadAvatar = (file) => {
-    console.log(file);
-    return async (dispatch) => {
-        try {
-            // const formData = new FormData();
 
-            // formData.append("file", file);
 
-            const result = await axios.post(
-                // `http://localhost:5000/api/course/avatar/search=${file}}`,
+            const formData = new FormData();
+            console.log(file)
+            formData.append("file", file);
 
-                // {
-                //     headers: {
-                //         Authorization: `Bearer ${localStorage.getItem(
-                //             "token"
-                //         )}`,
-                //     },
-                // }
+            const result = axios.post(
+                `http://localhost:5000/api/course/avatar`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
             );
             // dispatch(setUser(result.data));
             // console.log(result);
-        } catch (error) {
-            console.log("fggh");
-        }
-    };
+
 };
