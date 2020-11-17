@@ -20,7 +20,6 @@ export const registration = async (name, email, password) => {
 export const login = (email, password) => {
     return async (dispatch) => {
         try {
-
             const response = await axios.post(
                 "http://localhost:5000/api/auth/login",
                 {
@@ -60,4 +59,29 @@ export const auth = () => {
     };
 };
 
+export const uploadAvatar = (file) => {
+    console.log(file);
+    return async (dispatch) => {
+        try {
+            // const formData = new FormData();
 
+            // formData.append("file", file);
+
+            const result = await axios.post(
+                // `http://localhost:5000/api/course/avatar/search=${file}}`,
+
+                // {
+                //     headers: {
+                //         Authorization: `Bearer ${localStorage.getItem(
+                //             "token"
+                //         )}`,
+                //     },
+                // }
+            );
+            // dispatch(setUser(result.data));
+            // console.log(result);
+        } catch (error) {
+            console.log("fggh");
+        }
+    };
+};

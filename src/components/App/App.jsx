@@ -12,6 +12,9 @@ import PrivateOffice from '../ privateOffice/PrivateOffice';
 import Courses from '../courses/Courses';
 import { getCourses } from "../../actions/courses";
 import ProfileCourse from "../profileCourse/ProfileCourse";
+import UserProfile from '../userProfile/UserProfile';
+import MyEditor from "../userProfile/UserProfile";
+
 
 const App = () => {
     const dispatch = useDispatch();
@@ -30,6 +33,7 @@ const App = () => {
                     <Route path="/login" component={LoginPage} />
                     <Route path="/courses" component={Courses } />
                     <Route path="/profile" component={ProfileCourse} />
+                    <Route path="/user" component={MyEditor} />
                 </Switch>
             </div>
             <Redirect to="/main" />
