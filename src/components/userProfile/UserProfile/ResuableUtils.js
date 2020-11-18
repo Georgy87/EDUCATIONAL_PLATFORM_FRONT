@@ -3,8 +3,10 @@
 // Source: https://kirr.co/ndywes
 
 // Convert a Base64-encoded string to a File object
-export function base64StringtoFile (base64String, filename) {
-  var arr = base64String.split(','), mime = arr[0].match(/:(.*?);/)[1],
+
+export const base64StringtoFile  = (base64String, filename) => {
+  console.log(base64String, filename)
+  let arr = base64String.split(','), mime = arr[0].match(/:(.*?);/)[1],
     bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n)
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n)
@@ -14,7 +16,7 @@ export function base64StringtoFile (base64String, filename) {
 
 // Download a Base64-encoded file
 
-export function downloadBase64File (base64Data, filename) {
+export const downloadBase64File = (base64Data, filename) => {
   var element = document.createElement('a')
   element.setAttribute('href', base64Data)
   element.setAttribute('download', filename)
@@ -25,12 +27,12 @@ export function downloadBase64File (base64Data, filename) {
 }
 
 // Extract an Base64 Image's File Extension
-export function extractImageFileExtensionFromBase64 (base64Data) {
+export const extractImageFileExtensionFromBase64 = (base64Data) => {
   return base64Data.substring('data:image/'.length, base64Data.indexOf(';base64'))
 }
 
 // Base64 Image to Canvas with a Crop
-export function image64toCanvasRef (canvasRef, image64, pixelCrop) {
+export const image64toCanvasRef = (canvasRef, image64, pixelCrop) => {
   const canvas = canvasRef // document.createElement('canvas');
   canvas.width = pixelCrop.width
   canvas.height = pixelCrop.height

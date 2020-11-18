@@ -1,0 +1,13 @@
+.user-container {
+    display: flex;
+    height: 900px;
+}
+.user-navbar {
+    display: flex;
+    width: 15%;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300px;
+    font-size: 15px;
+    border: 1px solid rgb(180, 176, 176)
+}
+

@@ -60,8 +60,8 @@ export const auth = () => {
 };
 
 export const uploadAvatar = (file) => {
-
-
+    return (dispatch) => {
+        try {
             const formData = new FormData();
             console.log(file)
             formData.append("file", file);
@@ -77,7 +77,13 @@ export const uploadAvatar = (file) => {
                     },
                 }
             );
-            // dispatch(setUser(result.data));
+            dispatch(setUser(result.data));
             // console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
 };
