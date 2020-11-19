@@ -60,14 +60,13 @@ export const auth = () => {
 };
 
 export const uploadAvatar = (file) => {
-    
-    return (dispatch) => {
+    return async (dispatch) => {
         try {
             const formData = new FormData();
             console.log(file)
             formData.append("file", file);
 
-            const result = axios.post(
+            const result = await axios.post(
                 `http://localhost:5000/api/course/avatar`,
                 formData,
                 {
@@ -78,7 +77,8 @@ export const uploadAvatar = (file) => {
                     },
                 }
             );
-            dispatch(setUser(result.data));
+
+            return await dispatch(setUser(result.data));
             // console.log(result);
         } catch (error) {
             console.log(error);
