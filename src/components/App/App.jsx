@@ -5,15 +5,15 @@ import LoginPage from "../loginPage/LoginPage";
 import MainPage from "../mainPage/MainPage";
 import Registration from "../registration/Registration";
 import { useDispatch } from "react-redux";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import "./App.css";
-import { auth } from '../../actions/users';
-import PrivateOffice from '../ privateOffice/PrivateOffice';
-import Courses from '../courses/Courses';
+import { auth } from "../../actions/users";
+import PrivateOffice from "../ privateOffice/PrivateOffice";
+import Courses from "../courses/Courses";
 import { getCourses } from "../../actions/courses";
 import ProfileCourse from "../profileCourse/ProfileCourse";
-import Profile from '../userProfile/Profile';
-
+import ImgDropAndCrop from "../userProfile/UserProfile/UserProfile";
+import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -26,16 +26,15 @@ const App = () => {
             <div className="app">
                 <Header />
                 <Switch>
-                    <Route path="/privatoffice" component={PrivateOffice } />
+                    <Route path="/privatoffice" component={PrivateOffice} />
                     <Route exact path="/main" component={MainPage} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
-                    <Route path="/courses" component={Courses } />
+                    <Route path="/courses" component={Courses} />
                     <Route path="/profile" component={ProfileCourse} />
-                    <Route path="/user" render={() => < Profile />} />
+                    <Route path="/user" render={() => <UserProfileNavbar />} />
                 </Switch>
             </div>
-
             <Redirect to="/main" />
         </BrowserRouter>
     );

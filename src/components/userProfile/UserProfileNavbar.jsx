@@ -1,9 +1,15 @@
 import React from "react";
 import UserProfile from "./UserProfile/UserProfile";
-import "./Profile.css";
-import { BrowserRouter, NavLink, Redirect, Route, Switch } from "react-router-dom";
+import "./UserProfileNavbar.css";
+import {
+    BrowserRouter,
+    NavLink,
+    Redirect,
+    Route,
+    Switch,
+} from "react-router-dom";
 
-const Profile = () => {
+const UserProfileNavbar = () => {
     return (
         <div>
             <BrowserRouter>
@@ -18,17 +24,14 @@ const Profile = () => {
                             </NavLink>
                         </div>
                     </div>
-                        <Switch>
-                            <Route
-                                path="/photo"
-                                render={() => <UserProfile />}
-                            />
-                        </Switch>
-                        <Redirect to="/photo" />
+                    <Switch>
+                        <Route path="/photo" render={() => <UserProfile />} />
+                    </Switch>
+                    <Redirect to="/photo" />
                 </div>
             </BrowserRouter>
         </div>
     );
 };
 
-export default Profile;
+export default UserProfileNavbar;

@@ -6,3 +6,6 @@ body {
     max-width: 1200px;
     margin-bottom: 80px;
 }
+:root {
+    --myFontFamily: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

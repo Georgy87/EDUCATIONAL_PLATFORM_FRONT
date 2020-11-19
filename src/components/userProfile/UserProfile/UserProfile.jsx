@@ -21,6 +21,7 @@ const acceptedFileTypesArray = acceptedFileTypes.split(",").map((item) => {
 class ImgDropAndCrop extends Component {
     constructor(props) {
         super(props);
+        this.props = props;
         this.imagePreviewCanvasRef = React.createRef();
         this.fileInputRef = React.createRef();
         this.state = {
@@ -91,7 +92,6 @@ class ImgDropAndCrop extends Component {
     };
     handleOnCropComplete = (crop, pixelCrop) => {
         //console.log(crop, pixelCrop)
-
         const canvasRef = this.imagePreviewCanvasRef.current;
         const { imgSrc } = this.state;
         image64toCanvasRef(canvasRef, imgSrc, pixelCrop);
@@ -113,9 +113,9 @@ class ImgDropAndCrop extends Component {
                 myFilename
             );
 
-            uploadAvatar(myNewCroppedFile);
+            this.props.uploadAvatar(myNewCroppedFile);
             // download file
-            downloadBase64File(imageData64, myFilename);
+            // downloadBase64File(imageData64, myFilename);
             this.handleClearToDefault();
         }
     };
@@ -166,7 +166,7 @@ class ImgDropAndCrop extends Component {
 
     render() {
         const { imgSrc } = this.state;
-        console.log(this.state);
+
         return (
             <div className="drag-container">
                 <div className="photo-titles">
@@ -176,20 +176,26 @@ class ImgDropAndCrop extends Component {
                     </div>
                 </div>
                 <div className="photo-add-container">
-                    <div class="fl_upld">
-                        <label>
-                            <input
-                                id="fl_inp"
-                                ref={this.fileInputRef}
-                                type="file"
-                                accept={acceptedFileTypes}
-                                multiple={false}
-                                onChange={this.handleFileSelect}
-                            />
-                            Выберите файл
-                            <div id="fl_nm">Файл не выбран</div>
-                        </label>
+                    <div className="file-upload-wrapper">
+                        <div className="choose-file-btns">
+                            <label>
+                                <input
+                                    id="file-input"
+                                    ref={this.fileInputRef}
+                                    type="file"
+                                    accept={acceptedFileTypes}
+                                    multiple={false}
+                                    onChange={this.handleFileSelect}
+                                />
 
+                                <div id="choose-file">
+                                    Выберите файл
+                                </div>
+                                <div className="no-file-selected">
+                                    Файл не выбран
+                                </div>
+                            </label>
+                        </div>
                     </div>
 
                     {imgSrc !== null ? (
@@ -203,23 +209,61 @@ class ImgDropAndCrop extends Component {
                             />
 
                             <br />
-                            <p>Preview Canvas Crop </p>
-                            <canvas ref={this.imagePreviewCanvasRef}></canvas>
-                            <button onClick={this.handleDownloadClick}>
-                                Download
-                            </button>
-                            <button onClick={this.handleClearToDefault}>
-                                Clear
-                            </button>
+                            <p
+                                style={{
+                                    textAlign: "center",
+                                    fontFamily: "var(--myFontFamily)",
+                                }}
+                            >
+                                Предпросмотр аватара
+                            </p>
+                            <canvas
+                                ref={this.imagePreviewCanvasRef}
+                                style={{
+                                    width: "200px",
+                                    height: "200px",
+                                    display: "block",
+                                    margin: "0 auto",
+                                    borderRadius: "100%",
+                                }}
+                            ></canvas>
+                            <div className="photo-avatar-btns">
+                                <button
+                                    className="photo-avatar-save-btn"
+                                    onClick={this.handleDownloadClick}
+                                >
+                                    Сохранить
+                                </button>
+                                <button
+                                    className="photo-avatar-clear-btn"
+                                    onClick={this.handleClearToDefault}
+                                >
+                                    Удалить
+                                </button>
+                            </div>
                         </div>
                     ) : (
                         <Dropzone
+                            style={{
+                                borderStyle: "none",
+                                width: "500px",
+                                height: "300px",
+                                borderRadius: "4px",
+                                textAlign: "center",
+                                margin: "0 auto",
+                                marginTop: "80px",
+                                cursor: "pointer",
+                                boxShadow: "inset 2px 3px 10px rgb(228, 241, 244)",
+                                // backgroundColor: "rgb(243, 245, 244)"
+                            }}
                             onDrop={this.handleOnDrop}
                             accept={acceptedFileTypes}
                             multiple={false}
                             maxSize={imageMaxSize}
                         >
-                            Drop image here or click to upload
+                            <div className="dropzone-text">
+                                Добавьте изображение сюда
+                            </div>
                         </Dropzone>
                     )}
                 </div>
@@ -229,7 +273,6 @@ class ImgDropAndCrop extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {};
 };
 
