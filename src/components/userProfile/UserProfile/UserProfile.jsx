@@ -98,6 +98,7 @@ class ImgDropAndCrop extends Component {
     };
     handleDownloadClick = (event) => {
         event.preventDefault();
+        event.stopPropagation();
         const { imgSrc } = this.state;
         if (imgSrc) {
             const canvasRef = this.imagePreviewCanvasRef.current;
@@ -188,9 +189,7 @@ class ImgDropAndCrop extends Component {
                                     onChange={this.handleFileSelect}
                                 />
 
-                                <div id="choose-file">
-                                    Выберите файл
-                                </div>
+                                <div id="choose-file">Выберите файл</div>
                                 <div className="no-file-selected">
                                     Файл не выбран
                                 </div>
@@ -253,7 +252,8 @@ class ImgDropAndCrop extends Component {
                                 margin: "0 auto",
                                 marginTop: "80px",
                                 cursor: "pointer",
-                                boxShadow: "inset 2px 3px 10px rgb(228, 241, 244)",
+                                boxShadow:
+                                    "inset 2px 3px 10px rgb(228, 241, 244)",
                                 // backgroundColor: "rgb(243, 245, 244)"
                             }}
                             onDrop={this.handleOnDrop}

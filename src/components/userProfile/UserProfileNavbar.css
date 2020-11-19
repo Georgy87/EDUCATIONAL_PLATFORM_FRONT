@@ -10,3 +10,24 @@
     font-size: 15px;
     border: 1px solid rgb(211, 209, 209);
 }
+.user-pages {
+    display: flex;
+    margin: 0 auto;
+    height: 300px;
+    align-items: center;
+    flex-direction: column;
+}
+.user-pages a {
+    display: flex;
+    padding: 3px;
+    text-decoration: none;
+    color: black;
+    font-family: var(--myFontFamily);
+}
+.user-pages img {
+    margin-top: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin-bottom: 30px;
+}
