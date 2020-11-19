@@ -1,4 +1,4 @@
-.drag-container h1{
+.drag-container h1 {
     margin: 0;
 }
 .ReactCrop {
@@ -217,48 +217,105 @@
     align-items: center;
     width: 100%;
     margin: 0 auto;
-    border: 1px solid rgb(180, 176, 176)
+    border: 1px  solid rgb(211, 209, 209);
+    border-left: none
 }
-.photo-titles p{
+.photo-titles p {
     font-size: 20px;
     margin: 10px;
     margin-top: 20px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: var(--myFontFamily);
 }
 .photo-descr {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: var(--myFontFamily);
     margin: 10px;
 }
 .photo-add-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center
+    align-items: center;
 }
-.photo-add-container input {
+/* .photo-add-container input {
     background-color: red;
     border: none;
     height: 40px;
-}
-#fl_inp {
+} */
+#file-input {
     display: none;
 }
-.fl_upld {
+
+.file-upload-wrapper {
     display: flex;
     margin-top: 15px;
     height: 30px;
 }
-.fl_upld label {
+.file-upload-wrapper label {
     align-items: center;
-  
     display: flex;
 }
-.fl_upld label #fl_nm {
-    padding: 5px;
-    display: flex;
+.dropzone-text {
+    margin-top: 25%;
+    color: rgb(207, 204, 204);
+    font-family: var(--myFontFamily);
 }
-
-
-
-
+.ReactCrop--fixed-aspect .ReactCrop__image {
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+}
+.photo-avatar-btns {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+}
+.photo-avatar-btns button {
+    display: flex;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 3px;
+    height: 40px;
+    align-items: center;
+    padding: 15px;
+}
+.photo-avatar-clear-btn {
+    margin-left: 5px;
+    border: 1px solid rgb(201, 76, 67);
+    color: rgb(201, 76, 67);
+}
+.photo-avatar-save-btn {
+    margin-right: 5px;
+    border: 1px solid rgb(86, 192, 206);
+    color: rgb(86, 192, 206);
+}
+.choose-file-btns {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+.choose-file-btns #choose-file, .no-file-selected {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    padding: 15px;
+    height: 10px;
+}
+#choose-file {
+    margin-left: 5px;
+    background-color: white;
+    border: 1px solid rgb(86, 209, 225);
+    color: rgb(86, 209, 225);
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+    font-family: var(--myFontFamily);
+}
+.no-file-selected {
+    border: 1px solid rgb(192, 187, 187);
+    border-left: none;
+    color: rgb(117, 117, 115);
+    background-color: rgb(228, 241, 238);
+    width: 300px;
+    border-radius: 0 5px 5px 0;
+    font-family: var(--myFontFamily);
+}
 

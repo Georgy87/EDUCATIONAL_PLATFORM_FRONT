@@ -60,6 +60,7 @@ export const auth = () => {
 };
 
 export const uploadAvatar = (file) => {
+    
     return (dispatch) => {
         try {
             const formData = new FormData();
