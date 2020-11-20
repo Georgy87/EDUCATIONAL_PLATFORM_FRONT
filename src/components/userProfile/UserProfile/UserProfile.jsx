@@ -9,6 +9,7 @@ import {
 } from "./ResuableUtils";
 import { connect } from "react-redux";
 import { uploadAvatar } from "../../../actions/users";
+import { auth } from "../../../actions/users";
 import "./UserProfile.css";
 
 const imageMaxSize = 1000000000; // bytes
@@ -98,7 +99,7 @@ class ImgDropAndCrop extends Component {
     };
     handleDownloadClick = (event) => {
         event.preventDefault();
-        event.stopPropagation();
+        // event.stopPropagation();
         const { imgSrc } = this.state;
         if (imgSrc) {
             const canvasRef = this.imagePreviewCanvasRef.current;
@@ -115,6 +116,7 @@ class ImgDropAndCrop extends Component {
             );
 
             this.props.uploadAvatar(myNewCroppedFile);
+          
             // download file
             // downloadBase64File(imageData64, myFilename);
             this.handleClearToDefault();
@@ -276,7 +278,7 @@ const mapStateToProps = (state) => {
     return {};
 };
 
-export default connect(mapStateToProps, { uploadAvatar })(ImgDropAndCrop);
+export default connect(mapStateToProps, { uploadAvatar})(ImgDropAndCrop);
 
 // import React, { Component } from "react";
 

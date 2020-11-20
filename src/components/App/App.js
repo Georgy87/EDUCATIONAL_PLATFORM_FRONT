@@ -20,6 +20,7 @@ const App = () => {
     dispatch(getCourses());
     useEffect(() => {
         dispatch(auth());
+        // dispatch(getCourses());
     }, []);
     return (
         <BrowserRouter>
@@ -27,15 +28,15 @@ const App = () => {
                 <Header />
                 <Switch>
                     <Route path="/privatoffice" component={PrivateOffice} />
-                    <Route exact path="/main" component={MainPage} />
+                    <Route path="/main" component={MainPage} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/courses" component={Courses} />
                     <Route path="/profile" component={ProfileCourse} />
-                    <Route path="/user" render={() => <UserProfileNavbar />} />
+                    <Route exact path="/user" render={() => <UserProfileNavbar />} />
+                    <Redirect to="/main" />
                 </Switch>
             </div>
-            <Redirect to="/main" />
         </BrowserRouter>
     );
 };

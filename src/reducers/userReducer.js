@@ -10,16 +10,32 @@ const userReducer = (state = initialState, action) => {
                 user: action.payload,
                 isAuth: true
             }
+        case "LOGOUT" :
+        localStorage.removeItem('token');
+        return {
+            ...state,
+            user: {},
+            isAuth: false
+        }
         default :
             return state
     }
 }
 
 export const setUser = (user) => {
+    console.log(user)
     return {
         type: "SET-USER",
         payload: user
     }
 }
+
+export const logout = () => {
+    return {
+        type: "LOGOUT",
+    }
+}
+
+
 
 export default userReducer;

@@ -5,7 +5,7 @@
 // Convert a Base64-encoded string to a File object
 
 export const base64StringtoFile  = (base64String, filename) => {
-  console.log(base64String, filename)
+ 
   let arr = base64String.split(','), mime = arr[0].match(/:(.*?);/)[1],
     bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n)
   while (n--) {
