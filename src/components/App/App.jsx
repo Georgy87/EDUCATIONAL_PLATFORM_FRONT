@@ -12,7 +12,6 @@ import PrivateOffice from "../ privateOffice/PrivateOffice";
 import Courses from "../courses/Courses";
 import { getCourses } from "../../actions/courses";
 import ProfileCourse from "../profileCourse/ProfileCourse";
-import ImgDropAndCrop from "../userProfile/UserProfile/UserProfile";
 import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 
 const App = () => {
@@ -31,8 +30,8 @@ const App = () => {
                     <Route path="/main" component={MainPage} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
-                    <Route path="/courses" component={Courses} />
-                    <Route path="/profile" component={ProfileCourse} />
+                    <Route path="/courses/:filter?"  component={Courses} />
+                    <Route path="/profile" exact={true} component={ProfileCourse} />
                     <Route exact path="/user" render={() => <UserProfileNavbar />} />
                     <Redirect to="/main" />
                 </Switch>

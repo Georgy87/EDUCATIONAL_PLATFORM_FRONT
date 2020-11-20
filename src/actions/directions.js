@@ -47,6 +47,7 @@ export const getCourseDirections = () => {
 };
 
 export const filterByDirection = (search) => {
+    console.log(search);
     return async (dispatch) => {
         try {
             const response = await axios.get(

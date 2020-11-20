@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Font, { Text } from "react-font";
 const ProfileCourse = () => {
     const state = useSelector((state) => state.course.courseProfile);
-
+    
     return (
         <div>
             {state !== null &&

@@ -33,4 +33,5 @@
     height: 35px;
     margin-right: 10px;
     display: flex;
+    border-radius: 100%;
 }
