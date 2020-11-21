@@ -23,7 +23,6 @@ const userReducer = (state = initialState, action) => {
 }
 
 export const setUser = (user) => {
-    console.log(user)
     return {
         type: "SET-USER",
         payload: user

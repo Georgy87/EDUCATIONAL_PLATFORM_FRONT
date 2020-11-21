@@ -44,9 +44,7 @@ const filesReducer = (state = initialState, action) => {
         case "SET-COURSE-PROFILE":
             return {
                 ...state,
-                courseProfile: [
-                    ...state.courses.filter(course => course._id == action.payload)
-                ]
+                courseProfile: action.payload
             }
         default :
             return state
@@ -68,18 +66,17 @@ export const addCourses = (course) => {
 }
 
 export const deleteCourseAction = (courseId) => {
-    console.log(courseId);
+
     return {
         type: "DELETE-COURSE",
         payload: courseId
     }
 }
 
-export const setCourseProfile = (courseId) => {
-    console.log(courseId);
+export const setCourseProfile = (course) => {
     return {
         type: "SET-COURSE-PROFILE",
-        payload: courseId
+        payload: course
     }
 }
 

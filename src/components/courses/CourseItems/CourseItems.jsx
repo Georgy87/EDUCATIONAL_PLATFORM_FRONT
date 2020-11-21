@@ -18,7 +18,7 @@ const CourseItems = ({ props }) => {
     return (
         <div>
             <div className="course-container" onClick={() => dispatch(getProfileCourse(props._id))}>
-                <NavLink to="/profile">
+                <NavLink to={`/profile/${props._id}`}>
                     <div className="course-show">
                         <img
                             src={`http://localhost:5000/${props.name}`}

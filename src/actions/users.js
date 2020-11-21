@@ -63,7 +63,7 @@ export const uploadAvatar = (file) => {
     return async (dispatch) => {
         try {
             const formData = new FormData();
-            console.log(file)
+           
             formData.append("file", file);
 
             const result = await axios.post(

@@ -62,7 +62,7 @@ export const getCourses = () => {
 export const deleteCourse = (courseId, name) => {
     return async (dispatch) => {
         try {
-            const response = axios.delete(
+            const response = await axios.delete(
                 `http://localhost:5000/api/course?id=${courseId}&name=${name}`,
                 {
                     headers: {
@@ -81,9 +81,20 @@ export const deleteCourse = (courseId, name) => {
 };
 
 export const getProfileCourse = (courseId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         try {
-            dispatch(setCourseProfile(courseId));
+            const response = await axios.get(
+                `http://localhost:5000/api/course/profile?id=${courseId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            console.log(response.data)
+            dispatch(setCourseProfile(response.data));
         } catch (error) {
             console.log(error);
         }

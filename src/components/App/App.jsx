@@ -31,7 +31,7 @@ const App = () => {
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/courses/:filter?"  component={Courses} />
-                    <Route path="/profile" exact={true} component={ProfileCourse} />
+                    <Route path="/profile/:profileId?" component={ProfileCourse} />
                     <Route exact path="/user" render={() => <UserProfileNavbar />} />
                     <Redirect to="/main" />
                 </Switch>

@@ -21,7 +21,7 @@ export default class SimpleSlider extends Component {
             pauseOnFocus: true,
             // variableWidth: true
         };
-        
+
         const element = this.props.props.map((el) => {
             return <SliderItems props={el} key={el._id} />;
         });
@@ -33,7 +33,7 @@ export default class SimpleSlider extends Component {
             >
                 <div
                     style={{
-                        minWidth: "100%",
+                        minWidth: "1400px",
                         margin: "0 auto",
                         marginTop: "150px",
                     }}

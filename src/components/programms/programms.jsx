@@ -13,6 +13,7 @@ const Programms = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCourseDirections());
+        
     }, []);
     return (
         <div>

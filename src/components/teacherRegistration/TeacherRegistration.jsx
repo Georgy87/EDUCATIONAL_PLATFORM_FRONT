@@ -6,7 +6,7 @@ const TeacherRegistration = () => {
         <div className="teacher-container">
             <div className="teacher-content">
                 <div className="teacher-title">Станьте преподавателем</div>
-                <div className="teacher-descr">Лучшие преподаватели со всего мира обучают миллионы студентов на Udemy. Мы даем вам средства преподавать то, что вы любите.</div>
+                <div className="teacher-descr">Лучшие преподаватели со всего мира обучают миллионы студентов на нашей Платформе. Мы даем вам средства преподавать то, что вы любите.</div>
                 <button>Станьте преподавателем</button>
             </div>
             <img src={photoTeacher} alt="" />

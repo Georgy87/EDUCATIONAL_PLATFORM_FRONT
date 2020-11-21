@@ -47,7 +47,6 @@ export const getCourseDirections = () => {
 };
 
 export const filterByDirection = (search) => {
-    console.log(search);
     return async (dispatch) => {
         try {
             const response = await axios.get(
@@ -68,7 +67,7 @@ export const filterByDirection = (search) => {
 };
 
 export const deleteDirection = (directionId, direction) => {
-    console.log(directionId, direction);
+
     return async (dispatch) => {
         try {
             const response = axios.delete(

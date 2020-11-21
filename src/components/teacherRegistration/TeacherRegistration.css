@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     z-index: 1;
-    margin-top: 320px;
+    margin-top: 250px;
 }
 .teacher-container img{
     width: 500px;
@@ -13,13 +13,32 @@
 }
 .teacher-content {
     display: flex;
+    margin-top: 80px;
     margin-right: 60px;
     flex-direction: column;
     width: 500px;
 }
-
 .teacher-title {
-
+    font-family: var(--myFontFamily);
+    font-size: 30px;
 }
+.teacher-descr {
+    margin-top: 10px;
+    color: rgb(32, 32, 32);
+    font-family: var(--myFontFamily);
+    font-size: 18px;
+    font-weight: lighter;
+}
+.teacher-content button {
+    margin-top: 30px;
+    width: 200px;
+    height: 40px;
+    background-color: rgb(38, 67, 145);
+    cursor: pointer;
+    border-radius: 4px;
+    color: white;
+    border: none;
+}
+
 
 
