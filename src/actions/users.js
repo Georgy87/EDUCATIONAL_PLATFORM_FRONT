@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setUser } from "../reducers/userReducer";
 
-export const registration = async (name, email, password) => {
+export const registration = async (name, email, password, teacher = false) => {
     try {
         const response = await axios.post(
             "http://localhost:5000/api/auth/registration",
@@ -9,6 +9,7 @@ export const registration = async (name, email, password) => {
                 name,
                 email,
                 password,
+                teacher,
             }
         );
         return console.log(response.data);
@@ -63,7 +64,7 @@ export const uploadAvatar = (file) => {
     return async (dispatch) => {
         try {
             const formData = new FormData();
-            console.log(file)
+
             formData.append("file", file);
 
             const result = await axios.post(
@@ -83,8 +84,5 @@ export const uploadAvatar = (file) => {
         } catch (error) {
             console.log(error);
         }
-    }
-
-
-
+    };
 };

@@ -1,10 +1,22 @@
 import React from "react";
 import "./ProfileCourse.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Font, { Text } from "react-font";
-const ProfileCourse = () => {
+import { getCourses, getProfileCourse } from "../../actions/courses";
+import { useEffect } from "react";
+const ProfileCourse = (props) => {
+
     const state = useSelector((state) => state.course.courseProfile);
 
+
+    let profileId = props.match.params.profileId;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // dispatch(getCourses());
+        dispatch(getProfileCourse(profileId));
+    }, []);
     return (
         <div>
             {state !== null &&
@@ -18,7 +30,6 @@ const ProfileCourse = () => {
                                         <h1> {el.smallDescription}</h1>
                                         <p>{`Автор: ${el.author}`}</p>
                                     </div>
-
                                 </div>
                                 <div className="profile-info-middle"></div>
                                 <div className="profile-info-dop"></div>

@@ -27,17 +27,20 @@
 .directions-titles {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 400px;
 }
 .directions-content .items {
     display: flex;
     margin-top: 40px;
+    margin-right: 80px;
 }
 .directions-content .item {
     display: flex;
-    max-width: 1000px;
+    max-width: 1100px;
     flex-wrap: wrap;
     margin-top: 35px;
+    justify-content: space-around;
+
 }
 .directions-titles button {
     text-decoration: none;
@@ -67,7 +70,7 @@
     transform: translateY(-3px);
 }
 .directions-content .item img {
-    width: 420px;
+    width: 400px;
     height: 200px;
     border-radius: 5px;
     box-shadow: 0 10px 10px rgba(223, 172, 147, 0.4);

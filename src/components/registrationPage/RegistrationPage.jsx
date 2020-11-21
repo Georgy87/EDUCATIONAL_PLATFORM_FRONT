@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { registration } from "../../actions/users";
+import "./RegistrationPage.css";
 
 const Registration = () => {
     const [name, setName] = useState("");
@@ -10,11 +11,11 @@ const Registration = () => {
 
     return (
         <div>
-            <div className="login-container">
-                <div className="login-background"></div>
-                <div className="login">
-                    <div className="login-wrapper">
-                        <div className="login-inputs">
+            <div className="registration-container">
+                <div className="registration-background"></div>
+                <div className="registration">
+                    <div className="registration-wrapper">
+                        <div className="registration-inputs">
                             <h1>Зарегистрироваться</h1>
                             <label htmlFor="name">name</label>
                             <input
@@ -45,12 +46,7 @@ const Registration = () => {
                             </button>
                         </div>
                     </div>
-                    {/* <div className="registration">
-                        <span>У вас уже есть аккаунт?</span>
-                        <NavLink to="/login">Войти</NavLink>
-                    </div> */}
-
-                    <div className="login-registrations">
+                    <div className="registration-registrations">
                         <span>У вас уже есть аккаунт?</span>
                         <NavLink to="/login">Войти</NavLink>
                     </div>

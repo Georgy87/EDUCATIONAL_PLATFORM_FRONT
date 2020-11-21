@@ -10,10 +10,11 @@ import {
     Route,
     Switch,
 } from "react-router-dom";
+import { useEffect } from "react";
 
 const UserProfileNavbar = () => {
     const user = useSelector((state) => state.user.user.user);
-   
+
     let avatar = defaultAvatar;
     if (user && user.avatar) {
         avatar = `http://localhost:5000/${user.avatar}`;
@@ -34,11 +35,10 @@ const UserProfileNavbar = () => {
                         </div>
                     </div>
                     <Switch>
-                        <Route exact path="/photo" render={() => <UserProfile />} />
+                        <Route path="/user" render={() => <UserProfile />} />
                     </Switch>
-
                 </div>
-                <Redirect to="/photo" />
+                <Redirect to="/user" />
             </BrowserRouter>
         </div>
     );

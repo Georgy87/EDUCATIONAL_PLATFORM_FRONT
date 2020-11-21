@@ -1,0 +1,132 @@
+.teacher-registration-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: linear-gradient(45deg, #401859, #1a2341);
+    backdrop-filter: blur(30px);
+    filter: grayscale(0.5);
+    filter: grayscale(50%);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.teacher-registration {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(45deg, #1b1a1b, #070d20);
+    backdrop-filter: blur(30px);
+    filter: drop-shadow(2px 3px 5px black);
+    filter: grayscale(0.5);
+    filter: grayscale(50%);
+    filter: hue-rotate(180deg);
+    filter: saturate(300%);
+    box-shadow: 0 64px 58px rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.22);
+}
+.teacher-registration-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 0 auto;
+    margin-top: 15%;
+    padding: 40px;
+}
+.teacher-registration-inputs h1 {
+    font-size: 24px;
+    padding-bottom: 40px;
+    color: rgb(211, 209, 209);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.teacher-registration-inputs:active,
+:hover,
+:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.teacher-registration-inputs input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(158, 156, 156);
+    filter: drop-shadow(2px 3px 5px black);
+    width: 300px;
+    height: 25px;
+    color: rgb(198, 194, 194);
+}
+.teacher-registration-inputs input:focus {
+    color: white;
+
+}
+.teacher-registration-inputs label {
+    display: inline;
+    flex-direction: flex-start;
+    text-align: end;
+    color: rgb(158, 154, 154);
+    padding: 8px;
+    padding-right: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.teacher-registration button {
+    text-decoration: none;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    min-width: 140px;
+    height: 45px;
+    line-height: 45px;
+    margin-top: 30px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: 3px;
+    border: none;
+    background: white;
+    box-shadow: 0 14px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    background: #b81f33;
+    box-shadow: 0 64px 58px rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.22);
+    color: rgb(196, 190, 190);
+    filter: grayscale(50%);
+}
+.teacher-registration button:hover {
+    box-shadow: 0 15px 20px rgba(34, 10, 105, 0.4);
+    color: white;
+    cursor: pointer;
+    transform: translateY(-3px);
+}
+.teacher-registration {
+    background: linear-gradient(45deg, #1b1a1b, #070d20);
+    backdrop-filter: blur(30px);
+    filter: drop-shadow(2px 3px 5px black);
+    filter: grayscale(0.5);
+    filter: grayscale(50%);
+    filter: hue-rotate(180deg);
+    filter: saturate(300%);
+    box-shadow: 0 64px 58px rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.22);
+}
+.teacher-registration span {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-size: 15px;
+}
+.teacher-registration a {
+    padding-left: 5px;
+    color: rgb(40, 40, 90);
+    text-decoration: none;
+    font-weight: 800;
+}
+.teacher-registration-container a{
+    /* position: absolute; */
+    display: block;
+    text-decoration: none;
+    padding-top: 40px;
+    padding-left: 60px;
+    font-size: 20px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 0;
+}
