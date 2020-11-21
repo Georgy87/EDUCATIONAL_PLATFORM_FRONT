@@ -1,15 +1,20 @@
 import React from "react";
 import photoTeacher from "../../assets/photoTeacher/pexels-fauxels-3184647.jpg";
 import "./TeacherRegistration.css";
+import { NavLink } from 'react-router-dom';
 const TeacherRegistration = () => {
     return (
-        <div className="teacher-container">
-            <div className="teacher-content">
-                <div className="teacher-title">Станьте преподавателем</div>
-                <div className="teacher-descr">Лучшие преподаватели со всего мира обучают миллионы студентов на нашей Платформе. Мы даем вам средства преподавать то, что вы любите.</div>
-                <button>Станьте преподавателем</button>
+        <div>
+            <div className="teacher-container">
+                <div className="teacher-content">
+                    <div className="teacher-title">Станьте преподавателем</div>
+                    <div className="teacher-descr">Лучшие преподаватели со всего мира обучают миллионы студентов на нашей Платформе. Мы даем вам средства преподавать то, что вы любите.</div>
+                    <NavLink to="/registration-teacher">
+                        <button>Станьте преподавателем</button>
+                    </NavLink>
+                </div>
+                <img src={photoTeacher} alt="" />
             </div>
-            <img src={photoTeacher} alt="" />
         </div>
     );
 };
