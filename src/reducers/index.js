@@ -4,15 +4,16 @@ import thunk from "redux-thunk";
 import userReducer from "./userReducer";
 import coursesReducer from "./coursesReducer";
 import directionsReducer from "./directionsReducer";
+import { reducer as formReducer } from "redux-form";
 
 const rootReducer = combineReducers({
     user: userReducer,
     course: coursesReducer,
-    directions: directionsReducer
+    directions: directionsReducer,
+    form: formReducer,
 });
 
 export const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
-

@@ -19,7 +19,14 @@ const RegistrationPageForTeacher = () => {
                     <div className="teacher-registration-wrapper">
                         <div className="teacher-registration-inputs">
                             <h1>Зарегистрироваться</h1>
-                            <label htmlFor="name">name</label>
+                            <label htmlFor="name">Имя</label>
+                            <input
+                                defaultValue={name}
+                                onChange={(e) => setName(e.target.value)}
+                                id="name"
+                                type="text"
+                            />
+                            <label htmlFor="name">Фамилия</label>
                             <input
                                 defaultValue={name}
                                 onChange={(e) => setName(e.target.value)}
