@@ -1,14 +1,15 @@
 import axios from "axios";
 import { setUser } from "../reducers/userReducer";
 
-export const registration = (name, email, password, teacher = false) => {
-    console.log(name, email, password, teacher);
+export const registration = (name, surname, email, password, teacher = false) => {
+    console.log(name, surname, email, password, teacher)
     return async (dispatch) => {
         try {
             const response = await axios.post(
                 "http://localhost:5000/api/auth/registration",
                 {
                     name,
+                    surname,
                     email,
                     password,
                     teacher,
@@ -22,6 +23,7 @@ export const registration = (name, email, password, teacher = false) => {
 };
 
 export const login = (email, password) => {
+    console.log(email, password);
     return async (dispatch) => {
         try {
             const response = await axios.post(

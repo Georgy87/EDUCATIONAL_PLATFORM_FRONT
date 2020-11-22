@@ -70,7 +70,6 @@ const RegistrationReduxForm = reduxForm({ form: "Registration" })(
 
 const Registration = (props) => {
     const dispatch = useDispatch();
-    const isAuth = useSelector(state => state.user.isAuth);
 
     const submit = (data) => {
         const { name, email, password } = data;
@@ -86,62 +85,4 @@ const Registration = (props) => {
 
 export default Registration;
 
-// const lengthMin = minLength(6);
 
-// const LoginForm = (props) => {
-//     const { handleSubmit, reset, isAuth } = props;
-//     if (isAuth) {
-//         reset();
-//     }
-//     return (
-//         <div className="form-wrapper">
-//             <form className="login-form" onSubmit={handleSubmit}>
-//                 <h1 style={{ color: "white", textAlign: "center" , paddingTop: "20px"}}>LOGIN</h1>
-//                 <div>
-//                     <Field
-//                         name="login"
-//                         validate={[requireEmail]}
-//                         component={InputForLogin}
-//                         type="text"
-//                         placeholder="email"
-//                     />
-//                 </div>
-//                 <div>
-//                     <Field
-//                         name="Password"
-//                         validate={[lengthMin]}
-//                         component={InputForLogin}
-//                         type="text"
-//                         placeholder="password"
-//                     />
-//                 </div>
-//                 <div>
-//                     <Field
-//                         name="rememberMe"
-//                         component="input"
-//                         type="checkbox"
-//                     />
-//                 </div>
-//                 <button className="login-form-btn" type="submit">
-//                     Submit
-//                 </button>
-//             </form>
-//         </div>
-//     );
-// };
-
-// const LoginReduxForm = reduxForm({ form: "login" })(LoginForm);
-
-// const Login = (props) => {
-//     const submit = (data) => {
-//         const { login, Password, rememberMe } = data;
-//         console.log(data);
-//         props.setLoginAuth(login, Password, rememberMe);
-//     };
-
-//     return (
-//         <div>
-//             <LoginReduxForm onSubmit={submit} isAuth={props.isAuth} />
-//         </div>
-//     );
-// };
