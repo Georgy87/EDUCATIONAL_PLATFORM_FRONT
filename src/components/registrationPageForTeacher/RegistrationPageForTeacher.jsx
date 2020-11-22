@@ -1,13 +1,17 @@
-import React, { useState } from "react";
-import { registration } from "../../actions/users";
-import "./RegistrationPageForTeacher.css";
+import React from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Field, reduxForm, reset } from "redux-form";
+import { requireEmail, minLength } from "../validate/validateInput";
+import { InputForEmail, InputForPassword } from "../inputs/inputs";
+import { registration } from "../../actions/users";
 
-const RegistrationPageForTeacher = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+import "./RegistrationPageForTeacher.css";
 
+const lengthMin = minLength(6);
+
+const RegistrationTeacherForm = (props) => {
+    const { handleSubmit, reset, isAuth, resetForm } = props;
     return (
         <div>
             <div className="teacher-registration-container">
@@ -17,36 +21,49 @@ const RegistrationPageForTeacher = () => {
                 <div className="teacher-registration-background"></div>
                 <div className="teacher-registration">
                     <div className="teacher-registration-wrapper">
-                        <div className="teacher-registration-inputs">
+                        <form
+                            className="teacher-registration-inputs"
+                            onSubmit={handleSubmit}
+                        >
                             <h1>Зарегистрироваться</h1>
-                            <label htmlFor="name">name</label>
-                            <input
-                                defaultValue={name}
-                                onChange={(e) => setName(e.target.value)}
-                                id="name"
-                                type="text"
-                            />
-                            <label htmlFor="email">email</label>
-                            <input
-                                defaultValue={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                id="email"
-                                type="text"
-                            />
-                            <label htmlFor="password">password</label>
-                            <input
-                                defaultValue={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                type="password"
-                            />
-                            <button
-                                onClick={() =>
-                                    registration(name, email, password)
-                                }
-                            >
-                                REGISTRATION
-                            </button>
-                        </div>
+                            <label>name</label>
+                            <div>
+                                <Field
+                                    name="name"
+                                    component="input"
+                                    type="text"
+                                />
+                            </div>
+                            <label>surname</label>
+                            <div>
+                                <Field
+                                    name="surname"
+                                    component="input"
+                                    type="text"
+                                />
+                            </div>
+                            <label>email</label>
+                            <div>
+                                <Field
+                                    name="email"
+                                    component="input"
+                                    validate={[requireEmail]}
+                                    component={InputForEmail}
+                                    type="text"
+                                />
+                            </div>
+                            <label>password</label>
+                            <div>
+                                <Field
+                                    name="password"
+                                    component="input"
+                                    validate={[lengthMin]}
+                                    component={InputForPassword}
+                                    type="text"
+                                />
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -54,4 +71,24 @@ const RegistrationPageForTeacher = () => {
     );
 };
 
-export default RegistrationPageForTeacher;
+const RegistrationTeacherReduxForm = reduxForm({ form: "RegistrationTeacher" })(
+    RegistrationTeacherForm
+);
+
+const RegistrationTeacher = (props) => {
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.user.isAuth);
+
+    const submit = (data) => {
+        const { name, surname, email, password, teacher} = data;
+        dispatch(registration(name, surname, email, password));
+        dispatch(reset('RegistrationTeacher'));
+    };
+    return (
+        <div>
+            <RegistrationTeacherReduxForm  onSubmit={submit} />
+        </div>
+    );
+};
+
+export default RegistrationTeacher;

@@ -1,50 +1,80 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import "./LoginPage.css";
-import { login } from "../../actions/users";
 import { useDispatch } from "react-redux";
+import { Field, reduxForm, reset } from "redux-form";
+import { requireEmail, minLength } from "../validate/validateInput";
+import { InputForEmail, InputForPassword } from "../inputs/inputs";
+import { login } from "../../actions/users";
 
-const LoginPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const dispatch = useDispatch();
+import "./LoginPage.css";
+
+const lengthMin = minLength(6);
+
+const LoginForm = (props) => {
+    const { handleSubmit} = props;
     return (
-        <div className="login-container">
-            <div className="login-background"></div>
-            <div className="login">
-                <div className="login-wrapper">
-                    <div className="login-inputs">
-                        <h1>Войти</h1>
-                        <label htmlFor="email">email</label>
-                        <input
-                            defaultValue={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            id="email"
-                            type="text"
-                        />
-                        <label htmlFor="password">password</label>
-                        <input
-                            defaultValue={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            type="password"
-                        />
-                        <NavLink to="/main">
-                            <button
-                                onClick={() => dispatch(login(email, password))}
-                            >
-                                Войти
-                            </button>
-                        </NavLink>
+        <div>
+            <div className="login-container">
+                <div className="login-background"></div>
+                <div className="login">
+                    <div className="login-wrapper">
+                        <form
+                            className="login-inputs"
+                            onSubmit={handleSubmit}
+                        >
+                            <h1>Войти</h1>
+                            <label>email</label>
+                            <div>
+                                <Field
+                                    name="email"
+                                    component="input"
+                                    validate={[requireEmail]}
+                                    component={InputForEmail}
+                                    type="text"
+                                />
+                            </div>
+                            <label>password</label>
+                            <div>
+                                <Field
+                                    name="password"
+                                    component="input"
+                                    validate={[lengthMin]}
+                                    component={InputForPassword}
+                                    type="text"
+                                />
+                            </div>
+                            {/* <NavLink to="/main"> */}
+                                <button type="submit" >Submit</button>
+                            {/* </NavLink> */}
+                        </form>
                     </div>
-                </div>
-                <div className="login-registrations">
-                    <span>Новый пользователь?</span>
-                    <NavLink to="/registration">Зарегистрируйтесь</NavLink>
+                    <div className="login-registrations">
+                        <span>У вас еще нет аккаунта?</span>
+                        <NavLink to="/registration">Зарегистрироваться</NavLink>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default LoginPage;
+const LoginFormReduxForm = reduxForm({ form: "Login" })(
+    LoginForm
+);
+
+const Login = (props) => {
+    const dispatch = useDispatch();
+
+    const submit = (data) => {
+        const { email, password } = data;
+        dispatch(login(email, password));
+        dispatch(reset('Login'));
+    };
+    return (
+        <div>
+            <LoginFormReduxForm onSubmit={submit} />
+        </div>
+    );
+};
+
+export default Login;
