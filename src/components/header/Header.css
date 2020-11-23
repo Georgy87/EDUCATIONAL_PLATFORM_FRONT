@@ -4,7 +4,7 @@
     align-items: center;
     box-shadow: 0px 1px 1px 0px rgb(238, 236, 236);
 }
-.header a{
+.header a {
     display: flex;
     margin-right: auto;
     font-size: 20px;
@@ -23,15 +23,18 @@
     border: 1px solid black;
     border-radius: 4px;
 }
-.header-into a{
+.header-into a {
     color: black;
     text-decoration: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.header-avatar img{
+.header-avatar img {
     width: 35px;
     height: 35px;
     margin-right: 10px;
     display: flex;
     border-radius: 100%;
+}
+.header-teacher span {
+    margin-right: 20px;
 }

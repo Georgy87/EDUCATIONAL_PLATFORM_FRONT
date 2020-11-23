@@ -6,7 +6,6 @@ import MainPage from "../mainPage/MainPage";
 import Registration from "../registrationPage/RegistrationPage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import "./App.css";
 import { auth } from "../../actions/users";
 import PrivateOffice from "../ privateOffice/PrivateOffice";
 import Courses from "../courses/Courses";
@@ -14,6 +13,11 @@ import { getCourses } from "../../actions/courses";
 import ProfileCourse from "../profileCourse/ProfileCourse";
 import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 import RegistrationPageForTeacher from "../registrationPageForTeacher/RegistrationPageForTeacher";
+import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
+
+import "./App.css";
+
+
 
 const App = () => {
     const dispatch = useDispatch();
@@ -35,7 +39,8 @@ const App = () => {
                     <Route path="/profile/:profileId?" component={ProfileCourse} />
                     <Route exact path="/user" render={() => <UserProfileNavbar />} />
                     <Route path="/registration-teacher" component={RegistrationPageForTeacher} />
-                    <Redirect to="/main" />
+                    <Route path="/teacher" component={TeacherPrivateOffice} />
+                    {/* <Redirect to="/main" /> */}
                 </Switch>
             </div>
         </BrowserRouter>

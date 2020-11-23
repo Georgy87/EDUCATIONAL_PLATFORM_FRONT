@@ -32,7 +32,6 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    margin: 0 auto;
     margin-top: 15%;
     padding: 40px;
 }
@@ -63,7 +62,10 @@
 }
 .teacher-registration-inputs input:focus {
     color: white;
-
+}
+.teacher-registration-inputs .teacher-checkbox {
+    padding-top: 4px;
+    padding-right: 4px;
 }
 .teacher-registration-inputs label {
     display: inline;
