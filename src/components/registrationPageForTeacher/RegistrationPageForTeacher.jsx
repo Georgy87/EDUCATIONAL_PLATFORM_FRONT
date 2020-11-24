@@ -62,6 +62,13 @@ const RegistrationTeacherForm = (props) => {
                                     type="text"
                                 />
                             </div>
+                            <div className="teacher-checkbox">
+                                <Field
+                                    name="rememberMe"
+                                    component="input"
+                                    type="checkbox"
+                                />
+                            </div>
                             <button type="submit">Submit</button>
                         </form>
                     </div>
@@ -77,16 +84,16 @@ const RegistrationTeacherReduxForm = reduxForm({ form: "RegistrationTeacher" })(
 
 const RegistrationTeacher = (props) => {
     const dispatch = useDispatch();
-    const isAuth = useSelector(state => state.user.isAuth);
+    const isAuth = useSelector((state) => state.user.isAuth);
 
     const submit = (data) => {
-        const { name, surname, email, password, teacher} = data;
-        dispatch(registration(name, surname, email, password));
-        dispatch(reset('RegistrationTeacher'));
+        const { name, surname, email, password, rememberMe } = data;
+        dispatch(registration(name, surname, email, password, rememberMe));
+        dispatch(reset("RegistrationTeacher"));
     };
     return (
         <div>
-            <RegistrationTeacherReduxForm  onSubmit={submit} />
+            <RegistrationTeacherReduxForm onSubmit={submit} />
         </div>
     );
 };

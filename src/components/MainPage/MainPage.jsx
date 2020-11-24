@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCourses } from "../../actions/courses";
 import SimpleSlider from "../sliderCourses/SliderCourses";
-import Programms from "../programms/Programms";
+import Programms from "../programms/programms";
 import "./MainPage.css"
 import TeacherRegistration from '../teacherRegistration/TeacherRegistration';
 
@@ -19,7 +19,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <div className="main-background">hello</div>
+            <div className="main-background"></div>
             <SimpleSlider props={state} />
             <Programms />
             <TeacherRegistration/>

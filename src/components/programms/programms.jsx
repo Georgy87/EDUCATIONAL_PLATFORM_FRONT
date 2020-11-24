@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCourseDirections } from "../../actions/directions";
 import SearchIcon from "@material-ui/icons/Search";
 
-
-import "./Programms.css";
+import "./programms.css";
 import ProgrammsItems from "./ProgrammsItems/ProgrammsItems";
 import DirectionTitles from "./DirectionsTitles/DirectionTitles";
 const Programms = () => {
@@ -13,7 +12,7 @@ const Programms = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCourseDirections());
-        
+
     }, []);
     return (
         <div>
