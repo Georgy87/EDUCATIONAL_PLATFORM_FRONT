@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import {
     getTeacherCourses,
     uploadCourseContent,
-} from "../../actions/teacherCoursesContent";
+} from "../../actions/teacherCourses";
 import { useDispatch } from "react-redux";
 
 import "./TeacherPrivateOffice.css";
+import { MediaPlayer } from '../courseVideoPleer/CourseVideoPleer';
+
 
 const TeacherPrivateOffice = () => {
     const [fileVideo, setFileVideo] = useState("");
@@ -16,7 +18,7 @@ const TeacherPrivateOffice = () => {
     useEffect(() => {
         dispatch(getTeacherCourses());
     }, []);
-    
+
     return (
         <div>
             <div className="teacher-office-container">
@@ -47,8 +49,11 @@ const TeacherPrivateOffice = () => {
                             Создать курс
                         </button>
                     </div>
+
                 </div>
+
             </div>
+            <MediaPlayer />
         </div>
     );
 };

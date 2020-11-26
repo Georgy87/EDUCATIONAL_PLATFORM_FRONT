@@ -1,4 +1,25 @@
 import axios from "axios";
+import { addCoursesTeacher, setCoursesTeacher } from "../reducers/teacherCoursesReducer";
+
+export const uploadNewCourse = () => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(
+                "http://localhost:5000/api/teacher/course",
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            // dispatch(addCourses(response.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
 
 export const uploadCourseContent = (
     file,
@@ -42,8 +63,7 @@ export const getTeacherCourses = () => {
                     },
                 }
             );
-            // dispatch(setCourses(response.data));
-            console.log(response.data);
+            dispatch(addCoursesTeacher(response.data));
         } catch (e) {
             console.log(e);
         }
