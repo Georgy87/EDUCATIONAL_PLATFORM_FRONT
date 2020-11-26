@@ -1,36 +1,20 @@
-import React, { Component } from "react";
-import { Media, Player, controls } from "react-media-player";
-const {
-    PlayPause,
-    CurrentTime,
-    Progress,
-    SeekBar,
-    Duration,
-    MuteUnmute,
-    Volume,
-    Fullscreen,
-} = controls;
+import React, { Component } from 'react';
+import ReactWebMediaPlayer from 'react-web-media-player';
 
 export class MediaPlayer extends Component {
-    render() {
-        return (
-            <Media>
-                <div className="media" >
-                    <div className="media-player" >
-                        <Player style={{width: '300px', height: '300px'}} src="http://localhost:5000/A$AP%20Ferg%20-%20Plain%20Jane%20-%20Dirty%20Acapella%20BMP%2085.mp4" />
-                    </div>
-                    <div className="media-controls">
-                        <PlayPause />
-                        <CurrentTime />
-                        <Progress />
-                        <SeekBar />
-                        <Duration />
-                        <MuteUnmute />
-                        <Volume />
-                        <Fullscreen />
-                    </div>
-                </div>
-            </Media>
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
+  render() {
+    return <ReactWebMediaPlayer
+        style={{width: '700px'}}
+        title="Иван Петриченко"
+        video={this.props.videoName != '' ? `http://localhost:5000/${this.props.videoName}` : ''}
+        // thumbnail="https://any-link.com/video-thumbnail.jpg"
+        width={1000}
+        height={570}
+    />
+  }
 }

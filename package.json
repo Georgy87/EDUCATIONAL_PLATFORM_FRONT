@@ -27,6 +27,7 @@
     "react-router-transition": "^2.0.0",
     "react-scripts": "4.0.0",
     "react-slick": "^0.27.13",
+    "react-web-media-player": "^1.1.6",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.3.7",

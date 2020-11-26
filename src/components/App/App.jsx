@@ -17,8 +17,6 @@ import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
 
 import "./App.css";
 
-
-
 const App = () => {
     const dispatch = useDispatch();
     dispatch(getCourses());
