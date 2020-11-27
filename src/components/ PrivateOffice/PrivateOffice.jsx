@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { uploadCourseDirections } from "../../actions/directions";
-import { uploadCourses } from "../../actions/courses";
 import { useState } from "react";
 import "./PrivateOffice.css";
 import { NavLink } from "react-router-dom";
@@ -18,7 +17,7 @@ const PrivateOffice = () => {
     const dispatch = useDispatch();
     return (
         <div>
-            <div className="office">
+            {/* <div className="office">
                 <input
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
@@ -57,25 +56,13 @@ const PrivateOffice = () => {
                 <NavLink style={{ textDecoration: "none" }} to="/main">
                     <button
                         className="office-items"
-                        onClick={() =>
-                            dispatch(
-                                uploadCourses(
-                                    file,
-                                    profession,
-                                    author,
-                                    price,
-                                    shotDescription,
-                                    fullDescription
-                                )
-                            )
-                        }
                     >
                         Добавить профессию
                     </button>
                 </NavLink>
-            </div>
+            </div> */}
 
-            <div className="office">
+            {/* <div className="office">
                 <input
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
@@ -98,7 +85,7 @@ const PrivateOffice = () => {
                         Добавить направление
                     </button>
                 </NavLink>
-            </div>
+            </div> */}
         </div>
     );
 };
