@@ -261,7 +261,7 @@
 }
 .ReactCrop--fixed-aspect .ReactCrop__image {
     width: 500px;
-    height: 300px;
+    /* min-height: 400px; */
     margin: 0 auto;
 }
 .photo-avatar-btns {

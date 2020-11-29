@@ -17,6 +17,7 @@ const UserProfileNavbar = () => {
 
     let avatar = defaultAvatar;
     if (user && user.avatar) {
+        console.log(user);
         avatar = `http://localhost:5000/${user.avatar}`;
     }
     return (

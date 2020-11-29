@@ -5,9 +5,7 @@ import Font, { Text } from "react-font";
 import { getCourses, getProfileCourse } from "../../actions/courses";
 import { useEffect } from "react";
 const ProfileCourse = (props) => {
-
     const state = useSelector((state) => state.course.courseProfile);
-
 
     let profileId = props.match.params.profileId;
 
@@ -26,7 +24,7 @@ const ProfileCourse = (props) => {
                             <div className="profile-container">
                                 <div className="profile-info-main">
                                     <div className="small-description">
-                                        <img src={`http://localhost:5000/${el.name}`} />
+                                        <img src={`http://localhost:5000/${el.photo}`} />
                                         <h1> {el.smallDescription}</h1>
                                         <p>{`Автор: ${el.author}`}</p>
                                     </div>

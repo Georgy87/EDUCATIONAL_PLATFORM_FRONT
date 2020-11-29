@@ -12,7 +12,7 @@ const SliderItems = ({ props }) => {
                         margin: "0 auto",
                         borderRadius: "4px",
                     }}
-                    src={`http://localhost:5000/${props.name}`}
+                    src={`http://localhost:5000/${props.photo}`}
                     alt=""
                 />
                 <div className="my-settings-slider-items">

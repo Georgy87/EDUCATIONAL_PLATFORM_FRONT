@@ -87,7 +87,6 @@ export const getTeacherCourses = () => {
                     },
                 }
             );
-
             dispatch(getCourseContent(response.data));
         } catch (e) {
             console.log(e);
