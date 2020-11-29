@@ -23,11 +23,11 @@ export const getCourses = () => {
     };
 };
 
-export const deleteCourse = (courseId, name) => {
+export const deleteCourse = (courseId, photo) => {
     return async (dispatch) => {
         try {
             const response = await axios.delete(
-                `http://localhost:5000/api/course?id=${courseId}&name=${name}`,
+                `http://localhost:5000/api/course?id=${courseId}&name=${photo}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(

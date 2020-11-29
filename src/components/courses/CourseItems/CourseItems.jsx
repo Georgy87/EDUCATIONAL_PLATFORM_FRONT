@@ -10,9 +10,9 @@ const CourseItems = ({ props }) => {
     // const state = useSelector(state => state.directions.filterByDirection);
     // console.log(state);
     const dispatch = useDispatch();
-    const onDeleteFile = (e) => {
+    const onDeleteCourse = (e) => {
         e.stopPropagation();
-        dispatch(deleteCourse(props._id, props.name));
+        dispatch(deleteCourse(props._id, props.photo));
     };
 
     return (
@@ -21,7 +21,7 @@ const CourseItems = ({ props }) => {
                 <NavLink to={`/profile/${props._id}`}>
                     <div className="course-show">
                         <img
-                            src={`http://localhost:5000/${props.name}`}
+                            src={`http://localhost:5000/${props.photo}`}
                             alt=""
                         />
                     </div>
@@ -31,7 +31,7 @@ const CourseItems = ({ props }) => {
                     <div className="course-author">{props.author}</div>
                 </div>
                 <div className="course-delete">
-                    <DeleteForeverIcon onClick={(e) => onDeleteFile(e)} />
+                    <DeleteForeverIcon onClick={(e) => onDeleteCourse(e)} />
                 </div>
             </div>
             <div className="course-line"></div>

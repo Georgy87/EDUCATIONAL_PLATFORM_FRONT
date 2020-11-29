@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 const ProgrammsItems = ({ props }) => {
     const dispatch = useDispatch();
-
+  
     const nameDirection = () => {
         dispatch(filterByDirection(props.direction));
     };
