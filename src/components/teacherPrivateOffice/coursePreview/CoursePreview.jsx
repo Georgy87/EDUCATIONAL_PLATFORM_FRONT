@@ -1,16 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setVideoName } from "../../../reducers/teacherCoursesReducer";
+import { setVideoName } from "../../../reducers/contentCoursesReducer";
 import { MediaPlayer } from '../../courseVideoPleer/CourseVideoPleer';
 import "./CoursePreview.css";
 
 const CoursePreview = () => {
-    const lessons = useSelector((state) => state.teacherCourses.courseContent);
-    const videoName = useSelector((state) => state.teacherCourses.videoName);
+    const lessons = useSelector((state) => state.contentCourses.courseContent);
+    const videoName = useSelector((state) => state.contentCourses.videoName);
     const dispatch = useDispatch();
 
     const contentCourse = useSelector(
-        (state) => state.teacherCourses.courseContent
+        (state) => state.contentCourses.courseContent
     );
     return (
         <div>
