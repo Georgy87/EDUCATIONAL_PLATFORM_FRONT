@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteLesson } from "../../../actions/contentCourses";
 import { setVideoName } from "../../../reducers/contentCoursesReducer";
 import { MediaPlayer } from '../../courseVideoPleer/CourseVideoPleer';
 import "./CoursePreview.css";
@@ -18,18 +19,19 @@ const CoursePreview = () => {
                 <MediaPlayer videoName={videoName} />
                 <div className="teacher-course-list">
                     {contentCourse &&
-                        lessons.content.map((el) => {
-                            console.log(el.module);
+                        lessons.map((el) => {
                             return (
-                                <div>
+                                <div key={el._id}>
                                     <div>{el.module}</div>
                                     <div
                                         onClick={() =>
                                             dispatch(setVideoName(el.fileVideo))
                                         }
+
                                     >
                                         <div>{el.lesson}</div>
                                     </div>
+                                    <button onClick={() => dispatch(deleteLesson(el._id))}>Удалить урок</button>
                                 </div>
                             );
                         })}

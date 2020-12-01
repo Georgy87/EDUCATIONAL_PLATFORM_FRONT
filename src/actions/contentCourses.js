@@ -22,7 +22,7 @@ export const uploadCourseContent = (module = '', file = '', lesson = '', ) => {
                     },
                 }
             );
-            dispatch(setCourseContent(response.data));
+            dispatch(setCourseContent(response.data.content));
         } catch (e) {
             console.log(e);
         }
@@ -48,3 +48,43 @@ export const getCourseContent = () => {
         }
     };
 };
+
+export const deleteLesson = (lessonId) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.delete(
+                `http://localhost:5000/api/teacher?id=${lessonId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            dispatch(setCourseContent(response.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+// export const deleteLesson = (newTitle) => {
+//     return async (dispatch) => {
+//         try {
+//             const response = await axios.delete(
+//                 `http://localhost:5000/api/teacher/lesson?newTitle=${newTitle}`,
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${localStorage.getItem(
+//                             "token"
+//                         )}`,
+//                     },
+//                 }
+//             );
+//             // dispatch(setCourseContent(response.data));
+//         } catch (e) {
+//             console.log(e);
+//         }
+//     };
+// };

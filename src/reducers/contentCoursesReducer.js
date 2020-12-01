@@ -8,7 +8,7 @@ const contentCoursesReducer = (state = initialState, action) => {
         case  "ADD-COURSE-CONTENT":
             return {
                 ...state,
-                courseContent: [...state.courseContent.content, action.payload],
+                courseContent: [...state.courseContent, action.payload],
             }
         case  "SET-COURSE-CONTENT":
             return {
