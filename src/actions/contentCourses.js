@@ -1,9 +1,7 @@
 import axios from "axios";
-import {
-    setCourseContent
-} from "../reducers/contentCoursesReducer";
+import { setCourseContent } from "../reducers/contentCoursesReducer";
 
-export const uploadCourseContent = (module = '', file = '', lesson = '', ) => {
+export const uploadCourseContent = (module = "", file = "", lesson = "") => {
     return async (dispatch) => {
         try {
             const formData = new FormData();
@@ -22,7 +20,7 @@ export const uploadCourseContent = (module = '', file = '', lesson = '', ) => {
                     },
                 }
             );
-            dispatch(setCourseContent(response.data.content));
+            dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
         }
@@ -42,18 +40,19 @@ export const getCourseContent = () => {
                     },
                 }
             );
-            dispatch(setCourseContent(response.data));
+            console.log(response.data[0]);
+            dispatch(setCourseContent(response.data[0]));
         } catch (e) {
             console.log(e);
         }
     };
 };
 
-export const deleteLesson = (lessonId) => {
+export const deleteLesson = (lessonId, videoName) => {
     return async (dispatch) => {
         try {
             const response = await axios.delete(
-                `http://localhost:5000/api/teacher?id=${lessonId}`,
+                `http://localhost:5000/api/teacher/lesson?id=${lessonId}&name=${videoName}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -69,22 +68,49 @@ export const deleteLesson = (lessonId) => {
     };
 };
 
-// export const deleteLesson = (newTitle) => {
-//     return async (dispatch) => {
-//         try {
-//             const response = await axios.delete(
-//                 `http://localhost:5000/api/teacher/lesson?newTitle=${newTitle}`,
-//                 {
-//                     headers: {
-//                         Authorization: `Bearer ${localStorage.getItem(
-//                             "token"
-//                         )}`,
-//                     },
-//                 }
-//             );
-//             // dispatch(setCourseContent(response.data));
-//         } catch (e) {
-//             console.log(e);
-//         }
-//     };
-// };
+export const lessonTitleRevision = (newTitle, id) => {
+    const formData = new FormData();
+    formData.append("newTitle", newTitle);
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(
+                `http://localhost:5000/api/teacher/lesson?id=${id}`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+
+            dispatch(setCourseContent(response.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const sendLinksToResources = (link, courseId, lessonId, linkName) => {
+    console.log(lessonId)
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(
+                `http://localhost:5000/api/teacher/link?id=${courseId}`,
+                { link, lessonId, linkName },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            console.log(response.data);
+            // dispatch(setCourseContent(response.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
