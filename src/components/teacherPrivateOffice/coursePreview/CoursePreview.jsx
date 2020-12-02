@@ -1,37 +1,29 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setVideoName } from "../../../reducers/teacherCoursesReducer";
-import { MediaPlayer } from '../../courseVideoPleer/CourseVideoPleer';
+// import { deleteLesson } from "../../../actions/contentCourses";
+// import { setVideoName } from "../../../reducers/contentCoursesReducer";
+import { MediaPlayer } from "../../courseVideoPleer/CourseVideoPleer";
+import CourseLessons from "./courseLessons/CourseLessons";
 import "./CoursePreview.css";
 
 const CoursePreview = () => {
-    const lessons = useSelector((state) => state.teacherCourses.courseContent);
-    const videoName = useSelector((state) => state.teacherCourses.videoName);
-    const dispatch = useDispatch();
+    const lessons = useSelector((state) => state.contentCourses.courseContent);
+    const videoName = useSelector((state) => state.contentCourses.videoName);
 
-    const contentCourse = useSelector(
-        (state) => state.teacherCourses.courseContent
-    );
     return (
         <div>
             <div className="teacher-course-preview">
                 <MediaPlayer videoName={videoName} />
                 <div className="teacher-course-list">
-                    {contentCourse &&
+                    {lessons &&
                         lessons.content.map((el) => {
-                            console.log(el.module);
-                            return (
-                                <div>
-                                    <div>{el.module}</div>
-                                    <div
-                                        onClick={() =>
-                                            dispatch(setVideoName(el.fileVideo))
-                                        }
-                                    >
-                                        <div>{el.lesson}</div>
-                                    </div>
-                                </div>
-                            );
+                            return <CourseLessons
+                                    key={el._id}
+                                    id={el._id}
+                                    module={el.module}
+                                    fileVideo={el.fileVideo}
+                                    lesson={el.lesson}
+                                />
                         })}
                 </div>
             </div>

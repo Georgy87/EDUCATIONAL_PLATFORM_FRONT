@@ -3,17 +3,17 @@ const initialState = {
     videoName: ''
 }
 
-const teacherCoursesReducer = (state = initialState, action) => {
+const contentCoursesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case  "GET-COURSE-CONTENT":
+        case  "ADD-COURSE-CONTENT":
+            return {
+                ...state,
+                courseContent: [...state.courseContent, action.payload],
+            }
+        case  "SET-COURSE-CONTENT":
             return {
                 ...state,
                 courseContent: action.payload
-            }
-        case  "ADD-COURSES-TEACHER":
-            return {
-                ...state,
-                teacherCourses: [...state.teacherCourses, action.payload],
             }
         case  "SET-VIDEO-NAME":
             return {
@@ -25,26 +25,25 @@ const teacherCoursesReducer = (state = initialState, action) => {
     }
 }
 
-export const getCourseContent = (content) => {
+export const addCourseContent = (content) => {
     return {
-        type: "GET-COURSE-CONTENT",
+        type: "ADD-COURSE-CONTENT",
         payload: content
     }
 }
 
-export const addCoursesTeacher = (course) => {
+export const setCourseContent = (content) => {
     return {
-        type: "ADD-COURSES-TEACHER",
-        payload: course
+        type: "SET-COURSE-CONTENT",
+        payload: content
     }
 }
 
 export const setVideoName = (videoName) => {
-    console.log(videoName);
     return {
         type: "SET-VIDEO-NAME",
         payload: videoName
     }
 }
 
-export default teacherCoursesReducer;
+export default contentCoursesReducer;

@@ -1,11 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-    getTeacherCourses,
-    uploadCourseContent,
-    uploadNewCourse,
-} from "../../../actions/teacherCourses";
+import { uploadNewCourse } from "../../../actions/courses";
+import { getCourseContent, uploadCourseContent } from "../../../actions/contentCourses";
 import "./CreateCourse.css";
 
 const CreateCourse = () => {
@@ -22,8 +19,12 @@ const CreateCourse = () => {
     const [fileVideo, setFileVideo] = useState("");
     const [lesson, setLesson] = useState("");
 
+    const onUploadAndGetContent = () => {
+        dispatch(uploadCourseContent(module, fileVideo, lesson));
+    };
+
     useEffect(() => {
-        dispatch(getTeacherCourses());
+        dispatch(getCourseContent());
     }, []);
 
     return (
@@ -87,11 +88,7 @@ const CreateCourse = () => {
                     defaultValue={profession}
                     onChange={(e) => setLesson(e.target.value)}
                 />
-                <button
-                    onClick={() =>
-                        dispatch(uploadCourseContent(module, fileVideo, lesson))
-                    }
-                >
+                <button onClick={onUploadAndGetContent}>
                     Добавить контент к курсу
                 </button>
                 <button
