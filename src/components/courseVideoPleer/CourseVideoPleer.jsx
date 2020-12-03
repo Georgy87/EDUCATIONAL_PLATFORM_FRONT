@@ -13,7 +13,7 @@ export class MediaPlayer extends Component {
         title="Иван Петриченко"
         video={this.props.videoName != '' ? `http://localhost:5000/${this.props.videoName}` : ''}
         // thumbnail="https://any-link.com/video-thumbnail.jpg"
-        width={1000}
+        width={1050}
         height={570}
     />
   }

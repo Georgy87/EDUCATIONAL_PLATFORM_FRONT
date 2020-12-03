@@ -1,0 +1,60 @@
+
+.lesson-wrapper {
+    display: flex;
+    align-items: center;
+}
+.lesson-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 20px;
+}
+.lesson-resources {
+    display: flex;
+    /* width: 20%; */
+}
+.module {
+    margin-left: 15px;
+    font-weight: 700;
+}
+.editing-lecture {
+    height: 80px;
+}
+.lesson-title {
+    display: flex;
+    height: 50px;
+    align-items: center;
+}
+.lesson-title input{
+    display: flex;
+    height: 30px;
+    align-items: center;
+    border: none;
+    background-color: rgb(241, 244, 240);
+}
+.editing-lesson svg {
+    padding-right: 18px;
+    cursor: pointer;
+    width: 50px;
+}
+.lesson-editing-links {
+    margin-top: 20px;
+}
+.add-title-links {
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+.add-links {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+/* .lesson-editing-links input {
+    border: none;
+    background-color: rgb(240, 243, 240);
+    min-height: 20px;
+    width: 600px;
+    margin-top: 20px;
+    overflow: scroll;
+    word-break: break-all;
+    padding: 10px;
+} */

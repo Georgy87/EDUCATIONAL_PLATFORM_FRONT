@@ -1,4 +1,4 @@
-.office {
+/* .office {
     display: flex;
     flex-direction: column;
     max-width: 500px;
@@ -15,7 +15,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .office :first-child {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(187, 113, 113);
 }
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
@@ -64,4 +64,4 @@
     color: white;
     cursor: pointer;
     transform: translateY(-3px);
-}
+} */
