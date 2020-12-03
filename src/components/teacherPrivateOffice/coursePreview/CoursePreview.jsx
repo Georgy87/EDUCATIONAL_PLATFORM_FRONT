@@ -18,6 +18,7 @@ const CoursePreview = () => {
                     {lessons &&
                         lessons.content.map((el) => {
                             return <CourseLessons
+                                    links={el.linksToResources}
                                     key={el._id}
                                     id={el._id}
                                     module={el.module}

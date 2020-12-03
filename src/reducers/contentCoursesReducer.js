@@ -1,6 +1,7 @@
 const initialState = {
     courseContent: null,
-    videoName: ''
+    videoName: '',
+    // links: null
 }
 
 const contentCoursesReducer = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const contentCoursesReducer = (state = initialState, action) => {
                 ...state,
                 videoName: action.payload
             }
+        // case  "SET-LINKS":
+        //     return {
+        //         ...state,
+        //         links: action.payload
+        //     }
         default :
             return state
     }
@@ -45,5 +51,12 @@ export const setVideoName = (videoName) => {
         payload: videoName
     }
 }
+
+// export const setLinks = (links) => {
+//     return {
+//         type: "SET-LINKS",
+//         payload: videoName
+//     }
+// }
 
 export default contentCoursesReducer;

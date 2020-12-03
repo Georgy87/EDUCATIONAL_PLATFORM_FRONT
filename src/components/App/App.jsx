@@ -14,7 +14,7 @@ import ProfileCourse from "../profileCourse/ProfileCourse";
 import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 import RegistrationPageForTeacher from "../registrationPageForTeacher/RegistrationPageForTeacher";
 import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
-
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 const App = () => {

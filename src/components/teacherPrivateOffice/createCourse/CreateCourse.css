@@ -36,6 +36,7 @@
     font-weight: 700;
     font-size: 10pt;
     text-align: center;
+    /* opacity: none; */
 }
 .teacher-course-add button {
     text-decoration: none;

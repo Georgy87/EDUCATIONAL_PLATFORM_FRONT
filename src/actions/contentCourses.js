@@ -107,7 +107,7 @@ export const sendLinksToResources = (link, courseId, lessonId, linkName) => {
                     },
                 }
             );
-            console.log(response.data);
+            
             // dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
