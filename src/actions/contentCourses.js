@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setCourseContent } from "../reducers/contentCoursesReducer";
 
-export const uploadCourseContent = (module = "", file = "", lesson = "") => {
+export const uploadCourseContent = (courseId, file, lesson, module) => {
     return async (dispatch) => {
         try {
             const formData = new FormData();
@@ -10,7 +10,7 @@ export const uploadCourseContent = (module = "", file = "", lesson = "") => {
             formData.append("lesson", lesson);
 
             const response = await axios.post(
-                "http://localhost:5000/api/teacher/content",
+                `http://localhost:5000/api/teacher/content?id=${courseId}`,
                 formData,
                 {
                     headers: {
@@ -21,6 +21,32 @@ export const uploadCourseContent = (module = "", file = "", lesson = "") => {
                 }
             );
             dispatch(setCourseContent(response.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const uploadLesson = (courseId, file, lesson, moduleId) => {
+    return async (dispatch) => {
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("lesson", lesson);
+            formData.append("moduleId", moduleId);
+
+            const response = await axios.post(
+                `http://localhost:5000/api/teacher/lesson-upload?id=${courseId}`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            // dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
         }
@@ -107,8 +133,8 @@ export const sendLinksToResources = (link, courseId, lessonId, linkName) => {
                     },
                 }
             );
-            
-            // dispatch(setCourseContent(response.data));
+
+            dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
         }

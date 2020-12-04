@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { uploadNewCourse } from "../../../actions/courses";
 import { getCourseContent, uploadCourseContent } from "../../../actions/contentCourses";
 import "./CreateCourse.css";
@@ -19,8 +19,13 @@ const CreateCourse = () => {
     const [fileVideo, setFileVideo] = useState("");
     const [lesson, setLesson] = useState("");
 
+    const course = useSelector((state) => state.course.courses);
+
     const onUploadAndGetContent = () => {
-        dispatch(uploadCourseContent(module, fileVideo, lesson));
+        if(course) {
+            const courseId = course[0]._id;
+            dispatch(uploadCourseContent(courseId, fileVideo, lesson, module));
+        }
     };
 
     useEffect(() => {
