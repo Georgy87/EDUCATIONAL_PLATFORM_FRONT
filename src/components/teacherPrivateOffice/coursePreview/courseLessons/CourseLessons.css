@@ -6,7 +6,7 @@
 .lesson-content {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 1000px;
     padding-bottom: 20px;
 }
 .lesson-resources {
@@ -38,7 +38,21 @@
     width: 50px;
 }
 .lesson-editing-links {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
     margin-top: 20px;
+}
+.lesson-editing-links input{
+    border: none;
+    background-color: rgb(241, 244, 240);
+    height: 30px;
+}
+.lesson-editing-links button {
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    height: 40px;
 }
 .add-title-links {
     padding-top: 5px;
