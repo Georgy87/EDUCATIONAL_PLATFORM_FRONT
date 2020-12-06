@@ -42,11 +42,14 @@
     flex-direction: column;
     width: 35%;
     margin-top: 20px;
+    font-size: small;
+    color: rgb(178, 218, 182);
 }
 .lesson-editing-links input{
     border: none;
     background-color: rgb(241, 244, 240);
-    height: 30px;
+    height: 40px;
+    padding: 5px;
 }
 .lesson-editing-links button {
     border: none;
