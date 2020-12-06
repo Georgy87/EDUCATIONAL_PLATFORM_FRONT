@@ -10,6 +10,7 @@ import "./CoursePreview.css";
 const CoursePreview = () => {
     const lessonsModule = useSelector((state) => state.contentCourses.courseContent);
     const videoName = useSelector((state) => state.contentCourses.videoName);
+    console.log(videoName);
     return (
         <div>
             <div className="teacher-course-preview">

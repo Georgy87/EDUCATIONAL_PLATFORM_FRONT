@@ -10,13 +10,16 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { uploadLesson } from "../../../../actions/contentCourses";
 
+import "./CourseModules.css";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
+        fontWeight: 700,
+
     },
 }));
 
@@ -28,6 +31,7 @@ const CourseModules = (props) => {
     const courseId = useSelector((state) => state.course.courses[0]._id);
 
     const addLesson = () => {
+
         dispatch(uploadLesson(courseId, fileVideo, lesson, props.moduleId));
     }
 
@@ -49,15 +53,17 @@ const CourseModules = (props) => {
                     onChange={(e) => setFileVideo(e.target.files[0])}
                     className="custom-file-input"
                 />
-                <textarea
-                    placeholder="Лекция"
-                    type="text"
-                    // defaultValue={profession}
-                    onChange={(e) => setLesson(e.target.value)}
-                />
-                <button onClick={addLesson}>Добавить лекцию</button>
+                <div>
+                    <input
+                        placeholder="Введите название лекции"
+                        type="text"
+                        className="set-lessons-module"
+                        // defaultValue={profession}
+                        onChange={(e) => setLesson(e.target.value)}
+                    />
+                    <button  className="set-lessons-module-btn" onClick={addLesson}>Добавить лекцию</button>
+                </div>
                 {props.moduleContent.map((el) => {
-                    console.log(el);
                     return (
                         <div className={classes.root}>
                             <CourseLessons

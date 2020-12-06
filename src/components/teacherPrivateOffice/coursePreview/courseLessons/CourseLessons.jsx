@@ -38,6 +38,8 @@ const CourseLessons = (props) => {
     const [linksToResources, setLinksToResources] = useState("");
     const [linkName, setlinksName] = useState("");
 
+    console.log(props);
+
     const courseId = useSelector((state) => state.course.courses[0]._id);
 
     const dispatch = useDispatch();
@@ -69,20 +71,9 @@ const CourseLessons = (props) => {
         );
     };
 
-    ///////////////////
-
-    const [fileVideo, setFileVideo] = useState("");
-    const [lesson, setLesson] = useState("");
-
-    const addLesson = () => {
-        dispatch(uploadLesson(courseId, fileVideo, lesson, props.moduleId));
-    }
-
-
     return (
         <>
             <div className="lesson-container">
-
                         <div>
                             <div className="lesson-content">
                                 <div className="lesson-wrapper">
@@ -198,27 +189,8 @@ const CourseLessons = (props) => {
                                         </Dropdown>
                                     </div>
                                 </div>
-                                <div>Добавить лекцию</div>
-                                <br />
-
-
-                                {/* <input
-                                    type="file"
-                                    onChange={(e) =>
-                                        setFileVideo(e.target.files[0])
-                                    }
-                                    className="custom-file-input"
-                                />
-                                <textarea
-                                    placeholder="Лекция"
-                                    type="text"
-                                    // defaultValue={profession}
-                                    onChange={(e) => setLesson(e.target.value)}
-                                />
-                                <button onClick={addLesson}>Добавить лекцию</button> */}
                             </div>
                         </div>
-
             </div>
         </>
     );
