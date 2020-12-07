@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CourseLessons from "../courseLessons/CourseLessons";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -11,16 +10,17 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { uploadLesson } from "../../../../actions/contentCourses";
 
 import "./CourseModules.css";
-import { green } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
-        padding: "10px",
+        padding: "1px",
     },
     heading: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: 700,
+        fontSize: theme.typography.pxToRem(17),
+        fontWeight: 900,
+        color: "white"
+
     },
 }));
 
@@ -29,18 +29,21 @@ const CourseModules = (props) => {
     const [fileVideo, setFileVideo] = useState("");
     const [lesson, setLesson] = useState("");
     const dispatch = useDispatch();
-    const courseId = useSelector((state) => state.course.courses[0]._id);
+    const courseId = useSelector((state) => state.course);
 
     const addLesson = () => {
-        dispatch(uploadLesson(courseId, fileVideo, lesson, props.moduleId));
+        if(courseId) {
+            console.log(courseId )
+            dispatch(uploadLesson(courseId.courses[0]._id, fileVideo, lesson, props.moduleId));
+        }
     };
 
     return (
         <div>
             <Accordion>
                 <AccordionSummary
-                    style={{backgroundColor: "rgb(215, 240, 249)"}}
-                    expandIcon={<ExpandMoreIcon />}
+                    style={{backgroundColor: "rgba(12, 9, 9, 0.85)", boxShadow: "0px 0px 1px"}}
+                    expandIcon={<ExpandMoreIcon style={{color: "white"}} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
@@ -48,7 +51,7 @@ const CourseModules = (props) => {
                         {props.module}
                     </Typography>
                 </AccordionSummary>
-                <AccordionDetails></AccordionDetails>
+                {/* <AccordionDetails></AccordionDetails> */}
 
                 <div className="set-lessons-wrapper">
                     <input
@@ -71,10 +74,12 @@ const CourseModules = (props) => {
                 </div>
                 {props.moduleContent.map((el) => {
                     return (
-                        <div className={classes.root}>
-                            <Accordion>
+                        <div className={classes.root} key={el._id}>
+
+                            <Accordion >
                                 <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
+                                    style={{backgroundColor: "rgba(17, 39, 9, 0.75)", boxShadow: "0px 1px 2px"}}
+                                    expandIcon={<ExpandMoreIcon style={{color: "white"}} />}
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
@@ -82,7 +87,8 @@ const CourseModules = (props) => {
                                         {el.lesson}
                                     </Typography>
                                 </AccordionSummary>
-                                <AccordionDetails>
+                                <AccordionDetails  >
+
                                 <CourseLessons
                                         links={el.linksToResources}
                                         key={el._id}
@@ -92,8 +98,8 @@ const CourseModules = (props) => {
                                         lesson={el.lesson}
                                         moduleId={props.moduleId}
                                     />
-                                </AccordionDetails>
 
+                                </AccordionDetails>
                             </Accordion>
                         </div>
                     );
