@@ -7,16 +7,14 @@ import {
     sendLinksToResources,
     uploadLesson,
 } from "../../../../actions/contentCourses";
-import { setVideoName } from "../../../../reducers/contentCoursesReducer";
+import {
+    setTimeLesson,
+    setVideoName,
+} from "../../../../reducers/contentCoursesReducer";
 import EditIcon from "@material-ui/icons/Edit";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import Dropdown from "react-bootstrap/Dropdown";
 import { makeStyles } from "@material-ui/core/styles";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "./CourseLessons.css";
 
@@ -31,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CourseLessons = (props) => {
-
     const classes = useStyles();
     const [status, setStatus] = useState(false);
     const [statusValue, setStatusValue] = useState(props.lesson);
@@ -50,9 +47,11 @@ const CourseLessons = (props) => {
         setStatusValue(e.target.value);
     };
 
-    const onChangeBlurStatus = (id) => {
+    const onChangeBlurStatus = (courseId, moduleId, lessonId) => {
         setStatus(false);
-        dispatch(lessonTitleRevision(statusValue, id));
+        dispatch(
+            lessonTitleRevision(statusValue, courseId, moduleId, lessonId)
+        );
     };
 
     const onChangeLink = (e) => {
@@ -63,162 +62,138 @@ const CourseLessons = (props) => {
         setlinksName(e.target.value);
     };
 
-    const sendLink = (courseId, lessonId) => {
+    const sendLink = (courseId, moduleId, lessonId) => {
         dispatch(
-            sendLinksToResources(linksToResources, courseId, lessonId, linkName)
+            sendLinksToResources(
+                courseId,
+                moduleId,
+                lessonId,
+                linkName,
+                linksToResources
+            )
         );
     };
 
-    ///////////////////
-
-    const [fileVideo, setFileVideo] = useState("");
-    const [lesson, setLesson] = useState("");
-
-    const addLesson = () => {
-        dispatch(uploadLesson(courseId, fileVideo, lesson, props.moduleId));
-    }
-
+    const setVideoAndTimeLesson = (videoName) => {
+        dispatch(setVideoName(videoName));
+        dispatch(setTimeLesson(courseId, props.moduleId, props.lessonId));
+    };
 
     return (
         <>
             <div className="lesson-container">
-
-                        <div>
+                <div>
+                    <div className="lesson-content">
+                        <div className="lesson-wrapper">
                             <div className="lesson-content">
-                                <div className="lesson-wrapper">
-                                    <div className="lesson-content">
-                                        <div
+                                <div
+                                    onClick={() =>
+                                        setVideoAndTimeLesson(props.fileVideo)
+                                    }
+                                >
+                                    <div className="editing-lesson">
+                                        {status === false ? (
+                                            <div className="lesson-title">
+                                                <div>{props.lesson}</div>
+                                                <div>{` (${props.lessonTime})`}</div>
+                                            </div>
+                                        ) : (
+                                            <div className="lesson-title">
+                                                <input
+                                                    type="text"
+                                                    defaultValue={statusValue}
+                                                    onChange={onChangeValue}
+                                                    onBlur={() =>
+                                                        onChangeBlurStatus(
+                                                            courseId,
+                                                            props.moduleId,
+                                                            props.lessonId
+                                                        )
+                                                    }
+                                                />
+                                                {/* <button>Сохранить</button> */}
+                                            </div>
+                                        )}
+
+                                        <EditIcon onClick={onChangeStatus} />
+                                        <RestoreFromTrashIcon
                                             onClick={() =>
                                                 dispatch(
-                                                    setVideoName(
+                                                    deleteLesson(
+                                                        courseId,
+                                                        props.moduleId,
+                                                        props.lessonId,
                                                         props.fileVideo
                                                     )
                                                 )
                                             }
                                         >
-                                            <div className="editing-lesson">
-                                                {status === false ? (
-                                                    <div className="lesson-title">
-                                                        <div>
-                                                            {props.lesson}
-                                                        </div>
-                                                    </div>
-                                                ) : (
-                                                    <div className="lesson-title">
-                                                        <input
-                                                            type="text"
-                                                            defaultValue={
-                                                                statusValue
-                                                            }
-                                                            onChange={
-                                                                onChangeValue
-                                                            }
-                                                            onBlur={() =>
-                                                                onChangeBlurStatus(
-                                                                    props.id
-                                                                )
-                                                            }
-                                                        />
-                                                        {/* <button>Сохранить</button> */}
-                                                    </div>
-                                                )}
-
-                                                <EditIcon
-                                                    onClick={onChangeStatus}
-                                                />
-                                                <RestoreFromTrashIcon
-                                                    onClick={() =>
-                                                        dispatch(
-                                                            deleteLesson(
-                                                                props.id,
-                                                                props.fileVideo
-                                                            )
-                                                        )
-                                                    }
-                                                >
-                                                    Удалить урок
-                                                </RestoreFromTrashIcon>
-                                            </div>
-                                        </div>
-                                        <div className="lesson-editing-links">
-                                            <div className="add-title-links">
-                                                Добавить название ссылки на
-                                                ресурс.
-                                            </div>
-                                            <input
-                                                type="text"
-                                                onChange={onChangeLinkName}
-                                            />
-
-                                            <div className="add-links">
-                                                Добавить ссылку на ресурс.
-                                            </div>
-                                            <input
-                                                type="text"
-                                                onChange={onChangeLink}
-                                            />
-
-                                            <button
-                                                onClick={() =>
-                                                    sendLink(
-                                                        courseId,
-                                                        props.id,
-                                                        linkName
-                                                    )
-                                                }
-                                            >
-                                                Добавить ссылку
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="lesson-resources">
-                                        <Dropdown>
-                                            <Dropdown.Toggle
-                                                variant="info"
-                                                id="dropdown-basic"
-                                            >
-                                                Ресурсы
-                                            </Dropdown.Toggle>
-                                            <Dropdown.Menu>
-                                                {props.links.map((el) => {
-                                                    {
-                                                        console.log(el);
-                                                    }
-                                                    return (
-                                                        <div>
-                                                            <Dropdown.Item
-                                                                href={el.link}
-                                                            >
-                                                                {el.linkName}
-                                                            </Dropdown.Item>
-                                                        </div>
-                                                    );
-                                                })}
-                                            </Dropdown.Menu>
-                                        </Dropdown>
+                                            Удалить урок
+                                        </RestoreFromTrashIcon>
                                     </div>
                                 </div>
-                                <div>Добавить лекцию</div>
-                                <br />
+                                <div className="lesson-editing-links">
+                                    <div className="add-title-links">
+                                        Добавить название ссылки на ресурс.
+                                    </div>
+                                    <input
+                                        type="text"
+                                        onChange={onChangeLinkName}
+                                    />
 
+                                    <div className="add-links">
+                                        Добавить ссылку на ресурс.
+                                    </div>
+                                    <input
+                                        type="text"
+                                        onChange={onChangeLink}
+                                    />
 
-                                {/* <input
-                                    type="file"
-                                    onChange={(e) =>
-                                        setFileVideo(e.target.files[0])
-                                    }
-                                    className="custom-file-input"
-                                />
-                                <textarea
-                                    placeholder="Лекция"
-                                    type="text"
-                                    // defaultValue={profession}
-                                    onChange={(e) => setLesson(e.target.value)}
-                                />
-                                <button onClick={addLesson}>Добавить лекцию</button> */}
+                                    <button
+                                        onClick={() =>
+                                            sendLink(
+                                                courseId,
+                                                props.moduleId,
+                                                props.lessonId,
+                                                linkName
+                                            )
+                                        }
+                                    >
+                                        Добавить ссылку
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="lesson-resources">
+                                <Dropdown>
+                                    <Dropdown.Toggle
+                                        variant="info"
+                                        id="dropdown-basic"
+                                    >
+                                        Ресурсы
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        {props.links.map((el) => {
+                                            {
+                                                // console.log(el);
+                                            }
+                                            return (
+                                                <div>
+                                                    <Dropdown.Item
+                                                        href={
+                                                            el.linksToResources
+                                                        }
+                                                    >
+                                                        {el.linkName}
+                                                    </Dropdown.Item>
+                                                </div>
+                                            );
+                                        })}
+                                    </Dropdown.Menu>
+                                </Dropdown>
                             </div>
                         </div>
-
+                    </div>
+                </div>
             </div>
         </>
     );

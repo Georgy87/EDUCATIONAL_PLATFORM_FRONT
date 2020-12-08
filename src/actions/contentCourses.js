@@ -20,6 +20,7 @@ export const uploadCourseContent = (courseId, file, lesson, module) => {
                     },
                 }
             );
+
             dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
@@ -46,7 +47,7 @@ export const uploadLesson = (courseId, file, lesson, moduleId) => {
                     },
                 }
             );
-            // dispatch(setCourseContent(response.data));
+            dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
         }
@@ -57,7 +58,7 @@ export const getCourseContent = () => {
     return async (dispatch) => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/teacher",
+                "http://localhost:5000/api/teacher/courses",
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -66,19 +67,20 @@ export const getCourseContent = () => {
                     },
                 }
             );
-            console.log(response.data[0]);
-            dispatch(setCourseContent(response.data[0]));
+            console.log(response.data);
+            dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
         }
     };
 };
 
-export const deleteLesson = (lessonId, videoName) => {
+export const deleteLesson = (courseId, moduleId, lessonId, videoName) => {
     return async (dispatch) => {
         try {
-            const response = await axios.delete(
-                `http://localhost:5000/api/teacher/lesson?id=${lessonId}&name=${videoName}`,
+            const response = await axios.post(
+                `http://localhost:5000/api/teacher/lesson-delete?courseId=${courseId}`,
+                {  moduleId, lessonId, videoName },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -94,14 +96,14 @@ export const deleteLesson = (lessonId, videoName) => {
     };
 };
 
-export const lessonTitleRevision = (newTitle, id) => {
+export const lessonTitleRevision = (newTitle, courseId, moduleId, lessonId) => {
     const formData = new FormData();
     formData.append("newTitle", newTitle);
     return async (dispatch) => {
         try {
             const response = await axios.post(
-                `http://localhost:5000/api/teacher/lesson?id=${id}`,
-                formData,
+                `http://localhost:5000/api/teacher/lesson?courseId=${courseId}`,
+                { newTitle, moduleId, lessonId },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -118,13 +120,18 @@ export const lessonTitleRevision = (newTitle, id) => {
     };
 };
 
-export const sendLinksToResources = (link, courseId, lessonId, linkName) => {
-    console.log(lessonId)
+export const sendLinksToResources = (
+    courseId,
+    moduleId,
+    lessonId,
+    linkName,
+    linksToResources
+) => {
     return async (dispatch) => {
         try {
             const response = await axios.post(
                 `http://localhost:5000/api/teacher/link?id=${courseId}`,
-                { link, lessonId, linkName },
+                { moduleId, lessonId, linkName, linksToResources },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -134,6 +141,34 @@ export const sendLinksToResources = (link, courseId, lessonId, linkName) => {
                 }
             );
 
+            dispatch(setCourseContent(response.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const setTimeModuleAndLessons = (
+    courseId,
+    moduleId,
+    lessonId,
+    hours,
+    minutes,
+    seconds
+) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(
+                `http://localhost:5000/api/teacher/time?id=${courseId}`,
+                { moduleId, lessonId, hours, minutes, seconds},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
             dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);

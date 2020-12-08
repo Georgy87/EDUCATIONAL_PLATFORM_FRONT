@@ -1,0 +1,23 @@
+.set-lessons-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.set-lessons-module {
+    border: none;
+    background-color: rgb(241, 244, 240);
+    height: 35px;
+    width: 600px;
+    margin-top: 20px;
+    overflow: scroll;
+    word-break: break-all;
+    padding: 5px;
+}
+.set-lessons-module-btn {
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    height: 40px;
+    width: 300px;
+}
