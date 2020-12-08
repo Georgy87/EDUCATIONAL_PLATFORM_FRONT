@@ -15,10 +15,7 @@ const CoursePreview = () => {
     );
     const videoName = useSelector((state) => state.contentCourses.videoName);
     const lessonTime = useSelector((state) => state.contentCourses.lessonTime);
-    const contentLength = useSelector(state => state.contentCourses.courseContent);
-    if (contentLength) {
-        console.log(contentLength);
-    }
+
     return (
         <div>
             <div className="teacher-course-preview">
@@ -26,11 +23,14 @@ const CoursePreview = () => {
                 <div className="teacher-course-list">
                     {lessonsModule &&
                         lessonsModule.content.map((element) => {
-                            
+
                             return (
                                 <CourseModules
                                     key={element._id}
                                     module={element.module}
+                                    moduleHours={element.moduleHours}
+                                    moduleMinutes={element.moduleMinutes}
+                                    moduleSeconds={element.moduleSeconds}
                                     moduleContent={element.moduleContent}
                                     moduleId={element._id}
                                 />

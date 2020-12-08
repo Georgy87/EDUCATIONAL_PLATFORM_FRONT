@@ -13,11 +13,9 @@ class CustomPlayPause extends Component {
     _handlePlayPause = () => {
         this.props.media.playPause();
     };
-
     _handleTime = () => {
         let unix_timestamp = this.props.media.duration;
         let date = new Date(unix_timestamp * 1000);
-        console.log(unix_timestamp);
         let hours = date.getHours();
         let minutes = "0" + date.getMinutes();
         let seconds = "0" + date.getSeconds();
@@ -34,7 +32,7 @@ class CustomPlayPause extends Component {
 
     render() {
         const { className, style, media } = this.props;
-        console.log(this.props);
+
         return (
             <div className="play-pause">
                 <div

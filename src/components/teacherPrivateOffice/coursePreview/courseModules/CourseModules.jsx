@@ -19,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
     heading: {
         fontSize: theme.typography.pxToRem(17),
         fontWeight: 900,
-        color: "white"
-
+        color: "white",
     },
 }));
 
@@ -32,23 +31,41 @@ const CourseModules = (props) => {
     const courseId = useSelector((state) => state.course);
 
     const addLesson = () => {
-        if(courseId) {
-            console.log(courseId )
-            dispatch(uploadLesson(courseId.courses[0]._id, fileVideo, lesson, props.moduleId));
+        if (courseId) {
+            console.log(courseId);
+            dispatch(
+                uploadLesson(
+                    courseId.courses[0]._id,
+                    fileVideo,
+                    lesson,
+                    props.moduleId
+                )
+            );
         }
     };
 
+    console.log(props);
+    let hours = Math.trunc(props.moduleMinutes / 60);
+    let minutes = props.moduleMinutes % 60;
+    let seconds = props.moduleSeconds / 60;
+
+    let finalMinutes = minutes + Math.floor(seconds);
+    console.log(props.moduleHours + hours + ":" + finalMinutes + ":" + Math.floor(seconds));
     return (
         <div>
             <Accordion>
                 <AccordionSummary
-                    style={{backgroundColor: "rgba(12, 9, 9, 0.85)", boxShadow: "0px 0px 1px"}}
-                    expandIcon={<ExpandMoreIcon style={{color: "white"}} />}
+                    style={{
+                        backgroundColor: "rgba(12, 9, 9, 0.85)",
+                        boxShadow: "0px 0px 1px",
+                    }}
+                    expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
                     <Typography className={classes.heading}>
                         {props.module}
+                        <div>{props.moduleHours + hours + " час " + finalMinutes + " мин "}</div>
                     </Typography>
                 </AccordionSummary>
                 {/* <AccordionDetails></AccordionDetails> */}
@@ -75,11 +92,18 @@ const CourseModules = (props) => {
                 {props.moduleContent.map((el) => {
                     return (
                         <div className={classes.root} key={el._id}>
-
-                            <Accordion >
+                            <Accordion>
                                 <AccordionSummary
-                                    style={{backgroundColor: "rgba(17, 39, 9, 0.75)", boxShadow: "0px 1px 2px"}}
-                                    expandIcon={<ExpandMoreIcon style={{color: "white"}} />}
+                                    style={{
+                                        backgroundColor:
+                                            "rgba(17, 39, 9, 0.75)",
+                                        boxShadow: "0px 1px 2px",
+                                    }}
+                                    expandIcon={
+                                        <ExpandMoreIcon
+                                            style={{ color: "white" }}
+                                        />
+                                    }
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
@@ -87,18 +111,16 @@ const CourseModules = (props) => {
                                         {el.lesson}
                                     </Typography>
                                 </AccordionSummary>
-                                <AccordionDetails  >
-
-                                <CourseLessons
+                                <AccordionDetails>
+                                    <CourseLessons
                                         links={el.linksToResources}
                                         key={el._id}
                                         lessonId={el._id}
-                                        // module={props.module}
+                                        lessonTime={el.lessonTime}
                                         fileVideo={el.fileVideo}
                                         lesson={el.lesson}
                                         moduleId={props.moduleId}
                                     />
-
                                 </AccordionDetails>
                             </Accordion>
                         </div>

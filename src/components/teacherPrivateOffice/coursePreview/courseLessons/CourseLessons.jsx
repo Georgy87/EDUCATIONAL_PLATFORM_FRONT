@@ -95,6 +95,7 @@ const CourseLessons = (props) => {
                                         {status === false ? (
                                             <div className="lesson-title">
                                                 <div>{props.lesson}</div>
+                                                <div>{` (${props.lessonTime})`}</div>
                                             </div>
                                         ) : (
                                             <div className="lesson-title">

@@ -20,6 +20,7 @@ export const uploadCourseContent = (courseId, file, lesson, module) => {
                     },
                 }
             );
+
             dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
@@ -57,7 +58,7 @@ export const getCourseContent = () => {
     return async (dispatch) => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/teacher",
+                "http://localhost:5000/api/teacher/courses",
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -66,8 +67,8 @@ export const getCourseContent = () => {
                     },
                 }
             );
-            console.log(response.data[0]);
-            dispatch(setCourseContent(response.data[0]));
+            console.log(response.data);
+            dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
         }
@@ -96,7 +97,6 @@ export const deleteLesson = (courseId, moduleId, lessonId, videoName) => {
 };
 
 export const lessonTitleRevision = (newTitle, courseId, moduleId, lessonId) => {
-    console.log(newTitle, courseId, moduleId, lessonId);
     const formData = new FormData();
     formData.append("newTitle", newTitle);
     return async (dispatch) => {
@@ -153,22 +153,23 @@ export const setTimeModuleAndLessons = (
     moduleId,
     lessonId,
     hours,
-    minutes
+    minutes,
+    seconds
 ) => {
     return async (dispatch) => {
         try {
-            // const response = await axios.post(
-            //     `http://localhost:5000/api/teacher/time?id=${courseId}`,
-            //     { moduleId, lessonId, hours, minutes },
-            //     {
-            //         headers: {
-            //             Authorization: `Bearer ${localStorage.getItem(
-            //                 "token"
-            //             )}`,
-            //         },
-            //     }
-            // );
-            // dispatch(setCourseContent(response.data));
+            const response = await axios.post(
+                `http://localhost:5000/api/teacher/time?id=${courseId}`,
+                { moduleId, lessonId, hours, minutes, seconds},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
         }
