@@ -26,7 +26,6 @@ class CustomPlayPause extends Component {
             minutes.substr(-2) +
             ":" +
             seconds.substr(-2);
-
         this.props.onTimeHendler(formattedTime);
     };
 

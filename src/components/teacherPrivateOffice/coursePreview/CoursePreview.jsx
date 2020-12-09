@@ -23,7 +23,6 @@ const CoursePreview = () => {
                 <div className="teacher-course-list">
                     {lessonsModule &&
                         lessonsModule.content.map((element) => {
-
                             return (
                                 <CourseModules
                                     key={element._id}

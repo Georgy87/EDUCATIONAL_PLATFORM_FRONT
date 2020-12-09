@@ -44,13 +44,12 @@ const CourseModules = (props) => {
         }
     };
 
-    console.log(props);
+
     let hours = Math.trunc(props.moduleMinutes / 60);
     let minutes = props.moduleMinutes % 60;
     let seconds = props.moduleSeconds / 60;
-
     let finalMinutes = minutes + Math.floor(seconds);
-    console.log(props.moduleHours + hours + ":" + finalMinutes + ":" + Math.floor(seconds));
+    // console.log(props.moduleHours + hours + ":" + finalMinutes + ":" + Math.floor(seconds));
     return (
         <div>
             <Accordion>
@@ -65,7 +64,7 @@ const CourseModules = (props) => {
                 >
                     <Typography className={classes.heading}>
                         {props.module}
-                        <div>{props.moduleHours + hours + " час " + finalMinutes + " мин "}</div>
+                        <div>{props.moduleHours + hours + " ч " + finalMinutes + " мин "}</div>
                     </Typography>
                 </AccordionSummary>
                 {/* <AccordionDetails></AccordionDetails> */}

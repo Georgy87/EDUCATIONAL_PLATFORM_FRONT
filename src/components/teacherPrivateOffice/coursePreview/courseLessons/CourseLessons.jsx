@@ -15,6 +15,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import Dropdown from "react-bootstrap/Dropdown";
 import { makeStyles } from "@material-ui/core/styles";
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 import "./CourseLessons.css";
 
@@ -79,6 +80,23 @@ const CourseLessons = (props) => {
         dispatch(setTimeLesson(courseId, props.moduleId, props.lessonId));
     };
 
+    const onDeleteLesson = () => {
+        const hours = Number(props.lessonTime.split(":")[0]);
+        const minutes = Number(props.lessonTime.split(":")[1]);
+        const seconds = Number(props.lessonTime.split(":")[2]);
+        dispatch(
+            deleteLesson(
+                courseId,
+                props.moduleId,
+                props.lessonId,
+                props.fileVideo,
+                hours,
+                minutes,
+                seconds
+            )
+        );
+    };
+
     return (
         <>
             <div className="lesson-container">
@@ -94,8 +112,8 @@ const CourseLessons = (props) => {
                                     <div className="editing-lesson">
                                         {status === false ? (
                                             <div className="lesson-title">
-                                                <div>{props.lesson}</div>
-                                                <div>{` (${props.lessonTime})`}</div>
+                                                <div className="lesson-title-item">{props.lesson}</div>
+                                                <div className="lesson-title-item"><AccessTimeIcon/>{`${props.lessonTime}`}</div>
                                             </div>
                                         ) : (
                                             <div className="lesson-title">
@@ -117,16 +135,7 @@ const CourseLessons = (props) => {
 
                                         <EditIcon onClick={onChangeStatus} />
                                         <RestoreFromTrashIcon
-                                            onClick={() =>
-                                                dispatch(
-                                                    deleteLesson(
-                                                        courseId,
-                                                        props.moduleId,
-                                                        props.lessonId,
-                                                        props.fileVideo
-                                                    )
-                                                )
-                                            }
+                                            onClick={() => onDeleteLesson()}
                                         >
                                             Удалить урок
                                         </RestoreFromTrashIcon>

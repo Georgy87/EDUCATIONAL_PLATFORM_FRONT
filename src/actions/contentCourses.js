@@ -75,12 +75,13 @@ export const getCourseContent = () => {
     };
 };
 
-export const deleteLesson = (courseId, moduleId, lessonId, videoName) => {
+export const deleteLesson = (courseId, moduleId, lessonId, videoName, hours, minutes, seconds) => {
+
     return async (dispatch) => {
         try {
             const response = await axios.post(
                 `http://localhost:5000/api/teacher/lesson-delete?courseId=${courseId}`,
-                {  moduleId, lessonId, videoName },
+                {  moduleId, lessonId, videoName, hours, minutes, seconds },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(

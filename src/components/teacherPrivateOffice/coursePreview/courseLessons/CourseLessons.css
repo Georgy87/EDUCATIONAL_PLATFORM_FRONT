@@ -22,9 +22,19 @@
 }
 .lesson-title {
     display: flex;
+    /* justify-content: space-around; */
     height: 50px;
     align-items: center;
+
 }
+.lesson-title-item:first-child {
+    display: flex;
+}
+.lesson-title-item:last-child {
+    display: flex;
+    margin-left: auto;
+}
+
 .lesson-title input{
     display: flex;
     height: 30px;
