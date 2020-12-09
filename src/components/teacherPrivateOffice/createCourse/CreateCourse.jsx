@@ -2,8 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadNewCourse } from "../../../actions/courses";
-import { getCourseContent, uploadCourseContent } from "../../../actions/contentCourses";
+import {
+    getAllTeacherCourses,
+    getCourseContent,
+    uploadCourseContent,
+} from "../../../actions/contentCourses";
 import "./CreateCourse.css";
+import CoursePreview from "../coursePreview/CoursePreview";
 
 const CreateCourse = () => {
     const [profession, setProfession] = useState("");
@@ -18,19 +23,32 @@ const CreateCourse = () => {
     const [module, setModule] = useState("");
     const [fileVideo, setFileVideo] = useState("");
     const [lesson, setLesson] = useState("");
+    const [changeCourseId, setChangeCourseId] = useState("");
 
     const course = useSelector((state) => state.course.courses);
 
+    const contentCourses = useSelector((state) => state.contentCourses);
+
     const onUploadAndGetContent = () => {
-        if(course) {
-            const courseId = course[0]._id;
-            dispatch(uploadCourseContent(courseId, fileVideo, lesson, module));
-        }
+        // const courseId = course[0]._id;
+        dispatch(
+            uploadCourseContent(changeCourseId, fileVideo, lesson, module)
+        );
     };
 
     useEffect(() => {
-        dispatch(getCourseContent());
+        dispatch(getAllTeacherCourses());
     }, []);
+
+    const onChoiceCourse = (courseId) => {
+        setChangeCourseId(courseId);
+        dispatch(getCourseContent(courseId));
+        // localStorage.setItem("courseId", courseId);
+    };
+
+    // useEffect(() => {
+    //     dispatch(getCourseContent(localStorage.getItem("courseId")));
+    // }, [localStorage.getItem("courseId")]);
 
     return (
         <div>
@@ -115,7 +133,27 @@ const CreateCourse = () => {
                 >
                     Создать курс
                 </button>
+                <div className="teacher-course-choice">
+                    <h1>Выберите курс</h1>
+                    <div>
+                        {contentCourses &&
+                            contentCourses.allTeacherCourses.map((course) => {
+                                return (
+                                    <div>
+                                        <div
+                                            style={{ cursor: "pointer" }}
+                                            onClick={() =>
+                                                onChoiceCourse(course._id)
+                                            }
+                                        >{`Курс: ${course.smallDescription}`}</div>
+
+                                    </div>
+                                );
+                            })}
+                    </div>
+                </div>
             </div>
+            <CoursePreview changeCourseId={changeCourseId} />
         </div>
     );
 };

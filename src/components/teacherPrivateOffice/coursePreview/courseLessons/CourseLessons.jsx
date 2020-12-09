@@ -30,14 +30,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CourseLessons = (props) => {
-    const classes = useStyles();
     const [status, setStatus] = useState(false);
     const [statusValue, setStatusValue] = useState(props.lesson);
     const [linksToResources, setLinksToResources] = useState("");
     const [linkName, setlinksName] = useState("");
 
-    const courseId = useSelector((state) => state.course.courses[0]._id);
-
+    const courseId = props.courseId;
+    console.log(courseId);
     const dispatch = useDispatch();
 
     const onChangeStatus = () => {
@@ -48,7 +47,7 @@ const CourseLessons = (props) => {
         setStatusValue(e.target.value);
     };
 
-    const onChangeBlurStatus = (courseId, moduleId, lessonId) => {
+    const onChangeBlurStatus = (moduleId, lessonId) => {
         setStatus(false);
         dispatch(
             lessonTitleRevision(statusValue, courseId, moduleId, lessonId)
@@ -63,7 +62,7 @@ const CourseLessons = (props) => {
         setlinksName(e.target.value);
     };
 
-    const sendLink = (courseId, moduleId, lessonId) => {
+    const sendLink = (moduleId, lessonId) => {
         dispatch(
             sendLinksToResources(
                 courseId,
@@ -123,7 +122,6 @@ const CourseLessons = (props) => {
                                                     onChange={onChangeValue}
                                                     onBlur={() =>
                                                         onChangeBlurStatus(
-                                                            courseId,
                                                             props.moduleId,
                                                             props.lessonId
                                                         )
@@ -161,7 +159,6 @@ const CourseLessons = (props) => {
                                     <button
                                         onClick={() =>
                                             sendLink(
-                                                courseId,
                                                 props.moduleId,
                                                 props.lessonId,
                                                 linkName

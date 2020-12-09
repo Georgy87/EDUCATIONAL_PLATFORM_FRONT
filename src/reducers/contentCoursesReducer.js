@@ -2,6 +2,7 @@ const initialState = {
     courseContent: null,
     videoName: "",
     lessonTime: null,
+    allTeacherCourses: []
 };
 
 const contentCoursesReducer = (state = initialState, action) => {
@@ -26,6 +27,11 @@ const contentCoursesReducer = (state = initialState, action) => {
                 ...state,
                 lessonTime: { ...action.payload },
             };
+        case "SET-ALL-TEACHER-COURSES":
+            return {
+                ...state,
+                allTeacherCourses: action.payload,
+            };
         default:
             return state;
     }
@@ -44,6 +50,15 @@ export const setCourseContent = (content) => {
         payload: content,
     };
 };
+
+export const setAllTeacherCourses = (content) => {
+    return {
+        type: "SET-ALL-TEACHER-COURSES",
+        payload: content,
+    };
+};
+
+
 
 export const setVideoName = (videoName) => {
     return {

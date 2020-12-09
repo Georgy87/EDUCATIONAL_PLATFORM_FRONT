@@ -27,23 +27,14 @@ const CourseModules = (props) => {
     const classes = useStyles();
     const [fileVideo, setFileVideo] = useState("");
     const [lesson, setLesson] = useState("");
+
     const dispatch = useDispatch();
-    const courseId = useSelector((state) => state.course);
 
     const addLesson = () => {
-        if (courseId) {
-            console.log(courseId);
-            dispatch(
-                uploadLesson(
-                    courseId.courses[0]._id,
-                    fileVideo,
-                    lesson,
-                    props.moduleId
-                )
-            );
-        }
+        dispatch(
+            uploadLesson(props.courseId, fileVideo, lesson, props.moduleId)
+        );
     };
-
 
     let hours = Math.trunc(props.moduleMinutes / 60);
     let minutes = props.moduleMinutes % 60;
@@ -64,7 +55,13 @@ const CourseModules = (props) => {
                 >
                     <Typography className={classes.heading}>
                         {props.module}
-                        <div>{props.moduleHours + hours + " ч " + finalMinutes + " мин "}</div>
+                        <div>
+                            {props.moduleHours +
+                                hours +
+                                " ч " +
+                                finalMinutes +
+                                " мин "}
+                        </div>
                     </Typography>
                 </AccordionSummary>
                 {/* <AccordionDetails></AccordionDetails> */}
@@ -112,6 +109,7 @@ const CourseModules = (props) => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <CourseLessons
+                                        courseId={props.courseId}
                                         links={el.linksToResources}
                                         key={el._id}
                                         lessonId={el._id}
