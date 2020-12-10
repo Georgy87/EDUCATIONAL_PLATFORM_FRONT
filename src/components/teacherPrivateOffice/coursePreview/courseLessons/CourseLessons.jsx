@@ -15,6 +15,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import Dropdown from "react-bootstrap/Dropdown";
 import { makeStyles } from "@material-ui/core/styles";
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 import "./CourseLessons.css";
 
@@ -29,14 +30,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CourseLessons = (props) => {
-    const classes = useStyles();
     const [status, setStatus] = useState(false);
     const [statusValue, setStatusValue] = useState(props.lesson);
     const [linksToResources, setLinksToResources] = useState("");
     const [linkName, setlinksName] = useState("");
 
-    const courseId = useSelector((state) => state.course.courses[0]._id);
-
+    const courseId = props.courseId;
+    console.log(courseId);
     const dispatch = useDispatch();
 
     const onChangeStatus = () => {
@@ -47,7 +47,7 @@ const CourseLessons = (props) => {
         setStatusValue(e.target.value);
     };
 
-    const onChangeBlurStatus = (courseId, moduleId, lessonId) => {
+    const onChangeBlurStatus = (moduleId, lessonId) => {
         setStatus(false);
         dispatch(
             lessonTitleRevision(statusValue, courseId, moduleId, lessonId)
@@ -62,7 +62,7 @@ const CourseLessons = (props) => {
         setlinksName(e.target.value);
     };
 
-    const sendLink = (courseId, moduleId, lessonId) => {
+    const sendLink = (moduleId, lessonId) => {
         dispatch(
             sendLinksToResources(
                 courseId,
@@ -77,6 +77,23 @@ const CourseLessons = (props) => {
     const setVideoAndTimeLesson = (videoName) => {
         dispatch(setVideoName(videoName));
         dispatch(setTimeLesson(courseId, props.moduleId, props.lessonId));
+    };
+
+    const onDeleteLesson = () => {
+        const hours = Number(props.lessonTime.split(":")[0]);
+        const minutes = Number(props.lessonTime.split(":")[1]);
+        const seconds = Number(props.lessonTime.split(":")[2]);
+        dispatch(
+            deleteLesson(
+                courseId,
+                props.moduleId,
+                props.lessonId,
+                props.fileVideo,
+                hours,
+                minutes,
+                seconds
+            )
+        );
     };
 
     return (
@@ -94,8 +111,8 @@ const CourseLessons = (props) => {
                                     <div className="editing-lesson">
                                         {status === false ? (
                                             <div className="lesson-title">
-                                                <div>{props.lesson}</div>
-                                                <div>{` (${props.lessonTime})`}</div>
+                                                <div className="lesson-title-item">{props.lesson}</div>
+                                                <div className="lesson-title-item"><AccessTimeIcon/>{`${props.lessonTime}`}</div>
                                             </div>
                                         ) : (
                                             <div className="lesson-title">
@@ -105,7 +122,6 @@ const CourseLessons = (props) => {
                                                     onChange={onChangeValue}
                                                     onBlur={() =>
                                                         onChangeBlurStatus(
-                                                            courseId,
                                                             props.moduleId,
                                                             props.lessonId
                                                         )
@@ -117,16 +133,7 @@ const CourseLessons = (props) => {
 
                                         <EditIcon onClick={onChangeStatus} />
                                         <RestoreFromTrashIcon
-                                            onClick={() =>
-                                                dispatch(
-                                                    deleteLesson(
-                                                        courseId,
-                                                        props.moduleId,
-                                                        props.lessonId,
-                                                        props.fileVideo
-                                                    )
-                                                )
-                                            }
+                                            onClick={() => onDeleteLesson()}
                                         >
                                             Удалить урок
                                         </RestoreFromTrashIcon>
@@ -152,7 +159,6 @@ const CourseLessons = (props) => {
                                     <button
                                         onClick={() =>
                                             sendLink(
-                                                courseId,
                                                 props.moduleId,
                                                 props.lessonId,
                                                 linkName

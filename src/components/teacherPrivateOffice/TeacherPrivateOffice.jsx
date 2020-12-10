@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CreateCourse from "./createCourse/CreateCourse";
 import CoursePreview from "./coursePreview/CoursePreview";
 
@@ -16,7 +16,6 @@ const TeacherPrivateOffice = () => {
                 </div>
                 <div className="teacher-office-content">
                     <CreateCourse />
-                    <CoursePreview />
                 </div>
             </div>
         </div>

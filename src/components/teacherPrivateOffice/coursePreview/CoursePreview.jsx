@@ -8,8 +8,7 @@ import CourseLessons from "./courseLessons/CourseLessons";
 import CourseModules from "./courseModules/CourseModules";
 import "./CoursePreview.css";
 
-const CoursePreview = () => {
-    const [ lessonId, setLessonId ] = useState("");
+const CoursePreview = (props) => {
     const lessonsModule = useSelector(
         (state) => state.contentCourses.courseContent
     );
@@ -23,9 +22,9 @@ const CoursePreview = () => {
                 <div className="teacher-course-list">
                     {lessonsModule &&
                         lessonsModule.content.map((element) => {
-
                             return (
                                 <CourseModules
+                                    courseId={props.changeCourseId}
                                     key={element._id}
                                     module={element.module}
                                     moduleHours={element.moduleHours}

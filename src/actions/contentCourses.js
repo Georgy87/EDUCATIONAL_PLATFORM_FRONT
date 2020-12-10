@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setCourseContent } from "../reducers/contentCoursesReducer";
+import { setAllTeacherCourses, setCourseContent } from "../reducers/contentCoursesReducer";
 
 export const uploadCourseContent = (courseId, file, lesson, module) => {
     return async (dispatch) => {
@@ -10,7 +10,7 @@ export const uploadCourseContent = (courseId, file, lesson, module) => {
             formData.append("lesson", lesson);
 
             const response = await axios.post(
-                `http://localhost:5000/api/teacher/content?id=${courseId}`,
+                `http://localhost:5000/api/teacher/content?courseId=${courseId}`,
                 formData,
                 {
                     headers: {
@@ -37,7 +37,7 @@ export const uploadLesson = (courseId, file, lesson, moduleId) => {
             formData.append("moduleId", moduleId);
 
             const response = await axios.post(
-                `http://localhost:5000/api/teacher/lesson-upload?id=${courseId}`,
+                `http://localhost:5000/api/teacher/lesson-upload?courseId=${courseId}`,
                 formData,
                 {
                     headers: {
@@ -54,11 +54,11 @@ export const uploadLesson = (courseId, file, lesson, moduleId) => {
     };
 };
 
-export const getCourseContent = () => {
+export const getCourseContent = (courseId) => {
     return async (dispatch) => {
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/teacher/courses",
+                `http://localhost:5000/api/teacher/courses?courseId=${courseId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -67,7 +67,7 @@ export const getCourseContent = () => {
                     },
                 }
             );
-            console.log(response.data);
+            // console.log(response.data);
             dispatch(setCourseContent(response.data));
         } catch (e) {
             console.log(e);
@@ -75,12 +75,32 @@ export const getCourseContent = () => {
     };
 };
 
-export const deleteLesson = (courseId, moduleId, lessonId, videoName) => {
+export const getAllTeacherCourses = () => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(
+                "http://localhost:5000/api/teacher/all-teacher-courses",
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            dispatch(setAllTeacherCourses(response.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const deleteLesson = (courseId, moduleId, lessonId, videoName, hours, minutes, seconds) => {
     return async (dispatch) => {
         try {
             const response = await axios.post(
                 `http://localhost:5000/api/teacher/lesson-delete?courseId=${courseId}`,
-                {  moduleId, lessonId, videoName },
+                {  moduleId, lessonId, videoName, hours, minutes, seconds },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -130,7 +150,7 @@ export const sendLinksToResources = (
     return async (dispatch) => {
         try {
             const response = await axios.post(
-                `http://localhost:5000/api/teacher/link?id=${courseId}`,
+                `http://localhost:5000/api/teacher/link?courseId=${courseId}`,
                 { moduleId, lessonId, linkName, linksToResources },
                 {
                     headers: {
@@ -159,7 +179,7 @@ export const setTimeModuleAndLessons = (
     return async (dispatch) => {
         try {
             const response = await axios.post(
-                `http://localhost:5000/api/teacher/time?id=${courseId}`,
+                `http://localhost:5000/api/teacher/time?courseId=${courseId}`,
                 { moduleId, lessonId, hours, minutes, seconds},
                 {
                     headers: {
