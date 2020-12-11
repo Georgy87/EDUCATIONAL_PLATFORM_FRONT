@@ -23,14 +23,10 @@ const CreateCourse = () => {
     const [module, setModule] = useState("");
     const [fileVideo, setFileVideo] = useState("");
     const [lesson, setLesson] = useState("");
+    const contentCourses = useSelector((state) => state.contentCourses);
     const [changeCourseId, setChangeCourseId] = useState("");
 
-    const course = useSelector((state) => state.course.courses);
-
-    const contentCourses = useSelector((state) => state.contentCourses);
-
     const onUploadAndGetContent = () => {
-        // const courseId = course[0]._id;
         dispatch(
             uploadCourseContent(changeCourseId, fileVideo, lesson, module)
         );
@@ -42,13 +38,14 @@ const CreateCourse = () => {
 
     const onChoiceCourse = (courseId) => {
         setChangeCourseId(courseId);
+        localStorage.setItem("courseId", courseId);
         dispatch(getCourseContent(courseId));
-        // localStorage.setItem("courseId", courseId);
     };
 
-    // useEffect(() => {
-    //     dispatch(getCourseContent(localStorage.getItem("courseId")));
-    // }, [localStorage.getItem("courseId")]);
+    useEffect(() => {
+        dispatch(getCourseContent(localStorage.getItem("courseId")));
+        setChangeCourseId(localStorage.getItem("courseId"));
+    }, [changeCourseId]);
 
     return (
         <div>

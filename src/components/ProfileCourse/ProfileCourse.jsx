@@ -1,18 +1,20 @@
-import React from "react";
-import "./ProfileCourse.css";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Font, { Text } from "react-font";
-import { getCourses, getProfileCourse } from "../../actions/courses";
+import { getProfileCourse } from "../../actions/courses";
 import { useEffect } from "react";
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import Modal from "./modal/Modal";
+
+import "./ProfileCourse.css";
 const ProfileCourse = (props) => {
     const state = useSelector((state) => state.course.courseProfile);
-
+    const [modalActive, setModalActive] = useState(false);
+    console.log(modalActive);
     let profileId = props.match.params.profileId;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch(getCourses());
         dispatch(getProfileCourse(profileId));
     }, []);
     return (
@@ -24,22 +26,33 @@ const ProfileCourse = (props) => {
                             <div className="profile-container">
                                 <div className="profile-info-main">
                                     <div className="small-description">
-                                        <img src={`http://localhost:5000/${el.photo}`} />
                                         <h1> {el.smallDescription}</h1>
                                         <p>{`Автор: ${el.author}`}</p>
                                     </div>
                                 </div>
                                 <div className="profile-info-middle"></div>
-                                <div className="profile-info-dop"></div>
-                            </div>
-                            <div className="profile-container">
-                                <div className="profile-second"></div>
-                                <div className="profile-dop-second"></div>
-                                <div className="profile-middle-second"></div>
+                                <div className="profile-info-dop" >
+                                    <div
+                                        className="info-dop-container"
+                                        onClick={() => setModalActive(true)}
+                                    >
+                                        <img
+
+                                            src={`http://localhost:5000/${el.photo}`}
+                                        />
+                                        <div className="info-dop-content">
+                                            <PlayCircleFilledIcon style={{width: 70, height: 70, marginTop: '50px'}} />
+                                        </div>
+                                        <div className="info-dop-content-information ">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     );
                 })}
+            <Modal active={modalActive} setActive={setModalActive} />
         </div>
     );
 };
