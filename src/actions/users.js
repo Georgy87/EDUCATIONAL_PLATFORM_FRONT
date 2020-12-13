@@ -1,93 +1,93 @@
-import axios from "axios";
-import { setUser } from "../reducers/userReducer";
+// import axios from "axios";
+// import { setUser } from "../reducers/userReducer";
 
-export const registration = (name, surname, email, password, teacher = false) => {
-    console.log(name, surname, email, password, teacher)
-    return async (dispatch) => {
-        try {
-            const response = await axios.post(
-                "http://localhost:5000/api/auth/registration",
-                {
-                    name,
-                    surname,
-                    email,
-                    password,
-                    teacher,
-                }
-            );
-            return console.log(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-};
+// export const registration = (name, surname, email, password, teacher = false) => {
+//     console.log(name, surname, email, password, teacher)
+//     return async (dispatch) => {
+//         try {
+//             const response = await axios.post(
+//                 "http://localhost:5000/api/auth/registration",
+//                 {
+//                     name,
+//                     surname,
+//                     email,
+//                     password,
+//                     teacher,
+//                 }
+//             );
+//             return console.log(response.data);
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     }
+// };
 
-export const login = (email, password) => {
-    console.log(email, password);
-    return async (dispatch) => {
-        try {
-            const response = await axios.post(
-                "http://localhost:5000/api/auth/login",
-                {
-                    email,
-                    password,
-                }
-            );
+// export const login = (email, password) => {
+//     console.log(email, password);
+//     return async (dispatch) => {
+//         try {
+//             const response = await axios.post(
+//                 "http://localhost:5000/api/auth/login",
+//                 {
+//                     email,
+//                     password,
+//                 }
+//             );
 
-            localStorage.setItem("token", response.data.token);
-            return dispatch(setUser(response.data));
-        } catch (error) {
-            console.log(error);
-        }
-    };
-};
+//             localStorage.setItem("token", response.data.token);
+//             return dispatch(setUser(response.data));
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     };
+// };
 
-export const auth = () => {
-    return async (dispatch) => {
-        try {
-            const response = await axios.get(
-                "http://localhost:5000/api/auth/auth",
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
-            dispatch(setUser(response.data));
+// export const auth = () => {
+//     return async (dispatch) => {
+//         try {
+//             const response = await axios.get(
+//                 "http://localhost:5000/api/auth/auth",
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${localStorage.getItem(
+//                             "token"
+//                         )}`,
+//                     },
+//                 }
+//             );
+//             dispatch(setUser(response.data));
 
-            localStorage.setItem("token", response.data.token);
-        } catch (e) {
-            console.log(e);
-            // localStorage.removeItem("token");
-        }
-    };
-};
+//             localStorage.setItem("token", response.data.token);
+//         } catch (e) {
+//             console.log(e);
+//             // localStorage.removeItem("token");
+//         }
+//     };
+// };
 
-export const uploadAvatar = (file) => {
-    return async (dispatch) => {
-        try {
-            const formData = new FormData();
+// export const uploadAvatar = (file) => {
+//     return async (dispatch) => {
+//         try {
+//             const formData = new FormData();
 
-            formData.append("file", file);
+//             formData.append("file", file);
 
-            const result = await axios.post(
-                `http://localhost:5000/api/course/avatar`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
+//             const result = await axios.post(
+//                 `http://localhost:5000/api/course/avatar`,
+//                 formData,
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${localStorage.getItem(
+//                             "token"
+//                         )}`,
+//                     },
+//                 }
+//             );
 
-            return await dispatch(setUser(result.data));
-            // console.log(result);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-};
+//             return await dispatch(setUser(result.data));
+//             // console.log(result);
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     };
+// };

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteDirection, filterByDirection } from "../../../actions/directions";
+import { deleteDirection, filterByDirection } from "../../../store/ducks/directions/saga";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { NavLink } from "react-router-dom";
 import "./ProgrammsItems.css"
@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 const ProgrammsItems = ({ props }) => {
     const dispatch = useDispatch();
-  
+
     const nameDirection = () => {
         dispatch(filterByDirection(props.direction));
     };

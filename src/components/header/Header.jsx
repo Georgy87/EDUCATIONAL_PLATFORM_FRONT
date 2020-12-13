@@ -5,7 +5,7 @@ import photo from "../../assets/avatar/unnamed.jpg";
 import "./Header.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { logout } from "../../reducers/userReducer";
+import { logout } from "../../store/ducks/user/actions";
 
 const Header = () => {
     const isAuth = useSelector((state) => state.user.isAuth);

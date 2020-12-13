@@ -1,14 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadNewCourse } from "../../../actions/courses";
 import {
     getAllTeacherCourses,
     getCourseContent,
     uploadCourseContent,
-} from "../../../actions/contentCourses";
-import "./CreateCourse.css";
+} from "../../../store/ducks/contentCourses/saga";
 import CoursePreview from "../coursePreview/CoursePreview";
+import { uploadNewCourse } from "../../../store/ducks/courses/saga";
+
+import "./CreateCourse.css";
 
 const CreateCourse = () => {
     const [profession, setProfession] = useState("");

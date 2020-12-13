@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import CourseItems from "./CourseItems/CourseItems";
 import photo from "../../assets/Снимок экрана 2020-11-12 в 22.24.33.png"
 import { useEffect } from "react";
-import { filterByDirection } from "../../actions/directions";
+import { filterByDirection } from "../../store/ducks/directions/saga";
+// import { filterByDirection } from "../../actions/directions";
+
 const Courses = (props) => {
     const state = useSelector(state => state.directions.filterByDirection);
     const sta = useSelector(state => state);

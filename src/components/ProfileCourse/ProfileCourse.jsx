@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfileCourse } from "../../actions/courses";
+
 import { useEffect } from "react";
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import Modal from "./modal/Modal";
 
 import "./ProfileCourse.css";
+import { getProfileCourse } from "../../store/ducks/courses/saga";
 const ProfileCourse = (props) => {
     const state = useSelector((state) => state.course.courseProfile);
     const [modalActive, setModalActive] = useState(false);

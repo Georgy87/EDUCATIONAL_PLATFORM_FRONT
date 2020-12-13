@@ -2,11 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getCourses } from "../../actions/courses";
+import { getCourses } from "../../store/ducks/courses/saga";
 import SimpleSlider from "../sliderCourses/SliderCourses";
 import Programms from "../programms/programms";
-import "./MainPage.css"
-import TeacherRegistration from '../teacherRegistration/TeacherRegistration';
+import TeacherRegistration from "../teacherRegistration/TeacherRegistration";
+
+import "./MainPage.css";
 
 const MainPage = () => {
     const state = useSelector((state) => state.course.courses);
@@ -22,7 +23,7 @@ const MainPage = () => {
             <div className="main-background"></div>
             <SimpleSlider props={state} />
             <Programms />
-            <TeacherRegistration/>
+            <TeacherRegistration />
             <div className="teacher-background"></div>
         </div>
     );

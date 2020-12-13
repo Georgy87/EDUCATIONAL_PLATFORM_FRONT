@@ -1,7 +1,7 @@
-import userReducer from "../reducers/userReducer";
-import coursesReducer from "../reducers/coursesReducer";
-import directionsReducer from "../reducers/directionsReducer";
-import contentCoursesReducer from "../reducers/contentCoursesReducer";
+import userReducer from "./ducks/user/reducer";
+import coursesReducer from "./ducks/courses/reducer";
+import directionsReducer from "./ducks/directions/reducer";
+import contentCoursesReducer from "./ducks/contentCourses/reducer";
 import { combineReducers } from "redux";
 
 import { reducer as formReducer } from "redux-form";

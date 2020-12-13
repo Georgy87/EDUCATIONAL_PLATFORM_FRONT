@@ -8,7 +8,7 @@ import {
     image64toCanvasRef,
 } from "./ResuableUtils";
 import { connect } from "react-redux";
-import { uploadAvatar } from "../../../actions/users";
+import { uploadAvatar } from "../../../store/ducks/user/saga";
 import { auth } from "../../../actions/users";
 import "./UserProfile.css";
 
@@ -116,7 +116,7 @@ class ImgDropAndCrop extends Component {
             );
 
             this.props.uploadAvatar(myNewCroppedFile);
-          
+
             // download file
             // downloadBase64File(imageData64, myFilename);
             this.handleClearToDefault();

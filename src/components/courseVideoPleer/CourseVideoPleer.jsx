@@ -3,7 +3,8 @@ import CurrentTime from "./CurrentTime";
 import { Media, Player, controls } from "react-media-player";
 import "./CourseVideoPleer.css";
 import { useDispatch } from "react-redux";
-import { setTimeModuleAndLessons } from "../../actions/contentCourses";
+import { setTimeModuleAndLessons } from "../../store/ducks/contentCourses/saga";
+
 const { Duration, Progress, SeekBar } = controls;
 
 export const MediaPlayer = (props) => {
