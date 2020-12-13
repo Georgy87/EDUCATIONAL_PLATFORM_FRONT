@@ -4,9 +4,10 @@ import { useDispatch } from "react-redux";
 import { Field, reduxForm, reset } from "redux-form";
 import { requireEmail, minLength } from "../validate/validateInput";
 import { InputForEmail, InputForPassword } from "../inputs/inputs";
-import { login } from "../../actions/users";
+
 
 import "./LoginPage.css";
+import { login } from "../../store/ducks/user/saga";
 
 const lengthMin = minLength(6);
 

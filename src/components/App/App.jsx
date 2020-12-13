@@ -6,16 +6,17 @@ import MainPage from "../mainPage/MainPage";
 import Registration from "../registrationPage/RegistrationPage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { auth } from "../../actions/users";
+import { auth } from "../../store/ducks/user/saga";
 import PrivateOffice from "../ privateOffice/PrivateOffice";
 import Courses from "../courses/Courses";
-import { getCourses } from "../../actions/courses";
+import { getCourses } from "../../store/ducks/courses/saga";
 import ProfileCourse from "../profileCourse/ProfileCourse";
 import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 import RegistrationPageForTeacher from "../registrationPageForTeacher/RegistrationPageForTeacher";
 import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
+
 
 const App = () => {
     const dispatch = useDispatch();

@@ -7,9 +7,10 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { uploadLesson } from "../../../../actions/contentCourses";
+
 
 import "./CourseModules.css";
+import { uploadLesson } from "../../../../store/ducks/contentCourses/saga";
 
 const useStyles = makeStyles((theme) => ({
     root: {

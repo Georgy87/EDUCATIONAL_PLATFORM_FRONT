@@ -1,10 +1,11 @@
 import React from "react";
-import "./CourseItems.css";
 import { NavLink } from "react-router-dom";
-import { deleteCourse, getProfileCourse } from "../../../actions/courses";
+import { deleteCourse, getProfileCourse } from "../../../store/ducks/courses/saga";
 import { useDispatch } from "react-redux";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { useSelector } from "react-redux";
+
+import "./CourseItems.css";
 
 const CourseItems = ({ props }) => {
     // const state = useSelector(state => state.directions.filterByDirection);

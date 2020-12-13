@@ -6,11 +6,11 @@ import {
     lessonTitleRevision,
     sendLinksToResources,
     uploadLesson,
-} from "../../../../actions/contentCourses";
+} from "../../../../store/ducks/contentCourses/saga";
 import {
     setTimeLesson,
     setVideoName,
-} from "../../../../reducers/contentCoursesReducer";
+} from "../../../../store/ducks/contentCourses/actions";
 import EditIcon from "@material-ui/icons/Edit";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import Dropdown from "react-bootstrap/Dropdown";
