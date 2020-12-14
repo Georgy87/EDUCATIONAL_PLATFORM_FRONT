@@ -2,7 +2,6 @@ const initialState = {
     courses: [],
     courseDirections: [],
     filterByDirection: [],
-    courseProfile: null,
     isFilter: false
 }
 
@@ -41,11 +40,6 @@ const coursesReducer = (state = initialState, action) => {
                     ...state.courses.filter(course => course._id !== action.payload)
                 ]
             }
-        // case "SET-COURSE-PROFILE":
-        //     return {
-        //         ...state,
-        //         courseProfile: action.payload
-        //     }
         default :
             return state
     }

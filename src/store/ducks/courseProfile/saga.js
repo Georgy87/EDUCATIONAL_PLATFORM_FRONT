@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setCourseProfile } from "./actions";
+import { setCourseProfile, setCourseProfileVideo } from "./actions";
 export const getProfileCourse = (courseId) => {
     return async (dispatch) => {
         try {
@@ -18,7 +18,7 @@ export const getProfileCourse = (courseId) => {
                 const module =  data.content[0];
                 const lesson = module.moduleContent[0];
                 const lessonVideo = lesson.fileVideo;
-                console.log(lessonVideo);
+                dispatch(setCourseProfileVideo(lessonVideo));
             }
             dispatch(setCourseProfile(response.data));
         } catch (error) {

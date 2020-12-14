@@ -13,16 +13,8 @@ export const addCourses = (course) => {
 }
 
 export const deleteCourseAction = (courseId) => {
-
     return {
         type: "DELETE-COURSE",
         payload: courseId
     }
 }
-
-// export const setCourseProfile = (course) => {
-//     return {
-//         type: "SET-COURSE-PROFILE",
-//         payload: course
-//     }
-// }

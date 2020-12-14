@@ -9,8 +9,9 @@ import "./ProfileCourse.css";
 
 const ProfileCourse = (props) => {
     const profile = useSelector((state) => state.courseProfile.courseProfile);
+    const video = useSelector((state) => state.courseProfile);
     const [modalActive, setModalActive] = useState(false);
-    console.log(profile)
+    
     let profileId = props.match.params.profileId;
 
     const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const ProfileCourse = (props) => {
                 </div>
             )}
 
-            <Modal active={modalActive} setActive={setModalActive} />
+            <Modal active={modalActive} setActive={setModalActive} video={video.courseProfileVideo} />
         </div>
     );
 };

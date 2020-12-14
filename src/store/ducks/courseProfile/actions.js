@@ -4,3 +4,9 @@ export const setCourseProfile = (course) => {
         payload: course
     }
 }
+export const setCourseProfileVideo = (video) => {
+    return {
+        type: "SET-COURSE-PROFILE-VIDEO",
+        payload: video
+    }
+}
