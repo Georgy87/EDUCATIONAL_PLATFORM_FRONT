@@ -20,9 +20,9 @@ export const deleteCourseAction = (courseId) => {
     }
 }
 
-export const setCourseProfile = (course) => {
-    return {
-        type: "SET-COURSE-PROFILE",
-        payload: course
-    }
-}
+// export const setCourseProfile = (course) => {
+//     return {
+//         type: "SET-COURSE-PROFILE",
+//         payload: course
+//     }
+// }

@@ -4,7 +4,6 @@ import ReactWebMediaPlayer from "react-web-media-player";
 import "./Modal.css";
 
 const Modal = ({ active, setActive }) => {
-    console.log(active)
     return (
         <>
             <div
