@@ -1,40 +1,30 @@
+import produce from "immer";
 const initialState = {
     courseContent: null,
     videoName: "",
     lessonTime: null,
-    allTeacherCourses: []
+    allTeacherCourses: [],
 };
 
-const contentCoursesReducer = (state = initialState, action) => {
+const contentCoursesReducer = produce((draftState = initialState, action) => {
     switch (action.type) {
         case "ADD-COURSE-CONTENT":
-            return {
-                ...state,
-                courseContent: [...state.courseContent, action.payload],
-            };
+            draftState.courseContent = [...draftState.courseContent, action.payload];
+            break;
         case "SET-COURSE-CONTENT":
-            return {
-                ...state,
-                courseContent: action.payload,
-            };
+            draftState.courseContent = action.payload;
+            break;
         case "SET-VIDEO-NAME":
-            return {
-                ...state,
-                videoName: action.payload,
-            };
+            draftState.videoName = action.payload;
+            break;
         case "SET-TIME-LESSON":
-            return {
-                ...state,
-                lessonTime: { ...action.payload },
-            };
+            draftState.lessonTime = { ...action.payload };
+            break;
         case "SET-ALL-TEACHER-COURSES":
-            return {
-                ...state,
-                allTeacherCourses: action.payload,
-            };
+            draftState.allTeacherCourses = action.payload;
         default:
-            return state;
+            break;
     }
-};
+}, initialState);
 
 export default contentCoursesReducer;

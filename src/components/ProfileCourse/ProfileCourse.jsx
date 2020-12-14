@@ -11,7 +11,7 @@ const ProfileCourse = (props) => {
     const profile = useSelector((state) => state.courseProfile.courseProfile);
     const video = useSelector((state) => state.courseProfile);
     const [modalActive, setModalActive] = useState(false);
-    
+
     let profileId = props.match.params.profileId;
 
     const dispatch = useDispatch();

@@ -1,48 +1,42 @@
+import produce from "immer";
 const initialState = {
     courses: [],
     courseDirections: [],
     filterByDirection: [],
-    isFilter: false
-}
+    isFilter: false,
+};
 
-const coursesReducer = (state = initialState, action) => {
+const coursesReducer = produce((draftState = initialState, action) => {
     switch (action.type) {
-        case  "SET-COURSES":
-            return {
-                ...state,
-                courses: action.payload
-            }
-        case  "ADD-COURSES":
-            return {
-                ...state,
-                courses: [...state.courses, action.payload],
-            }
-        case  "SET-COURSE-DIRECTIONS":
-            return {
-                ...state,
-                courseDirections: action.payload
-            }
-        case  "ADD-COURSE-DIRECTIONS":
-            return {
-                ...state,
-                courseDirections: [...state.courseDirections, action.payload],
-            }
-        case  "SET-FILTER-BY-DIRECTIONS":
-            return {
-                ...state,
-                filterByDirection: action.payload,
-                isFilter: true
-            }
+        case "SET-COURSES":
+            draftState.courses = action.payload;
+            break;
+        case "ADD-COURSES":
+            draftState.courses = [...draftState.courses, action.payload];
+            break;
+        case "SET-COURSE-DIRECTIONS":
+            draftState.courseDirections = action.payload;
+            break;
+        case "ADD-COURSE-DIRECTIONS":
+            draftState.courseDirections = [
+                ...draftState.courseDirections,
+                action.payload,
+            ];
+            break;
+        case "SET-FILTER-BY-DIRECTIONS":
+            draftState.filterByDirection = action.payload;
+            draftState.isFilter = true;
+            break;
         case "DELETE-COURSE":
-            return {
-                ...state,
-                courses: [
-                    ...state.courses.filter(course => course._id !== action.payload)
-                ]
-            }
-        default :
-            return state
+            draftState.courses = [
+                ...draftState.courses.filter(
+                    (course) => course._id !== action.payload
+                ),
+            ];
+            break;
+        default:
+            break;
     }
-}
+}, initialState);
 
 export default coursesReducer;

@@ -1,24 +1,20 @@
+import produce from "immer";
 const initialState = {
     courseProfile: null,
-    courseProfileVideo: ''
-}
+    courseProfileVideo: "",
+};
 
-const courseProfile = (state = initialState, action) => {
-
+const courseProfile = produce((draftState = initialState, action) => {
     switch (action.type) {
         case "SET-COURSE-PROFILE":
-            return {
-                ...state,
-                courseProfile: action.payload
-            }
+            draftState.courseProfile = action.payload;
+            break;
         case "SET-COURSE-PROFILE-VIDEO":
-            return {
-                ...state,
-                courseProfileVideo: action.payload
-            }
-        default :
-            return state
+            draftState.courseProfileVideo = action.payload;
+            break;
+        default:
+            break;
     }
-}
+}, initialState);
 
 export default courseProfile;
