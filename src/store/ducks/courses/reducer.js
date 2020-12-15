@@ -1,15 +1,24 @@
 import produce from "immer";
+import { LoadingState } from "./contracts/state";
 const initialState = {
     courses: [],
     courseDirections: [],
     filterByDirection: [],
     isFilter: false,
+    loadingState: LoadingState.NEVER
 };
 
 const coursesReducer = produce((draftState = initialState, action) => {
     switch (action.type) {
+        case "SET-COURSES-LOADING":
+            draftState.loadingState = LoadingState.LOADING;
+            break;
+        case "SET-COURSES-LOADED":
+            draftState.loadingState = LoadingState.LOADED;
+            break;
         case "SET-COURSES":
             draftState.courses = action.payload;
+            draftState.loadingState = LoadingState.LOADED;
             break;
         case "ADD-COURSES":
             draftState.courses = [...draftState.courses, action.payload];

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import SliderItems from "./SliderItems/SliderItems";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SliderCourses.css";
-import SliderItems from "./SliderItems/SliderItems";
+
 export default class SimpleSlider extends Component {
     constructor(props) {
         super(props);
@@ -22,23 +25,22 @@ export default class SimpleSlider extends Component {
             // variableWidth: true
         };
 
-        const element = this.props.props.map((el) => {
-            return <SliderItems props={el} key={el._id} />;
-        });
-
+        const { stateCourses, isLoading } = this.props;
         return (
-            <div
-                className="items"
-                style={{ backgroundColor: "white", height: "300px" }}
-            >
+            <div>
                 <div
                     style={{
-                        minWidth: "1400px",
+                        // width: "1200px",
                         margin: "0 auto",
                         marginTop: "150px",
                     }}
                 >
-                    <Slider {...settings}>{element}</Slider>
+                    <Slider {...settings}>
+                        {!isLoading &&
+                            stateCourses.courses.map((el) => {
+                                return <SliderItems props={el} key={el._id} />;
+                            })}
+                    </Slider>
                     <div className="slider-line"></div>
                 </div>
             </div>

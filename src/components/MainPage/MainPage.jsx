@@ -6,12 +6,15 @@ import { getCourses } from "../../store/ducks/courses/saga";
 import SimpleSlider from "../sliderCourses/SliderCourses";
 import Programms from "../programms/programms";
 import TeacherRegistration from "../teacherRegistration/TeacherRegistration";
+import { selectCourseLoading, selectCourses, selectLoadingState } from "../../store/ducks/courses/selectors";
 
 import "./MainPage.css";
 
 const MainPage = () => {
-    const state = useSelector((state) => state.course.courses);
-    //files
+    const courses = useSelector(selectCourses);
+
+    const isLoading = useSelector(selectCourseLoading);
+   
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,7 +24,7 @@ const MainPage = () => {
     return (
         <div>
             <div className="main-background"></div>
-            <SimpleSlider props={state} />
+            <SimpleSlider stateCourses={courses} isLoading={isLoading}/>
             <Programms />
             <TeacherRegistration />
             <div className="teacher-background"></div>

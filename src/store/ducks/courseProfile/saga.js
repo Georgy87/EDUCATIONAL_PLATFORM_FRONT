@@ -1,26 +1,18 @@
-import axios from "axios";
+import { CourseProfileApi } from "../../../services/api/courseProfileApi";
 import { setCourseProfile, setCourseProfileVideo } from "./actions";
 export const getProfileCourse = (courseId) => {
     return async (dispatch) => {
         try {
-            const response = await axios.get(
-                `http://localhost:5000/api/course/profile?id=${courseId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
+            CourseProfileApi.getProfile(courseId).then(data => {
+                if (data) {
+                    const newData = data;
+                    const module =  newData.content[0];
+                    const lesson = module.moduleContent[0];
+                    const lessonVideo = lesson.fileVideo;
+                    dispatch(setCourseProfileVideo(lessonVideo));
                 }
-            );
-            if (response.data) {
-                const data = response.data;
-                const module =  data.content[0];
-                const lesson = module.moduleContent[0];
-                const lessonVideo = lesson.fileVideo;
-                dispatch(setCourseProfileVideo(lessonVideo));
-            }
-            dispatch(setCourseProfile(response.data));
+                dispatch(setCourseProfile(data));
+            });
         } catch (error) {
             console.log(error);
         }
