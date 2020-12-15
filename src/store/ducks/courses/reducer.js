@@ -1,54 +1,51 @@
+import produce from "immer";
+import { LoadingState } from "./contracts/state";
 const initialState = {
     courses: [],
     courseDirections: [],
     filterByDirection: [],
-    courseProfile: null,
-    isFilter: false
-}
+    isFilter: false,
+    loadingState: LoadingState.NEVER
+};
 
-const coursesReducer = (state = initialState, action) => {
+const coursesReducer = produce((draftState = initialState, action) => {
     switch (action.type) {
-        case  "SET-COURSES":
-            return {
-                ...state,
-                courses: action.payload
-            }
-        case  "ADD-COURSES":
-            return {
-                ...state,
-                courses: [...state.courses, action.payload],
-            }
-        case  "SET-COURSE-DIRECTIONS":
-            return {
-                ...state,
-                courseDirections: action.payload
-            }
-        case  "ADD-COURSE-DIRECTIONS":
-            return {
-                ...state,
-                courseDirections: [...state.courseDirections, action.payload],
-            }
-        case  "SET-FILTER-BY-DIRECTIONS":
-            return {
-                ...state,
-                filterByDirection: action.payload,
-                isFilter: true
-            }
+        case "SET-COURSES-LOADING":
+            draftState.loadingState = LoadingState.LOADING;
+            break;
+        case "SET-COURSES-LOADED":
+            draftState.loadingState = LoadingState.LOADED;
+            break;
+        case "SET-COURSES":
+            draftState.courses = action.payload;
+            draftState.loadingState = LoadingState.LOADED;
+            break;
+        case "ADD-COURSES":
+            draftState.courses = [...draftState.courses, action.payload];
+            break;
+        case "SET-COURSE-DIRECTIONS":
+            draftState.courseDirections = action.payload;
+            break;
+        case "ADD-COURSE-DIRECTIONS":
+            draftState.courseDirections = [
+                ...draftState.courseDirections,
+                action.payload,
+            ];
+            break;
+        case "SET-FILTER-BY-DIRECTIONS":
+            draftState.filterByDirection = action.payload;
+            draftState.isFilter = true;
+            break;
         case "DELETE-COURSE":
-            return {
-                ...state,
-                courses: [
-                    ...state.courses.filter(course => course._id !== action.payload)
-                ]
-            }
-        case "SET-COURSE-PROFILE":
-            return {
-                ...state,
-                courseProfile: action.payload
-            }
-        default :
-            return state
+            draftState.courses = [
+                ...draftState.courses.filter(
+                    (course) => course._id !== action.payload
+                ),
+            ];
+            break;
+        default:
+            break;
     }
-}
+}, initialState);
 
 export default coursesReducer;

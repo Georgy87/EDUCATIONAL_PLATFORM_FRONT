@@ -1,49 +1,34 @@
-import axios from "axios";
+import { CoursesApi } from "../../../services/api/coursesApi";
 import { deleteFilterByDirections } from "../directions/actions";
-import { deleteCourseAction, setCourseProfile, setCourses } from "./actions";
-// import { setCourses, addCourses, setCourseProfile } from "../reducers/coursesReducer";
-// import { deleteCourseAction } from "../reducers/coursesReducer";
-// import { deleteFilterByDirections } from "../reducers/directionsReducer";
+import { deleteCourseAction, setCourseProfile, setCourses, setLoaded, setLoading } from "./actions";
 
 export const uploadNewCourse = (
-    photoCourse = '',
+    photoCourse = "",
     profession,
     author,
     price,
     shotDescription,
     fullDescription,
-    module = '',
-    fileVideo = '',
-    lesson = '',
+    module = "",
+    fileVideo = "",
+    lesson = ""
 ) => {
+    const formData = new FormData();
+    formData.append("file", fileVideo);
+    formData.append("file", photoCourse);
+    formData.append("profession", profession);
+    formData.append("author", author);
+    formData.append("price", price);
+    formData.append("smallDescription", shotDescription);
+    formData.append("fullDescription", fullDescription);
 
+    formData.append("lesson", lesson);
+    formData.append("module", module);
     return async (dispatch) => {
         try {
-
-            const formData = new FormData();
-            formData.append("file", fileVideo);
-            formData.append("file", photoCourse);
-            formData.append("profession", profession);
-            formData.append("author", author);
-            formData.append("price", price);
-            formData.append("smallDescription", shotDescription);
-            formData.append("fullDescription", fullDescription);
-
-            formData.append("lesson", lesson);
-            formData.append("module", module);
-
-            const response = await axios.post(
-                "http://localhost:5000/api/teacher/course",
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
+            CoursesApi.uploadCourse(
+                formData
             );
-
         } catch (e) {
             console.log(e);
         }
@@ -52,18 +37,12 @@ export const uploadNewCourse = (
 
 export const getCourses = () => {
     return async (dispatch) => {
+        dispatch(setLoading());
         try {
-            const response = await axios.get(
-                "http://localhost:5000/api/course",
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
-            dispatch(setCourses(response.data));
+            CoursesApi.getCourses().then(data => {
+                dispatch(setCourses(data));
+                dispatch(setLoaded());
+            });
         } catch (e) {
             console.log(e);
         }
@@ -73,41 +52,13 @@ export const getCourses = () => {
 export const deleteCourse = (courseId, photo) => {
     return async (dispatch) => {
         try {
-            const response = await axios.delete(
-                `http://localhost:5000/api/course?id=${courseId}&name=${photo}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
-            dispatch(deleteCourseAction(courseId));
-            dispatch(deleteFilterByDirections(courseId));
+            CoursesApi.deleteCourse(courseId, photo).then(data => {
+                dispatch(deleteCourseAction(courseId));
+                dispatch(deleteFilterByDirections(courseId));
+            });
         } catch (e) {
             console.log(e);
         }
     };
 };
 
-export const getProfileCourse = (courseId) => {
-    return async (dispatch) => {
-        try {
-            const response = await axios.get(
-                `http://localhost:5000/api/course/profile?id=${courseId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
-            console.log(response.data)
-            dispatch(setCourseProfile(response.data));
-        } catch (error) {
-            console.log(error);
-        }
-    };
-};

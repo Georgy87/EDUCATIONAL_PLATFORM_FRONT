@@ -1,43 +1,41 @@
+import produce from "immer";
 const initialState = {
     courseDirections: [],
     filterByDirection: [],
-    isFilter: false
-}
+    isFilter: false,
+};
 
-const directionsReducer = (state = initialState, action) => {
+const directionsReducer = produce((draftState = initialState, action) => {
     switch (action.type) {
-        case  "SET-COURSE-DIRECTIONS":
-            return {
-                ...state,
-                courseDirections: action.payload
-            }
-        case  "ADD-COURSE-DIRECTIONS":
-            return {
-                ...state,
-                courseDirections: [...state.courseDirections, action.payload],
-            }
-        case  "SET-FILTER-BY-DIRECTIONS":
-            return {
-                ...state,
-                filterByDirection: action.payload,
-                isFilter: true
-            }
-        case  "DELETE-FILTER-BY-DIRECTIONS":
-            return {
-                ...state,
-                filterByDirection: [
-                    ...state.filterByDirection.filter(course => course._id !== action.payload)
-                ]
-            }
-        case  "DELETE-COURSE-DIRECTIONS":
-            return {
-                ...state,
-                courseDirections: [
-                    ...state.courseDirections.filter(course => course._id !== action.payload)
-                ]
-            }
-        default :
-            return state
+        case "SET-COURSE-DIRECTIONS":
+            draftState.courseDirections = action.payload;
+            break;
+        case "ADD-COURSE-DIRECTIONS":
+            draftState.courseDirections = [
+                ...draftState.courseDirections,
+                action.payload,
+            ];
+            break;
+        case "SET-FILTER-BY-DIRECTIONS":
+            draftState.filterByDirection = action.payload;
+            draftState.isFilter = true;
+            break;
+        case "DELETE-FILTER-BY-DIRECTIONS":
+            draftState.filterByDirection = [
+                ...draftState.filterByDirection.filter(
+                    (course) => course._id !== action.payload
+                ),
+            ];
+            break;
+        case "DELETE-COURSE-DIRECTIONS":
+            draftState.courseDirections = [
+                ...draftState.courseDirections.filter(
+                    (course) => course._id !== action.payload
+                ),
+            ];
+            break;
+        default:
+            break;
     }
-}
+}, initialState);
 export default directionsReducer;

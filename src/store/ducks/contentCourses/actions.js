@@ -20,7 +20,6 @@ export const setAllTeacherCourses = (content) => {
 };
 
 
-
 export const setVideoName = (videoName) => {
     return {
         type: "SET-VIDEO-NAME",

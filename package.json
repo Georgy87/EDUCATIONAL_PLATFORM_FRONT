@@ -12,6 +12,7 @@
     "bootstrap": "^4.5.3",
     "cropperjs": "^1.5.9",
     "doka": "^0.1.0",
+    "immer": "^8.0.0",
     "react": "^17.0.1",
     "react-avatar-edit": "^0.9.0",
     "react-avatar-editor": "^11.0.12",

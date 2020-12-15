@@ -70,7 +70,7 @@
     transform: translateY(-3px);
 }
 .directions-content .item img {
-    width: 400px;
+    width: 340px;
     height: 200px;
     border-radius: 5px;
     box-shadow: 0 1px 1px rgba(80, 79, 79, 0.4);
@@ -81,7 +81,7 @@
 }
 .directions-content .direction-wrap {
     margin-top: 40px;
-    padding: 10px;
+    padding: 40px;
     padding-left: 0;
 }
 .directions-content .title {

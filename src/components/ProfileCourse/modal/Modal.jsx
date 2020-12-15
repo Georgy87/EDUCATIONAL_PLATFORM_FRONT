@@ -3,8 +3,8 @@ import ReactPlayer from "react-player";
 import ReactWebMediaPlayer from "react-web-media-player";
 import "./Modal.css";
 
-const Modal = ({ active, setActive }) => {
-    console.log(active)
+const Modal = ({ active, setActive, video}) => {
+    console.log(video);
     return (
         <>
             <div
@@ -21,7 +21,7 @@ const Modal = ({ active, setActive }) => {
                 >
                     <ReactWebMediaPlayer
                         title="My own video player"
-                        video="http://localhost:5000/14.  js с нуля, ваще с нуля (addEventListener, события, events).mp4"
+                        video={`http://localhost:5000/${video}`}
                     />
                 </div>
             </div>
