@@ -13,6 +13,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.12",
+    "@types/redux-form": "^8.3.1",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "cropperjs": "^1.5.9",

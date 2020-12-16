@@ -3,7 +3,7 @@ import { setCourseProfile, setCourseProfileVideo } from "./actions";
 export const getProfileCourse = (courseId: any) => {
     return async (dispatch: any) => {
         try {
-            CourseProfileApi.getProfile(courseId).then(data => {
+            const data = await CourseProfileApi.getProfile(courseId);
                 if (data) {
                     const newData = data;
                     const module =  newData.content[0];
@@ -12,7 +12,6 @@ export const getProfileCourse = (courseId: any) => {
                     dispatch(setCourseProfileVideo(lessonVideo));
                 }
                 dispatch(setCourseProfile(data));
-            });
         } catch (error) {
             console.log(error);
         }
