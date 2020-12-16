@@ -1,7 +1,7 @@
 import { CourseProfileApi } from "../../../services/api/courseProfileApi";
 import { setCourseProfile, setCourseProfileVideo } from "./actions";
-export const getProfileCourse = (courseId) => {
-    return async (dispatch) => {
+export const getProfileCourse = (courseId: any) => {
+    return async (dispatch: any) => {
         try {
             CourseProfileApi.getProfile(courseId).then(data => {
                 if (data) {

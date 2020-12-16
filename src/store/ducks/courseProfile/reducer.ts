@@ -1,10 +1,18 @@
-import produce from "immer";
-const initialState = {
+import produce, {Draft} from "immer";
+import { courseProfileActions } from "./actions";
+import { courseProfileType } from './actions';
+
+export interface courseProfileState {
+    courseProfile: courseProfileType | null,
+    courseProfileVideo: string;
+}
+
+const initialState: courseProfileState = {
     courseProfile: null,
     courseProfileVideo: "",
 };
 
-const courseProfile = produce((draftState = initialState, action) => {
+const courseProfile = produce((draftState: Draft<courseProfileState>, action: courseProfileActions) => {
     switch (action.type) {
         case "SET-COURSE-PROFILE":
             draftState.courseProfile = action.payload;
