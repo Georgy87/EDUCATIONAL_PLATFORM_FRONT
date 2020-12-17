@@ -20,9 +20,9 @@ const coursesReducer = produce((draftState = initialState, action) => {
             draftState.courses = action.payload;
             draftState.loadingState = LoadingState.LOADED;
             break;
-        case "ADD-COURSES":
-            draftState.courses = [...draftState.courses, action.payload];
-            break;
+        // case "ADD-COURSES":
+        //     draftState.courses = [...draftState.courses, action.payload];
+        //     break;
         case "SET-COURSE-DIRECTIONS":
             draftState.courseDirections = action.payload;
             break;

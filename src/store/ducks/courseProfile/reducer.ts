@@ -1,9 +1,10 @@
 import produce, {Draft} from "immer";
 import { courseProfileActions } from "./actions";
-import { courseProfileType } from './actions';
+import { CourseProfileType } from './types';
+import { ContentCoursesActionsType } from "./types";
 
-export interface courseProfileState {
-    courseProfile: courseProfileType | null,
+export type courseProfileState = {
+    courseProfile: CourseProfileType | null,
     courseProfileVideo: string;
 }
 
@@ -14,10 +15,10 @@ const initialState: courseProfileState = {
 
 const courseProfile = produce((draftState: Draft<courseProfileState>, action: courseProfileActions) => {
     switch (action.type) {
-        case "SET-COURSE-PROFILE":
+        case ContentCoursesActionsType.SET_COURSE_PROFILE:
             draftState.courseProfile = action.payload;
             break;
-        case "SET-COURSE-PROFILE-VIDEO":
+        case ContentCoursesActionsType.SET_COURSE_PROFILE_VIDEO:
             draftState.courseProfileVideo = action.payload;
             break;
         default:
