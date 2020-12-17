@@ -1,22 +1,21 @@
 import axios from "axios";
+
+const instance = axios.create({
+    baseURL: "http://localhost:5000/api/",
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+});
+
 export const CourseContentApi = {
     uploadContent(courseId, file, lesson, module) {
         const formData = new FormData();
         formData.append("module", module);
         formData.append("file", file);
         formData.append("lesson", lesson);
-        return axios
+        return instance
             .post(
-                `http://localhost:5000/api/teacher/content?courseId=${courseId}`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            )
+                `teacher/content?courseId=${courseId}`, formData)
             .then((response) => response.data);
     },
     uploadLesson(courseId, file, lesson, moduleId) {
@@ -24,9 +23,9 @@ export const CourseContentApi = {
         formData.append("file", file);
         formData.append("lesson", lesson);
         formData.append("moduleId", moduleId);
-        return axios
+        return instance
             .post(
-                `http://localhost:5000/api/teacher/lesson-upload?courseId=${courseId}`,
+                `teacher/lesson-upload?courseId=${courseId}`,
                 formData,
                 {
                     headers: {
@@ -39,9 +38,9 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     getCourseCoutent(courseId) {
-        return axios
+        return instance
             .get(
-                `http://localhost:5000/api/teacher/courses?courseId=${courseId}`,
+                `teacher/courses?courseId=${courseId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -53,8 +52,8 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     getAllTeacherCourses() {
-        return axios
-            .get("http://localhost:5000/api/teacher/all-teacher-courses", {
+        return instance
+            .get("teacher/all-teacher-courses", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },

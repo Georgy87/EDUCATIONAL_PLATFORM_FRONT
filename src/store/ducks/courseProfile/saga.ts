@@ -26,7 +26,6 @@ export const getProfileCourse = (courseId: string): ThunkType => {
                 const lessonVideo = lesson.fileVideo;
                 dispatch(setCourseProfileVideo(lessonVideo));
             }
-            console.log(data);
             dispatch(setCourseProfile(data));
         } catch (error) {
             console.log(error);

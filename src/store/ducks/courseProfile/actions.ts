@@ -1,8 +1,8 @@
-import { ContentCoursesActionsType, courseProfileType, setCourseProfileActionInterface, setCourseProfileVideoActionInterface } from "./types";
+import { ContentCoursesActionsType, CourseProfileType, setCourseProfileActionInterface, setCourseProfileVideoActionInterface } from "./types";
 
 
 export const setCourseProfile = (
-    course: courseProfileType
+    course: CourseProfileType
 ): setCourseProfileActionInterface => {
     return {
         type: ContentCoursesActionsType.SET_COURSE_PROFILE,

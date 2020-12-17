@@ -9,7 +9,7 @@ import {
 } from "./ResuableUtils";
 import { connect } from "react-redux";
 import { uploadAvatar } from "../../../store/ducks/user/saga";
-import { auth } from "../../../actions/users";
+// import { auth } from "../../../actions/users";
 import "./UserProfile.css";
 
 const imageMaxSize = 1000000000; // bytes
