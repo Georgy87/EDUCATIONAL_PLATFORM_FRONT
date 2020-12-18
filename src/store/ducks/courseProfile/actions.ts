@@ -12,7 +12,6 @@ export const setCourseProfile = (
 export const setCourseProfileVideo = (
     video: string
 ): setCourseProfileVideoActionInterface => {
-    console.log(video);
     return {
         type: ContentCoursesActionsType.SET_COURSE_PROFILE_VIDEO,
         payload: video,
