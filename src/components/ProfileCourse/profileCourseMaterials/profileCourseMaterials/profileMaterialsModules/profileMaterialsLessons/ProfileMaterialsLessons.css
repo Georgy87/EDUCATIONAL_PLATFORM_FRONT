@@ -1,0 +1,14 @@
+.material-lesson-wrapper {
+    display: flex;
+    min-height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.material-lesson-item {
+    display: flex;
+}
+.material-lesson-time {
+    display: flex;
+    margin-left: auto;
+}

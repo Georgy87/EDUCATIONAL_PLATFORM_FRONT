@@ -1,0 +1,6 @@
+.material-container {
+    /* position: relative; */
+
+    max-width: 900px;
+    z-index: -2;
+}

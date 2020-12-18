@@ -11,11 +11,13 @@ const instance = axios.create({
 export const CoursesApi = {
     uploadCourse(formData: FormData) {
         return instance
-            .post("api/teacher/course", formData)
-            .then((response) => response.data);
+            .post("teacher/course", formData)
+            .then((response) => console.log(response.data));
     },
     getCourses() {
-        return instance.get<CourseProfileType[]>("course").then((response) => response.data);
+        return instance
+            .get<CourseProfileType[]>("course")
+            .then((response) => response.data);
     },
     deleteCourse(courseId: string, photo: string) {
         return instance.delete(`course?id=${courseId}&name=${photo}`);

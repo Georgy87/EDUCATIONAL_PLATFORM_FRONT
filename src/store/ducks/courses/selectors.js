@@ -1,6 +1,6 @@
-import { LoadingState } from './contracts/state';
+import {  LoadingStateType } from './types';
 
 export const selectCourses = (state) => state.course;
-export const selectLoadingState = (state) => selectCourses(state).loadingState;
-export const selectCourseLoading = (state) => selectLoadingState(state) === LoadingState.LOADING;
+export const selectLoadingState = (state) => selectCourses(state).LoadingStateType;
+export const selectCourseLoading = (state) => selectLoadingState(state) ===  LoadingStateType.LOADING;
 
