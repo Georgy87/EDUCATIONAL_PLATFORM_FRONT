@@ -7,7 +7,6 @@ export enum LoadingStateType {
     NEVER = 'NEVER',
 }
 
-
 export type CoursesStateType = {
     courses: CourseProfileStateType[];
     isFilter: boolean;

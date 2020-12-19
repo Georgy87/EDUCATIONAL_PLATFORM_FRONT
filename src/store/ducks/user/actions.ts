@@ -21,7 +21,6 @@ export type LogoutType = {
 }
 
 export const setUser = (user: UserType): SetUserActionInterface => {
-    console.log(user);
     return {
         type: UserActionType.SET_USER,
         payload: user

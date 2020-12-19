@@ -7,8 +7,7 @@ export const setLoading = (): SetLoadingActionType => {
     };
 };
 
-export const setCourses = (payload: CourseProfileStateType[]): SetCoursesActionType => {
-    console.log(payload);
+export const setCourses = (payload: Array<CourseProfileStateType>): SetCoursesActionType => {
     return {
         type: CoursesActionType.SET_COURSES,
         payload

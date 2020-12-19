@@ -1,13 +1,13 @@
 import produce, {Draft} from "immer";
+import { CourseProfileStateType } from "../courseProfile/types";
 // import { CourseProfileType } from "../courseProfile/types";
 import { CoursesActions, CoursesActionType, CoursesStateType, LoadingStateType } from "./types";
 
 const initialState: CoursesStateType = {
-    courses: [],
+    courses: [] as Array<CourseProfileStateType>,
     isFilter: false,
     loadingState: LoadingStateType.NEVER,
 };
-
 const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: CoursesActions) => {
     switch (action.type) {
         case CoursesActionType.SET_COURSES_LOADING:

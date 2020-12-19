@@ -50,16 +50,14 @@ type ThunkType = ThunkAction<
     CoursesActions
 >;
 
-export const getCourses = () => {
+export const getCourses = (): ThunkType => {
     return async (dispatch: DispatchType) => {
         dispatch(setLoading());
         try {
             const data = await CoursesApi.getCourses();
-            if(data.data) {
-                await dispatch(setCourses(data.data))
-            }
-            console.log(data.data)
-
+            dispatch(
+                setCourses(data.courses)
+            );
             dispatch(setLoaded());
         } catch (e) {
             console.log(e);
