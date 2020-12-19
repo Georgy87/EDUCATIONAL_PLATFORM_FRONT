@@ -15,7 +15,7 @@ type ThunkType = ThunkAction<
     unknown,
     courseProfileActions
 >;
-export const getProfileCourse = (courseId: string): ThunkType => {
+export const getProfileCourse = (courseId: string): ThunkType  => {
     return async (dispatch: DispatchType) => {
         try {
             const data = await CourseProfileApi.getProfile(courseId);

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { CourseProfileType } from "../../store/ducks/courseProfile/types";
+// import { CourseProfileStateType } from "../../store/ducks/courseProfile/types";
+import { CourseProfileStateTy } from "../../store/ducks/courses/types";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -16,8 +17,8 @@ export const CoursesApi = {
     },
     getCourses() {
         return instance
-            .get<CourseProfileType[]>("course")
-            .then((response) => response.data);
+            .get("course")
+            .then((response) => {return response});
     },
     deleteCourse(courseId: string, photo: string) {
         return instance.delete(`course?id=${courseId}&name=${photo}`);

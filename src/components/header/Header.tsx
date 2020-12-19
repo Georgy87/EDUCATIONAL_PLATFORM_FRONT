@@ -6,10 +6,11 @@ import "./Header.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/ducks/user/actions";
+import { AppStateType } from "../../store/store";
 
-const Header = () => {
-    const isAuth = useSelector((state) => state.user.isAuth);
-    const user = useSelector((state) => state.user.user.user);
+const Header: React.FC = (): React.ReactElement => {
+    const isAuth = useSelector((state: any) => state.user.isAuth);
+    const user = useSelector((state: any) => state.user.user.user);
     let avatar = photo;
     if (user && user.avatar) {
         avatar = `http://localhost:5000/${user.avatar}`;
@@ -17,15 +18,15 @@ const Header = () => {
     const dispatch = useDispatch();
     return (
         <div className="header">
-            <NavLink to="/main">
+             <NavLink to="/main">
                 <span>Платформа</span>
-            </NavLink>
-            <div className="header-teacher">
-                {user && user.teacher && <NavLink to="/teacher" >
-                    <span>Преподаватель</span>
-                </NavLink>}
-            </div>
-            <div className="header-avatar">
+             </NavLink>
+             <div className="header-teacher">
+                 {user && user.teacher && <NavLink to="/teacher" >
+                     <span>Преподаватель</span>
+               </NavLink>}
+             </div>
+             <div className="header-avatar">
                 {isAuth && (
                     <NavLink to="/user">
                         <img src={avatar} alt="" />

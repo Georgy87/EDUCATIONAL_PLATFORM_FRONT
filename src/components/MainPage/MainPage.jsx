@@ -12,9 +12,10 @@ import "./MainPage.css";
 
 const MainPage = () => {
     const courses = useSelector(selectCourses);
-
+    const user = useSelector(state => state);
+    console.log(user);
     const isLoading = useSelector(selectCourseLoading);
-   
+
     const dispatch = useDispatch();
 
     useEffect(() => {

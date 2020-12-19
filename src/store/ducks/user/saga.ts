@@ -1,9 +1,19 @@
 import axios from "axios";
-import { setUser } from "./actions";
+import { setUser, UserActionsTypes } from "./actions";
+import { Dispatch } from "react";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "../../store";
+import { UserStateType, UserType } from "./reducer";
 
-export const registration = (name, surname, email, password, teacher = false) => {
-    console.log(name, surname, email, password, teacher)
-    return async (dispatch) => {
+type DispatchType = Dispatch<UserActionsTypes>;
+type ThunkType = ThunkAction<
+    Promise<void>,
+    AppStateType,
+    unknown,
+    UserActionsTypes
+>;
+export const registration = (name: string, surname: string, email: string, password: string, teacher: boolean | false): ThunkType => {
+    return async () => {
         try {
             const response = await axios.post(
                 "http://localhost:5000/api/auth/registration",
@@ -15,16 +25,16 @@ export const registration = (name, surname, email, password, teacher = false) =>
                     teacher,
                 }
             );
-            return console.log(response.data);
+            // return console.log(response.data);
         } catch (error) {
             console.log(error);
         }
     }
 };
 
-export const login = (email, password) => {
+export const login = (email: string, password: string): ThunkType  => {
     console.log(email, password);
-    return async (dispatch) => {
+    return async (dispatch: DispatchType) => {
         try {
             const response = await axios.post(
                 "http://localhost:5000/api/auth/login",
@@ -42,8 +52,8 @@ export const login = (email, password) => {
     };
 };
 
-export const auth = () => {
-    return async (dispatch) => {
+export const auth = (): ThunkType => {
+    return async (dispatch: DispatchType) => {
         try {
             const response = await axios.get(
                 "http://localhost:5000/api/auth/auth",
@@ -65,8 +75,8 @@ export const auth = () => {
     };
 };
 
-export const uploadAvatar = (file) => {
-    return async (dispatch) => {
+export const uploadAvatar = (file: any): ThunkType  => {
+    return async (dispatch: DispatchType) => {
         try {
             const formData = new FormData();
 

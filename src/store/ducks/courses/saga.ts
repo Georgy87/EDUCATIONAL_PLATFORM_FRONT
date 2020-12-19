@@ -50,12 +50,16 @@ type ThunkType = ThunkAction<
     CoursesActions
 >;
 
-export const getCourses = (): ThunkType => {
+export const getCourses = () => {
     return async (dispatch: DispatchType) => {
         dispatch(setLoading());
         try {
             const data = await CoursesApi.getCourses();
-            dispatch(setCourses(data));
+            if(data.data) {
+                await dispatch(setCourses(data.data))
+            }
+            console.log(data.data)
+
             dispatch(setLoaded());
         } catch (e) {
             console.log(e);
@@ -63,7 +67,7 @@ export const getCourses = (): ThunkType => {
     };
 };
 
-export const deleteCourse = (courseId: string, photo: string): ThunkType => {
+export const deleteCourse = (courseId: string, photo: string) => {
     return async (dispatch: DispatchType) => {
         try {
             await CoursesApi.deleteCourse(courseId, photo);
