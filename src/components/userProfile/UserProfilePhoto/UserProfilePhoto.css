@@ -1,6 +1,3 @@
-.drag-container h1 {
-    margin: 0;
-}
 .ReactCrop {
     position: relative;
     display: flex;
@@ -217,7 +214,7 @@
     align-items: center;
     width: 100%;
     margin: 0 auto;
-    border: 1px  solid rgb(211, 209, 209);
+    border-bottom: 1px  solid rgb(211, 209, 209);
     border-left: none
 }
 .photo-titles p {

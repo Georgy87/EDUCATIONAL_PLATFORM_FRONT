@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CourseProfileType } from "../../store/ducks/courseProfile/types";
+import { CourseProfileStateType } from "../../store/ducks/courseProfile/types";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -11,7 +11,7 @@ const instance = axios.create({
 export const CourseProfileApi = {
     getProfile(courseId: string) {
         return instance
-            .get<CourseProfileType>(`course/profile?id=${courseId}`)
+            .get(`course/profile?id=${courseId}`)
             .then((response) => response.data);
     },
 };

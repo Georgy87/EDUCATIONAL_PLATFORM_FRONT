@@ -1,9 +1,10 @@
-import { ContentCoursesActionsType, CourseProfileType, setCourseProfileActionInterface, setCourseProfileVideoActionInterface } from "./types";
+import { ContentCoursesActionsType, CourseProfileStateType, setCourseProfileActionInterface, setCourseProfileVideoActionInterface } from "./types";
 
 
 export const setCourseProfile = (
-    course: CourseProfileType
+    course: CourseProfileStateType
 ): setCourseProfileActionInterface => {
+
     return {
         type: ContentCoursesActionsType.SET_COURSE_PROFILE,
         payload: course

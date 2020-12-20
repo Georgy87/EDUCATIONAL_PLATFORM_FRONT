@@ -2,19 +2,19 @@ export enum ContentCoursesActionsType {
     SET_COURSE_PROFILE = "SET-COURSE-PROFILE",
     SET_COURSE_PROFILE_VIDEO = "SET-COURSE-PROFILE-VIDEO",
 }
-export type LinksToResourcesType = {
+type LinksToResourcesType = {
     linkName: string;
     linksToResources: string;
     _id: string;
 };
-export type ModuleContentType = {
+type ModuleContentType = {
     fileVideo: string;
     lesson: string;
     lessonTime: string;
     linksToResources: LinksToResourcesType[];
     _id: string;
 };
-export type CourseContentType = {
+type CourseContentType = {
     module: string;
     moduleContent: ModuleContentType[];
     moduleHours: number;
@@ -22,7 +22,7 @@ export type CourseContentType = {
     moduleSeconds: number;
     _id: string;
 };
-export type CourseProfileType = {
+export type CourseProfileStateType = {
     author: string;
     content: CourseContentType[];
     fullDescription: string;
@@ -37,7 +37,7 @@ export type CourseProfileType = {
 
 export type setCourseProfileActionInterface = {
     type: ContentCoursesActionsType.SET_COURSE_PROFILE;
-    payload: CourseProfileType;
+    payload: CourseProfileStateType;
 };
 export type setCourseProfileVideoActionInterface = {
     type: ContentCoursesActionsType.SET_COURSE_PROFILE_VIDEO;

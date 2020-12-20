@@ -12,9 +12,8 @@ import "./MainPage.css";
 
 const MainPage = () => {
     const courses = useSelector(selectCourses);
-
     const isLoading = useSelector(selectCourseLoading);
-   
+
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -6,28 +6,32 @@ import "./Header.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/ducks/user/actions";
+import { AppStateType } from "../../store/store";
 
-const Header = () => {
-    const isAuth = useSelector((state) => state.user.isAuth);
-    const user = useSelector((state) => state.user.user.user);
+const Header: React.FC = (): React.ReactElement => {
+    const isAuth = useSelector((state: AppStateType) => state.user.isAuth);
+    const userInfo = useSelector((state: AppStateType) => state.user);
+
     let avatar = photo;
-    if (user && user.avatar) {
-        avatar = `http://localhost:5000/${user.avatar}`;
+
+    if(userInfo.user) {
+        avatar = `http://localhost:5000/${userInfo.user.user.avatar}`;
     }
+
     const dispatch = useDispatch();
     return (
         <div className="header">
-            <NavLink to="/main">
+             <NavLink to="/main">
                 <span>Платформа</span>
-            </NavLink>
-            <div className="header-teacher">
-                {user && user.teacher && <NavLink to="/teacher" >
-                    <span>Преподаватель</span>
-                </NavLink>}
-            </div>
-            <div className="header-avatar">
+             </NavLink>
+             <div className="header-teacher">
+                 {userInfo.user && userInfo.user.user.teacher && <NavLink to="/teacher" >
+                     <span>Преподаватель</span>
+               </NavLink>}
+             </div>
+             <div className="header-avatar">
                 {isAuth && (
-                    <NavLink to="/user">
+                    <NavLink to="/user-photo">
                         <img src={avatar} alt="" />
                     </NavLink>
                 )}
@@ -46,7 +50,7 @@ const Header = () => {
             </div>
             <div>
                 <NavLink to="/privatoffice">
-                    <HomeWorkIcon style={{ marginRight: "21px" }} />
+                    <HomeWorkIcon />
                 </NavLink>
             </div>
         </div>

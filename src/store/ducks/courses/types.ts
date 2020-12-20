@@ -1,4 +1,4 @@
-import { CourseProfileType } from "../courseProfile/types";
+import { CourseProfileStateType } from "../courseProfile/types";
 
 export enum LoadingStateType {
     LOADED = 'LOADED',
@@ -6,6 +6,13 @@ export enum LoadingStateType {
     ERROR = 'ERROR',
     NEVER = 'NEVER',
 }
+
+export type CoursesStateType = {
+    courses: CourseProfileStateType[];
+    isFilter: boolean;
+    loadingState: LoadingStateType;
+}
+
 export enum CoursesActionType {
     SET_COURSES_LOADING = "SET-COURSES-LOADING",
     SET_COURSES = "SET-COURSES",
@@ -19,7 +26,7 @@ export type SetLoadingActionType = {
 
 export type SetCoursesActionType = {
     type: CoursesActionType.SET_COURSES;
-    payload: CourseProfileType[];
+    payload: Array<CourseProfileStateType>;
 };
 
 export type SetLoadedActionType = {

@@ -9,7 +9,6 @@ import { filterByDirection } from "../../store/ducks/directions/saga";
 
 const Courses = (props) => {
     const state = useSelector(state => state.directions.filterByDirection);
-    const sta = useSelector(state => state);
 
     let courseFilterId = props.match.params.filter;
     const dispatch = useDispatch();

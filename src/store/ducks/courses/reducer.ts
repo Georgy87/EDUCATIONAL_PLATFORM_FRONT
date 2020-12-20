@@ -1,19 +1,14 @@
-import produce from "immer";
-import { CourseProfileType } from "../courseProfile/types";
-import { CoursesActions, CoursesActionType, LoadingStateType } from "./types";
+import produce, {Draft} from "immer";
+import { CourseProfileStateType } from "../courseProfile/types";
+// import { CourseProfileType } from "../courseProfile/types";
+import { CoursesActions, CoursesActionType, CoursesStateType, LoadingStateType } from "./types";
 
-export type CoursesStateType = {
-    courses: CourseProfileType[];
-    isFilter: boolean;
-    loadingState: LoadingStateType;
-}
 const initialState: CoursesStateType = {
-    courses: [],
+    courses: [] as Array<CourseProfileStateType>,
     isFilter: false,
     loadingState: LoadingStateType.NEVER,
 };
-
-const coursesReducer = produce((draftState = initialState, action: CoursesActions) => {
+const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: CoursesActions) => {
     switch (action.type) {
         case CoursesActionType.SET_COURSES_LOADING:
             draftState.loadingState = LoadingStateType.LOADING;

@@ -1,5 +1,5 @@
-import { CourseProfileType } from "../courseProfile/types";
-import { CoursesActionType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType } from "./types";
+import { CourseProfileStateType } from "../courseProfile/types";
+import { CoursesActionType, CoursesStateType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType } from "./types";
 
 export const setLoading = (): SetLoadingActionType => {
     return {
@@ -7,10 +7,10 @@ export const setLoading = (): SetLoadingActionType => {
     };
 };
 
-export const setCourses = (payload: CourseProfileType[]): SetCoursesActionType => {
+export const setCourses = (payload: Array<CourseProfileStateType>): SetCoursesActionType => {
     return {
         type: CoursesActionType.SET_COURSES,
-        payload,
+        payload
     };
 };
 
@@ -26,10 +26,3 @@ export const deleteCourseAction = (payload: string): SetDeleteActionType => {
         payload,
     };
 };
-
-// export const addCourses = (course: any) => {
-//     return {
-//         type: "ADD-COURSES",
-//         payload: course,
-//     };
-// };

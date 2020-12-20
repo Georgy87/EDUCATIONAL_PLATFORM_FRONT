@@ -1,10 +1,10 @@
 import produce, {Draft} from "immer";
 import { courseProfileActions } from "./actions";
-import { CourseProfileType } from './types';
+import { CourseProfileStateType } from './types';
 import { ContentCoursesActionsType } from "./types";
 
 export type courseProfileState = {
-    courseProfile: CourseProfileType | null,
+    courseProfile: CourseProfileStateType | null,
     courseProfileVideo: string;
 }
 

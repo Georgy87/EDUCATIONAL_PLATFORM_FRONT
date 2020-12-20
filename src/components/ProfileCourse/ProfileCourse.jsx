@@ -14,7 +14,12 @@ const ProfileCourse = (props) => {
     const profile = useSelector((state) => state.courseProfile.courseProfile);
     const video = useSelector((state) => state.courseProfile);
     const [modalActive, setModalActive] = useState(false);
-
+    let fullDescription;
+    let smallDescription;
+    if (profile) {
+        fullDescription = profile.fullDescription;
+        smallDescription = profile.smallDescription;
+    }
     let profileId = props.match.params.profileId;
 
     const dispatch = useDispatch();
@@ -22,10 +27,15 @@ const ProfileCourse = (props) => {
     useEffect(() => {
         dispatch(getProfileCourse(profileId));
     }, []);
-   
+    console.log(profile);
     return (
         <>
             <div>
+                <div className="profile-course-header">
+                    <div className="profile-course-header-description">
+                        {smallDescription}
+                    </div>
+                </div>
                 {profile && (
                     <div className="profile-container">
                         <div className="profile-info-main">
@@ -41,7 +51,7 @@ const ProfileCourse = (props) => {
                                             marginRight: 6,
                                         }}
                                     >
-                                        Автор:{" "}
+                                        Автор:
                                     </div>
                                     <p
                                         style={{ color: "#8ed1dc" }}
@@ -88,8 +98,8 @@ const ProfileCourse = (props) => {
                     setActive={setModalActive}
                     video={video.courseProfileVideo}
                 />
-                <div>
-                    <ProfileCourseMaterials />
+                <div className="material-container">
+                    <ProfileCourseMaterials fullDescription={fullDescription} />
                 </div>
 
             </div>

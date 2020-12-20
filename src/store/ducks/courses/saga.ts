@@ -55,7 +55,9 @@ export const getCourses = (): ThunkType => {
         dispatch(setLoading());
         try {
             const data = await CoursesApi.getCourses();
-            dispatch(setCourses(data));
+            dispatch(
+                setCourses(data.courses)
+            );
             dispatch(setLoaded());
         } catch (e) {
             console.log(e);
@@ -63,7 +65,7 @@ export const getCourses = (): ThunkType => {
     };
 };
 
-export const deleteCourse = (courseId: string, photo: string): ThunkType => {
+export const deleteCourse = (courseId: string, photo: string) => {
     return async (dispatch: DispatchType) => {
         try {
             await CoursesApi.deleteCourse(courseId, photo);

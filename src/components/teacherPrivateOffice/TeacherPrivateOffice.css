@@ -1,5 +1,6 @@
 .teacher-office-container {
     display: flex;
+    margin-top: 100px;
 }
 .teacher-office-navbar {
     display: flex;
