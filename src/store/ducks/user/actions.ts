@@ -1,5 +1,5 @@
 import { Action } from "redux"
-import { UserStateType, UserType } from "./reducer"
+import { UserStateType} from "./reducer"
 
 export enum UserActionType {
     SET_USER = "SET-USER",
@@ -8,7 +8,7 @@ export enum UserActionType {
 }
 export interface SetUserActionInterface extends Action<UserActionType> {
     type: UserActionType.SET_USER;
-    payload: UserType;
+    payload: any;
 }
 
 // export type setUserType = {
@@ -20,7 +20,7 @@ export type LogoutType = {
     type:  UserActionType.LOGOUT;
 }
 
-export const setUser = (user: UserType): SetUserActionInterface => {
+export const setUser = (user: any): SetUserActionInterface => {
     return {
         type: UserActionType.SET_USER,
         payload: user

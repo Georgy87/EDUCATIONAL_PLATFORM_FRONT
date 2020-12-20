@@ -9,8 +9,8 @@ import {
 } from "./ResuableUtils";
 import { connect } from "react-redux";
 import { uploadAvatar } from "../../../store/ducks/user/saga";
-// import { auth } from "../../../actions/users";
-import "./UserProfile.css";
+
+import "./UserProfilePhoto.css";
 
 const imageMaxSize = 1000000000; // bytes
 const acceptedFileTypes =
@@ -171,7 +171,7 @@ class ImgDropAndCrop extends Component {
         const { imgSrc } = this.state;
 
         return (
-            <div className="drag-container">
+            <div>
                 <div className="photo-titles">
                     <p>Фотография</p>
                     <div className="photo-descr">

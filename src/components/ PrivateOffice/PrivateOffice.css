@@ -9,13 +9,20 @@
     background-color: rgb(243, 245, 241);
     min-height: 20px;
     margin-top: 20px;
+    font-weight: 700;
     overflow: scroll;
     word-break: break-all;
     padding: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+/* .bold {
+    font-weight: 800;
+} */
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
+}
+.input[type="text"] {
+    font-weight: 700;
 }
 .custom-file-input::before {
     content: "Добавить файл";

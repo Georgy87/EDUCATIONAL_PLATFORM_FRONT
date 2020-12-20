@@ -18,6 +18,7 @@ const PrivateOffice = () => {
             />
             <textarea
                 placeholder="Профессия"
+                style={{fontWeight: 300}}
                 type="text"
                 defaultValue={directionName}
                 onChange={(e) => setDirectionName(e.target.value)}

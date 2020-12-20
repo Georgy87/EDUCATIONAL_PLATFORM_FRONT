@@ -1,5 +1,5 @@
 import React from "react";
-import UserProfile from "./UserProfile/UserProfile";
+import UserProfilePhoto from "./UserProfilePhoto/UserProfilePhoto";
 import "./UserProfileNavbar.css";
 import { useSelector } from "react-redux";
 import defaultAvatar from "../../assets/avatar/unnamed.jpg";
@@ -10,15 +10,14 @@ import {
     Route,
     Switch,
 } from "react-router-dom";
-import { useEffect } from "react";
+import UserProfileInfo from "./UserProfileInfo/UserProfileInfo";
 
 const UserProfileNavbar = () => {
-    const user = useSelector((state) => state.user.user.user);
-
+    const userInfo = useSelector((state) => state.user);
+    
     let avatar = defaultAvatar;
-    if (user && user.avatar) {
-        console.log(user);
-        avatar = `http://localhost:5000/${user.avatar}`;
+    if (userInfo.user) {
+        avatar = `http://localhost:5000/${userInfo.user.user.avatar}`;
     }
     return (
         <div>
@@ -27,19 +26,27 @@ const UserProfileNavbar = () => {
                     <div className="user-navbar">
                         <div className="user-pages">
                             <img src={avatar} alt="" />
-                            <NavLink to="/photo">
+                            <NavLink to="/user-photo">
                                 <div>Фотография</div>
                             </NavLink>
-                            <NavLink to="/user">
+                            <NavLink to="/user-info">
                                 <div>Профиль</div>
                             </NavLink>
                         </div>
                     </div>
-                    <Switch>
-                        <Route path="/user" render={() => <UserProfile />} />
-                    </Switch>
+                    <div className="drag-container">
+                        <Switch>
+                            <Route
+                                path="/user-photo"
+                                render={() => <UserProfilePhoto />}
+                            />
+                            <Route
+                                path="/user-info"
+                                render={() => <UserProfileInfo />}
+                            />
+                        </Switch>
+                    </div>
                 </div>
-                <Redirect to="/user" />
             </BrowserRouter>
         </div>
     );

@@ -3,7 +3,7 @@ import { setUser, UserActionsTypes } from "./actions";
 import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "../../store";
-import { UserStateType, UserType } from "./reducer";
+import { UserStateType } from "./reducer";
 
 type DispatchType = Dispatch<UserActionsTypes>;
 type ThunkType = ThunkAction<
@@ -96,6 +96,19 @@ export const uploadAvatar = (file: any): ThunkType  => {
 
             return await dispatch(setUser(result.data));
             // console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+export const changeInfoProfileUser = (): ThunkType  => {
+    
+    return async (dispatch: DispatchType) => {
+        try {
+            // const result = await axios.post(
+            //     `http://localhost:5000/api/course/avatar`,
+
         } catch (error) {
             console.log(error);
         }

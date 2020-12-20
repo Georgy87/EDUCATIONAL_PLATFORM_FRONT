@@ -18,6 +18,7 @@ import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
 import "./App.css";
 
 
+
 const App = () => {
     const dispatch = useDispatch();
     dispatch(getCourses());
@@ -36,7 +37,8 @@ const App = () => {
                     <Route path="/login" component={LoginPage} />
                     <Route path="/courses/:filter?"  component={Courses} />
                     <Route path="/profile/:profileId?" component={ProfileCourse} />
-                    <Route exact path="/user" render={() => <UserProfileNavbar />} />
+                    <Route path="/user-photo" component={() => <UserProfileNavbar />} />
+                    <Route path="/user-info" component={() => <UserProfileNavbar />} />
                     <Route path="/registration-teacher" component={RegistrationPageForTeacher} />
                     <Route path="/teacher" component={TeacherPrivateOffice} />
                     {/* <Redirect to="/main" /> */}
