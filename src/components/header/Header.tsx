@@ -47,7 +47,7 @@ const Header: React.FC = (): React.ReactElement => {
             </div>
             <div>
                 <NavLink to="/privatoffice">
-                    <HomeWorkIcon style={{ marginRight: "21px" }} />
+                    <HomeWorkIcon />
                 </NavLink>
             </div>
         </div>

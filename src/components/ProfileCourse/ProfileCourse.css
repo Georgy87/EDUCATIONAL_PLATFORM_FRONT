@@ -1,3 +1,20 @@
+.profile-course-header {
+    background-color: #1e1e1c;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    position: fixed;
+    height: 70px;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+}
+.profile-course-header-description {
+    color: white;
+
+}
 .profile-container {
     display: flex;
     margin: 0 auto;
@@ -103,6 +120,7 @@
 .profile-like-btn {
     margin-top: 10px;
 }
+
 
 
 

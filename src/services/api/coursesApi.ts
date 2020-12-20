@@ -43,7 +43,7 @@ type CourseInfoApiType = {
     _id: string;
 };
 
-type getCoursesDataType = {
+type GetCoursesDataType = {
     courses: CourseInfoApiType[];
 };
 
@@ -54,7 +54,7 @@ export const CoursesApi = {
             .then((response) => console.log(response.data));
     },
     getCourses() {
-        return instance.get<getCoursesDataType>("course").then((response) => {
+        return instance.get<GetCoursesDataType>("course").then((response) => {
             console.log(response.data);
             return response.data;
         });
