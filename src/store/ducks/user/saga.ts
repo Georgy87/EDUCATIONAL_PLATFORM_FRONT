@@ -4,6 +4,7 @@ import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "../../store";
 import { UserStateType } from "./reducer";
+import { userApi } from '../../../services/api/userApi';
 
 type DispatchType = Dispatch<UserActionsTypes>;
 type ThunkType = ThunkAction<
@@ -12,7 +13,14 @@ type ThunkType = ThunkAction<
     unknown,
     UserActionsTypes
 >;
-export const registration = (name: string, surname: string, email: string, password: string, teacher: boolean | false): ThunkType => {
+
+export const registration = (
+    name: string,
+    surname: string,
+    email: string,
+    password: string,
+    teacher: boolean | false
+): ThunkType => {
     return async () => {
         try {
             const response = await axios.post(
@@ -29,10 +37,10 @@ export const registration = (name: string, surname: string, email: string, passw
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 };
 
-export const login = (email: string, password: string): ThunkType  => {
+export const login = (email: string, password: string): ThunkType => {
     console.log(email, password);
     return async (dispatch: DispatchType) => {
         try {
@@ -55,19 +63,10 @@ export const login = (email: string, password: string): ThunkType  => {
 export const auth = (): ThunkType => {
     return async (dispatch: DispatchType) => {
         try {
-            const response = await axios.get(
-                "http://localhost:5000/api/auth/auth",
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
-            dispatch(setUser(response.data));
-
-            localStorage.setItem("token", response.data.token);
+            const user = await userApi.getUser();
+            dispatch(setUser(user));
+            console.log(user);
+            localStorage.setItem("token", user.token);
         } catch (e) {
             console.log(e);
             // localStorage.removeItem("token");
@@ -75,7 +74,7 @@ export const auth = (): ThunkType => {
     };
 };
 
-export const uploadAvatar = (file: any): ThunkType  => {
+export const uploadAvatar = (file: any): ThunkType => {
     return async (dispatch: DispatchType) => {
         try {
             const formData = new FormData();
@@ -102,13 +101,25 @@ export const uploadAvatar = (file: any): ThunkType  => {
     };
 };
 
-export const changeInfoProfileUser = (): ThunkType  => {
-    
+export const changeInfoProfileUser = (
+    name: string,
+    surname: string,
+    professionalСompetence: string
+): ThunkType => {
+    console.log(name, surname, professionalСompetence);
     return async (dispatch: DispatchType) => {
         try {
-            // const result = await axios.post(
-            //     `http://localhost:5000/api/course/avatar`,
-
+            const result = await axios.post(
+                `http://localhost:5000/api/auth/change-info`,
+                { name, surname, professionalСompetence },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
         } catch (error) {
             console.log(error);
         }

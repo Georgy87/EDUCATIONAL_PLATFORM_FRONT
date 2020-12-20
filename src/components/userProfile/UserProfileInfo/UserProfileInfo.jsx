@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeInfoProfileUser } from '../../../store/ducks/user/saga';
+
 import "./UserProfileInfo.css";
 
 const UserProfileInfo = () => {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [professionalСompetence, setProfessionalСompetence] = useState("");
+
+    const dispatch = useDispatch();
     return (
         <>
             <div className="profile-info-container">
@@ -26,9 +31,9 @@ const UserProfileInfo = () => {
                     <textarea
                         placeholder="Профессиональная компетенция"
                         type="text"
-                        onChange={(e) => setSurname(e.target.value)}
+                        onChange={(e) => setProfessionalСompetence(e.target.value)}
                     />
-                    <button onClick={() => setProfessionalСompetence}>Сохранить</button>
+                    <button onClick={() => dispatch(changeInfoProfileUser(name, surname, professionalСompetence))}>Сохранить</button>
                 </div>
             </div>
         </>
