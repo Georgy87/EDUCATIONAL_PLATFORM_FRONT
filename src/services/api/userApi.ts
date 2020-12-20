@@ -7,10 +7,25 @@ const instance = axios.create({
     },
 });
 
+type UserInfoApiType = {
+    avatar: string;
+    email: string;
+    id: string;
+    name: string;
+    surname: string;
+    teacher: string;
+    isAuth: string;
+    professionalСompetence: string;
+};
+
+type UserTokenApiType = {
+    token: string;
+    user: UserInfoApiType;
+}
 
 export const userApi = {
     getUser() {
-        return instance.get("auth/auth").then(response => {
+        return instance.get<UserTokenApiType>("auth/auth").then(response => {
             console.log(response.data);
             return response.data;
         });

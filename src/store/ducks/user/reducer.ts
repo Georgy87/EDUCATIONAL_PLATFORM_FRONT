@@ -9,19 +9,16 @@ type UserInfoType = {
     surname: string;
     teacher: string;
     isAuth: string;
+    professionalСompetence: string;
 };
 
-type UserToken = {
+export type UserTokenType = {
     token: string;
     user: UserInfoType;
 }
 
-// export type UserType = {
-//     user: UserToken;
-// };
-
 export type UserStateType = {
-    user: UserToken | null;
+    user: UserTokenType | null;
     isAuth: boolean;
 };
 
@@ -33,7 +30,6 @@ const initialState: UserStateType = {
 const userReducer = produce((draftState: Draft<UserStateType>, action: UserActionsTypes) => {
     switch (action.type) {
         case UserActionType.SET_USER:
-            console.log(action.payload)
             draftState.user = action.payload;
             draftState.isAuth = true;
             break;

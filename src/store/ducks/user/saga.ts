@@ -41,7 +41,6 @@ export const registration = (
 };
 
 export const login = (email: string, password: string): ThunkType => {
-    console.log(email, password);
     return async (dispatch: DispatchType) => {
         try {
             const response = await axios.post(
@@ -65,7 +64,7 @@ export const auth = (): ThunkType => {
         try {
             const user = await userApi.getUser();
             dispatch(setUser(user));
-            console.log(user);
+            console.log(user.user.professionalСompetence)
             localStorage.setItem("token", user.token);
         } catch (e) {
             console.log(e);

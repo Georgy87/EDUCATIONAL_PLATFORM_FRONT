@@ -12,13 +12,18 @@ import {
 } from "react-router-dom";
 import UserProfileInfo from "./UserProfileInfo/UserProfileInfo";
 
-const UserProfileNavbar = () => {
+const UserProfileNavbar: React.FC = () => {
     const userInfo = useSelector((state) => state.user);
-    
+
     let avatar = defaultAvatar;
+    let userName;
+    let userSurname;
     if (userInfo.user) {
         avatar = `http://localhost:5000/${userInfo.user.user.avatar}`;
+        userName = userInfo.user.user.name;
+        userSurname = userInfo.user.user.name;
     }
+
     return (
         <div>
             <BrowserRouter>
