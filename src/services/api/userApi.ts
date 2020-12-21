@@ -26,7 +26,6 @@ type UserTokenApiType = {
 export const userApi = {
     getUser() {
         return instance.get<UserTokenApiType>("auth/auth").then(response => {
-            console.log(response.data);
             return response.data;
         });
     }
