@@ -1,11 +1,19 @@
 import produce, { Draft } from "immer";
+import { CourseContentActions } from "./actions";
+import { CourseContentActionsType } from "./types";
+
+type LinksToResourcesType = {
+    _id: string;
+    linkName: string;
+    linksToResources: string;
+};
 
 type ModuleContentType = {
     _id: string;
     fileVideo: string;
     lesson: string;
     lessonTime: string;
-    linksToResources: Array<string>;
+    linksToResources: LinksToResourcesType[];
 }
 
 type ContentType = {
@@ -32,10 +40,16 @@ export type CoursesContentType = {
     lessonTime: string;
 };
 
+export type LessonTimeIdsType = {
+    courseId: string,
+    moduleId: string,
+    lessonId: string,
+}
+
 export type CoursesContentStateType = {
     courseContent: CoursesContentType | null;
     videoName: string;
-    lessonTime: string | null;
+    lessonTime: LessonTimeIdsType | null;
     allTeacherCourses: CoursesContentType[];
 };
 
@@ -47,21 +61,21 @@ const initialState: CoursesContentStateType = {
 };
 
 const contentCoursesReducer = produce(
-    (draftState: Draft<CoursesContentStateType>, action: any) => {
+    (draftState: Draft<CoursesContentStateType>, action: CourseContentActions) => {
         switch (action.type) {
-            case "ADD-COURSE-CONTENT":
+            case CourseContentActionsType.ADD_COURSE_CONTENT:
                 draftState.courseContent = action.payload;
                 break;
-            case "SET-COURSE-CONTENT":
+            case CourseContentActionsType.SET_COURSE_CONTENT:
                 draftState.courseContent = action.payload;
                 break;
-            case "SET-VIDEO-NAME":
+            case  CourseContentActionsType.SET_VIDEO_NAME:
                 draftState.videoName = action.payload;
                 break;
-            case "SET-TIME-LESSON":
+            case CourseContentActionsType.SET_TIME_LESSON:
                 draftState.lessonTime = { ...action.payload };
                 break;
-            case "SET-ALL-TEACHER-COURSES":
+            case CourseContentActionsType.SET_ALL_TEACHER_COURSES:
                 draftState.allTeacherCourses = action.payload;
                 break;
             default:
