@@ -2,18 +2,14 @@ import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
 import { CourseProfileApi } from "../../../services/api/courseProfileApi";
 import { AppStateType } from "../../store";
-import {
-    courseProfileActions,
-    setCourseProfile,
-    setCourseProfileVideo,
-} from "./actions";
+import { actions, CourseProfileActions } from "./actions";
 
-type DispatchType = Dispatch<courseProfileActions>;
+type DispatchType = Dispatch<CourseProfileActions>;
 type ThunkType = ThunkAction<
     Promise<void>,
     AppStateType,
     unknown,
-    courseProfileActions
+    CourseProfileActions
 >;
 export const getProfileCourse = (courseId: string): ThunkType  => {
     return async (dispatch: DispatchType) => {
@@ -24,9 +20,9 @@ export const getProfileCourse = (courseId: string): ThunkType  => {
                 const module = newData.content[0];
                 const lesson = module.moduleContent[0];
                 const lessonVideo = lesson.fileVideo;
-                dispatch(setCourseProfileVideo(lessonVideo));
+                dispatch(actions.setCourseProfileVideo(lessonVideo));
             }
-            dispatch(setCourseProfile(data));
+            dispatch(actions.setCourseProfile(data));
         } catch (error) {
             console.log(error);
         }

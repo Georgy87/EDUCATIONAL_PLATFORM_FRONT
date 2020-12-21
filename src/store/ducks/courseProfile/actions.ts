@@ -1,24 +1,18 @@
+import { InferActionsTypes } from "../../store";
 import { ContentCoursesActionsType, CourseProfileStateType, setCourseProfileActionInterface, setCourseProfileVideoActionInterface } from "./types";
 
 
-export const setCourseProfile = (
-    course: CourseProfileStateType
-): setCourseProfileActionInterface => {
-
-    return {
+export const actions = {
+    setCourseProfile: (course: CourseProfileStateType): setCourseProfileActionInterface => ({
         type: ContentCoursesActionsType.SET_COURSE_PROFILE,
         payload: course
-    };
-};
-export const setCourseProfileVideo = (
-    video: string
-): setCourseProfileVideoActionInterface => {
-    return {
+    } as const),
+    setCourseProfileVideo: (video: string): setCourseProfileVideoActionInterface => ({
         type: ContentCoursesActionsType.SET_COURSE_PROFILE_VIDEO,
         payload: video,
-    };
+    } as const)
 };
 
-export type courseProfileActions =
-    | setCourseProfileActionInterface
-    | setCourseProfileVideoActionInterface;
+export type CourseProfileActions = InferActionsTypes<typeof actions>;
+
+

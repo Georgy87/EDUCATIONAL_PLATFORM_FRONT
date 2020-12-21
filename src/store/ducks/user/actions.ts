@@ -1,24 +1,10 @@
-import { Action } from "redux";
-import { UserTokenType } from "./reducer";
+import { UserType } from "./reducer";
+import { LogoutType, SetUserActionType, UserActionType } from "./types";
 
-export enum UserActionType {
-    SET_USER = "SET-USER",
-    LOGOUT = "LOGOUT",
-}
-export interface SetUserActionInterface extends Action<UserActionType> {
-    type: UserActionType.SET_USER;
-    payload: UserTokenType;
-}
-
-export type LogoutType = {
-    type: UserActionType.LOGOUT;
-};
-
-export const setUser = (user: UserTokenType): SetUserActionInterface => {
-    console.log(user);
+export const setUser = (user: UserType): SetUserActionType  => {
     return {
         type: UserActionType.SET_USER,
-        payload: user,
+        payload: user
     };
 };
 
@@ -28,4 +14,4 @@ export const logout = (): LogoutType => {
     };
 };
 
-export type UserActionsTypes = SetUserActionInterface | LogoutType;
+export type UserActionsTypes = SetUserActionType  | LogoutType;

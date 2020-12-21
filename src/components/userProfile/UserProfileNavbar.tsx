@@ -11,9 +11,10 @@ import {
     Switch,
 } from "react-router-dom";
 import UserProfileInfo from "./UserProfileInfo/UserProfileInfo";
+import { AppStateType } from "../../store/store";
 
-const UserProfileNavbar: React.FC = () => {
-    const userInfo = useSelector((state) => state.user);
+const UserProfileNavbar: React.FC = (): React.ReactElement => {
+    const userInfo = useSelector((state: AppStateType) => state.user);
 
     let avatar = defaultAvatar;
     let userName;
@@ -21,7 +22,7 @@ const UserProfileNavbar: React.FC = () => {
     if (userInfo.user) {
         avatar = `http://localhost:5000/${userInfo.user.user.avatar}`;
         userName = userInfo.user.user.name;
-        userSurname = userInfo.user.user.name;
+        userSurname = userInfo.user.user.surname;
     }
 
     return (
@@ -31,6 +32,10 @@ const UserProfileNavbar: React.FC = () => {
                     <div className="user-navbar">
                         <div className="user-pages">
                             <img src={avatar} alt="" />
+                            <div className="user-navbar-name-surname">
+                                <div>{userName}</div>
+                                <div>{userSurname}</div>
+                            </div>
                             <NavLink to="/user-photo">
                                 <div>Фотография</div>
                             </NavLink>
