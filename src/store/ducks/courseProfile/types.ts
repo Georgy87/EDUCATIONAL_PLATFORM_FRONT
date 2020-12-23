@@ -1,4 +1,4 @@
-export enum ContentCoursesActionsType {
+export enum CourseProfileActionsType {
     SET_COURSE_PROFILE = "SET-COURSE-PROFILE",
     SET_COURSE_PROFILE_VIDEO = "SET-COURSE-PROFILE-VIDEO",
 }
@@ -36,10 +36,10 @@ export type CourseProfileStateType = {
 };
 
 export type setCourseProfileActionInterface = {
-    type: ContentCoursesActionsType.SET_COURSE_PROFILE;
+    type: CourseProfileActionsType.SET_COURSE_PROFILE;
     payload: CourseProfileStateType;
 };
 export type setCourseProfileVideoActionInterface = {
-    type: ContentCoursesActionsType.SET_COURSE_PROFILE_VIDEO;
+    type: CourseProfileActionsType.SET_COURSE_PROFILE_VIDEO;
     payload: string;
 };

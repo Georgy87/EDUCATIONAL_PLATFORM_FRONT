@@ -1,5 +1,6 @@
 import produce, { Draft } from "immer";
-import { UserActionsTypes, UserActionType } from "./actions";
+import { UserActionsTypes } from "./actions";
+import { UserActionType } from "./types";
 
 type UserInfoType = {
     avatar: string;
@@ -12,13 +13,13 @@ type UserInfoType = {
     professionalСompetence: string;
 };
 
-export type UserTokenType = {
+export type UserType = {
     token: string;
     user: UserInfoType;
 }
 
 export type UserStateType = {
-    user: UserTokenType | null;
+    user: UserType | null;
     isAuth: boolean;
 };
 

@@ -64,7 +64,6 @@ export const auth = (): ThunkType => {
         try {
             const user = await userApi.getUser();
             dispatch(setUser(user));
-            console.log(user.user.professionalСompetence)
             localStorage.setItem("token", user.token);
         } catch (e) {
             console.log(e);

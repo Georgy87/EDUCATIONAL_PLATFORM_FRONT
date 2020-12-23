@@ -55,7 +55,6 @@ export const CoursesApi = {
     },
     getCourses() {
         return instance.get<GetCoursesDataType>("course").then((response) => {
-            console.log(response.data);
             return response.data;
         });
     },

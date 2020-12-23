@@ -7,53 +7,84 @@ const instance = axios.create({
     },
 });
 
+type LinksToResourcesApiType = {
+    _id: string;
+    linkName: string;
+    linksToResources: string;
+};
+
+type ModuleContentApiType = {
+    _id: string;
+    fileVideo: string;
+    lesson: string;
+    lessonTime: string;
+    linksToResources: LinksToResourcesApiType[];
+};
+
+type ContentApiType = {
+    _id: string;
+    module: string;
+    moduleHours: number;
+    moduleMinutes: number;
+    moduleSeconds: number;
+    moduleContent: ModuleContentApiType[];
+};
+
+export type CoursesContentApiType = {
+    _id: string;
+    user: string;
+    photo: string;
+    profession: string;
+    author: string;
+    price: string;
+    smallDescription: string;
+    fullDescription: string;
+    content: ContentApiType[];
+    __v: number;
+    videoName: string;
+    lessonTime: string;
+};
+
 export const CourseContentApi = {
-    uploadContent(courseId, file, lesson, module) {
+    uploadContent(courseId: string, file: any, lesson: string, module: string) {
         const formData = new FormData();
         formData.append("module", module);
         formData.append("file", file);
         formData.append("lesson", lesson);
         return instance
-            .post(
-                `teacher/content?courseId=${courseId}`, formData)
+            .post<CoursesContentApiType>(`teacher/content?courseId=${courseId}`, formData)
             .then((response) => response.data);
     },
-    uploadLesson(courseId, file, lesson, moduleId) {
+    uploadLesson(
+        courseId: string,
+        file: string,
+        lesson: string,
+        moduleId: string
+    ) {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("lesson", lesson);
         formData.append("moduleId", moduleId);
         return instance
-            .post(
-                `teacher/lesson-upload?courseId=${courseId}`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            )
+            .post<CoursesContentApiType>(`teacher/lesson-upload?courseId=${courseId}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
             .then((response) => response.data);
     },
-    getCourseCoutent(courseId) {
+    getCourseCoutent(courseId: string) {
         return instance
-            .get(
-                `teacher/courses?courseId=${courseId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            )
+            .get<CoursesContentApiType>(`teacher/courses?courseId=${courseId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
             .then((response) => response.data);
     },
     getAllTeacherCourses() {
         return instance
-            .get("teacher/all-teacher-courses", {
+            .get<CoursesContentApiType[]>("teacher/all-teacher-courses", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -61,16 +92,16 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     deleteLesson(
-        courseId,
-        moduleId,
-        lessonId,
-        videoName,
-        hours,
-        minutes,
-        seconds
+        courseId: string,
+        moduleId: string,
+        lessonId: string,
+        videoName: string,
+        hours: number,
+        minutes: number,
+        seconds: number
     ) {
         return axios
-            .post(
+            .post<CoursesContentApiType>(
                 `http://localhost:5000/api/teacher/lesson-delete?courseId=${courseId}`,
                 { moduleId, lessonId, videoName, hours, minutes, seconds },
                 {
@@ -83,11 +114,16 @@ export const CourseContentApi = {
             )
             .then((response) => response.data);
     },
-    lessonTitleRevision(newTitle, courseId, moduleId, lessonId) {
+    lessonTitleRevision(
+        newTitle: string,
+        courseId: string,
+        moduleId: string,
+        lessonId: string
+    ) {
         const formData = new FormData();
         formData.append("newTitle", newTitle);
         return axios
-            .post(
+            .post<CoursesContentApiType>(
                 `http://localhost:5000/api/teacher/lesson?courseId=${courseId}`,
                 { newTitle, moduleId, lessonId },
                 {
@@ -101,14 +137,14 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     sendLinksToResources(
-        courseId,
-        moduleId,
-        lessonId,
-        linkName,
-        linksToResources
+        courseId: string,
+        moduleId: string,
+        lessonId: string,
+        linkName: string,
+        linksToResources: string
     ) {
         return axios
-            .post(
+            .post<CoursesContentApiType>(
                 `http://localhost:5000/api/teacher/link?courseId=${courseId}`,
                 { moduleId, lessonId, linkName, linksToResources },
                 {
@@ -122,15 +158,15 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     setTimeModuleAndLessons(
-        courseId,
-        moduleId,
-        lessonId,
-        hours,
-        minutes,
-        seconds
+        courseId: string,
+        moduleId: string,
+        lessonId: string,
+        hours: number,
+        minutes: number,
+        seconds: number
     ) {
         return axios
-            .post(
+            .post<CoursesContentApiType>(
                 `http://localhost:5000/api/teacher/time?courseId=${courseId}`,
                 { moduleId, lessonId, hours, minutes, seconds },
                 {
