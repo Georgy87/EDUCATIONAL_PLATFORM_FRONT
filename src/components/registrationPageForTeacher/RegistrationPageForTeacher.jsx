@@ -62,6 +62,14 @@ const RegistrationTeacherForm = (props) => {
                                     type="text"
                                 />
                             </div>
+                            <label>competence</label>
+                            <div>
+                                <Field
+                                    name="competence"
+                                    component="input"
+                                    type="text"
+                                />
+                            </div>
                             <div className="teacher-checkbox">
                                 <Field
                                     name="rememberMe"
@@ -69,6 +77,7 @@ const RegistrationTeacherForm = (props) => {
                                     type="checkbox"
                                 />
                             </div>
+
                             <button type="submit">Submit</button>
                         </form>
                     </div>
@@ -87,8 +96,10 @@ const RegistrationTeacher = (props) => {
     const isAuth = useSelector((state) => state.user.isAuth);
 
     const submit = (data) => {
-        const { name, surname, email, password, rememberMe } = data;
-        dispatch(registration(name, surname, email, password, rememberMe));
+        const { name, surname, email, password, rememberMe} = data;
+        dispatch(
+            registration(name, surname, email, password, rememberMe)
+        );
         dispatch(reset("RegistrationTeacher"));
     };
     return (

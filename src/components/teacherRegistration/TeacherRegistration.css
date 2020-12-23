@@ -4,16 +4,17 @@
     z-index: 1;
     margin-top: 250px;
 }
-.teacher-container img{
-    width: 550px;
-    height: 400px;
+.teacher-container img {
+    width: 520px;
+    height: 430px;
     display: flex;
     margin-left: 0 auto;
-    box-shadow: 0 20px 20px rgba(82, 87, 76, 0.4);
+    margin-bottom: 200px;
+    /* box-shadow: 0 20px 20px rgba(82, 87, 76, 0.4); */
 }
 .teacher-content {
     display: flex;
-    margin-top: 80px;
+    margin-top: 280px;
     margin-right: 60px;
     flex-direction: column;
     width: 500px;

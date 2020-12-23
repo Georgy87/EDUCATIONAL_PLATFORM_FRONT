@@ -15,7 +15,7 @@ type UserInfoApiType = {
     surname: string;
     teacher: string;
     isAuth: string;
-    professionalСompetence: string;
+    competence: string;
 };
 
 type UserTokenApiType = {
@@ -26,6 +26,7 @@ type UserTokenApiType = {
 export const userApi = {
     getUser() {
         return instance.get<UserTokenApiType>("auth/auth").then(response => {
+            console.log(response);
             return response.data;
         });
     }

@@ -1,7 +1,7 @@
 .course-wrap h1 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 45px;
-    margin-top: 70px;
+    margin-top: 150px;
 
 }
 .courses {
@@ -21,7 +21,7 @@
 .course-photo {
     width: 100%;
     height: 450px;
-    margin-top: 60px;
+    margin-top: 180px;
     background-size: cover;
     background-position: center;
     background-image: url('../../assets/Снимок экрана 2020-11-15 в 17.38.30.png');

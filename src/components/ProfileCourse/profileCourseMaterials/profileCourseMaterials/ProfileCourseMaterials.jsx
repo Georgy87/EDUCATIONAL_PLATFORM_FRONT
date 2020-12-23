@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileMaterialsModules from "./profileMaterialsModules/ProfileMaterialsModules";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import photo from "../../../../assets/avatar/unnamed.jpg";
+import { NavLink } from 'react-router-dom';
+import { getTeahcer } from "../../../../store/ducks/courseProfile/saga";
+
 import "./ProfileCourseMaterials.css";
 
 const ProfileCourseMaterials = ({ fullDescription }) => {
     const [collapseText, setCollapsetext] = useState("");
-    const materialsCourse = useSelector(
-        (state) => state.courseProfile.courseProfile
-    );
+    const materialsCourse = useSelector((state) => state.courseProfile.courseProfile);
+
+    const dispatch = useDispatch();
+
+    const teacherInfo = useSelector(state => state.courseProfile);
+
+    let avatar = photo;
+    let competence;
+    let teacherId;
+    
+    if(teacherInfo.courseProfile) {
+        avatar = `http://localhost:5000/${teacherInfo.courseProfile.avatar}`;
+        competence = teacherInfo.courseProfile.competence;
+        teacherId = teacherInfo.courseProfile.user;
+    }
 
     useEffect(() => {
         setCollapsetext("");
@@ -68,6 +84,17 @@ const ProfileCourseMaterials = ({ fullDescription }) => {
                                 </div>
                             </div>
                         )}
+                    </div>
+                    <div className="course-description-teacher-wrapper">
+                        <h1>Преподаватель</h1>
+                        <div className="course-description-teacher-info">
+                            <NavLink to="/profile-teacher" onClick={() => dispatch(getTeahcer(teacherId))}>
+                                <img src={avatar} alt=""/>
+                            </NavLink>
+                        </div>
+                        <div className="course-description-teacher-competence">
+                            {competence}
+                        </div>
                     </div>
                 </div>
             </div>

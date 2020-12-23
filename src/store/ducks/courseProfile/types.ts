@@ -1,12 +1,17 @@
+// Course profile types:
+
 export enum CourseProfileActionsType {
     SET_COURSE_PROFILE = "SET-COURSE-PROFILE",
     SET_COURSE_PROFILE_VIDEO = "SET-COURSE-PROFILE-VIDEO",
+    SET_TEACHER = " SET-TEACHER",
 }
+
 type LinksToResourcesType = {
     linkName: string;
     linksToResources: string;
     _id: string;
 };
+
 type ModuleContentType = {
     fileVideo: string;
     lesson: string;
@@ -14,6 +19,7 @@ type ModuleContentType = {
     linksToResources: LinksToResourcesType[];
     _id: string;
 };
+
 type CourseContentType = {
     module: string;
     moduleContent: ModuleContentType[];
@@ -22,6 +28,7 @@ type CourseContentType = {
     moduleSeconds: number;
     _id: string;
 };
+
 export type CourseProfileStateType = {
     author: string;
     content: CourseContentType[];
@@ -35,11 +42,45 @@ export type CourseProfileStateType = {
     _id: string;
 };
 
-export type setCourseProfileActionInterface = {
-    type: CourseProfileActionsType.SET_COURSE_PROFILE;
-    payload: CourseProfileStateType;
+type CoursesType = {
+    _id: string;
+    user: string;
+    photo: string;
+    profession: string;
+    author: string;
+    price: string;
+    smallDescription: string;
 };
-export type setCourseProfileVideoActionInterface = {
-    type: CourseProfileActionsType.SET_COURSE_PROFILE_VIDEO;
-    payload: string;
+
+// Teacher profile types:
+
+type TeacherCoursesForProfile = {
+    courses: CoursesType[];
 };
+
+export type TeacherType = {
+    avatar: string;
+    email: string;
+    id: string;
+    name: string;
+    surname: string;
+    teacher: string;
+    isAuth: string;
+    competence: string;
+    courses: TeacherCoursesForProfile[];
+};
+
+export type courseProfileState = {
+    courseProfile: CourseProfileStateType | null;
+    courseProfileVideo: string;
+    teacher: TeacherType | null;
+};
+
+// export type setCourseProfileActionInterface = {
+//     type: CourseProfileActionsType.SET_COURSE_PROFILE;
+//     payload: CourseProfileStateType;
+// };
+// export type setCourseProfileVideoActionInterface = {
+//     type: CourseProfileActionsType.SET_COURSE_PROFILE_VIDEO;
+//     payload: string;
+// };

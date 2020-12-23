@@ -11,23 +11,29 @@ import "./ProfileCourse.css";
 import ProfileCourseMaterials from "./profileCourseMaterials/profileCourseMaterials/ProfileCourseMaterials";
 
 const ProfileCourse = (props) => {
-    const profile = useSelector((state) => state.courseProfile.courseProfile);
+    const profile = useSelector((state) => state.courseProfile);
     const video = useSelector((state) => state.courseProfile);
     const [modalActive, setModalActive] = useState(false);
+
     let fullDescription;
     let smallDescription;
-    if (profile) {
-        fullDescription = profile.fullDescription;
-        smallDescription = profile.smallDescription;
+    let profileCourse;
+    let userId;
+
+    if (profile.courseProfile) {
+        profileCourse =  profile.courseProfile;
+        fullDescription = profile.courseProfile.fullDescription;
+        smallDescription =  profile.courseProfile.smallDescription;
+        userId = profile.courseProfile.user;
     }
     let profileId = props.match.params.profileId;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProfileCourse(profileId));
-    }, []);
-    console.log(profile);
+        dispatch(getProfileCourse(profileId, userId));
+    }, [userId]);
+    
     return (
         <>
             <div>
@@ -36,13 +42,13 @@ const ProfileCourse = (props) => {
                         {smallDescription}
                     </div>
                 </div>
-                {profile && (
+                {profileCourse && (
                     <div className="profile-container">
                         <div className="profile-info-main">
                             <div className="small-description">
-                                <h1> {profile.smallDescription}</h1>
+                                <h1> {profile.courseProfile.smallDescription}</h1>
                                 <p style={{ color: "white" }}>
-                                    {profile.profession}
+                                    {profileCourse.profession}
                                 </p>
                                 <div className="profile-author">
                                     <div
@@ -55,7 +61,7 @@ const ProfileCourse = (props) => {
                                     </div>
                                     <p
                                         style={{ color: "#8ed1dc" }}
-                                    >{` ${profile.author}`}</p>
+                                    >{` ${profileCourse.author}`}</p>
                                 </div>
                                 <div className="profile-like-btn">
                                     <Button variant="outlined" color="primary">
@@ -77,7 +83,7 @@ const ProfileCourse = (props) => {
                                 onClick={() => setModalActive(true)}
                             >
                                 <img
-                                    src={`http://localhost:5000/${profile.photo}`}
+                                    src={`http://localhost:5000/${profileCourse.photo}`}
                                 />
                                 <div className="info-dop-content">
                                     <PlayCircleFilledIcon

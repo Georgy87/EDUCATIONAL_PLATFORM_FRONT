@@ -66,11 +66,11 @@ export const getCourses = (): ThunkType => {
 };
 
 export const deleteCourse = (courseId: string, photo: string) => {
-    return async (dispatch: DispatchType) => {
+    return async (dispatch: any) => {
         try {
             await CoursesApi.deleteCourse(courseId, photo);
             dispatch(deleteCourseAction(courseId));
-            // dispatch(deleteFilterByDirections(courseId));
+            dispatch(deleteFilterByDirections(courseId));
         } catch (e) {
             console.log(e);
         }

@@ -14,10 +14,9 @@ import ProfileCourse from "../profileCourse/ProfileCourse";
 import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 import RegistrationPageForTeacher from "../registrationPageForTeacher/RegistrationPageForTeacher";
 import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import ProfileTeacher from "../profileTeacher/ProfileTeacher";
+
 import "./App.css";
-
-
 
 const App = () => {
     const dispatch = useDispatch();
@@ -41,6 +40,7 @@ const App = () => {
                     <Route path="/user-info" component={() => <UserProfileNavbar />} />
                     <Route path="/registration-teacher" component={RegistrationPageForTeacher} />
                     <Route path="/teacher" component={TeacherPrivateOffice} />
+                    <Route path="/profile-teacher" component={ProfileTeacher} />
                     {/* <Redirect to="/main" /> */}
                 </Switch>
             </div>

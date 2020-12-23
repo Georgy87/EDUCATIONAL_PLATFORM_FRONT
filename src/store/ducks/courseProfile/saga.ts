@@ -11,10 +11,10 @@ type ThunkType = ThunkAction<
     unknown,
     CourseProfileActions
 >;
-export const getProfileCourse = (courseId: string): ThunkType  => {
+export const getProfileCourse = (courseId: string, userId: string): ThunkType  => {
     return async (dispatch: DispatchType) => {
         try {
-            const data = await CourseProfileApi.getProfile(courseId);
+            const data = await CourseProfileApi.getProfile(courseId, userId);
             if (data) {
                 const newData = data;
                 const module = newData.content[0];
@@ -28,3 +28,14 @@ export const getProfileCourse = (courseId: string): ThunkType  => {
         }
     };
 };
+
+export const getTeahcer = (teacherId: string): ThunkType  => {
+    return async () => {
+        try {
+            const data = await CourseProfileApi.getTeacher(teacherId);
+            console.log(teacherId);
+        } catch (error) {
+            console.log({error: `Get teacher ${error}`});
+        }
+    }
+}
