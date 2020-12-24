@@ -32,7 +32,7 @@ export const getProfileCourse = (courseId: string, userId: string): ThunkType  =
     };
 };
 
-export const getTeahcer = (teacherId: string): ThunkType  => {
+export const getTeahcer = (teacherId: string | undefined): ThunkType  => {
     return async (dispatch: DispatchType) => {
         try {
             const data = await CourseProfileApi.getTeacher(teacherId);

@@ -16,7 +16,7 @@ export const CourseProfileApi = {
             )
             .then(response => response.data);
     },
-    getTeacher(teacherId: string) {
+    getTeacher(teacherId: string | undefined) {
         return instance
             .get<TeacherType>(`course/teacher-profile?teacherId=${teacherId}`)
             .then(response => response.data);

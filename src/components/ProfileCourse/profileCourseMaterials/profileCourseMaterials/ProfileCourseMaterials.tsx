@@ -6,38 +6,31 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import photo from "../../../../assets/avatar/unnamed.jpg";
 import { NavLink } from 'react-router-dom';
 import { getTeahcer } from "../../../../store/ducks/courseProfile/saga";
+import { selectCourseProfile, selectTeacherLoaded } from "../../../../store/ducks/courseProfile/selectors";
 
 import "./ProfileCourseMaterials.css";
 
-const ProfileCourseMaterials = ({ fullDescription }) => {
-    const [collapseText, setCollapsetext] = useState("");
-    const materialsCourse = useSelector((state) => state.courseProfile.courseProfile);
-
+type PropsType = {
+    fullDescription: string | false | undefined;
+}
+const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React.ReactElement => {
+    const [collapseText, setCollapsetext] = useState<string>("");
+    const profile = useSelector(selectCourseProfile);
+    const loaded = useSelector(selectTeacherLoaded);
     const dispatch = useDispatch();
 
-    const teacherInfo = useSelector(state => state.courseProfile);
-
-
     let avatar = photo;
-    let competence;
-    let teacherId;
 
-    if(teacherInfo.courseProfile) {
-        avatar = `http://localhost:5000/${teacherInfo.courseProfile.avatar}`;
-        competence = teacherInfo.courseProfile.competence;
-        teacherId = teacherInfo.courseProfile.user;
+    if(loaded) {
+        avatar = `http://localhost:5000/${loaded && profile?.avatar}`;
     }
-
-    // useEffect(() => {
-    //     setCollapsetext("");
-    // }, []);
 
     return (
         <>
             <div>
                 <h1>Материалы курса</h1>
-                {materialsCourse &&
-                    materialsCourse.content.map((element) => {
+                {loaded &&
+                    profile?.content.map((element) => {
                         return (
                             <ProfileMaterialsModules
                                 key={element._id}
@@ -56,7 +49,7 @@ const ProfileCourseMaterials = ({ fullDescription }) => {
                         className={`course-description-wrapper ${collapseText}`}
                     >
                         <div className="course-description">
-                            {fullDescription}
+                            {profile?.fullDescription}
                         </div>
                     </div>
                     <div>
@@ -89,12 +82,12 @@ const ProfileCourseMaterials = ({ fullDescription }) => {
                     <div className="course-description-teacher-wrapper">
                         <h1>Преподаватель</h1>
                         <div className="course-description-teacher-info">
-                            <NavLink to={`/profile-teacher/${teacherId}`} onClick={() => dispatch(getTeahcer(teacherId))}>
+                            <NavLink to={`/profile-teacher/${loaded && profile?.user}`} onClick={() => dispatch(getTeahcer(profile?.user))}>
                                 <img src={avatar} alt=""/>
                             </NavLink>
                         </div>
                         <div className="course-description-teacher-competence">
-                            {competence}
+                            {profile?.competence}
                         </div>
                     </div>
                 </div>
