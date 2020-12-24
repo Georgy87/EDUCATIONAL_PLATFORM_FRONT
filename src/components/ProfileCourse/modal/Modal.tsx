@@ -1,9 +1,17 @@
 import React from "react";
 import ReactPlayer from "react-player";
+// @ts-ignore
 import ReactWebMediaPlayer from "react-web-media-player";
+
 import "./Modal.css";
 
-const Modal = ({ active, setActive, video}) => {
+type PropsType = {
+    active: boolean;
+    setActive: (active: boolean) => void;
+    video: string;
+}
+
+const Modal: React.FC<PropsType> = ({ active, setActive, video}): React.ReactElement => {
     return (
         <>
             <div

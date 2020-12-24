@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTeahcer } from "../../store/ducks/courseProfile/saga";
 import { RouteComponentProps } from 'react-router-dom';
-import { selectTeacher, selectTeacherInfo, selectTeacherLoaded } from '../../store/ducks/courseProfile/selectors';
+import { selectTeacherInfo, selectTeacherLoaded } from '../../store/ducks/courseProfile/selectors';
 import ProfileTeacherCourses from "./profileTeacherCourses/ProfileTeacherCourses";
 import "./ProfileTeacher.css";
 
