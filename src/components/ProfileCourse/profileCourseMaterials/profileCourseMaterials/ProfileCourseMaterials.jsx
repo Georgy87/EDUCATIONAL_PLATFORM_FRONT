@@ -17,19 +17,20 @@ const ProfileCourseMaterials = ({ fullDescription }) => {
 
     const teacherInfo = useSelector(state => state.courseProfile);
 
+
     let avatar = photo;
     let competence;
     let teacherId;
-    
+
     if(teacherInfo.courseProfile) {
         avatar = `http://localhost:5000/${teacherInfo.courseProfile.avatar}`;
         competence = teacherInfo.courseProfile.competence;
         teacherId = teacherInfo.courseProfile.user;
     }
 
-    useEffect(() => {
-        setCollapsetext("");
-    }, []);
+    // useEffect(() => {
+    //     setCollapsetext("");
+    // }, []);
 
     return (
         <>
@@ -88,7 +89,7 @@ const ProfileCourseMaterials = ({ fullDescription }) => {
                     <div className="course-description-teacher-wrapper">
                         <h1>Преподаватель</h1>
                         <div className="course-description-teacher-info">
-                            <NavLink to="/profile-teacher" onClick={() => dispatch(getTeahcer(teacherId))}>
+                            <NavLink to={`/profile-teacher/${teacherId}`} onClick={() => dispatch(getTeahcer(teacherId))}>
                                 <img src={avatar} alt=""/>
                             </NavLink>
                         </div>
@@ -101,4 +102,5 @@ const ProfileCourseMaterials = ({ fullDescription }) => {
         </>
     );
 };
+
 export default ProfileCourseMaterials;

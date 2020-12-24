@@ -2,8 +2,49 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 300px;
+    width: 900px;
 }
+
 .profile-teacher-wrapper {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.profile-teacher-wrapper h3 {
+    margin-top: 20px;
+}
+
+.profile-teacher-wrapper h4 {
+    margin-top: 20px;
+}
+
+.profile-teacher-wrapper p {
+    margin-top: 20px;
+}
+
+.profile-teacher-avatar {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.profile-teacher-avatar {
+    margin-left: 20px;
+
+}
+
+.profile-teacher-avatar img {
+    width: 180px;
+    height: 180px;
+    border-radius: 100%;
+}
+
+.profile-teacher-courses {
+    display: flex;
+    max-width: 700px;
+    margin-top: 80px;
+    justify-content: space-between;
 }

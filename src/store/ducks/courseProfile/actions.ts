@@ -1,5 +1,5 @@
 import { InferActionsTypes } from "../../store";
-import { CourseProfileActionsType, CourseProfileStateType } from "./types";
+import { CourseProfileActionsType, CourseProfileStateType, TeacherType } from "./types";
 
 export const actions = {
     setCourseProfile: (course: CourseProfileStateType) => ({
@@ -10,10 +10,16 @@ export const actions = {
         type: CourseProfileActionsType.SET_COURSE_PROFILE_VIDEO,
         payload: video,
     } as const),
-    setTeacher: (teacher: any) => ({
+    setTeacher: (teacher: TeacherType) => ({
         type: CourseProfileActionsType.SET_TEACHER,
         payload: teacher
-    })
+    } as const),
+    setUserLoading: () => ({
+        type: CourseProfileActionsType.SET_LOADING,
+    } as const),
+    setUserLoaded: () => ({
+        type: CourseProfileActionsType.SET_LOADED,
+    } as const)
 };
 
 export type CourseProfileActions = InferActionsTypes<typeof actions>;

@@ -40,7 +40,7 @@ const App = () => {
                     <Route path="/user-info" component={() => <UserProfileNavbar />} />
                     <Route path="/registration-teacher" component={RegistrationPageForTeacher} />
                     <Route path="/teacher" component={TeacherPrivateOffice} />
-                    <Route path="/profile-teacher" component={ProfileTeacher} />
+                    <Route path="/profile-teacher/:teacherId?" component={ProfileTeacher} />
                     {/* <Redirect to="/main" /> */}
                 </Switch>
             </div>
