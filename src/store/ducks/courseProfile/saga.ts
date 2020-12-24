@@ -4,6 +4,7 @@ import { CourseProfileApi } from "../../../services/api/courseProfileApi";
 import { AppStateType } from "../../store";
 import { actions, CourseProfileActions } from "./actions";
 
+
 type DispatchType = Dispatch<CourseProfileActions>;
 type ThunkType = ThunkAction<
     Promise<void>,
@@ -11,10 +12,11 @@ type ThunkType = ThunkAction<
     unknown,
     CourseProfileActions
 >;
-export const getProfileCourse = (courseId: string): ThunkType  => {
+export const getProfileCourse = (courseId: string, userId: string): ThunkType  => {
     return async (dispatch: DispatchType) => {
         try {
-            const data = await CourseProfileApi.getProfile(courseId);
+            actions.setUserLoading();
+            const data = await CourseProfileApi.getProfile(courseId, userId);
             if (data) {
                 const newData = data;
                 const module = newData.content[0];
@@ -23,8 +25,20 @@ export const getProfileCourse = (courseId: string): ThunkType  => {
                 dispatch(actions.setCourseProfileVideo(lessonVideo));
             }
             dispatch(actions.setCourseProfile(data));
+            actions.setUserLoaded();
         } catch (error) {
             console.log(error);
         }
     };
 };
+
+export const getTeahcer = (teacherId: string | undefined): ThunkType  => {
+    return async (dispatch: DispatchType) => {
+        try {
+            const data = await CourseProfileApi.getTeacher(teacherId);
+            dispatch(actions.setTeacher(data));
+        } catch (error) {
+            console.log({error: `Get teacher ${error}`});
+        }
+    }
+}

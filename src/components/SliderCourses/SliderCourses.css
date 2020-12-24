@@ -2,10 +2,11 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 220px;
 }
 .my-settings-slider {
     display: flex;
+    margin-top: 100px;
     flex-direction: column;
 }
 .my-settings-slider-items {

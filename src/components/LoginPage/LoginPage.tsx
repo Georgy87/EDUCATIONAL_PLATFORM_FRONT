@@ -1,18 +1,33 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Field, reduxForm, reset } from "redux-form";
-import { requireEmail, minLength } from "../validate/validateInput";
+import { Field, InjectedFormProps, reduxForm, reset, WrappedFieldProps } from "redux-form";
+import { requireEmail, minLength, ValidatorsType } from "../validate/validateInput";
 import { InputForEmail, InputForPassword } from "../inputs/inputs";
-
+import { login } from "../../store/ducks/user/saga";
 
 import "./LoginPage.css";
-import { login } from "../../store/ducks/user/saga";
 
 const lengthMin = minLength(6);
 
-const LoginForm = (props) => {
-    const { handleSubmit} = props;
+export const createField = (
+        name: string,
+        component: React.FC<WrappedFieldProps>,
+        validators: Array<ValidatorsType>,
+        { ...props },
+        text = "") => (
+    <div>
+        <Field
+            name={name}
+            validate={validators}
+            component={component}
+            {...props}
+        /> {text}
+    </div>
+)
+
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = (props): React.ReactElement => {
+    const { handleSubmit } = props;
     return (
         <div>
             <div className="login-container">
@@ -25,27 +40,11 @@ const LoginForm = (props) => {
                         >
                             <h1>Войти</h1>
                             <label>email</label>
-                            <div>
-                                <Field
-                                    name="email"
-                                    component="input"
-                                    validate={[requireEmail]}
-                                    component={InputForEmail}
-                                    type="text"
-                                />
-                            </div>
+                            {createField("email", InputForEmail, [requireEmail], { type: "text" })}
                             <label>password</label>
-                            <div>
-                                <Field
-                                    name="password"
-                                    component="input"
-                                    validate={[lengthMin]}
-                                    component={InputForPassword}
-                                    type="text"
-                                />
-                            </div>
+                            {createField("password", InputForPassword, [lengthMin], { type: "text" })}
                             {/* <NavLink to="/main"> */}
-                                <button type="submit" >Submit</button>
+                            <button type="submit" >Submit</button>
                             {/* </NavLink> */}
                         </form>
                     </div>
@@ -59,14 +58,19 @@ const LoginForm = (props) => {
     );
 };
 
-const LoginFormReduxForm = reduxForm({ form: "Login" })(
+const LoginFormReduxForm = reduxForm<LoginFormValuesType>({ form: "Login" })(
     LoginForm
 );
 
-const Login = (props) => {
+type LoginFormValuesType = {
+    email: string;
+    password: string;
+}
+
+const Login = () => {
     const dispatch = useDispatch();
 
-    const submit = (data) => {
+    const submit = (data: LoginFormValuesType) => {
         const { email, password } = data;
         dispatch(login(email, password));
         dispatch(reset('Login'));

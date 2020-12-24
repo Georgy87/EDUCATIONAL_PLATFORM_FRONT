@@ -6,43 +6,48 @@ import Modal from "./modal/Modal";
 import { getProfileCourse } from "../../store/ducks/courseProfile/saga";
 import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import { RouteComponentProps } from 'react-router-dom';
+import ProfileCourseMaterials from "./profileCourseMaterials/profileCourseMaterials/ProfileCourseMaterials";
+import { selectCourseProfile, selectTeacherLoaded, selectVideo } from '../../store/ducks/courseProfile/selectors';
 
 import "./ProfileCourse.css";
-import ProfileCourseMaterials from "./profileCourseMaterials/profileCourseMaterials/ProfileCourseMaterials";
 
-const ProfileCourse = (props) => {
-    const profile = useSelector((state) => state.courseProfile.courseProfile);
-    const video = useSelector((state) => state.courseProfile);
-    const [modalActive, setModalActive] = useState(false);
-    let fullDescription;
-    let smallDescription;
-    if (profile) {
-        fullDescription = profile.fullDescription;
-        smallDescription = profile.smallDescription;
-    }
+interface MatchParams {
+    profileId: string;
+}
+
+interface Props extends RouteComponentProps<MatchParams> { }
+
+const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
+    const profile = useSelector(selectCourseProfile);
+    const video = useSelector(selectVideo);
+    const loaded = useSelector(selectTeacherLoaded);
+    const [modalActive, setModalActive] = useState<boolean>(false);
+
+    let userId: string;
     let profileId = props.match.params.profileId;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProfileCourse(profileId));
+        dispatch(getProfileCourse(profileId, userId));
     }, []);
-    console.log(profile);
+
     return (
         <>
             <div>
                 <div className="profile-course-header">
                     <div className="profile-course-header-description">
-                        {smallDescription}
+                        {loaded  && profile?.smallDescription}
                     </div>
                 </div>
                 {profile && (
                     <div className="profile-container">
                         <div className="profile-info-main">
                             <div className="small-description">
-                                <h1> {profile.smallDescription}</h1>
+                                <h1> {loaded && profile?.smallDescription}</h1>
                                 <p style={{ color: "white" }}>
-                                    {profile.profession}
+                                    {profile && profile.profession}
                                 </p>
                                 <div className="profile-author">
                                     <div
@@ -55,7 +60,7 @@ const ProfileCourse = (props) => {
                                     </div>
                                     <p
                                         style={{ color: "#8ed1dc" }}
-                                    >{` ${profile.author}`}</p>
+                                    >{` ${loaded && profile.author}`}</p>
                                 </div>
                                 <div className="profile-like-btn">
                                     <Button variant="outlined" color="primary">
@@ -77,7 +82,7 @@ const ProfileCourse = (props) => {
                                 onClick={() => setModalActive(true)}
                             >
                                 <img
-                                    src={`http://localhost:5000/${profile.photo}`}
+                                    src={`http://localhost:5000/${loaded && profile.photo}`}
                                 />
                                 <div className="info-dop-content">
                                     <PlayCircleFilledIcon
@@ -96,12 +101,11 @@ const ProfileCourse = (props) => {
                 <Modal
                     active={modalActive}
                     setActive={setModalActive}
-                    video={video.courseProfileVideo}
+                    video={video}
                 />
                 <div className="material-container">
-                    <ProfileCourseMaterials fullDescription={fullDescription} />
+                    <ProfileCourseMaterials fullDescription={loaded && profile?.fullDescription} />
                 </div>
-
             </div>
         </>
     );

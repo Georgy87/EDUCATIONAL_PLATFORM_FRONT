@@ -5,6 +5,7 @@ import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "../../store";
 import { UserStateType } from "./reducer";
 import { userApi } from '../../../services/api/userApi';
+import { setUserLoading, setUserLoaded} from '../user/actions';
 
 type DispatchType = Dispatch<UserActionsTypes>;
 type ThunkType = ThunkAction<
@@ -19,19 +20,19 @@ export const registration = (
     surname: string,
     email: string,
     password: string,
-    teacher: boolean | false
-): ThunkType => {
+    teacher: boolean | false,
+) => {
     return async () => {
         try {
-            const response = await axios.post(
-                "http://localhost:5000/api/auth/registration",
+            await axios.post(
+                `http://localhost:5000/api/auth/registration`,
                 {
                     name,
                     surname,
                     email,
                     password,
                     teacher,
-                }
+                },
             );
             // return console.log(response.data);
         } catch (error) {
@@ -42,6 +43,7 @@ export const registration = (
 
 export const login = (email: string, password: string): ThunkType => {
     return async (dispatch: DispatchType) => {
+        dispatch(setUserLoading());
         try {
             const response = await axios.post(
                 "http://localhost:5000/api/auth/login",
@@ -50,9 +52,9 @@ export const login = (email: string, password: string): ThunkType => {
                     password,
                 }
             );
-
+            dispatch(setUserLoaded());
             localStorage.setItem("token", response.data.token);
-            return dispatch(setUser(response.data));
+            dispatch(setUser(response.data));
         } catch (error) {
             console.log(error);
         }
@@ -61,10 +63,12 @@ export const login = (email: string, password: string): ThunkType => {
 
 export const auth = (): ThunkType => {
     return async (dispatch: DispatchType) => {
+            dispatch(setUserLoading());
         try {
             const user = await userApi.getUser();
             dispatch(setUser(user));
             localStorage.setItem("token", user.token);
+            dispatch(setUserLoaded());
         } catch (e) {
             console.log(e);
             // localStorage.removeItem("token");
@@ -74,6 +78,7 @@ export const auth = (): ThunkType => {
 
 export const uploadAvatar = (file: any): ThunkType => {
     return async (dispatch: DispatchType) => {
+            dispatch(setUserLoading());
         try {
             const formData = new FormData();
 
@@ -90,7 +95,7 @@ export const uploadAvatar = (file: any): ThunkType => {
                     },
                 }
             );
-
+            dispatch(setUserLoaded());
             return await dispatch(setUser(result.data));
             // console.log(result);
         } catch (error) {

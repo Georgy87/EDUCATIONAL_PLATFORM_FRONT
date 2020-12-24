@@ -7,15 +7,20 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/ducks/user/actions";
 import { AppStateType } from "../../store/store";
+import { selectUserInfo, selectIsAuth, selectUserLoaded, selectUserAvatar } from "../../store/ducks/user/selectors";
 
 const Header: React.FC = (): React.ReactElement => {
-    const isAuth = useSelector((state: AppStateType) => state.user.isAuth);
-    const userInfo = useSelector((state: AppStateType) => state.user);
+    const isAuth = useSelector(selectIsAuth);
+    const userInfo = useSelector(selectUserInfo);
+    const userAvatar = useSelector(selectUserAvatar);
+    const loaded = useSelector(selectUserLoaded);
 
     let avatar = photo;
 
-    if(userInfo.user) {
-        avatar = `http://localhost:5000/${userInfo.user.user.avatar}`;
+    if(loaded) {
+        if (userAvatar) {
+            avatar = `http://localhost:5000/${userAvatar}`;
+        }
     }
 
     const dispatch = useDispatch();

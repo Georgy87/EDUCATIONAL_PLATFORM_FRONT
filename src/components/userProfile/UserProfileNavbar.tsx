@@ -19,10 +19,13 @@ const UserProfileNavbar: React.FC = (): React.ReactElement => {
     let avatar = defaultAvatar;
     let userName;
     let userSurname;
-    if (userInfo.user) {
-        avatar = `http://localhost:5000/${userInfo.user.user.avatar}`;
+
+    if(userInfo.user) {
         userName = userInfo.user.user.name;
         userSurname = userInfo.user.user.surname;
+        if (userInfo.user.user.avatar) {
+            avatar = `http://localhost:5000/${userInfo.user.user.avatar}`;
+        }
     }
 
     return (

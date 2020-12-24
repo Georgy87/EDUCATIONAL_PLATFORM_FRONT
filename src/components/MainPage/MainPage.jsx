@@ -26,7 +26,6 @@ const MainPage = () => {
             <SimpleSlider stateCourses={courses} isLoading={isLoading}/>
             <Programms />
             <TeacherRegistration />
-            <div className="teacher-background"></div>
         </div>
     );
 };

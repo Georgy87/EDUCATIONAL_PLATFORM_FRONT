@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CourseProfileStateType } from "../../store/ducks/courseProfile/types";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -7,44 +8,8 @@ const instance = axios.create({
     },
 });
 
-type LinksToResourcesApiType = {
-    linkName: string;
-    linksToResources: string;
-    _id: string;
-};
-
-type ModuleContentApiType = {
-    fileVideo: string;
-    lesson: string;
-    lessonTime: string;
-    linksToResources: LinksToResourcesApiType[];
-    _id: string;
-};
-
-type CourseContentApiType = {
-    module: string;
-    moduleContent:  ModuleContentApiType[];
-    moduleHours: number;
-    moduleMinutes: number;
-    moduleSeconds: number;
-    _id: string;
-};
-
-type CourseInfoApiType = {
-    author: string;
-    content: CourseContentApiType[];
-    fullDescription: string;
-    photo: string;
-    price: string;
-    profession: string;
-    smallDescription: string;
-    user: string;
-    __v: number;
-    _id: string;
-};
-
 type GetCoursesDataType = {
-    courses: CourseInfoApiType[];
+    courses: CourseProfileStateType[];
 };
 
 export const CoursesApi = {

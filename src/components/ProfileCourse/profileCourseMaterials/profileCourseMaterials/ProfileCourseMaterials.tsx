@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileMaterialsModules from "./profileMaterialsModules/ProfileMaterialsModules";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import photo from "../../../../assets/avatar/unnamed.jpg";
+import { NavLink } from 'react-router-dom';
+import { getTeahcer } from "../../../../store/ducks/courseProfile/saga";
+import { selectCourseProfile, selectTeacherLoaded } from "../../../../store/ducks/courseProfile/selectors";
+
 import "./ProfileCourseMaterials.css";
 
-const ProfileCourseMaterials = ({ fullDescription }) => {
-    const [collapseText, setCollapsetext] = useState("");
-    const materialsCourse = useSelector(
-        (state) => state.courseProfile.courseProfile
-    );
+type PropsType = {
+    fullDescription: string | false | undefined;
+}
+const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React.ReactElement => {
+    const [collapseText, setCollapsetext] = useState<string>("");
+    const profile = useSelector(selectCourseProfile);
+    const loaded = useSelector(selectTeacherLoaded);
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        setCollapsetext("");
-    }, []);
+    let avatar = photo;
+
+    if(loaded) {
+        avatar = `http://localhost:5000/${loaded && profile?.avatar}`;
+    }
 
     return (
         <>
             <div>
                 <h1>Материалы курса</h1>
-                {materialsCourse &&
-                    materialsCourse.content.map((element) => {
+                {loaded &&
+                    profile?.content.map((element) => {
                         return (
                             <ProfileMaterialsModules
                                 key={element._id}
@@ -39,7 +49,7 @@ const ProfileCourseMaterials = ({ fullDescription }) => {
                         className={`course-description-wrapper ${collapseText}`}
                     >
                         <div className="course-description">
-                            {fullDescription}
+                            {profile?.fullDescription}
                         </div>
                     </div>
                     <div>
@@ -69,9 +79,21 @@ const ProfileCourseMaterials = ({ fullDescription }) => {
                             </div>
                         )}
                     </div>
+                    <div className="course-description-teacher-wrapper">
+                        <h1>Преподаватель</h1>
+                        <div className="course-description-teacher-info">
+                            <NavLink to={`/profile-teacher/${loaded && profile?.user}`} onClick={() => dispatch(getTeahcer(profile?.user))}>
+                                <img src={avatar} alt=""/>
+                            </NavLink>
+                        </div>
+                        <div className="course-description-teacher-competence">
+                            {profile?.competence}
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
     );
 };
+
 export default ProfileCourseMaterials;
