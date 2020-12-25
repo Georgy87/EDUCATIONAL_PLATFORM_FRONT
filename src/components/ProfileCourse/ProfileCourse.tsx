@@ -32,13 +32,13 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
     useEffect(() => {
         dispatch(getProfileCourse(profileId, userId));
     }, []);
-
+    console.log(profile?.photo)
     return (
         <>
             <div>
                 <div className="profile-course-header">
                     <div className="profile-course-header-description">
-                        {loaded  && profile?.smallDescription}
+                        {loaded && profile?.smallDescription}
                     </div>
                 </div>
                 {profile && (
@@ -82,7 +82,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                                 onClick={() => setModalActive(true)}
                             >
                                 <img
-                                    src={`http://localhost:5000/${loaded && profile.photo}`}
+                                    src={`http://localhost:5000/${profile.photo}`}
                                 />
                                 <div className="info-dop-content">
                                     <PlayCircleFilledIcon

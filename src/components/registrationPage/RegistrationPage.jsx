@@ -7,6 +7,7 @@ import { InputForEmail, InputForPassword } from "../inputs/inputs";
 import { registration } from "../../store/ducks/user/saga";
 
 import "./RegistrationPage.css";
+import { Input } from "@material-ui/core";
 
 const lengthMin = minLength(6);
 
@@ -37,7 +38,7 @@ const RegistrationForm = (props) => {
                                     name="email"
                                     component="input"
                                     validate={[requireEmail]}
-                                    component={InputForEmail}
+                                    component={Input}
                                     type="text"
                                 />
                             </div>
@@ -47,7 +48,7 @@ const RegistrationForm = (props) => {
                                     name="password"
                                     component="input"
                                     validate={[lengthMin]}
-                                    component={InputForPassword}
+                                    component={Input}
                                     type="text"
                                 />
                             </div>

@@ -1,30 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Field, InjectedFormProps, reduxForm, reset, WrappedFieldProps } from "redux-form";
+import { InjectedFormProps, reduxForm, reset } from "redux-form";
 import { requireEmail, minLength, ValidatorsType } from "../validate/validateInput";
-import { InputForEmail, InputForPassword } from "../inputs/inputs";
+import { createField, Input } from "../inputs/inputs";
 import { login } from "../../store/ducks/user/saga";
 
 import "./LoginPage.css";
 
 const lengthMin = minLength(6);
-
-export const createField = (
-        name: string,
-        component: React.FC<WrappedFieldProps>,
-        validators: Array<ValidatorsType>,
-        { ...props },
-        text = "") => (
-    <div>
-        <Field
-            name={name}
-            validate={validators}
-            component={component}
-            {...props}
-        /> {text}
-    </div>
-)
 
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = (props): React.ReactElement => {
     const { handleSubmit } = props;
@@ -40,9 +24,9 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = (props): Rea
                         >
                             <h1>Войти</h1>
                             <label>email</label>
-                            {createField("email", InputForEmail, [requireEmail], { type: "text" })}
+                            {createField<LoginFormValuesTypeKeys>("email", Input, [requireEmail], { type: "text" })}
                             <label>password</label>
-                            {createField("password", InputForPassword, [lengthMin], { type: "text" })}
+                            {createField<LoginFormValuesTypeKeys>("password", Input, [lengthMin], { type: "text" })}
                             {/* <NavLink to="/main"> */}
                             <button type="submit" >Submit</button>
                             {/* </NavLink> */}
@@ -66,6 +50,8 @@ type LoginFormValuesType = {
     email: string;
     password: string;
 }
+
+export type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>
 
 const Login = () => {
     const dispatch = useDispatch();
