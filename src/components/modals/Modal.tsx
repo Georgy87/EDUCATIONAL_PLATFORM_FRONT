@@ -1,7 +1,5 @@
 import React from "react";
-import ReactPlayer from "react-player";
-// @ts-ignore
-import ReactWebMediaPlayer from "react-web-media-player";
+import { VideoProfileForModal } from "../profileCourse/profileCourseMaterials/profileCourseInfoDop/VideoProfileForModal";
 
 import "./Modal.css";
 
@@ -9,9 +7,10 @@ type PropsType = {
     active: boolean;
     setActive: (active: boolean) => void;
     video: string;
+    children?: React.ReactNode
 }
 
-const Modal: React.FC<PropsType> = ({ active, setActive, video}): React.ReactElement => {
+export const Modal: React.FC<PropsType> = ({ active, setActive, video, children}): React.ReactElement => {
     return (
         <>
             <div
@@ -26,13 +25,22 @@ const Modal: React.FC<PropsType> = ({ active, setActive, video}): React.ReactEle
                     }
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <ReactWebMediaPlayer
-                        title="My own video player"
-                        video={`http://localhost:5000/${video}`}
-                    />
+                    {children}
                 </div>
             </div>
         </>
     );
 };
+
+export const CreateModal: React.FC<PropsType> = (props) => {
+    return (
+        <div>
+            <Modal {...props}>
+                <VideoProfileForModal {...props} />
+            </Modal>
+        </div>
+    )
+}
+
 export default Modal;
+

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import Modal from "./modal/Modal";
+import {CreateModal} from "../modals/Modal";
 import { getProfileCourse } from "../../store/ducks/courseProfile/saga";
 import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -85,7 +85,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                         </div>
                     </div>
                 )}
-                <Modal
+                <CreateModal
                     active={modalActive}
                     setActive={setModalActive}
                     video={video}
