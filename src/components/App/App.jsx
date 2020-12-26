@@ -12,7 +12,7 @@ import Courses from "../courses/Courses";
 import { getCourses } from "../../store/ducks/courses/saga";
 import ProfileCourse from "../profileCourse/ProfileCourse";
 import UserProfileNavbar from "../userProfile/UserProfileNavbar";
-import RegistrationPageForTeacher from "../registrationPageForTeacher/RegistrationPageForTeacher";
+import RegistrationPageForTeacher from "../registrationPageForTeacher/registrationTeacher/registrationTeacher";
 import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
 import ProfileTeacher from "../profileTeacher/ProfileTeacher";
 

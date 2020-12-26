@@ -3,11 +3,10 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Field, reduxForm, reset } from "redux-form";
 import { requireEmail, minLength } from "../validate/validateInput";
-import { InputForEmail, InputForPassword } from "../inputs/inputs";
 import { registration } from "../../store/ducks/user/saga";
+import { createField, Input } from "../inputs/inputs";
 
 import "./RegistrationPage.css";
-import { Input } from "@material-ui/core";
 
 const lengthMin = minLength(6);
 
@@ -28,6 +27,14 @@ const RegistrationForm = (props) => {
                             <div>
                                 <Field
                                     name="name"
+                                    component="input"
+                                    type="text"
+                                />
+                            </div>
+                            <label>surname</label>
+                            <div>
+                                <Field
+                                    name="surname"
                                     component="input"
                                     type="text"
                                 />
@@ -73,8 +80,8 @@ const Registration = (props) => {
     const dispatch = useDispatch();
 
     const submit = (data) => {
-        const { name, email, password } = data;
-        dispatch(registration(name, email, password));
+        const { name, surname, email, password } = data;
+        dispatch(registration(name, surname, email, password, false));
         dispatch(reset('Registration'));
     };
     return (

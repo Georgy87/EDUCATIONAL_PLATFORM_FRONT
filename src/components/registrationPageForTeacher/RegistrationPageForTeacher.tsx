@@ -1,9 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Field, InjectedFormProps, reduxForm, reset } from "redux-form";
+import { InjectedFormProps, reduxForm } from "redux-form";
 import { requireEmail, minLength } from "../validate/validateInput";
-import { registration } from "../../store/ducks/user/saga";
 import { createField, Input } from "../inputs/inputs";
 
 import "./RegistrationPageForTeacher.css";
@@ -48,11 +46,11 @@ const RegistrationTeacherForm: React.FC<InjectedFormProps<RegistrationFormValues
     );
 };
 
-const RegistrationTeacherReduxForm = reduxForm<RegistrationFormValuesType>({ form: "RegistrationTeacher" })(
+export const RegistrationTeacherReduxForm = reduxForm<RegistrationFormValuesType>({ form: "RegistrationTeacher" })(
     RegistrationTeacherForm
 );
 
-type RegistrationFormValuesType = {
+export type RegistrationFormValuesType = {
     name: string;
     surname: string;
     email: string;
@@ -62,22 +60,4 @@ type RegistrationFormValuesType = {
 
 export type LoginFormValuesTypeKeys = Extract<keyof RegistrationFormValuesType, string>
 
-const RegistrationTeacher = () => {
-    const dispatch = useDispatch();
-    // const isAuth = useSelector(selectIsAuth);
 
-    const submit = (data: RegistrationFormValuesType) => {
-        const { name, surname, email, password, rememberMe} = data;
-        dispatch(
-            registration(name, surname, email, password, rememberMe)
-        );
-        dispatch(reset("RegistrationTeacher"));
-    };
-    return (
-        <div>
-            <RegistrationTeacherReduxForm onSubmit={submit} />
-        </div>
-    );
-};
-
-export default RegistrationTeacher;

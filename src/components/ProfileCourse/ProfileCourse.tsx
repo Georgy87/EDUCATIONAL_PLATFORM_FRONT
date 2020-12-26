@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import Modal from "./modal/Modal";
 import { getProfileCourse } from "../../store/ducks/courseProfile/saga";
 import Button from "@material-ui/core/Button";
@@ -9,6 +8,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import { RouteComponentProps } from 'react-router-dom';
 import ProfileCourseMaterials from "./profileCourseMaterials/profileCourseMaterials/ProfileCourseMaterials";
 import { selectCourseProfile, selectTeacherLoaded, selectVideo } from '../../store/ducks/courseProfile/selectors';
+import ProfileCourseInfoDop from './profileCourseMaterials/profileCourseInfoDop/profileCourseInfoDop';
 
 import "./ProfileCourse.css";
 
@@ -32,7 +32,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
     useEffect(() => {
         dispatch(getProfileCourse(profileId, userId));
     }, []);
-    console.log(profile?.photo)
+
     return (
         <>
             <div>
@@ -77,24 +77,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                         </div>
                         <div className="profile-info-middle"></div>
                         <div className="profile-info-dop">
-                            <div
-                                className="info-dop-container"
-                                onClick={() => setModalActive(true)}
-                            >
-                                <img
-                                    src={`http://localhost:5000/${profile.photo}`}
-                                />
-                                <div className="info-dop-content">
-                                    <PlayCircleFilledIcon
-                                        style={{
-                                            width: 70,
-                                            height: 70,
-                                            marginTop: "50px",
-                                        }}
-                                    />
-                                </div>
-                                <div className="info-dop-content-information "></div>
-                            </div>
+                            <ProfileCourseInfoDop setModalActive={setModalActive} photo={profile.photo} />
                         </div>
                     </div>
                 )}
