@@ -2,15 +2,19 @@ import React from 'react'
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import { Button } from '@material-ui/core';
 import { useProfileCourseInfoDopStyles } from './theme';
-
+import { setShoppingCartIds } from '../../../../store/ducks/user/saga';
 import "./profileCourseInfoDop.css";
+import { useDispatch } from 'react-redux';
+
 
 type PropsType = {
     setModalActive: (value: boolean) => void;
     photo: string;
+    profileId: string;
 }
-const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActive, photo }): React.ReactElement => {
+const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActive, photo, profileId }): React.ReactElement => {
     const classes = useProfileCourseInfoDopStyles();
+    const dispatch = useDispatch();
     return (
         <>
             <div
@@ -34,6 +38,7 @@ const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActive, photo }): R
                     <Button
                         variant="contained"
                         className={classes.cartShopBtn}
+                        onClick={() => dispatch(setShoppingCartIds(profileId))}
                     >
                         Добавить в корзину
                     </Button>

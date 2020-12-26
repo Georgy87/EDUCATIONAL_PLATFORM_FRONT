@@ -29,5 +29,8 @@ export const userApi = {
             console.log(response);
             return response.data;
         });
+    },
+    setShoppingCartIds(id: string) {
+        return instance.post(`auth/shopping-cart?shoppingCartId=${id}`);
     }
 }

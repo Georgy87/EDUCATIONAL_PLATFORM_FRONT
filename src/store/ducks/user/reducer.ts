@@ -22,12 +22,14 @@ export type UserStateType = {
     user: UserType | null;
     isAuth: boolean;
     loadingState: string;
+    // shoppingCart: Array<string> | string;
 };
 
 const initialState: UserStateType = {
     user: null,
     isAuth: false,
     loadingState: "NEVER",
+    // shoppingCart: []
 };
 
 const userReducer = produce(
@@ -48,6 +50,9 @@ const userReducer = produce(
             case UserActionType.SET_LOADED:
                 draftState.loadingState = UserActionType.SET_LOADED;
                 break;
+            // case UserActionType.SET_SHOPPING_CARTS_IDS:
+            //     draftState.shoppingCart = UserActionType.SET_SHOPPING_CARTS_IDS;
+            //     break;
             default:
                 break;
         }

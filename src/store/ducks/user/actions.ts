@@ -1,6 +1,7 @@
 import { SetLoadedActionType, SetLoadingActionType } from "../user/types";
 import { UserType } from "./reducer";
 import { LogoutType, SetUserActionType, UserActionType } from "./types";
+import { SetShoppingCartIds } from './types';
 
 export const setUser = (user: UserType): SetUserActionType => {
     return {
@@ -27,8 +28,16 @@ export const setUserLoaded = (): SetLoadedActionType => {
     };
 };
 
+// export const setShoppingCartIds = (id: string): SetShoppingCartIds => {
+//     return {
+//         type: UserActionType.SET_SHOPPING_CARTS_IDS,
+//         payload: id
+//     }
+// }
+
 export type UserActionsTypes =
     | SetUserActionType
     | LogoutType
     | SetLoadingActionType
-    | SetLoadedActionType;
+    | SetLoadedActionType
+    // | SetShoppingCartIds;

@@ -9,6 +9,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import ProfileCourseMaterials from "./profileCourseMaterials/profileCourseMaterials/ProfileCourseMaterials";
 import { selectCourseProfile, selectTeacherLoaded, selectVideo } from '../../store/ducks/courseProfile/selectors';
 import ProfileCourseInfoDop from './profileCourseMaterials/profileCourseInfoDop/profileCourseInfoDop';
+import { setShoppingCartIds } from "../../store/ducks/user/saga";
 
 import "./ProfileCourse.css";
 
@@ -63,7 +64,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                                     >{` ${loaded && profile.author}`}</p>
                                 </div>
                                 <div className="profile-like-btn">
-                                    <Button variant="outlined" color="primary">
+                                    <Button variant="outlined" color="primary" >
                                         Добавить в избранное
                                         <FavoriteIcon
                                             style={{
@@ -77,7 +78,10 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                         </div>
                         <div className="profile-info-middle"></div>
                         <div className="profile-info-dop">
-                            <ProfileCourseInfoDop setModalActive={setModalActive} photo={profile.photo} />
+                            <ProfileCourseInfoDop
+                                setModalActive={setModalActive}
+                                photo={profile.photo}
+                                profileId={profileId} />
                         </div>
                     </div>
                 )}
