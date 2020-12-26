@@ -13,10 +13,12 @@
     transition: 0.5s;
     z-index: 200;
 }
+
 .modal-course.active {
     opacity: 1;
     pointer-events: all;
 }
+
 .modal-course-content {
     padding: 50px 10px 100px 10px;
     border-radius: 12px;
@@ -24,6 +26,13 @@
     transform: scale(0.5);
     transition: 0.4s all;
 }
+
 .modal-course-content.active {
     transform: scale(1);
+}
+
+.shopping-cart-modal {
+    width: 700px;
+    height: 400px;
+    background-color: honeydew;
 }

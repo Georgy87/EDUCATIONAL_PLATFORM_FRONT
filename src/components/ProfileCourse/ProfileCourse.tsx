@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {CreateModal} from "../modals/Modal";
+import { ModalForShoppingCart } from "./profileCourseMaterials/profileCourseInfoDop/modalForShoppingCart/ModalForShoppingCart";
 import { getProfileCourse } from "../../store/ducks/courseProfile/saga";
 import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -9,7 +9,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import ProfileCourseMaterials from "./profileCourseMaterials/profileCourseMaterials/ProfileCourseMaterials";
 import { selectCourseProfile, selectTeacherLoaded, selectVideo } from '../../store/ducks/courseProfile/selectors';
 import ProfileCourseInfoDop from './profileCourseMaterials/profileCourseInfoDop/profileCourseInfoDop';
-import { setShoppingCartIds } from "../../store/ducks/user/saga";
+import { ModalVideoForProfileCourse } from "./profileCourseMaterials/profileCourseInfoDop/modalVideoForProfileCourse/ModalVideoForProfileCourse";
 
 import "./ProfileCourse.css";
 
@@ -23,8 +23,9 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
     const profile = useSelector(selectCourseProfile);
     const video = useSelector(selectVideo);
     const loaded = useSelector(selectTeacherLoaded);
-    const [modalActive, setModalActive] = useState<boolean>(false);
-
+    const [modalActiveVideoCourse, setModalActiveVideoCourse] = useState<boolean>(false);
+    const [modalActiveShoppingCart, setModalActiveShoppingCart] = useState<boolean>(false);
+    
     let userId: string;
     let profileId = props.match.params.profileId;
 
@@ -79,15 +80,21 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                         <div className="profile-info-middle"></div>
                         <div className="profile-info-dop">
                             <ProfileCourseInfoDop
-                                setModalActive={setModalActive}
+                                setModalActiveVideoCourse={setModalActiveVideoCourse}
+                                setModalActiveShoppingCart={setModalActiveShoppingCart}
                                 photo={profile.photo}
                                 profileId={profileId} />
                         </div>
                     </div>
                 )}
-                <CreateModal
-                    active={modalActive}
-                    setActive={setModalActive}
+                <ModalVideoForProfileCourse
+                    active={modalActiveVideoCourse}
+                    setActive={setModalActiveVideoCourse}
+                    video={video}
+                />
+                <ModalForShoppingCart
+                    active={modalActiveShoppingCart}
+                    setActive={setModalActiveShoppingCart}
                     video={video}
                 />
                 <div className="material-container">

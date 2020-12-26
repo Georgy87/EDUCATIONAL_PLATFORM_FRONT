@@ -8,11 +8,12 @@ import { useDispatch } from 'react-redux';
 
 
 type PropsType = {
-    setModalActive: (value: boolean) => void;
+    setModalActiveVideoCourse: (value: boolean) => void;
+    setModalActiveShoppingCart: (value: boolean) => void;
     photo: string;
     profileId: string;
 }
-const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActive, photo, profileId }): React.ReactElement => {
+const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActiveVideoCourse, setModalActiveShoppingCart, photo, profileId }): React.ReactElement => {
     const classes = useProfileCourseInfoDopStyles();
     const dispatch = useDispatch();
     return (
@@ -25,7 +26,7 @@ const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActive, photo, prof
                         src={`http://localhost:5000/${photo}`}
                     />
                 </div>
-                <div className="info-dop-content"  onClick={() => setModalActive(true)}>
+                <div className="info-dop-content" onClick={() => setModalActiveVideoCourse(true)}>
                     <PlayCircleFilledIcon
                         style={{
                             width: 70,
@@ -34,11 +35,12 @@ const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActive, photo, prof
                         }}
                     />
                 </div>
-                <div className="info-dop-content-information">
+                <div className="info-dop-content-information" onClick={() => setModalActiveShoppingCart(true)}>
                     <Button
                         variant="contained"
                         className={classes.cartShopBtn}
                         onClick={() => dispatch(setShoppingCartIds(profileId))}
+
                     >
                         Добавить в корзину
                     </Button>

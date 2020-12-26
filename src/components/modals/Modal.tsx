@@ -1,16 +1,15 @@
 import React from "react";
-import { VideoProfileForModal } from "../profileCourse/profileCourseMaterials/profileCourseInfoDop/VideoProfileForModal";
 
 import "./Modal.css";
 
-type PropsType = {
+export type PropsModalType = {
     active: boolean;
     setActive: (active: boolean) => void;
     video: string;
-    children?: React.ReactNode
+    children?: React.ReactNode;
 }
 
-export const Modal: React.FC<PropsType> = ({ active, setActive, video, children}): React.ReactElement => {
+export const Modal: React.FC<PropsModalType> = ({ active, setActive, children }): React.ReactElement => {
     return (
         <>
             <div
@@ -31,16 +30,6 @@ export const Modal: React.FC<PropsType> = ({ active, setActive, video, children}
         </>
     );
 };
-
-export const CreateModal: React.FC<PropsType> = (props) => {
-    return (
-        <div>
-            <Modal {...props}>
-                <VideoProfileForModal {...props} />
-            </Modal>
-        </div>
-    )
-}
 
 export default Modal;
 
