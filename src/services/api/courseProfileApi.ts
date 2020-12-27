@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CourseProfileStateType, TeacherType } from "../../store/ducks/courseProfile/types";
+import { CourseProfileStateType, GetShoppingCartType, TeacherType } from "../../store/ducks/courseProfile/types";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -7,6 +7,7 @@ const instance = axios.create({
         Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
 });
+
 
 export const CourseProfileApi = {
     getProfile(courseId: string, userId: string) {
@@ -21,4 +22,9 @@ export const CourseProfileApi = {
             .get<TeacherType>(`course/teacher-profile?teacherId=${teacherId}`)
             .then(response => response.data);
     },
+    getShoppingCart() {
+        return instance.get<GetShoppingCartType[]>('course/shopping-cart').then(response => {
+            return response;
+        })
+    }
 };

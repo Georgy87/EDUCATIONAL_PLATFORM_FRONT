@@ -15,8 +15,10 @@ import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 import RegistrationPageForTeacher from "../registrationPageForTeacher/registrationTeacher/registrationTeacher";
 import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
 import ProfileTeacher from "../profileTeacher/ProfileTeacher";
+import ShoppingCart from '../shoppingCart/ShoppingCart';
 
 import "./App.css";
+
 
 const App = () => {
     const dispatch = useDispatch();
@@ -41,6 +43,8 @@ const App = () => {
                     <Route path="/registration-teacher" component={RegistrationPageForTeacher} />
                     <Route path="/teacher" component={TeacherPrivateOffice} />
                     <Route path="/profile-teacher/:teacherId?" component={ProfileTeacher} />
+                    <Route path="/shopping-cart" component={ShoppingCart} />
+
                     {/* <Redirect to="/main" /> */}
                 </Switch>
             </div>

@@ -22,7 +22,7 @@
 .modal-course-content {
     padding: 50px 10px 100px 10px;
     border-radius: 12px;
-    background-color: rgb(14, 19, 9);
+    background-color: transparent;
     transform: scale(0.5);
     transition: 0.4s all;
 }
@@ -31,8 +31,3 @@
     transform: scale(1);
 }
 
-.shopping-cart-modal {
-    width: 700px;
-    height: 400px;
-    background-color: honeydew;
-}

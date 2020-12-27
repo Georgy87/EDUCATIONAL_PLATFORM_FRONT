@@ -31,5 +31,6 @@ export const Modal: React.FC<PropsModalType> = ({ active, setActive, children })
     );
 };
 
+
 export default Modal;
 
