@@ -1,0 +1,24 @@
+.shopping-cart-modal {
+    width: 700px;
+    height: 450px;
+    background-color: white;
+}
+
+.shopping-cart-modal {
+    padding: 20px;
+}
+
+.shopping-cart-courses-modal {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 600px;
+    height: 300px;
+    background-color: #fbfbf8;
+    border: 1px solid rgb(226, 223, 223);
+}
+.shopping-cart-btn a{
+    color: white;
+    text-decoration: none;
+}
+

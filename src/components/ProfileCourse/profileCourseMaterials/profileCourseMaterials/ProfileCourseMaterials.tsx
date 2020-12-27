@@ -21,8 +21,8 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
 
     let avatar = photo;
 
-    if(loaded) {
-        avatar = `http://localhost:5000/${loaded && profile?.avatar}`;
+    if(profile) {
+        avatar = `http://localhost:5000/${profile?.avatar}`;
     }
 
     return (

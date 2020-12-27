@@ -8,6 +8,7 @@ const instance = axios.create({
     },
 });
 
+
 export const CourseProfileApi = {
     getProfile(courseId: string, userId: string) {
         return instance

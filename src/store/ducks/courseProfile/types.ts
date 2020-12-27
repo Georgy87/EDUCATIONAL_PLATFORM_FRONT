@@ -6,7 +6,7 @@ export enum CourseProfileActionsType {
     SET_COURSE_PROFILE_VIDEO = "SET-COURSE-PROFILE-VIDEO",
     SET_TEACHER = " SET-TEACHER",
     SET_LOADING = "SET-LOADING",
-    SET_LOADED = "SET-LOADED"
+    SET_LOADED = "SET-LOADED",
 }
 
 type LinksToResourcesType = {

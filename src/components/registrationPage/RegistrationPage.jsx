@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Field, reduxForm, reset } from "redux-form";
 import { requireEmail, minLength } from "../validate/validateInput";
-import { InputForEmail, InputForPassword } from "../inputs/inputs";
 import { registration } from "../../store/ducks/user/saga";
+import { createField, Input } from "../inputs/inputs";
 
 import "./RegistrationPage.css";
 
@@ -31,13 +31,21 @@ const RegistrationForm = (props) => {
                                     type="text"
                                 />
                             </div>
+                            <label>surname</label>
+                            <div>
+                                <Field
+                                    name="surname"
+                                    component="input"
+                                    type="text"
+                                />
+                            </div>
                             <label>email</label>
                             <div>
                                 <Field
                                     name="email"
                                     component="input"
                                     validate={[requireEmail]}
-                                    component={InputForEmail}
+                                    component={Input}
                                     type="text"
                                 />
                             </div>
@@ -47,7 +55,7 @@ const RegistrationForm = (props) => {
                                     name="password"
                                     component="input"
                                     validate={[lengthMin]}
-                                    component={InputForPassword}
+                                    component={Input}
                                     type="text"
                                 />
                             </div>
@@ -72,8 +80,8 @@ const Registration = (props) => {
     const dispatch = useDispatch();
 
     const submit = (data) => {
-        const { name, email, password } = data;
-        dispatch(registration(name, email, password));
+        const { name, surname, email, password } = data;
+        dispatch(registration(name, surname, email, password, false));
         dispatch(reset('Registration'));
     };
     return (

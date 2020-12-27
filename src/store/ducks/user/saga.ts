@@ -1,11 +1,11 @@
 import axios from "axios";
-import { setUser, UserActionsTypes } from "./actions";
+import { setShoppingCourses, setUser, UserActionsTypes } from "./actions";
 import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "../../store";
 import { UserStateType } from "./reducer";
-import { userApi } from '../../../services/api/userApi';
-import { setUserLoading, setUserLoaded} from '../user/actions';
+import { userApi } from "../../../services/api/userApi";
+import { setUserLoading, setUserLoaded } from "../user/actions";
 
 type DispatchType = Dispatch<UserActionsTypes>;
 type ThunkType = ThunkAction<
@@ -20,20 +20,17 @@ export const registration = (
     surname: string,
     email: string,
     password: string,
-    teacher: boolean | false,
+    teacher: boolean | false
 ) => {
     return async () => {
         try {
-            await axios.post(
-                `http://localhost:5000/api/auth/registration`,
-                {
-                    name,
-                    surname,
-                    email,
-                    password,
-                    teacher,
-                },
-            );
+            await axios.post(`http://localhost:5000/api/auth/registration`, {
+                name,
+                surname,
+                email,
+                password,
+                teacher,
+            });
             // return console.log(response.data);
         } catch (error) {
             console.log(error);
@@ -63,7 +60,7 @@ export const login = (email: string, password: string): ThunkType => {
 
 export const auth = (): ThunkType => {
     return async (dispatch: DispatchType) => {
-            dispatch(setUserLoading());
+        dispatch(setUserLoading());
         try {
             const user = await userApi.getUser();
             dispatch(setUser(user));
@@ -78,7 +75,7 @@ export const auth = (): ThunkType => {
 
 export const uploadAvatar = (file: any): ThunkType => {
     return async (dispatch: DispatchType) => {
-            dispatch(setUserLoading());
+        dispatch(setUserLoading());
         try {
             const formData = new FormData();
 
@@ -109,7 +106,6 @@ export const changeInfoProfileUser = (
     surname: string,
     professionalСompetence: string
 ): ThunkType => {
-    console.log(name, surname, professionalСompetence);
     return async (dispatch: DispatchType) => {
         try {
             const result = await axios.post(
@@ -128,3 +124,26 @@ export const changeInfoProfileUser = (
         }
     };
 };
+
+export const setShoppingCartIds = (id: string): ThunkType => {
+    return async () => {
+        try {
+            await userApi.setShoppingCartIds(id);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+export const getShoppingCart = (): ThunkType => {
+    return async (dispatch: DispatchType) => {
+        try {
+            const data = await userApi.getShoppingCart();
+            dispatch(setShoppingCourses(data));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+

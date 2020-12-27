@@ -1,17 +1,15 @@
 import React from "react";
-import ReactPlayer from "react-player";
-// @ts-ignore
-import ReactWebMediaPlayer from "react-web-media-player";
 
 import "./Modal.css";
 
-type PropsType = {
+export type PropsModalType = {
     active: boolean;
     setActive: (active: boolean) => void;
     video: string;
+    children?: React.ReactNode;
 }
 
-const Modal: React.FC<PropsType> = ({ active, setActive, video}): React.ReactElement => {
+export const Modal: React.FC<PropsModalType> = ({ active, setActive, children }): React.ReactElement => {
     return (
         <>
             <div
@@ -26,13 +24,13 @@ const Modal: React.FC<PropsType> = ({ active, setActive, video}): React.ReactEle
                     }
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <ReactWebMediaPlayer
-                        title="My own video player"
-                        video={`http://localhost:5000/${video}`}
-                    />
+                    {children}
                 </div>
             </div>
         </>
     );
 };
+
+
 export default Modal;
+

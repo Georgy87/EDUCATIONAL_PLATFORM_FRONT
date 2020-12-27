@@ -1,0 +1,21 @@
+.info-dop-container {
+    position: fixed;
+    width: 340px;
+    cursor: pointer;
+    margin-right: 40px;
+    margin-top: 50px;
+    margin-bottom: -30px;
+    z-index:0;
+}
+.info-dop-content svg {
+    display: flex;
+    color: rgba(233, 231, 231, 0.7);
+    display: flex;
+    margin: 0 auto;
+    margin-top: 30px;
+    /* margin-top: 40px; */
+}
+.info-dop-content-information {
+    display: flex;
+    flex-direction: column;
+}

@@ -4,6 +4,8 @@ import { getTeahcer } from "../../store/ducks/courseProfile/saga";
 import { RouteComponentProps } from 'react-router-dom';
 import { selectTeacherInfo, selectTeacherLoaded } from '../../store/ducks/courseProfile/selectors';
 import ProfileTeacherCourses from "./profileTeacherCourses/ProfileTeacherCourses";
+import photo from "../../assets/avatar/unnamed.jpg";
+
 import "./ProfileTeacher.css";
 
 interface MatchParams {
@@ -20,6 +22,12 @@ const ProfileTeacher: React.FC<Props> = (props): React.ReactElement => {
     const dispatch = useDispatch();
 
     let teacherId = props.match.params.teacherId;
+
+    let avatar = photo;
+
+    if(teacherInfo) {
+        avatar = `http://localhost:5000/${teacherInfo?.avatar}`;
+    }
 
     useEffect(() => {
         dispatch(getTeahcer(teacherId));
@@ -50,7 +58,7 @@ const ProfileTeacher: React.FC<Props> = (props): React.ReactElement => {
 
                 </div>
                 <div className="profile-teacher-avatar">
-                    {loaded && <img src={`http://localhost:5000/${loaded && teacherInfo?.avatar}`} alt="" />}
+                    <img src={avatar} alt=""/>
                 </div>
             </div>
 
