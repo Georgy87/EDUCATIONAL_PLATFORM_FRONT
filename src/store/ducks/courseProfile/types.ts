@@ -76,14 +76,6 @@ export type CourseProfileState = {
     loadingState: string
 };
 
-export type GetShoppingCartType = {
-    photo: string;
-    author: string;
-    price: string;
-    smallDescription: string;
-    profession: string;
-}
-
 // export type setCourseProfileActionInterface = {
 //     type: CourseProfileActionsType.SET_COURSE_PROFILE;
 //     payload: CourseProfileStateType;

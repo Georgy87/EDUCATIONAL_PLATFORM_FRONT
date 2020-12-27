@@ -3,8 +3,8 @@ import Modal, { PropsModalType } from "../../../../modals/Modal"
 import { Button } from "@material-ui/core";
 import { useProfileCourseInfoDopStyles } from "../theme";
 import { NavLink } from 'react-router-dom';
-import { getShoppingCart } from '../../../../../store/ducks/courseProfile/saga';
 import { useDispatch } from 'react-redux';
+import { getShoppingCart } from "../../../../../store/ducks/user/saga";
 
 import "./ModalForShoppingCart.css";
 

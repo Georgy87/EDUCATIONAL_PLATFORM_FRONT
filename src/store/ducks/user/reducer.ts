@@ -1,6 +1,6 @@
 import produce, { Draft } from "immer";
 import { UserActionsTypes } from "./actions";
-import { UserActionType } from "./types";
+import { GetShoppingCartType, UserActionType } from "./types";
 
 export type UserInfoType = {
     avatar: string;
@@ -16,20 +16,21 @@ export type UserInfoType = {
 export type UserType = {
     token: string;
     user: UserInfoType;
+
 };
 
 export type UserStateType = {
     user: UserType | null;
     isAuth: boolean;
     loadingState: string;
-    // shoppingCart: Array<string> | string;
+    shoppingCartCourses: GetShoppingCartType[]
 };
 
 const initialState: UserStateType = {
     user: null,
     isAuth: false,
     loadingState: "NEVER",
-    // shoppingCart: []
+    shoppingCartCourses: []
 };
 
 const userReducer = produce(
@@ -50,9 +51,9 @@ const userReducer = produce(
             case UserActionType.SET_LOADED:
                 draftState.loadingState = UserActionType.SET_LOADED;
                 break;
-            // case UserActionType.SET_SHOPPING_CARTS_IDS:
-            //     draftState.shoppingCart = UserActionType.SET_SHOPPING_CARTS_IDS;
-            //     break;
+            case UserActionType.SET_SHOPPING_CART_COURSES:
+                draftState.shoppingCartCourses = action.payload;
+                break;
             default:
                 break;
         }

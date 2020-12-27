@@ -5,7 +5,7 @@ export enum UserActionType {
     LOGOUT = "LOGOUT",
     SET_LOADING = "SET-LOADING",
     SET_LOADED = "SET-LOADED",
-    SET_SHOPPING_CARTS_IDS = "SET_SHOPPING_CARTS_IDS"
+    SET_SHOPPING_CART_COURSES = "SET-SHOPPING-CART-COURSES",
 }
 export type SetUserActionType = {
     type: UserActionType.SET_USER;
@@ -24,8 +24,17 @@ export type SetLoadedActionType = {
     type: UserActionType.SET_LOADED;
 };
 
-export type SetShoppingCartIds = {
-    type: UserActionType.SET_SHOPPING_CARTS_IDS,
-    payload: string;
+export type SetShoppingCartCourses = {
+    type: UserActionType.SET_SHOPPING_CART_COURSES,
+    payload: GetShoppingCartType[];
 }
+
+export type GetShoppingCartType = {
+    photo: string;
+    author: string;
+    price: string;
+    smallDescription: string;
+    profession: string;
+}
+
 

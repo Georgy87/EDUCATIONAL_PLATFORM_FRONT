@@ -1,4 +1,6 @@
 import axios from "axios";
+import { GetShoppingCartType } from "../../store/ducks/user/types";
+
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -31,5 +33,10 @@ export const userApi = {
     },
     setShoppingCartIds(id: string) {
         return instance.post(`auth/shopping-cart?shoppingCartId=${id}`);
+    },
+    getShoppingCart() {
+        return instance.get<GetShoppingCartType[]>('course/shopping-cart').then(response => {
+            return response.data;
+        })
     }
 }

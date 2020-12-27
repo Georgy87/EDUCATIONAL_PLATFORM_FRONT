@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setUser, UserActionsTypes } from "./actions";
+import { setShoppingCourses, setUser, UserActionsTypes } from "./actions";
 import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "../../store";
@@ -125,7 +125,7 @@ export const changeInfoProfileUser = (
     };
 };
 
-export const setShoppingCartIds = (id: string) => {
+export const setShoppingCartIds = (id: string): ThunkType => {
     return async () => {
         try {
             await userApi.setShoppingCartIds(id);
@@ -134,3 +134,16 @@ export const setShoppingCartIds = (id: string) => {
         }
     };
 };
+
+export const getShoppingCart = (): ThunkType => {
+    return async (dispatch: DispatchType) => {
+        try {
+            const data = await userApi.getShoppingCart();
+            dispatch(setShoppingCourses(data));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+
