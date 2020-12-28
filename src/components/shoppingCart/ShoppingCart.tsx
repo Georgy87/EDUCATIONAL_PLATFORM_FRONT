@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserInfo, selectUserLoaded } from '../../store/ducks/user/selectors';
+import { selectUserInfo, selectUserLoaded, selectCoursesData } from '../../store/ducks/user/selectors';
 import { useEffect } from 'react';
 import { getShoppingCart } from '../../store/ducks/user/saga';
 import { useDispatch } from 'react-redux';
@@ -10,10 +10,10 @@ import "./ShoppingCart.css";
 const ShoppingCart: React.FC = (): React.ReactElement => {
     const user = useSelector(selectUserInfo);
     const loaded = useSelector(selectUserLoaded);
+    const courses =  useSelector(selectCoursesData);
 
     const dispatch = useDispatch();
 
-    console.log(user);
     useEffect(() => {
         dispatch(getShoppingCart());
     }, []);
@@ -25,7 +25,7 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
             </div>
             <div className="cart-shop-wrapper">
                 <div className="cart-shop-items">
-                    {loaded && user.shoppingCartCourses.map(element => {
+                    {loaded && courses?.coursesDestructured.map(element => {
                         return (
                             <div className="cart-shop-item">
                                 <div className="cart-shop-photo">

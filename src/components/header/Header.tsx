@@ -2,12 +2,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import HomeWorkIcon from "@material-ui/icons/HomeWork";
 import photo from "../../assets/avatar/unnamed.jpg";
-import "./Header.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/ducks/user/actions";
-import { AppStateType } from "../../store/store";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { selectUserInfo, selectIsAuth, selectUserLoaded, selectUserAvatar } from "../../store/ducks/user/selectors";
+import { getShoppingCart } from '../../store/ducks/user/saga';
+
+import "./Header.css";
+
 
 const Header: React.FC = (): React.ReactElement => {
     const isAuth = useSelector(selectIsAuth);
@@ -56,6 +59,11 @@ const Header: React.FC = (): React.ReactElement => {
             <div>
                 <NavLink to="/privatoffice">
                     <HomeWorkIcon />
+                </NavLink>
+            </div>
+            <div className="header-shopping-cart" onClick={() => dispatch(getShoppingCart())}>
+                <NavLink to="/shopping-cart">
+                    <ShoppingCartIcon />
                 </NavLink>
             </div>
         </div>

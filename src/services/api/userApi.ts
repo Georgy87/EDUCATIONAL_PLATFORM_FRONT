@@ -1,6 +1,6 @@
 import axios from "axios";
-import { GetShoppingCartType } from "../../store/ducks/user/types";
-
+import { CoursesDataType } from "../../store/ducks/user/reducer";
+import { CoursesForCartShop, GetShoppingCartType } from "../../store/ducks/user/types";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -35,7 +35,8 @@ export const userApi = {
         return instance.post(`auth/shopping-cart?shoppingCartId=${id}`);
     },
     getShoppingCart() {
-        return instance.get<GetShoppingCartType[]>('course/shopping-cart').then(response => {
+        return instance.get<CoursesDataType>('course/shopping-cart').then(response => {
+            console.log(response.data);
             return response.data;
         })
     }

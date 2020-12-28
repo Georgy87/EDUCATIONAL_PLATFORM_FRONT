@@ -19,18 +19,22 @@ export type UserType = {
 
 };
 
+export type CoursesDataType = {
+    coursesData: GetShoppingCartType;
+}
+
 export type UserStateType = {
     user: UserType | null;
     isAuth: boolean;
     loadingState: string;
-    shoppingCartCourses: GetShoppingCartType[]
+    shoppingCartCourses: CoursesDataType | null;
 };
 
 const initialState: UserStateType = {
     user: null,
     isAuth: false,
     loadingState: "NEVER",
-    shoppingCartCourses: []
+    shoppingCartCourses: null
 };
 
 const userReducer = produce(
