@@ -4,6 +4,7 @@
     max-width: 500px;
     padding: 50px;
 }
+
 .teacher-course-add textarea {
     border: none;
     background-color: rgb(252, 252, 252);
@@ -15,12 +16,15 @@
     padding: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
 .teacher-course-add:first-child {
     background-color: rgb(255, 255, 255);
 }
+
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
+
 .custom-file-input::before {
     content: "Добавить файл";
     display: inline-block;
@@ -38,6 +42,7 @@
     text-align: center;
     /* opacity: none; */
 }
+
 .teacher-course-add button {
     text-decoration: none;
     outline: none;
@@ -58,7 +63,38 @@
     color: rgb(196, 190, 190);
     filter: grayscale(50%);
 }
+
 .teacher-course-add button:hover {
     color: white;
     cursor: pointer;
 }
+
+.teacher-course-choice {
+    margin-top: 60px;
+    width: 700px;
+}
+
+.teacher-course-choice-items {
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+    border: 1px solid rgb(230, 228, 228);;
+}
+
+.teacher-course-choice-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgb(230, 228, 228);
+}
+
+.teacher-course-choice-item img {
+    width: 80px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.teacher-course-choice-item:hover {
+    background-color: rgb(240, 240, 240)
+}
+

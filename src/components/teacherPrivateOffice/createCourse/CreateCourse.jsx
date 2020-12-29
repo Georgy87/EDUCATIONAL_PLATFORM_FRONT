@@ -133,17 +133,20 @@ const CreateCourse = () => {
                 </button>
                 <div className="teacher-course-choice">
                     <h1>Выберите курс</h1>
-                    <div>
+                    <div className="teacher-course-choice-items">
                         {contentCourses &&
                             contentCourses.allTeacherCourses.map((course) => {
+
                                 return (
-                                    <div>
-                                        <div
+                                    <div className="teacher-course-choice-item">
+                                        <img src={`http://localhost:5000/${course.photo}`} />
+                                        <p
                                             style={{ cursor: "pointer" }}
                                             onClick={() =>
                                                 onChoiceCourse(course._id)
                                             }
-                                        >{`Курс: ${course.smallDescription}`}</div>
+                                        >{`Курс: ${course.smallDescription}`}
+                                        </p>
 
                                     </div>
                                 );

@@ -36,7 +36,6 @@ const CourseLessons = (props) => {
     const [linkName, setlinksName] = useState("");
 
     const courseId = props.courseId;
-    console.log(courseId);
     const dispatch = useDispatch();
 
     const onChangeStatus = () => {
