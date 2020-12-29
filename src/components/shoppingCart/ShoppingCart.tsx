@@ -8,6 +8,7 @@ import { Button } from "@material-ui/core";
 import { useProfileCourseInfoDopStyles } from '../profileCourse/profileCourseMaterials/profileCourseInfoDop/theme';
 
 import "./ShoppingCart.css";
+import { NavLink } from 'react-router-dom';
 
 const ShoppingCart: React.FC = (): React.ReactElement => {
     const classes = useProfileCourseInfoDopStyles();
@@ -26,6 +27,7 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
             console.log(el);
         })
     }
+    
     return (
         <div className="cart-shop-container">
             <div className="cart-shop-header">
@@ -61,15 +63,17 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
             <div className="cart-shop-total-wrapper">
                 <div className="cart-shop-total">
                     <h3>Итого:</h3>
-                    <h2>{courses?.totalPrice}</h2>
+                    <h2>{courses?.totalPrice} руб.</h2>
                 </div>
                 <div className="cart-shop-total-btn">
-                    <Button
-                        variant="contained"
-                        className={classes.cartShopBtn}
-                    >
-                        Оформление заказа
-                    </Button>
+                    <NavLink to="/checkout">
+                        <Button
+                            variant="contained"
+                            className={classes.cartShopBtn}
+                        >
+                            Оформление заказа
+                        </Button>
+                    </NavLink>
                 </div>
             </div>
         </div>

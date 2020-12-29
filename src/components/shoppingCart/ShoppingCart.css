@@ -95,3 +95,7 @@
 .cart-shop-total-btn {
     height: 100px;
 }
+.cart-shop-total-btn a{
+    text-decoration: none;
+    height: 100px;
+}
