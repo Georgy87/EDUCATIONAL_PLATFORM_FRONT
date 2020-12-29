@@ -1,5 +1,19 @@
 .cart-shop-container {
-    margin-top: 100px;
+    display: flex;
+    margin-top: 270px;
+}
+
+.cart-shop-items-wrapper {
+    display: flex;
+    width: 70%;
+}
+
+.cart-shop-total-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    width: 30%;
+    height: 40px;
 }
 
 .cart-shop-header {
@@ -22,10 +36,10 @@
 
 .cart-shop-items {
     display: flex;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     flex-direction: column;
-    margin-top: 200px;
-    max-width: 900px;
+    /* max-width: 900px; */
+    width: 100%;
     border: 1px solid rgb(230, 228, 228);
 }
 
@@ -66,4 +80,18 @@
     width: 20%;
     font-weight: 700;
     color: #ec5252;
+}
+
+.cart-shop-total h3 {
+    font-weight: 400;
+    font-size: 22px;
+    color: rgb(87, 86, 86);
+}
+
+.cart-shop-total h2 {
+    font-weight: 500;
+}
+
+.cart-shop-total-btn {
+    height: 100px;
 }

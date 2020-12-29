@@ -39,5 +39,10 @@ export const userApi = {
             console.log(response.data);
             return response.data;
         })
+    },
+    deleteShoppingCart(id: string) {
+        return instance.delete(`course/delete-shopping-cart?id=${id}`).then(response => {
+            return response.data
+        })
     }
 }

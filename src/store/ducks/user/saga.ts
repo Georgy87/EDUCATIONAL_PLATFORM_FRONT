@@ -146,4 +146,16 @@ export const getShoppingCart = (): ThunkType => {
     };
 };
 
+export const deleteShoppingCartCourse = (id: string): ThunkType => {
+    return async (dispatch: DispatchType) => {
+        try {
+            const data = await userApi.deleteShoppingCart(id);
+            dispatch(setShoppingCourses(data));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
+
+
 

@@ -35,6 +35,7 @@ export type CoursesForCartShop = {
     price: string;
     smallDescription: string;
     profession: string;
+    id: string
 }
 
 export type GetShoppingCartType = {
