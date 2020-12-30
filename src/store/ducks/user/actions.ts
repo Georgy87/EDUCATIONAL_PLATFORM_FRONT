@@ -1,5 +1,5 @@
 import { GetShoppingCartType, SetLoadedActionType, SetLoadingActionType } from "../user/types";
-import { UserType } from "./reducer";
+import { CoursesDataType, UserType } from "./reducer";
 import { LogoutType, SetUserActionType, UserActionType } from "./types";
 import { SetShoppingCartCourses } from './types';
 
@@ -28,7 +28,7 @@ export const setUserLoaded = (): SetLoadedActionType => {
     };
 };
 
-export const setShoppingCourses = (courses: GetShoppingCartType[]): SetShoppingCartCourses => {
+export const setShoppingCourses = (courses: CoursesDataType): SetShoppingCartCourses => {
     return {
         type: UserActionType.SET_SHOPPING_CART_COURSES,
         payload: courses

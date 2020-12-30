@@ -25,7 +25,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
     const loaded = useSelector(selectTeacherLoaded);
     const [modalActiveVideoCourse, setModalActiveVideoCourse] = useState<boolean>(false);
     const [modalActiveShoppingCart, setModalActiveShoppingCart] = useState<boolean>(false);
-    
+
     let userId: string;
     let profileId = props.match.params.profileId;
 
@@ -88,11 +88,13 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                     </div>
                 )}
                 <ModalVideoForProfileCourse
+                    profileId={profileId}
                     active={modalActiveVideoCourse}
                     setActive={setModalActiveVideoCourse}
                     video={video}
                 />
                 <ModalForShoppingCart
+                    profileId={profileId}
                     active={modalActiveShoppingCart}
                     setActive={setModalActiveShoppingCart}
                     video={video}

@@ -5,6 +5,9 @@ import { useProfileCourseInfoDopStyles } from './theme';
 import { setShoppingCartIds } from '../../../../store/ducks/user/saga';
 import "./profileCourseInfoDop.css";
 import { useDispatch } from 'react-redux';
+import { selectCourseProfile } from '../../../../store/ducks/courseProfile/selectors';
+import { useSelector } from 'react-redux';
+import { getTeahcer } from '../../../../store/ducks/courseProfile/saga';
 
 
 type PropsType = {
@@ -15,7 +18,13 @@ type PropsType = {
 }
 const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActiveVideoCourse, setModalActiveShoppingCart, photo, profileId }): React.ReactElement => {
     const classes = useProfileCourseInfoDopStyles();
+    const profile = useSelector(selectCourseProfile);
     const dispatch = useDispatch();
+
+    const onShoppingCartHandler = () => {
+        dispatch(setShoppingCartIds(profileId));
+        dispatch(getTeahcer(profile?.user))
+    }
     return (
         <>
             <div
@@ -39,8 +48,7 @@ const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActiveVideoCourse, 
                     <Button
                         variant="contained"
                         className={classes.cartShopBtn}
-                        onClick={() => dispatch(setShoppingCartIds(profileId))}
-
+                        onClick={onShoppingCartHandler}
                     >
                         Добавить в корзину
                     </Button>

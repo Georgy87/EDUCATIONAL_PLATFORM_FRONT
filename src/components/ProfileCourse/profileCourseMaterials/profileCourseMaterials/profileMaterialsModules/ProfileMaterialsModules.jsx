@@ -42,7 +42,7 @@ const ProfileMaterialsModules = (props) => {
     } else {
         newHours = props.moduleHours + hours + " ч ";
     }
-    
+
     let minutes = props.moduleMinutes % 60;
     let seconds = props.moduleSeconds / 60;
     let finalMinutes = minutes + Math.floor(seconds);

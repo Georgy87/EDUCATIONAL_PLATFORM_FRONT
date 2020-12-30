@@ -18,6 +18,7 @@ import ProfileTeacher from "../profileTeacher/ProfileTeacher";
 import ShoppingCart from '../shoppingCart/ShoppingCart';
 
 import "./App.css";
+import Checkout from '../checkout/Checkout';
 
 
 const App = () => {
@@ -44,7 +45,7 @@ const App = () => {
                     <Route path="/teacher" component={TeacherPrivateOffice} />
                     <Route path="/profile-teacher/:teacherId?" component={ProfileTeacher} />
                     <Route path="/shopping-cart" component={ShoppingCart} />
-
+                    <Route path="/checkout" component={Checkout} exact/>
                     {/* <Redirect to="/main" /> */}
                 </Switch>
             </div>

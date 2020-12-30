@@ -7,6 +7,7 @@ export type PropsModalType = {
     setActive: (active: boolean) => void;
     video: string;
     children?: React.ReactNode;
+    profileId: string;
 }
 
 export const Modal: React.FC<PropsModalType> = ({ active, setActive, children }): React.ReactElement => {

@@ -8,8 +8,8 @@ type PropsType = {
     description: string;
     loaded: boolean;
 }
+
 const ProfileTeacherCourses: React.FC<PropsType> = ({ photo, price, author, description, loaded }) => {
-    console.log(photo);
     return (
         <div>
             <div className="teacher-courses-wrap">

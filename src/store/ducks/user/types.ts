@@ -1,4 +1,4 @@
-import { UserType } from "./reducer";
+import { CoursesDataType, UserType } from "./reducer";
 
 export enum UserActionType {
     SET_USER = "SET-USER",
@@ -26,15 +26,21 @@ export type SetLoadedActionType = {
 
 export type SetShoppingCartCourses = {
     type: UserActionType.SET_SHOPPING_CART_COURSES,
-    payload: GetShoppingCartType[];
+    payload: CoursesDataType;
 }
 
-export type GetShoppingCartType = {
+export type CoursesForCartShop = {
     photo: string;
     author: string;
     price: string;
     smallDescription: string;
     profession: string;
+    id: string
+}
+
+export type GetShoppingCartType = {
+    totalPrice: number;
+    coursesDestructured: CoursesForCartShop[]
 }
 
 
