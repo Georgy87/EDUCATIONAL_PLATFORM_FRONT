@@ -62,7 +62,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                                     </div>
                                     <p
                                         style={{ color: "#8ed1dc" }}
-                                    >{` ${loaded && profile.author}`}</p>
+                                    >{` ${profile.author}`}</p>
                                 </div>
                                 <div className="profile-like-btn">
                                     <Button variant="outlined" color="primary" >

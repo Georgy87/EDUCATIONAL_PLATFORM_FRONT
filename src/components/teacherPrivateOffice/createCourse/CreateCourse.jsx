@@ -10,6 +10,7 @@ import CoursePreview from "../coursePreview/CoursePreview";
 import { uploadNewCourse } from "../../../store/ducks/courses/saga";
 
 import "./CreateCourse.css";
+import { Button } from '@material-ui/core';
 
 const CreateCourse = () => {
     const [profession, setProfession] = useState("");
@@ -112,7 +113,8 @@ const CreateCourse = () => {
                 <button onClick={onUploadAndGetContent}>
                     Добавить контент к курсу
                 </button>
-                <button
+                <Button
+                    disabled={!photoCourse || !profession || !author || !price || !shotDescription || !fullDescription || !module || !fileVideo ||!lesson}
                     onClick={() =>
                         dispatch(
                             uploadNewCourse(
@@ -130,13 +132,12 @@ const CreateCourse = () => {
                     }
                 >
                     Создать курс
-                </button>
+                </Button>
                 <div className="teacher-course-choice">
                     <h1>Выберите курс</h1>
                     <div className="teacher-course-choice-items">
                         {contentCourses &&
                             contentCourses.allTeacherCourses.map((course) => {
-
                                 return (
                                     <div className="teacher-course-choice-item">
                                         <img src={`http://localhost:5000/${course.photo}`} />

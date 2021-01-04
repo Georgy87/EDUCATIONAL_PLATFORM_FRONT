@@ -82,7 +82,7 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                     <div className="course-description-teacher-wrapper">
                         <h1>Преподаватель</h1>
                         <div className="course-description-teacher-info">
-                            <NavLink to={`/profile-teacher/${loaded && profile?.user}`} onClick={() => dispatch(getTeahcer(profile?.user))}>
+                            <NavLink to={`/profile-teacher/${profile?.user}`} onClick={() => dispatch(getTeahcer(profile?.user))}>
                                 <img src={avatar} alt=""/>
                             </NavLink>
                         </div>

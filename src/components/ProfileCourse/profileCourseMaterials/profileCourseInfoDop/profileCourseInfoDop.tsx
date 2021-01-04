@@ -5,10 +5,9 @@ import { useProfileCourseInfoDopStyles } from './theme';
 import { setShoppingCartIds } from '../../../../store/ducks/user/saga';
 import "./profileCourseInfoDop.css";
 import { useDispatch } from 'react-redux';
-import { selectCourseProfile } from '../../../../store/ducks/courseProfile/selectors';
+import { selectCourseProfile, selectUserAuth } from '../../../../store/ducks/courseProfile/selectors';
 import { useSelector } from 'react-redux';
 import { getTeahcer } from '../../../../store/ducks/courseProfile/saga';
-
 
 type PropsType = {
     setModalActiveVideoCourse: (value: boolean) => void;
@@ -16,14 +15,18 @@ type PropsType = {
     photo: string;
     profileId: string;
 }
+
 const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActiveVideoCourse, setModalActiveShoppingCart, photo, profileId }): React.ReactElement => {
     const classes = useProfileCourseInfoDopStyles();
     const profile = useSelector(selectCourseProfile);
+    const isAuth = useSelector(selectUserAuth);
+
     const dispatch = useDispatch();
 
-    const onShoppingCartHandler = () => {
+    const onShoppingCartHandler = (): void => {
         dispatch(setShoppingCartIds(profileId));
-        dispatch(getTeahcer(profile?.user))
+        dispatch(getTeahcer(profile?.user));
+        setModalActiveShoppingCart(true);
     }
     return (
         <>
@@ -44,9 +47,10 @@ const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActiveVideoCourse, 
                         }}
                     />
                 </div>
-                <div className="info-dop-content-information" onClick={() => setModalActiveShoppingCart(true)}>
+                <div className="info-dop-content-information">
                     <Button
                         variant="contained"
+                        disabled={!isAuth}
                         className={classes.cartShopBtn}
                         onClick={onShoppingCartHandler}
                     >

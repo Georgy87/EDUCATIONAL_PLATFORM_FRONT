@@ -157,5 +157,18 @@ export const deleteShoppingCartCourse = (id: string): ThunkType => {
     };
 };
 
+export const purchasedCourses = (ids: string[], totalPrice: number): ThunkType => {
+    return async (dispatch: DispatchType) => {
+        try {
+            const data = await userApi.setPurchasedCourses(ids, totalPrice);
+            // dispatch(setShoppingCourses(data));
+        } catch (error) {
+            console.log('Purchased courses error');
+        }
+    };
+};
+
+
+
 
 
