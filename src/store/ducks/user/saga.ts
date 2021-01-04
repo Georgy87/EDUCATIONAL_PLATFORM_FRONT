@@ -1,9 +1,9 @@
 import axios from "axios";
-import { setShoppingCourses, setUser, UserActionsTypes } from "./actions";
+import { setPurchasedCourses, setShoppingCourses, setUser } from "./actions";
+import { UserActionsTypes } from "./types";
 import { Dispatch } from "react";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "../../store";
-import { UserStateType } from "./reducer";
 import { userApi } from "../../../services/api/userApi";
 import { setUserLoading, setUserLoaded } from "../user/actions";
 
@@ -157,18 +157,28 @@ export const deleteShoppingCartCourse = (id: string): ThunkType => {
     };
 };
 
-export const purchasedCourses = (ids: string[], totalPrice: number): ThunkType => {
-    return async (dispatch: DispatchType) => {
+export const purchasedCourses = (
+    ids: string[],
+    totalPrice: number
+): ThunkType => {
+    return async () => {
         try {
-            const data = await userApi.setPurchasedCourses(ids, totalPrice);
-            // dispatch(setShoppingCourses(data));
+            await userApi.setPurchasedCourses(ids, totalPrice);
         } catch (error) {
-            console.log('Purchased courses error');
+            console.log("Purchased courses error");
         }
     };
 };
 
-
-
+export const getPurchasedCourses = (): ThunkType => {
+    return async (dispatch: DispatchType) => {
+        try {
+            const data = await userApi.getPurchasedCourses();
+            dispatch(setPurchasedCourses(data));
+        } catch (error) {
+            console.log("Purchased courses error");
+        }
+    };
+};
 
 

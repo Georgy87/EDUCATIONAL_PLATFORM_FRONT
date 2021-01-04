@@ -7,10 +7,9 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/ducks/user/actions";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { selectUserInfo, selectIsAuth, selectUserLoaded, selectUserAvatar } from "../../store/ducks/user/selectors";
-import { getShoppingCart } from '../../store/ducks/user/saga';
+import { getPurchasedCourses, getShoppingCart } from '../../store/ducks/user/saga';
 
 import "./Header.css";
-
 
 const Header: React.FC = (): React.ReactElement => {
     const isAuth = useSelector(selectIsAuth);
@@ -20,7 +19,7 @@ const Header: React.FC = (): React.ReactElement => {
 
     let avatar = photo;
 
-    if(loaded) {
+    if (loaded) {
         if (userAvatar) {
             avatar = `http://localhost:5000/${userAvatar}`;
         }
@@ -29,15 +28,18 @@ const Header: React.FC = (): React.ReactElement => {
     const dispatch = useDispatch();
     return (
         <div className="header">
-             <NavLink to="/main">
+            <NavLink to="/main">
                 <span>Платформа</span>
-             </NavLink>
-             <div className="header-teacher">
-                 {userInfo.user && userInfo.user.user.teacher && <NavLink to="/teacher" >
-                     <span>Преподаватель</span>
-               </NavLink>}
-             </div>
-             <div className="header-avatar">
+            </NavLink>
+            <div className="header-teacher">
+                {userInfo.user && userInfo.user.user.teacher && <NavLink to="/teacher" >
+                    <span>Преподаватель</span>
+                </NavLink>}
+                {isAuth && <NavLink to="/purchased-courses">
+                    <span onClick={() => dispatch(getPurchasedCourses())}>Мое обучение</span>
+                </NavLink>}
+            </div>
+            <div className="header-avatar">
                 {isAuth && (
                     <NavLink to="/user-photo">
                         <img src={avatar} alt="" />

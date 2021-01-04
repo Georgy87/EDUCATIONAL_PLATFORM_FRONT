@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CoursesDataType } from "../../store/ducks/user/reducer";
+import { CoursesDataType, PurchasedCoursesType } from "../../store/ducks/user/types";
 import {
     CoursesForCartShop,
     GetShoppingCartType,
@@ -41,7 +41,6 @@ export const userApi = {
         return instance
             .get<CoursesDataType>("course/shopping-cart")
             .then((response) => {
-                console.log(response.data);
                 return response.data;
             });
     },
@@ -56,8 +55,24 @@ export const userApi = {
         console.log(ids, totalPrice);
         return instance
             .post(
-                'auth/purchased-courses',
+                "auth/purchased-courses",
                 { ids, totalPrice },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            )
+            .then((response) => {
+                return response.data;
+            });
+    },
+    getPurchasedCourses() {
+        return instance
+            .get<PurchasedCoursesType[]>(
+                "course/purchased-courses",
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
