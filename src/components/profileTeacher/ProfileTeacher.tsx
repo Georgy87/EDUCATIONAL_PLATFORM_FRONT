@@ -38,13 +38,12 @@ const ProfileTeacher: React.FC<Props> = (props): React.ReactElement => {
             <div className="profile-teacher-container">
                 <div className="profile-teacher-wrapper">
                     <h1>Преподаватель</h1>
-                    <div>{loaded && `${teacherInfo?.name} ${teacherInfo?.surname}`}</div>
+                    <div>{`${teacherInfo?.name} ${teacherInfo?.surname}`}</div>
                     <h3>Немного о себе</h3>
-                    <p>{loaded && teacherInfo?.competence}</p>
+                    <p>{teacherInfo?.competence}</p>
                     <h4>Все курсы</h4>
                     <div className="profile-teacher-courses">
-                        {loaded && teacherInfo?.courses.map(course => {
-                            console.log(course.smallDescription)
+                        {teacherInfo?.courses.map(course => {
                             return <ProfileTeacherCourses
                                 key={course._id}
                                 photo={course.photo}

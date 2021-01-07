@@ -1,7 +1,13 @@
-import { GetShoppingCartType, SetLoadedActionType, SetLoadingActionType } from "../user/types";
-import { CoursesDataType, UserType } from "./reducer";
-import { LogoutType, SetUserActionType, UserActionType } from "./types";
-import { SetShoppingCartCourses } from './types';
+import { SetLoadedActionType, SetLoadingActionType } from "../user/types";
+import { CoursesDataType, UserType } from "./types";
+import {
+    LogoutType,
+    SetUserActionType,
+    UserActionType,
+    PurchasedCoursesType,
+    SetPurchasedCourses,
+} from "./types";
+import { SetShoppingCartCourses } from "./types";
 
 export const setUser = (user: UserType): SetUserActionType => {
     return {
@@ -31,13 +37,13 @@ export const setUserLoaded = (): SetLoadedActionType => {
 export const setShoppingCourses = (courses: CoursesDataType): SetShoppingCartCourses => {
     return {
         type: UserActionType.SET_SHOPPING_CART_COURSES,
-        payload: courses
-    }
-}
+        payload: courses,
+    };
+};
 
-export type UserActionsTypes =
-    | SetUserActionType
-    | LogoutType
-    | SetLoadingActionType
-    | SetLoadedActionType
-    | SetShoppingCartCourses;
+export const setPurchasedCourses = (courses: PurchasedCoursesType[]): SetPurchasedCourses => {
+    return {
+        type: UserActionType.SET_PURCHASED_COURSES,
+        payload: courses,
+    };
+};

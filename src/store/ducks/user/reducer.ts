@@ -1,40 +1,13 @@
 import produce, { Draft } from "immer";
-import { UserActionsTypes } from "./actions";
-import { GetShoppingCartType, UserActionType } from "./types";
-
-export type UserInfoType = {
-    avatar: string;
-    email: string;
-    id: string;
-    name: string;
-    surname: string;
-    teacher: string;
-    isAuth: string;
-    competence: string;
-};
-
-export type UserType = {
-    token: string;
-    user: UserInfoType;
-
-};
-
-export type CoursesDataType = {
-    coursesData: GetShoppingCartType;
-}
-
-export type UserStateType = {
-    user: UserType | null;
-    isAuth: boolean;
-    loadingState: string;
-    shoppingCartCourses: CoursesDataType | null;
-};
+import { UserActionsTypes } from "./types";
+import { UserActionType, UserStateType } from "./types";
 
 const initialState: UserStateType = {
     user: null,
     isAuth: false,
     loadingState: "NEVER",
-    shoppingCartCourses: null
+    shoppingCartCourses: null,
+    purchasedCourses: null
 };
 
 const userReducer = produce(
@@ -57,6 +30,9 @@ const userReducer = produce(
                 break;
             case UserActionType.SET_SHOPPING_CART_COURSES:
                 draftState.shoppingCartCourses = action.payload;
+                break;
+            case UserActionType.SET_PURCHASED_COURSES:
+                draftState.purchasedCourses = action.payload;
                 break;
             default:
                 break;

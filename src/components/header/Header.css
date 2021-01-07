@@ -52,6 +52,14 @@
     margin-right: 20px;
 }
 
+.header-teacher {
+    display: flex;
+}
+
+.header-teacher a {
+    font-size: 16px;
+}
+
 .header-shopping-cart {
     display: flex;
     align-items: center;

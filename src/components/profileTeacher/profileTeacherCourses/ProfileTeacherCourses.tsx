@@ -13,7 +13,7 @@ const ProfileTeacherCourses: React.FC<PropsType> = ({ photo, price, author, desc
     return (
         <div>
             <div className="teacher-courses-wrap">
-                {loaded && <img src={`http://localhost:5000/${photo}`} alt="photo" />}
+                {<img src={`http://localhost:5000/${photo}`} alt="photo" />}
                 <p>{description}</p>
                 <span>Автор: {author}</span>
             </div>

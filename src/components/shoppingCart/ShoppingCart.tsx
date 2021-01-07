@@ -12,8 +12,6 @@ import { NavLink } from 'react-router-dom';
 
 const ShoppingCart: React.FC = (): React.ReactElement => {
     const classes = useProfileCourseInfoDopStyles();
-    const user = useSelector(selectUserInfo);
-    const loaded = useSelector(selectUserLoaded);
     const courses = useSelector(selectCoursesData);
 
     const dispatch = useDispatch();
@@ -22,12 +20,6 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
         dispatch(getShoppingCart());
     }, []);
 
-    if (loaded) {
-        courses?.coursesDestructured.map(el => {
-            console.log(el);
-        })
-    }
-    
     return (
         <div className="cart-shop-container">
             <div className="cart-shop-header">
@@ -68,6 +60,7 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
                 <div className="cart-shop-total-btn">
                     <NavLink to="/checkout">
                         <Button
+
                             variant="contained"
                             className={classes.cartShopBtn}
                         >

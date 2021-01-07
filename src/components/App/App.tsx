@@ -16,10 +16,10 @@ import RegistrationPageForTeacher from "../registrationPageForTeacher/registrati
 import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
 import ProfileTeacher from "../profileTeacher/ProfileTeacher";
 import ShoppingCart from '../shoppingCart/ShoppingCart';
+import Checkout from '../checkout/Checkout';
+import MyTrainingPage from '../ myTrainingPage/MyTrainingPage';
 
 import "./App.css";
-import Checkout from '../checkout/Checkout';
-
 
 const App = () => {
     const dispatch = useDispatch();
@@ -46,6 +46,8 @@ const App = () => {
                     <Route path="/profile-teacher/:teacherId?" component={ProfileTeacher} />
                     <Route path="/shopping-cart" component={ShoppingCart} />
                     <Route path="/checkout" component={Checkout} exact/>
+                    <Route path="/purchased-courses" component={MyTrainingPage} exact/>
+
                     {/* <Redirect to="/main" /> */}
                 </Switch>
             </div>

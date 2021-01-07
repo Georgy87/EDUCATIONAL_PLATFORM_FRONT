@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { useProfileCourseInfoDopStyles } from '../profileCourse/profileCourseMaterials/profileCourseInfoDop/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCoursesData } from "../../store/ducks/user/selectors";
-import { getShoppingCart } from "../../store/ducks/user/saga";
+import { getShoppingCart, purchasedCourses } from "../../store/ducks/user/saga";
 
 import "./Checkout.css";
 
@@ -23,6 +23,17 @@ const Checkout: React.FC = (): React.ReactElement => {
     useEffect(() => {
         dispatch(getShoppingCart());
     }, []);
+
+    const onPurchasedCourses = (): void => {
+        let purchasedCoursesIds: string[] = [];
+        if (courses) {
+            courses?.coursesDestructured.map(el => {
+                console.log(el.id);
+                purchasedCoursesIds.push(el.id);
+            });
+            dispatch(purchasedCourses(purchasedCoursesIds, courses.totalPrice));
+        }
+    }
 
     return (
         <div className="checkout-container">
@@ -58,6 +69,7 @@ const Checkout: React.FC = (): React.ReactElement => {
                 <h3>Итого: {courses?.totalPrice}</h3>
                     <div className="checkout-small-descr-btn">
                         <Button
+                            onClick={onPurchasedCourses}
                             variant="contained"
                             className={classes.cartShopBtn}
                         >
