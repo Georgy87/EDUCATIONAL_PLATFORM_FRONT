@@ -139,7 +139,6 @@ export const setTimeModuleAndLessons = (
     minutes: number,
     seconds: number
 ): ThunkType => {
-    console.log(hours, minutes, seconds);
     return async (dispatch: DispatchType) => {
         try {
             const data = await CourseContentApi.setTimeModuleAndLessons(

@@ -1,4 +1,7 @@
+import { Dispatch } from "react";
+import { ThunkAction } from "redux-thunk";
 import { CourseProfileStateType } from "../courseProfile/types";
+import { AppStateType } from "../../store";
 
 export enum LoadingStateType {
     LOADED = 'LOADED',
@@ -43,3 +46,13 @@ export type CoursesActions =
     | SetCoursesActionType
     | SetLoadedActionType
     | SetDeleteActionType;
+
+// Thunk Types
+
+export type DispatchType = Dispatch<CoursesActions>;
+export type ThunkType = ThunkAction<
+    Promise<void>,
+    AppStateType,
+    unknown,
+    CoursesActions
+>;

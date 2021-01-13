@@ -7,22 +7,21 @@ import Registration from "../registrationPage/RegistrationPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "../../store/ducks/user/saga";
-import PrivateOffice from "../ privateOffice/PrivateOffice";
 import Courses from "../courses/Courses";
 import { getCourses } from "../../store/ducks/courses/saga";
 import ProfileCourse from "../profileCourse/ProfileCourse";
 import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 import RegistrationPageForTeacher from "../registrationPageForTeacher/registrationTeacher/registrationTeacher";
-import TeacherPrivateOffice from '../teacherPrivateOffice/TeacherPrivateOffice';
 import ProfileTeacher from "../profileTeacher/ProfileTeacher";
 import ShoppingCart from '../shoppingCart/ShoppingCart';
 import Checkout from '../checkout/Checkout';
 import MyTrainingPage from '../ myTrainingPage/MyTrainingPage';
-import { selectUserInfo, selectUserStatus } from '../../store/ducks/user/selectors';
+import { selectUserInfo } from '../../store/ducks/user/selectors';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import "./App.css";
-import { LoadingStateType } from "../../store/ducks/courses/types";
+import PrivateOfficeAdmin from '../privateOfficeAdmin/PrivateOfficeAdmin';
+import TeacherPrivateOfficeAdmin from '../teacherPrivateOffice/TeacherPrivateOffice';
 
+import "./App.css";
 
 function App() {
     const dispatch = useDispatch();
@@ -47,7 +46,7 @@ function App() {
             <div className="app">
                 <Header />
                 <Switch>
-                    <Route path="/privatoffice" component={PrivateOffice} />
+                    <Route path="/privatoffice" component={PrivateOfficeAdmin} />
                     <Route path="/main" component={MainPage} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
@@ -56,7 +55,7 @@ function App() {
                     <Route path="/user-photo" component={() => <UserProfileNavbar />} />
                     <Route path="/user-info" component={() => <UserProfileNavbar />} />
                     <Route path="/registration-teacher" component={RegistrationPageForTeacher} />
-                    <Route path="/teacher" component={TeacherPrivateOffice} />
+                    <Route path="/teacher" component={TeacherPrivateOfficeAdmin} />
                     <Route path="/profile-teacher/:teacherId?" component={ProfileTeacher} />
                     <Route path="/shopping-cart" component={ShoppingCart} />
                     <Route path="/checkout" component={Checkout} exact />

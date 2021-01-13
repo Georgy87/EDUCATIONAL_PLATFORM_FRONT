@@ -1,19 +1,7 @@
-import axios from "axios";
 import { setPurchasedCourses, setShoppingCourses, setUser } from "./actions";
-import { UserActionsTypes } from "./types";
-import { Dispatch } from "react";
-import { ThunkAction } from "redux-thunk";
-import { AppStateType } from "../../store";
 import { userApi } from "../../../services/api/userApi";
 import { setUserLoading, setUserLoaded } from "../user/actions";
-
-type DispatchType = Dispatch<UserActionsTypes>;
-type ThunkType = ThunkAction<
-    Promise<void>,
-    AppStateType,
-    unknown,
-    UserActionsTypes
->;
+import { DispatchType, ThunkType } from "./types";
 
 export const registration = (name: string, surname: string, email: string, password: string, teacher: boolean | false): ThunkType => {
     return async () => {

@@ -1,5 +1,31 @@
 import produce from "immer";
-const initialState = {
+
+export type CourseDirectionsType = {
+    _id: string;
+    name: string;
+    direction: string;
+};
+
+export type FilterByDirection = {
+    _id: string;
+    user: string;
+    avatar: string;
+    photo: string;
+    profession: string;
+    competence: string;
+    author: string;
+    price: string;
+    smallDescription: string;
+    fullDescription: string;
+};
+
+export type DirectionsStateType = {
+    courseDirections: CourseDirectionsType[];
+    filterByDirection: FilterByDirection[];
+    isFilter: boolean;
+};
+
+const initialState: DirectionsStateType = {
     courseDirections: [],
     filterByDirection: [],
     isFilter: false,
@@ -23,14 +49,14 @@ const directionsReducer = produce((draftState = initialState, action) => {
         case "DELETE-FILTER-BY-DIRECTIONS":
             draftState.filterByDirection = [
                 ...draftState.filterByDirection.filter(
-                    (course) => course._id !== action.payload
+                    (course: any) => course._id !== action.payload
                 ),
             ];
             break;
         case "DELETE-COURSE-DIRECTIONS":
             draftState.courseDirections = [
                 ...draftState.courseDirections.filter(
-                    (course) => course._id !== action.payload
+                    (course: any) => course._id !== action.payload
                 ),
             ];
             break;

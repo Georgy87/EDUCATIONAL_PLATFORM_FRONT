@@ -43,14 +43,4 @@ export const getTeahcer = (teacherId: string | undefined): ThunkType  => {
     }
 }
 
-// export const getShoppingCart = (): ThunkType  => {
-//     return async (dispatch: DispatchType) => {
-//         try {
-//             const data = await CourseProfileApi.getShoppingCart();
-//             // console.log(data);
-//         } catch (error) {
-//             console.log({error: `Get teacher ${error}`});
-//         }
-//     }
-// }
 

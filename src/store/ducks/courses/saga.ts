@@ -1,26 +1,18 @@
-import { Dispatch } from "react";
-import { ThunkAction } from "redux-thunk";
 import { CoursesApi } from "../../../services/api/coursesApi";
-import { AppStateType } from "../../store";
 import { deleteFilterByDirections } from "../directions/actions";
-import {
-    deleteCourseAction,
-    setCourses,
-    setLoaded,
-    setLoading,
-} from "./actions";
-import { CoursesActions } from "./types";
+import { deleteCourseAction, setCourses, setLoaded, setLoading } from "./actions";
+import { ThunkType, DispatchType } from "./types";
 
 export const uploadNewCourse = (
-    photoCourse: string | "",
+    photoCourse: File,
     profession: string,
     author: string,
     price: string,
     shotDescription: string,
     fullDescription: string,
-    module: string | "",
-    fileVideo: string | "",
-    lesson: string | ""
+    module: string,
+    fileVideo: File,
+    lesson: string,
 ) => {
     const formData = new FormData();
     formData.append("file", fileVideo);
@@ -30,9 +22,9 @@ export const uploadNewCourse = (
     formData.append("price", price);
     formData.append("smallDescription", shotDescription);
     formData.append("fullDescription", fullDescription);
-
     formData.append("lesson", lesson);
     formData.append("module", module);
+
     return async () => {
         try {
             await CoursesApi.uploadCourse(formData);
@@ -41,14 +33,6 @@ export const uploadNewCourse = (
         }
     };
 };
-
-type DispatchType = Dispatch<CoursesActions>;
-type ThunkType = ThunkAction<
-    Promise<void>,
-    AppStateType,
-    unknown,
-    CoursesActions
->;
 
 export const getCourses = (): ThunkType => {
     return async (dispatch: DispatchType) => {
@@ -63,7 +47,7 @@ export const getCourses = (): ThunkType => {
     };
 };
 
-export const deleteCourse = (courseId: string, photo: string) => {
+export const deleteCourse = (courseId: string, photo: string): ThunkType => {
     return async (dispatch: any) => {
         try {
             await CoursesApi.deleteCourse(courseId, photo);
