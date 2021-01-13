@@ -1,5 +1,5 @@
 import { CourseDirectionsType, FilterByDirectionType } from "./reducer"
-import { AddCourseDirectionsActionType, DeleteFilterByDirectionsActionType, DeleteСourseDirectionsActionType, DirectionsActionType, SetCourseDirectionsActionType } from "./types"
+import { AddCourseDirectionsActionType, DeleteFilterByDirectionsActionType, DeleteСourseDirectionsActionType, DirectionsActionType, SetCourseDirectionsActionType, SetFilterByDirectionsActionType } from "./types"
 
 export const addCourseDirections = (directions: CourseDirectionsType): AddCourseDirectionsActionType => {
     return {
@@ -8,14 +8,14 @@ export const addCourseDirections = (directions: CourseDirectionsType): AddCourse
     }
 }
 
-export const setCourseDirections = (directions: CourseDirectionsType): SetCourseDirectionsActionType => {
+export const setCourseDirections = (directions: CourseDirectionsType[]): SetCourseDirectionsActionType => {
     return {
         type: DirectionsActionType.SET_COURSE_DIRECTIONS,
         payload: directions
     }
 }
 
-export const setFilterByDirections = (payload: FilterByDirectionType[]) => {
+export const setFilterByDirections = (payload: FilterByDirectionType[]): SetFilterByDirectionsActionType  => {
     return {
         type: DirectionsActionType.SET_FILTER_BY_DIRECTIONS,
         payload
@@ -30,6 +30,7 @@ export const deleteFilterByDirections = (id: string): DeleteFilterByDirectionsAc
 }
 
 export const deleteСourseDirections = (directionId: string): DeleteСourseDirectionsActionType => {
+    console.log(directionId);
     return {
         type: DirectionsActionType.DELETE_COURSE_DIRECTIONS,
         payload: directionId

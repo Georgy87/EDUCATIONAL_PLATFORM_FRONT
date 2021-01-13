@@ -6,15 +6,17 @@ import "./PrivateOfficeAdmin.css";
 
 const PrivateOfficeAdmin: React.FC = (): React.ReactElement => {
     const [directionName, setDirectionName] = useState<string>("");
-    const [photoDirection, setFile] = useState<File>();
+    const [photoDirection, setFile] = useState<any>();
 
     const dispatch = useDispatch();
 
     const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if ( e.target.files === null ) {
+        if (e.target.files === null ) {
             throw new Error("Error finding e.target.files");
         }
+
         return setFile(e.target.files[0]);
+
     }
 
     return (

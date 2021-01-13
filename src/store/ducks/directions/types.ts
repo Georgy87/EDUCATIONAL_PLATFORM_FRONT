@@ -1,4 +1,7 @@
-import { CourseDirectionsType } from "./reducer";
+import { Dispatch } from "react";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "../../store";
+import { CourseDirectionsType, FilterByDirectionType } from "./reducer";
 
 export enum DirectionsActionType {
     SET_COURSE_DIRECTIONS = "SET-COURSE-DIRECTIONS",
@@ -15,12 +18,12 @@ export type AddCourseDirectionsActionType = {
 
 export type SetCourseDirectionsActionType = {
     type: DirectionsActionType.SET_COURSE_DIRECTIONS;
-    payload: CourseDirectionsType;
+    payload: CourseDirectionsType[];
 };
 
 export type SetFilterByDirectionsActionType = {
     type: DirectionsActionType.SET_FILTER_BY_DIRECTIONS;
-    payload: CourseDirectionsType;
+    payload: FilterByDirectionType[];
 };
 
 export type DeleteFilterByDirectionsActionType = {
@@ -33,9 +36,19 @@ export type DeleteСourseDirectionsActionType = {
     payload: string;
 };
 
-export type DirectionsActions =
+export type DirectionsActionsType =
     | AddCourseDirectionsActionType
     | SetCourseDirectionsActionType
     | SetFilterByDirectionsActionType
     | DeleteFilterByDirectionsActionType
     | DeleteСourseDirectionsActionType;
+
+// Thunk types
+
+export type DispatchType = Dispatch<DirectionsActionsType>;
+export type ThunkType = ThunkAction<
+    Promise<void>,
+    AppStateType,
+    unknown,
+    DirectionsActionsType
+>;

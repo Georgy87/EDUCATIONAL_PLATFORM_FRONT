@@ -1,5 +1,5 @@
 import produce from "immer";
-import { DirectionsActions, DirectionsActionType } from "./types";
+import { DirectionsActionsType, DirectionsActionType } from "./types";
 
 export type CourseDirectionsType = {
     _id: string;
@@ -32,7 +32,7 @@ const initialState: DirectionsStateType = {
     isFilter: false,
 };
 
-const directionsReducer = produce((draftState = initialState, action:  DirectionsActions ) => {
+const directionsReducer = produce((draftState = initialState, action:  DirectionsActionsType ) => {
     switch (action.type) {
         case DirectionsActionType.SET_COURSE_DIRECTIONS:
             draftState.courseDirections = action.payload;
@@ -55,6 +55,7 @@ const directionsReducer = produce((draftState = initialState, action:  Direction
             ];
             break;
         case DirectionsActionType.DELETE_COURSE_DIRECTIONS:
+            console.log(action.payload)
             draftState.courseDirections = [
                 ...draftState.courseDirections.filter(
                     (course: FilterByDirectionType) => course._id !== action.payload
