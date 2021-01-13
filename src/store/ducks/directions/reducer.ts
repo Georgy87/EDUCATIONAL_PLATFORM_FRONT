@@ -1,4 +1,5 @@
 import produce from "immer";
+import { DirectionsActions, DirectionsActionType } from "./types";
 
 export type CourseDirectionsType = {
     _id: string;
@@ -6,7 +7,7 @@ export type CourseDirectionsType = {
     direction: string;
 };
 
-export type FilterByDirection = {
+export type FilterByDirectionType = {
     _id: string;
     user: string;
     avatar: string;
@@ -21,7 +22,7 @@ export type FilterByDirection = {
 
 export type DirectionsStateType = {
     courseDirections: CourseDirectionsType[];
-    filterByDirection: FilterByDirection[];
+    filterByDirection: FilterByDirectionType[];
     isFilter: boolean;
 };
 
@@ -31,32 +32,32 @@ const initialState: DirectionsStateType = {
     isFilter: false,
 };
 
-const directionsReducer = produce((draftState = initialState, action) => {
+const directionsReducer = produce((draftState = initialState, action:  DirectionsActions ) => {
     switch (action.type) {
-        case "SET-COURSE-DIRECTIONS":
+        case DirectionsActionType.SET_COURSE_DIRECTIONS:
             draftState.courseDirections = action.payload;
             break;
-        case "ADD-COURSE-DIRECTIONS":
+        case DirectionsActionType.ADD_COURSE_DIRECTIONS:
             draftState.courseDirections = [
                 ...draftState.courseDirections,
                 action.payload,
             ];
             break;
-        case "SET-FILTER-BY-DIRECTIONS":
+        case DirectionsActionType.SET_FILTER_BY_DIRECTIONS:
             draftState.filterByDirection = action.payload;
             draftState.isFilter = true;
             break;
-        case "DELETE-FILTER-BY-DIRECTIONS":
+        case DirectionsActionType.DELETE_FILTER_BY_DIRECTIONS:
             draftState.filterByDirection = [
                 ...draftState.filterByDirection.filter(
-                    (course: any) => course._id !== action.payload
+                    (course: FilterByDirectionType) => course._id !== action.payload
                 ),
             ];
             break;
-        case "DELETE-COURSE-DIRECTIONS":
+        case DirectionsActionType.DELETE_COURSE_DIRECTIONS:
             draftState.courseDirections = [
                 ...draftState.courseDirections.filter(
-                    (course: any) => course._id !== action.payload
+                    (course: FilterByDirectionType) => course._id !== action.payload
                 ),
             ];
             break;

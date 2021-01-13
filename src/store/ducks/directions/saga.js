@@ -67,7 +67,6 @@ export const filterByDirection = (search) => {
 };
 
 export const deleteDirection = (directionId, direction) => {
-
     return async (dispatch) => {
         try {
             const response = axios.delete(

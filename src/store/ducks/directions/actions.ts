@@ -1,46 +1,37 @@
-export enum DirectionsActionType {
-    SET_COURSE_DIRECTIONS = "SET-COURSE-DIRECTIONS",
-    ADD_COURSE_DIRECTIONS = "ADD-COURSE-DIRECTIONS",
-    SET_FILTER_BY_DIRECTIONS = "SET-FILTER-BY-DIRECTIONS",
-    DELETE_FILTER_BY_DIRECTIONS = "DELETE-FILTER-BY-DIRECTIONS",
-    DELETE_COURSE_DIRECTIONS = "DELETE-COURSE-DIRECTIONS",
-}
+import { CourseDirectionsType, FilterByDirectionType } from "./reducer"
+import { AddCourseDirectionsActionType, DeleteFilterByDirectionsActionType, DeleteСourseDirectionsActionType, DirectionsActionType, SetCourseDirectionsActionType } from "./types"
 
-// export type SetCourseDirections = {
-//     type:
-// }
-
-export const setCourseDirections = (directions: any) => {
+export const addCourseDirections = (directions: CourseDirectionsType): AddCourseDirectionsActionType => {
     return {
-        type: "SET-COURSE-DIRECTIONS",
+        type:  DirectionsActionType.ADD_COURSE_DIRECTIONS,
         payload: directions
     }
 }
 
-export const addCourseDirections = (directions: any) => {
+export const setCourseDirections = (directions: CourseDirectionsType): SetCourseDirectionsActionType => {
     return {
-        type: "ADD-COURSE-DIRECTIONS",
+        type: DirectionsActionType.SET_COURSE_DIRECTIONS,
         payload: directions
     }
 }
 
-export const setFilterByDirections = (files: any) => {
+export const setFilterByDirections = (payload: FilterByDirectionType[]) => {
     return {
-        type: "SET-FILTER-BY-DIRECTIONS",
-        payload: files
+        type: DirectionsActionType.SET_FILTER_BY_DIRECTIONS,
+        payload
     }
 }
 
-export const deleteFilterByDirections = (course: any) => {
+export const deleteFilterByDirections = (id: string): DeleteFilterByDirectionsActionType => {
     return {
-        type: "DELETE-FILTER-BY-DIRECTIONS",
-        payload: course
+        type: DirectionsActionType.DELETE_FILTER_BY_DIRECTIONS,
+        payload: id
     }
 }
 
-export const deleteСourseDirections = (course: any) => {
+export const deleteСourseDirections = (directionId: string): DeleteСourseDirectionsActionType => {
     return {
-        type: "DELETE-COURSE-DIRECTIONS",
-        payload: course
+        type: DirectionsActionType.DELETE_COURSE_DIRECTIONS,
+        payload: directionId
     }
 }

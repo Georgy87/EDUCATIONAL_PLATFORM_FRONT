@@ -48,7 +48,7 @@ export const getCourses = (): ThunkType => {
 };
 
 export const deleteCourse = (courseId: string, photo: string): ThunkType => {
-    return async (dispatch: any) => {
+    return async (dispatch: DispatchType) => {
         try {
             await CoursesApi.deleteCourse(courseId, photo);
             dispatch(deleteCourseAction(courseId));
@@ -58,3 +58,5 @@ export const deleteCourse = (courseId: string, photo: string): ThunkType => {
         }
     };
 };
+
+

@@ -26,3 +26,5 @@ export const deleteCourseAction = (payload: string): SetDeleteActionType => {
         payload,
     };
 };
+
+
