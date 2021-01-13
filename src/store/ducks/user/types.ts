@@ -3,8 +3,8 @@ import { CourseProfileStateType } from "../courseProfile/types";
 export enum UserActionType {
     SET_USER = "SET-USER",
     LOGOUT = "LOGOUT",
-    SET_LOADING = "SET-LOADING",
-    SET_LOADED = "SET-LOADED",
+    SET_LOADING = "LOADING",
+    SET_LOADED = "LOADED",
     SET_SHOPPING_CART_COURSES = "SET-SHOPPING-CART-COURSES",
     SET_PURCHASED_COURSES = "SET-PURCHASED-COURSES"
 }

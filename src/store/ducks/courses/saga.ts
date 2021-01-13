@@ -55,9 +55,7 @@ export const getCourses = (): ThunkType => {
         dispatch(setLoading());
         try {
             const data = await CoursesApi.getCourses();
-            dispatch(
-                setCourses(data.courses)
-            );
+            dispatch(setCourses(data.courses));
             dispatch(setLoaded());
         } catch (e) {
             console.log(e);

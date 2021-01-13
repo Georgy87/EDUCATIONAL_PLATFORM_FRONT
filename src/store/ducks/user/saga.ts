@@ -15,23 +15,10 @@ type ThunkType = ThunkAction<
     UserActionsTypes
 >;
 
-export const registration = (
-    name: string,
-    surname: string,
-    email: string,
-    password: string,
-    teacher: boolean | false
-) => {
+export const registration = (name: string, surname: string, email: string, password: string, teacher: boolean | false): ThunkType => {
     return async () => {
         try {
-            await axios.post(`http://localhost:5000/api/auth/registration`, {
-                name,
-                surname,
-                email,
-                password,
-                teacher,
-            });
-            // return console.log(response.data);
+            await userApi.registrationUser(name, surname, email, password, teacher);
         } catch (error) {
             console.log(error);
         }
@@ -42,16 +29,10 @@ export const login = (email: string, password: string): ThunkType => {
     return async (dispatch: DispatchType) => {
         dispatch(setUserLoading());
         try {
-            const response = await axios.post(
-                "http://localhost:5000/api/auth/login",
-                {
-                    email,
-                    password,
-                }
-            );
+            const data = await userApi.loginUser(email, password);
+            localStorage.setItem("token", data.token);
+            dispatch(setUser(data));
             dispatch(setUserLoaded());
-            localStorage.setItem("token", response.data.token);
-            dispatch(setUser(response.data));
         } catch (error) {
             console.log(error);
         }
@@ -62,63 +43,35 @@ export const auth = (): ThunkType => {
     return async (dispatch: DispatchType) => {
         dispatch(setUserLoading());
         try {
-            const user = await userApi.getUser();
-            dispatch(setUser(user));
-            localStorage.setItem("token", user.token);
+            const data = await userApi.getUser();
+            dispatch(setUser(data));
+            localStorage.setItem("token", data.token);
             dispatch(setUserLoaded());
         } catch (e) {
             console.log(e);
-            // localStorage.removeItem("token");
         }
     };
 };
 
-export const uploadAvatar = (file: any): ThunkType => {
+export const uploadAvatar = (file: File): ThunkType => {
     return async (dispatch: DispatchType) => {
         dispatch(setUserLoading());
         try {
             const formData = new FormData();
-
             formData.append("file", file);
-
-            const result = await axios.post(
-                `http://localhost:5000/api/course/avatar`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
+            const data = await userApi.uploadUserAvatar(formData);
             dispatch(setUserLoaded());
-            return await dispatch(setUser(result.data));
-            // console.log(result);
+            dispatch(setUser(data.data));
         } catch (error) {
             console.log(error);
         }
     };
 };
 
-export const changeInfoProfileUser = (
-    name: string,
-    surname: string,
-    professionalСompetence: string
-): ThunkType => {
-    return async (dispatch: DispatchType) => {
+export const changeInfoProfileUser = (name: string, surname: string, professionalСompetence: string): ThunkType => {
+    return async () => {
         try {
-            const result = await axios.post(
-                `http://localhost:5000/api/auth/change-info`,
-                { name, surname, professionalСompetence },
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                }
-            );
+            await userApi.changeInfoUser(name, surname, professionalСompetence);
         } catch (error) {
             console.log(error);
         }
@@ -157,10 +110,7 @@ export const deleteShoppingCartCourse = (id: string): ThunkType => {
     };
 };
 
-export const purchasedCourses = (
-    ids: string[],
-    totalPrice: number
-): ThunkType => {
+export const purchasedCourses = (ids: string[], totalPrice: number): ThunkType => {
     return async () => {
         try {
             await userApi.setPurchasedCourses(ids, totalPrice);

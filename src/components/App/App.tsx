@@ -1,10 +1,10 @@
 import React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import Header from "../header/Header";
 import LoginPage from "../loginPage/LoginPage";
 import MainPage from "../mainPage/MainPage";
 import Registration from "../registrationPage/RegistrationPage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "../../store/ducks/user/saga";
 import PrivateOffice from "../ privateOffice/PrivateOffice";
@@ -18,18 +18,32 @@ import ProfileTeacher from "../profileTeacher/ProfileTeacher";
 import ShoppingCart from '../shoppingCart/ShoppingCart';
 import Checkout from '../checkout/Checkout';
 import MyTrainingPage from '../ myTrainingPage/MyTrainingPage';
-
+import { selectUserInfo, selectUserStatus } from '../../store/ducks/user/selectors';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import "./App.css";
+import { LoadingStateType } from "../../store/ducks/courses/types";
 
-const App = () => {
+
+function App() {
     const dispatch = useDispatch();
-    dispatch(getCourses());
+    let history = useHistory();
+    const loading = useSelector(selectUserInfo);
+
     useEffect(() => {
+        dispatch(getCourses());
+        history.push('/main');
         dispatch(auth());
-        // dispatch(getCourses());
     }, []);
+
+    if (loading.loadingState === "NEVER") {
+        return (
+            <div className="app-circular-progress">
+                 <TwitterIcon color="primary" style={{ width: 100, height: 100 }} />
+            </div>
+        )
+    }
+
     return (
-        <BrowserRouter>
             <div className="app">
                 <Header />
                 <Switch>
@@ -37,7 +51,7 @@ const App = () => {
                     <Route path="/main" component={MainPage} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/login" component={LoginPage} />
-                    <Route path="/courses/:filter?"  component={Courses} />
+                    <Route path="/courses/:filter?" component={Courses} />
                     <Route path="/profile/:profileId?" component={ProfileCourse} />
                     <Route path="/user-photo" component={() => <UserProfileNavbar />} />
                     <Route path="/user-info" component={() => <UserProfileNavbar />} />
@@ -45,13 +59,12 @@ const App = () => {
                     <Route path="/teacher" component={TeacherPrivateOffice} />
                     <Route path="/profile-teacher/:teacherId?" component={ProfileTeacher} />
                     <Route path="/shopping-cart" component={ShoppingCart} />
-                    <Route path="/checkout" component={Checkout} exact/>
-                    <Route path="/purchased-courses" component={MyTrainingPage} exact/>
+                    <Route path="/checkout" component={Checkout} exact />
+                    <Route path="/purchased-courses" component={MyTrainingPage} exact />
 
                     {/* <Redirect to="/main" /> */}
                 </Switch>
             </div>
-        </BrowserRouter>
     );
 };
 

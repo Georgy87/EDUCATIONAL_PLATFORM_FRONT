@@ -16,20 +16,10 @@ type ThunkType = ThunkAction<
     CourseContentActions
 >;
 
-export const uploadCourseContent = (
-    courseId: string,
-    file: any,
-    lesson: string,
-    module: string
-): ThunkType => {
+export const uploadCourseContent = (courseId: string, file: any, lesson: string, module: string): ThunkType => {
     return async (dispatch: DispatchType) => {
         try {
-            const data = await CourseContentApi.uploadContent(
-                courseId,
-                file,
-                lesson,
-                module
-            );
+            const data = await CourseContentApi.uploadContent(courseId, file, lesson, module);
             dispatch(setCourseContent(data));
         } catch (e) {
             console.log(e);
@@ -37,16 +27,11 @@ export const uploadCourseContent = (
     };
 };
 
-export const uploadLesson = (
-    courseId: string,
-    file: any,
-    lesson: string,
-    moduleId: string
-): ThunkType => {
+export const uploadLesson = (courseId: string, file: any,lesson: string,moduleId: string): ThunkType => {
     return async (dispatch: DispatchType) => {
         try {
             const data = await CourseContentApi.uploadLesson(
-                courseId,
+                 courseId,
                 file,
                 lesson,
                 moduleId
@@ -138,13 +123,7 @@ export const sendLinksToResources = (
 ): ThunkType => {
     return async (dispatch: DispatchType)  => {
         try {
-            const data = await CourseContentApi.sendLinksToResources(
-                courseId,
-                moduleId,
-                lessonId,
-                linkName,
-                linksToResources
-            );
+            const data = await CourseContentApi.sendLinksToResources(courseId, moduleId, lessonId, linkName, linksToResources);
             dispatch(setCourseContent(data));
         } catch (e) {
             console.log(e);
