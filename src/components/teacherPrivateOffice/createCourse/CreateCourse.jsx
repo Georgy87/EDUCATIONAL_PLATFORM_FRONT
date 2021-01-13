@@ -1,11 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    getAllTeacherCourses,
-    getCourseContent,
-    uploadCourseContent,
-} from "../../../store/ducks/contentCourses/saga";
+import { getAllTeacherCourses, getCourseContent, uploadCourseContent } from "../../../store/ducks/contentCourses/saga";
 import CoursePreview from "../coursePreview/CoursePreview";
 import { uploadNewCourse } from "../../../store/ducks/courses/saga";
 
@@ -115,21 +111,7 @@ const CreateCourse = () => {
                 </button>
                 <Button
                     disabled={!photoCourse || !profession || !author || !price || !shotDescription || !fullDescription || !module || !fileVideo ||!lesson}
-                    onClick={() =>
-                        dispatch(
-                            uploadNewCourse(
-                                photoCourse,
-                                profession,
-                                author,
-                                price,
-                                shotDescription,
-                                fullDescription,
-                                module,
-                                fileVideo,
-                                lesson
-                            )
-                        )
-                    }
+                    onClick={() => dispatch(uploadNewCourse(photoCourse, profession, author, price, shotDescription, fullDescription, module, fileVideo, lesson))}
                 >
                     Создать курс
                 </Button>

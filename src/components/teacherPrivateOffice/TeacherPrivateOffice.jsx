@@ -4,7 +4,7 @@ import CoursePreview from "./coursePreview/CoursePreview";
 
 import "./TeacherPrivateOffice.css";
 
-const TeacherPrivateOffice = () => {
+const TeacherPrivateOfficeAdmin = () => {
     return (
         <div>
             <div className="teacher-office-container">
@@ -22,4 +22,4 @@ const TeacherPrivateOffice = () => {
     );
 };
 
-export default TeacherPrivateOffice;
+export default TeacherPrivateOfficeAdmin;

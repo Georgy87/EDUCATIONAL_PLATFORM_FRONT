@@ -1,10 +1,12 @@
-import { CourseProfileStateType } from "../courseProfile/types";
+import { Dispatch } from "react";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "../../store";
 
 export enum UserActionType {
     SET_USER = "SET-USER",
     LOGOUT = "LOGOUT",
-    SET_LOADING = "SET-LOADING",
-    SET_LOADED = "SET-LOADED",
+    SET_LOADING = "LOADING",
+    SET_LOADED = "LOADED",
     SET_SHOPPING_CART_COURSES = "SET-SHOPPING-CART-COURSES",
     SET_PURCHASED_COURSES = "SET-PURCHASED-COURSES"
 }
@@ -100,4 +102,12 @@ export type UserActionsTypes =
     | SetShoppingCartCourses
     | SetPurchasedCourses;
 
+// Thunk types
 
+export type DispatchType = Dispatch<UserActionsTypes>;
+export type ThunkType = ThunkAction<
+    Promise<void>,
+    AppStateType,
+    unknown,
+    UserActionsTypes
+>;

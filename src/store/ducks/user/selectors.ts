@@ -8,3 +8,4 @@ export const selectCoursesData = (state: AppStateType) => state.user.shoppingCar
 
 export const selectLoadingState = (state: AppStateType) => selectUserInfo(state).loadingState;
 export const selectUserLoaded = (state: AppStateType) => selectLoadingState(state) === UserActionType.SET_LOADED;
+export const selectUserStatus = (state: AppStateType) =>  selectUserInfo(state).loadingState;
