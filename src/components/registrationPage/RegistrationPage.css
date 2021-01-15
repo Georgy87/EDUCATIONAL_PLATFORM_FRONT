@@ -68,7 +68,7 @@
     text-decoration: none;
     outline: none;
     display: inline-block;
-    min-width: 140px;
+    min-width: 180px;
     height: 45px;
     line-height: 45px;
     border-radius: 45px;
@@ -85,13 +85,13 @@
     transition: 0.3s;
 }
 
-.registration button:hover {
+/* .registration button:hover {
     background: #364f94;
     box-shadow: 0 15px 20px rgba(46, 104, 229, 0.4);
     color: white;
     cursor: pointer;
     transform: translateY(-3px);
-}
+} */
 
 .registration-registrations {
     margin: 0 auto;

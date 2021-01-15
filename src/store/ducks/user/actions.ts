@@ -1,4 +1,4 @@
-import { SetLoadedActionType, SetLoadingActionType } from "../user/types";
+import { SetLoadedActionType, SetLoadingActionType, SetSubmitLoadingActionType } from "../user/types";
 import { CoursesDataType, UserType } from "./types";
 import {
     LogoutType,
@@ -25,6 +25,13 @@ export const logout = (): LogoutType => {
 export const setUserLoading = (): SetLoadingActionType => {
     return {
         type: UserActionType.SET_LOADING,
+    };
+};
+
+export const setSubmitLoading = (payload: Boolean): SetSubmitLoadingActionType => {
+    return {
+        type: UserActionType.SET_SUBMIT_LOADING,
+        payload
     };
 };
 

@@ -48,7 +48,7 @@ function App() {
                 <Switch>
                     <Route path="/privatoffice" component={PrivateOfficeAdmin} />
                     <Route path="/main" component={MainPage} />
-                    <Route path="/registration" component={Registration} />
+                    <Route path="/registration" component={() => <Registration />} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/courses/:filter?" component={Courses} />
                     <Route path="/profile/:profileId?" component={ProfileCourse} />

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { InjectedFormProps, reduxForm, reset } from "redux-form";
-import { requireEmail, minLength, ValidatorsType } from "../validate/validateInput";
+import { requireEmail, minLength } from "../validate/validateInput";
 import { createField, Input } from "../inputs/inputs";
 import { login } from "../../store/ducks/user/saga";
 
