@@ -1,8 +1,10 @@
 import React from "react";
 import photoTeacher from "../../assets/photoTeacher/Снимок экрана 2020-12-22 в 01.25.47.png";
-import "./TeacherRegistration.css";
 import { NavLink } from 'react-router-dom';
-const TeacherRegistration = () => {
+
+import "./TeacherRegistration.css";
+
+const TeacherRegistration: React.FC = () => {
     return (
         <div>
             <div className="teacher-container">

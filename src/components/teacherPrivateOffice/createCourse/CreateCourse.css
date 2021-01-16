@@ -46,18 +46,16 @@
 .teacher-course-add button {
     text-decoration: none;
     outline: none;
-    display: block;
+    display: flex;
     min-width: 140px;
+    align-items: center;
     height: 45px;
-    line-height: 45px;
     margin-top: 30px;
     font-family: "Montserrat", sans-serif;
     font-size: 11px;
-    text-align: center;
     letter-spacing: 3px;
     border: none;
-    background: white;
-    box-shadow: 0 14px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
     background: #b81f33;
     color: rgb(196, 190, 190);
@@ -65,6 +63,8 @@
 }
 
 .teacher-course-add button:hover {
+    /* color: white; */
+    background-color: #d5152f;
     color: white;
     cursor: pointer;
 }

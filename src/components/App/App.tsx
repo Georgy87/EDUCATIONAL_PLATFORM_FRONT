@@ -30,7 +30,7 @@ function App() {
 
     useEffect(() => {
         dispatch(getCourses());
-        history.push('/main');
+        // history.push('/main');
         dispatch(auth());
     }, []);
 

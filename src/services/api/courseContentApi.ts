@@ -46,7 +46,7 @@ export type CoursesContentApiType = {
 };
 
 export const CourseContentApi = {
-    uploadContent(courseId: string, file: any, lesson: string, module: string) {
+    uploadContent(courseId: string | null, file: any, lesson: string, module: string) {
         const formData = new FormData();
         formData.append("module", module);
         formData.append("file", file);
@@ -73,7 +73,7 @@ export const CourseContentApi = {
             })
             .then((response) => response.data);
     },
-    getCourseCoutent(courseId: string) {
+    getCourseCoutent(courseId: string | null) {
         return instance
             .get<CoursesContentApiType>(`teacher/courses?courseId=${courseId}`, {
                 headers: {
