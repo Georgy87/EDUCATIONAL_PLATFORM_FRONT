@@ -1,5 +1,4 @@
 import React from "react";
-import ReactPlayer from "react-player";
 import ReactWebMediaPlayer from "react-web-media-player";
 
 export const VideoProfileForModal = (props) => {

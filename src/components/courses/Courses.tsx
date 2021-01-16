@@ -1,20 +1,23 @@
 import React from "react";
-import "./Courses.css";
 import { useDispatch, useSelector } from "react-redux";
 import CourseItems from "./CourseItems/CourseItems";
 import photo from "../../assets/Снимок экрана 2020-11-12 в 22.24.33.png"
 import { useEffect } from "react";
 import { filterByDirection } from "../../store/ducks/directions/saga";
-// import { filterByDirection } from "../../actions/directions";
+import { selectFilterByDirection } from "../../store/ducks/directions/selectors";
+import { useParams } from "react-router-dom";
 
-const Courses = (props) => {
-    const state = useSelector(state => state.directions.filterByDirection);
+import "./Courses.css";
 
-    let courseFilterId = props.match.params.filter;
+const Courses: React.FC = () => {
+    const state = useSelector(selectFilterByDirection);
+    const params: { filter: string } = useParams();
+    console.log(params.filter);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(filterByDirection(courseFilterId));
+        dispatch(filterByDirection(params.filter));
     }, []);
     return (
         <div>
@@ -26,7 +29,12 @@ const Courses = (props) => {
                 <input type="text" placeholder="Search" />
                 <div className="courses">
                     {state.map((el) => {
-                        return <CourseItems key={el._id} props={el} />;
+                        return <CourseItems
+                            key={el._id}
+                            id={el._id}
+                            photo={el.photo}
+                            author={el.author}
+                            smallDescription={el.smallDescription} />;
                     })}
                 </div>
             </div>
