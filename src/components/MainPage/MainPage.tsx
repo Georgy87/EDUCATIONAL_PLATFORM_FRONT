@@ -9,7 +9,6 @@ import TeacherRegistration from "../teacherRegistration/TeacherRegistration";
 import { selectCourseLoading, selectCourses } from "../../store/ducks/courses/selectors";
 
 import "./MainPage.css";
-import { useHistory } from "react-router-dom";
 
 const MainPage = () => {
     const courses = useSelector(selectCourses);
