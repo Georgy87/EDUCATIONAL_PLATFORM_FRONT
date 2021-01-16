@@ -1,7 +1,10 @@
 import React from "react";
 
-const DirectionTitles = (props) => {
-    const { direction } = props;
+type PropsType = {
+    direction: string;
+}
+
+const DirectionTitles: React.FC<PropsType> = ({ direction }) => {
     return (
         <div>
             <div className="directions-item">

@@ -3,24 +3,29 @@ import { useDispatch } from "react-redux";
 import { deleteDirection, filterByDirection } from "../../../store/ducks/directions/saga";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { NavLink } from "react-router-dom";
-import "./ProgrammsItems.css"
-import { useEffect } from "react";
 
-const ProgrammsItems = ({ props }) => {
+import "./ProgrammsItems.css"
+
+type PropsType = {
+    direction: string;
+    name: string;
+    _id: string;
+}
+const ProgrammsItems: React.FC<PropsType> = ({ direction, name, _id }) => {
     const dispatch = useDispatch();
 
     const nameDirection = () => {
-        dispatch(filterByDirection(props.direction));
+        dispatch(filterByDirection(direction));
     };
     return (
         <div>
             <div className="direction-wrap" >
-                <NavLink to={`/courses/${props.direction}`} onClick={nameDirection}>
-                    <img src={`http://localhost:5000/${props.name}`} />
+                <NavLink to={`/courses/${direction}`} onClick={nameDirection}>
+                    <img src={`http://localhost:5000/${name}`} />
                 </NavLink>
-                <div className="title">{props.direction}</div>
+                <div className="title">{direction}</div>
                 <div className="direction-delete">
-                    <DeleteForeverIcon onClick={() => dispatch(deleteDirection(props._id, props.direction))}/>
+                    <DeleteForeverIcon onClick={() => dispatch(deleteDirection(_id, direction))}/>
                 </div>
             </div>
         </div>
