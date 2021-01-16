@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getCourseDirections } from "../../actions/directions";
-import SearchIcon from "@material-ui/icons/Search";
-
-import "./programms.css";
 import ProgrammsItems from "./ProgrammsItems/ProgrammsItems";
 import DirectionTitles from "./DirectionsTitles/DirectionTitles";
 import { getCourseDirections } from "../../store/ducks/directions/saga";
-const Programms = () => {
-    const state = useSelector((state) => state.directions.courseDirections);
+import { selectCourseDirections } from "../../store/ducks/directions/selectors";
+
+import "./programms.css";
+
+const Programms: React.FC = () => {
+    const directions = useSelector(selectCourseDirections);
 
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getCourseDirections());
-
     }, []);
     return (
         <div>
@@ -25,16 +25,16 @@ const Programms = () => {
                         <label htmlFor="">
                             <input type="text" placeholder="Search" />
                         </label>
-                        {state.map(el => {
-                            return  <DirectionTitles key={el._id} direction={el.direction}/>
+                        {directions.map(el => {
+                            return <DirectionTitles key={el._id} direction={el.direction} />
                         })}
                     </div>
                     <div className="directions-content">
                         <h1 style={{ fontSize: "40px" }}>Профессии</h1>
                         <div className="items">
                             <div className="item">
-                                {state.map((el) => {
-                                    return <ProgrammsItems key={el._id} props={el}/>;
+                                {directions.map((el) => {
+                                    return <ProgrammsItems key={el._id} name={el.name} direction={el.direction} _id={el._id} />;
                                 })}
                             </div>
                         </div>

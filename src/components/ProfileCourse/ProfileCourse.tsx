@@ -32,7 +32,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProfileCourse(profileId, userId));
+        dispatch(getProfileCourse(profileId));
     }, []);
 
     return (

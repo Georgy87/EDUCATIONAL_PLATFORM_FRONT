@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import CreateCourse from "./createCourse/CreateCourse";
-import CoursePreview from "./coursePreview/CoursePreview";
 
 import "./TeacherPrivateOffice.css";
 

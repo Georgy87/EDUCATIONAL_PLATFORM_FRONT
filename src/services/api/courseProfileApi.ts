@@ -10,10 +10,10 @@ const instance = axios.create({
 
 
 export const CourseProfileApi = {
-    getProfile(courseId: string, userId: string) {
+    getProfile(courseId: string) {
         return instance
             .get<CourseProfileStateType>(
-                `course/profile?id=${courseId}&userId=${userId}`
+                `course/profile?id=${courseId}`
             )
             .then(response => response.data);
     },

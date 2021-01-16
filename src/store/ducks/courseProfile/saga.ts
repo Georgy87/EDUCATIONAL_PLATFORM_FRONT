@@ -12,11 +12,11 @@ type ThunkType = ThunkAction<
     unknown,
     CourseProfileActions
 >;
-export const getProfileCourse = (courseId: string, userId: string): ThunkType  => {
+export const getProfileCourse = (courseId: string): ThunkType  => {
     return async (dispatch: DispatchType) => {
         try {
             actions.setUserLoading();
-            const data = await CourseProfileApi.getProfile(courseId, userId);
+            const data = await CourseProfileApi.getProfile(courseId);
             if (data) {
                 const newData = data;
                 const module = newData.content[0];

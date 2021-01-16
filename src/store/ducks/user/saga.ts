@@ -1,12 +1,15 @@
-import { setPurchasedCourses, setShoppingCourses, setUser } from "./actions";
+import { setPurchasedCourses, setShoppingCourses, setSubmitLoading, setUser } from "./actions";
 import { userApi } from "../../../services/api/userApi";
 import { setUserLoading, setUserLoaded } from "../user/actions";
 import { DispatchType, ThunkType } from "./types";
 
 export const registration = (name: string, surname: string, email: string, password: string, teacher: boolean | false): ThunkType => {
-    return async () => {
+    return async (dispatch: DispatchType) => {
+        dispatch(setSubmitLoading(true));
         try {
             await userApi.registrationUser(name, surname, email, password, teacher);
+            console.log('loaded');
+            dispatch(setSubmitLoading(false));
         } catch (error) {
             console.log(error);
         }
@@ -15,12 +18,12 @@ export const registration = (name: string, surname: string, email: string, passw
 
 export const login = (email: string, password: string): ThunkType => {
     return async (dispatch: DispatchType) => {
-        dispatch(setUserLoading());
+        dispatch(setSubmitLoading(true));
         try {
             const data = await userApi.loginUser(email, password);
             localStorage.setItem("token", data.token);
             dispatch(setUser(data));
-            dispatch(setUserLoaded());
+            dispatch(setSubmitLoading(false));
         } catch (error) {
             console.log(error);
         }

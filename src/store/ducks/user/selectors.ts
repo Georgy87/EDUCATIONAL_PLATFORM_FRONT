@@ -7,5 +7,6 @@ export const selectUserAvatar = (state: AppStateType) => state.user.user?.user.a
 export const selectCoursesData = (state: AppStateType) => state.user.shoppingCartCourses?.coursesData;
 
 export const selectLoadingState = (state: AppStateType) => selectUserInfo(state).loadingState;
+export const selectSubmitLoading = (state: AppStateType) => selectUserInfo(state).submitLoading;
 export const selectUserLoaded = (state: AppStateType) => selectLoadingState(state) === UserActionType.SET_LOADED;
 export const selectUserStatus = (state: AppStateType) =>  selectUserInfo(state).loadingState;

@@ -7,7 +7,8 @@ const initialState: UserStateType = {
     isAuth: false,
     loadingState: "NEVER",
     shoppingCartCourses: null,
-    purchasedCourses: null
+    purchasedCourses: null,
+    submitLoading: false,
 };
 
 const userReducer = produce(
@@ -24,6 +25,9 @@ const userReducer = produce(
                 break;
             case UserActionType.SET_LOADING:
                 draftState.loadingState = UserActionType.SET_LOADING;
+                break;
+            case UserActionType.SET_SUBMIT_LOADING:
+                draftState.submitLoading = action.payload;
                 break;
             case UserActionType.SET_LOADED:
                 draftState.loadingState = UserActionType.SET_LOADED;

@@ -8,7 +8,8 @@ export enum UserActionType {
     SET_LOADING = "LOADING",
     SET_LOADED = "LOADED",
     SET_SHOPPING_CART_COURSES = "SET-SHOPPING-CART-COURSES",
-    SET_PURCHASED_COURSES = "SET-PURCHASED-COURSES"
+    SET_PURCHASED_COURSES = "SET-PURCHASED-COURSES",
+    SET_SUBMIT_LOADING = " SET-SUBMIT-LOADING",
 }
 
 // State types
@@ -47,6 +48,7 @@ export type UserStateType = {
     loadingState: string;
     shoppingCartCourses: CoursesDataType | null;
     purchasedCourses: PurchasedCoursesType[] | null;
+    submitLoading: Boolean;
 };
 
 // Actions types
@@ -62,6 +64,11 @@ export type LogoutType = {
 
 export type SetLoadingActionType = {
     type: UserActionType.SET_LOADING;
+};
+
+export type SetSubmitLoadingActionType = {
+    type: UserActionType.SET_SUBMIT_LOADING;
+    payload: Boolean;
 };
 
 export type SetLoadedActionType = {
@@ -100,7 +107,8 @@ export type UserActionsTypes =
     | SetLoadingActionType
     | SetLoadedActionType
     | SetShoppingCartCourses
-    | SetPurchasedCourses;
+    | SetPurchasedCourses
+    | SetSubmitLoadingActionType;
 
 // Thunk types
 
