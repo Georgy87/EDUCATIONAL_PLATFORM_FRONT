@@ -6,7 +6,7 @@ import { getCourses } from "../../store/ducks/courses/saga";
 import SimpleSlider from "../sliderCourses/SliderCourses";
 import Programms from "../programms/programms";
 import TeacherRegistration from "../teacherRegistration/TeacherRegistration";
-import { selectCourseLoading, selectCourses, selectLoadingState } from "../../store/ducks/courses/selectors";
+import { selectCourseLoading, selectCourses } from "../../store/ducks/courses/selectors";
 
 import "./MainPage.css";
 import { useHistory } from "react-router-dom";

@@ -37,7 +37,6 @@ export default function Registration() {
     const onSubmit = (data: RegisterFormProps) => {
         const { name, surname, email, password } = data;
         dispatch(registration(name, surname, email, password, false));
-       
     };
 
     return (

@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getCourseDirections } from "../../actions/directions";
-import SearchIcon from "@material-ui/icons/Search";
-
-import "./programms.css";
 import ProgrammsItems from "./ProgrammsItems/ProgrammsItems";
 import DirectionTitles from "./DirectionsTitles/DirectionTitles";
 import { getCourseDirections } from "../../store/ducks/directions/saga";
+
+import "./programms.css";
 const Programms = () => {
     const state = useSelector((state) => state.directions.courseDirections);
 

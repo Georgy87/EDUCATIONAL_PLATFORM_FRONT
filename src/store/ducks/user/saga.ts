@@ -18,12 +18,12 @@ export const registration = (name: string, surname: string, email: string, passw
 
 export const login = (email: string, password: string): ThunkType => {
     return async (dispatch: DispatchType) => {
-        dispatch(setUserLoading());
+        dispatch(setSubmitLoading(true));
         try {
             const data = await userApi.loginUser(email, password);
             localStorage.setItem("token", data.token);
             dispatch(setUser(data));
-            dispatch(setUserLoaded());
+            dispatch(setSubmitLoading(false));
         } catch (error) {
             console.log(error);
         }
