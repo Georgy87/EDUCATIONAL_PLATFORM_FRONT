@@ -15,13 +15,13 @@ import "./CreateCourse.css";
 import { CreateModule } from "./createModule/CreateModule";
 
 export interface CreateCourseFormProps {
-    photoCourse: any;
+    photoCourse: File[];
     profession: string;
     author: string;
     price: string;
     shotDescription: string;
     fullDescription: string;
-    fileVideo: any;
+    fileVideo: File[];
     module: string;
     lesson: string;
 }
@@ -45,13 +45,13 @@ const CreateCourse = () => {
         dispatch(uploadNewCourse(photoCourse[0], profession, author, price, shotDescription, fullDescription, module, fileVideo[0], lesson));
     };
 
-    const [changeCourseId, setChangeCourseId] = useState<string | null>("");
+    const [changeCourseId, setChangeCourseId] = useState("");
 
     useEffect(() => {
         dispatch(getAllTeacherCourses());
     }, []);
 
-    const onChoiceCourse = (courseId: string) => {
+    const onChoiceCourse = (courseId: any) => {
         setChangeCourseId(courseId);
         localStorage.setItem("courseId", courseId);
         dispatch(getCourseContent(courseId));
@@ -63,7 +63,9 @@ const CreateCourse = () => {
     // }
 
     useEffect(() => {
+        //@ts-ignore
         dispatch(getCourseContent(localStorage.getItem("courseId")));
+        //@ts-ignore
         setChangeCourseId(localStorage.getItem("courseId"));
     }, [changeCourseId]);
 

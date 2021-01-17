@@ -10,7 +10,7 @@ import { Button } from '@material-ui/core';
 import "./CreateModule.css";
 
 type PropsType = {
-    changeCourseId: string | null;
+    changeCourseId: string;
 }
 
 export interface CreateModuleFormProps {

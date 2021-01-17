@@ -11,7 +11,7 @@ import "./CourseVideoPleer.css";
 const { Duration, SeekBar } = controls;
 
 type PropsType = {
-    courseId: string | undefined;
+    courseId: any;
     moduleId: string | undefined;
     lessonId: string | undefined;
     videoName: string | undefined;

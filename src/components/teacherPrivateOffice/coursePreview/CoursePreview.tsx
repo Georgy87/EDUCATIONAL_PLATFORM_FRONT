@@ -8,7 +8,7 @@ import CourseModules from "./courseModules/CourseModules";
 import "./CoursePreview.css";
 
 type PropsType = {
-    changeCourseId: string | null;
+    changeCourseId: string;
 }
 
 const CoursePreview: React.FC<PropsType> = ({ changeCourseId }) => {
@@ -36,7 +36,7 @@ const CoursePreview: React.FC<PropsType> = ({ changeCourseId }) => {
                                     moduleHours={element.moduleHours}
                                     moduleMinutes={element.moduleMinutes}
                                     moduleSeconds={element.moduleSeconds}
-                                    moduleContent={element.moduleContent}
+                                    moduleContent={element?.moduleContent}
                                     moduleId={element._id}
                                 />
                             );

@@ -56,7 +56,7 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     uploadLesson(
-        courseId: string | null,
+        courseId: string,
         file: string,
         lesson: string,
         moduleId: string
@@ -92,7 +92,7 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     deleteLesson(
-        courseId: string,
+        courseId: string | null,
         moduleId: string,
         lessonId: string,
         videoName: string,
@@ -158,7 +158,7 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     setTimeModuleAndLessons(
-        courseId: string | undefined,
+        courseId: string | null,
         moduleId: string | undefined,
         lessonId: string | undefined,
         hours: number,

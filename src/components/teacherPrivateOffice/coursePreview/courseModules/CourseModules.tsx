@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 type PropsType = {
-    courseId: string | null;
+    courseId: string;
     module: string;
     moduleHours: number;
     moduleMinutes: number;
