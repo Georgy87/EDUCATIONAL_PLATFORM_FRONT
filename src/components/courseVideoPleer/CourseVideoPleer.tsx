@@ -1,33 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import CurrentTime from "./CurrentTime";
+//@ts-ignore
 import { Media, Player, controls } from "react-media-player";
-import "./CourseVideoPleer.css";
+
 import { useDispatch } from "react-redux";
 import { setTimeModuleAndLessons } from "../../store/ducks/contentCourses/saga";
 
-const { Duration, Progress, SeekBar } = controls;
+import "./CourseVideoPleer.css";
 
-export const MediaPlayer = (props) => {
+const { Duration, SeekBar } = controls;
+
+type PropsType = {
+    courseId: string;
+    moduleId: string;
+    lessonId: string;
+    videoName: string;
+}
+export const MediaPlayer: React.FC<PropsType> = ({courseId, moduleId, lessonId, videoName }) => {
+
     const dispatch = useDispatch();
-    const onTimeHendler = (time) => {
-        const { courseId, moduleId, lessonId } = props.lessonTime;
 
-        // let hours = Math.trunc(67 / 60);
-        // let minutes = 67 % 60;
-        // let seconds = 100 / 60;
-
-        // let finalMinutes = minutes + Math.floor(seconds);
-        // dispatch(setTimeModuleAndLessons(hours + ":" + finalMinutes + ":" + Math.floor(seconds)));
-        // console.log(Number(time.substring(3, 5)));
-        // console.log(Number(time.substring(6, 8)));
-        // console.log(hours + ":" + finalMinutes + ":" + Math.floor(seconds));
+    const onTimeHendler = (time: string) => {
         dispatch(setTimeModuleAndLessons(
             courseId,
             moduleId,
             lessonId,
             Number(time.substring(0, 2)),
             Number(time.substring(3, 5)),
-            Number(time.substring(6, 8)))
+            Number(time.substring(6, 8))),
         );
     };
     return (
@@ -36,15 +36,15 @@ export const MediaPlayer = (props) => {
                 <div className="media-player">
                     <Player
                         src={
-                            props.videoName != ""
-                                ? `http://localhost:5000/${props.videoName}`
+                            videoName != ""
+                                ? `http://localhost:5000/${videoName}`
                                 : "http://localhost:5000/14.  js с нуля, ваще с нуля (addEventListener, события, events).mp4"
                         }
                     />
                     {/* <PlayPause /> */}
                     <div className="media-player-content">
                         <CurrentTime
-                            onTimeHendler={(time) => onTimeHendler(time)}
+                            onTimeHendler={(time: string) => onTimeHendler(time)}
                         />
                         <SeekBar />
                         <Duration />

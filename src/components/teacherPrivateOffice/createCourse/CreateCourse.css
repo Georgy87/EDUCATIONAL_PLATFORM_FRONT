@@ -78,7 +78,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 70px;
-    border: 1px solid rgb(230, 228, 228);;
+    border: 1px solid rgb(230, 228, 228);
+    ;
 }
 
 .teacher-course-choice-item {
@@ -98,3 +99,7 @@
     background-color: rgb(240, 240, 240)
 }
 
+.teacher-course-add p {
+    margin-top: 10px;
+    color: rgb(160, 17, 17);
+}

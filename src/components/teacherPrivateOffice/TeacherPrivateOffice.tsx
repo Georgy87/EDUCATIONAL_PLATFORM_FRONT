@@ -4,6 +4,7 @@ import CreateCourse from "./createCourse/CreateCourse";
 import "./TeacherPrivateOffice.css";
 
 const TeacherPrivateOfficeAdmin = () => {
+    
     return (
         <div>
             <div className="teacher-office-container">
