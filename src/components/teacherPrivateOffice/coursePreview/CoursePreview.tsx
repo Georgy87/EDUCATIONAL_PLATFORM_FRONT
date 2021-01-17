@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { ModuleContentType } from "../../../store/ducks/contentCourses/reducer";
 import { selectCourseModule, selectLessonTime, selectVideoName } from "../../../store/ducks/contentCourses/selectors";
 import { MediaPlayer } from "../../courseVideoPleer/CourseVideoPleer";
 import CourseModules from "./courseModules/CourseModules";
@@ -13,7 +14,7 @@ type PropsType = {
 const CoursePreview: React.FC<PropsType> = ({ changeCourseId }) => {
     const lessonsModule = useSelector(selectCourseModule);
     const videoName = useSelector(selectVideoName);
-    
+
     const lessonTime = useSelector(selectLessonTime);
 
     return (
@@ -26,8 +27,7 @@ const CoursePreview: React.FC<PropsType> = ({ changeCourseId }) => {
                     moduleId={lessonTime?.moduleId}
                 />
                 <div className="teacher-course-list">
-                    {lessonsModule &&
-                        lessonsModule.content.map((element) => {
+                    {lessonsModule?.content.map((element) => {
                             return (
                                 <CourseModules
                                     courseId={changeCourseId}

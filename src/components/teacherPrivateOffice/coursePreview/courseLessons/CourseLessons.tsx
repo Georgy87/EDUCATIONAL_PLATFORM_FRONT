@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CourseLessons = (props) => {
+const CourseLessons = (props: any) => {
     const [status, setStatus] = useState(false);
     const [statusValue, setStatusValue] = useState(props.lesson);
     const [linksToResources, setLinksToResources] = useState("");
@@ -42,26 +42,26 @@ const CourseLessons = (props) => {
         setStatus(true);
     };
 
-    const onChangeValue = (e) => {
+    const onChangeValue = (e: any) => {
         setStatusValue(e.target.value);
     };
 
-    const onChangeBlurStatus = (moduleId, lessonId) => {
+    const onChangeBlurStatus = (moduleId: any, lessonId: any) => {
         setStatus(false);
         dispatch(
             lessonTitleRevision(statusValue, courseId, moduleId, lessonId)
         );
     };
 
-    const onChangeLink = (e) => {
+    const onChangeLink = (e: any) => {
         setLinksToResources(e.target.value);
     };
 
-    const onChangeLinkName = (e) => {
+    const onChangeLinkName = (e: any) => {
         setlinksName(e.target.value);
     };
 
-    const sendLink = (moduleId, lessonId) => {
+    const sendLink = (moduleId: any, lessonId: any) => {
         dispatch(
             sendLinksToResources(
                 courseId,
@@ -73,7 +73,7 @@ const CourseLessons = (props) => {
         );
     };
 
-    const setVideoAndTimeLesson = (videoName) => {
+    const setVideoAndTimeLesson = (videoName: any) => {
         dispatch(setVideoName(videoName));
         dispatch(setTimeLesson(courseId, props.moduleId, props.lessonId));
     };
@@ -206,16 +206,3 @@ const CourseLessons = (props) => {
 
 export default CourseLessons;
 
-// status === false ? (
-//     <div onClick={onChangeClickStatus} className="profile-status">
-//         {!props.status ? "Введите статус" : props.status}
-//     </div>
-// ) : (
-//     <input
-//         autoFocus={true}
-//         onChange={onChangeValue}
-//         defaultValue={statusValue}
-//         onBlur={onChangeBlurStatus}
-//         type="text"
-//     />
-// );

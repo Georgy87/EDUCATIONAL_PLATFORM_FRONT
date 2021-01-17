@@ -27,11 +27,11 @@ export const uploadCourseContent = (courseId: string | null, file: any, lesson: 
     };
 };
 
-export const uploadLesson = (courseId: string, file: any,lesson: string,moduleId: string): ThunkType => {
+export const uploadLesson = (courseId: string | null, file: any,lesson: string,moduleId: string): ThunkType => {
     return async (dispatch: DispatchType) => {
         try {
             const data = await CourseContentApi.uploadLesson(
-                 courseId,
+                courseId,
                 file,
                 lesson,
                 moduleId

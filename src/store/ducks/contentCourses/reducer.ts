@@ -8,7 +8,7 @@ type LinksToResourcesType = {
     linksToResources: string;
 };
 
-type ModuleContentType = {
+export type ModuleContentType = {
     _id: string;
     fileVideo: string;
     lesson: string;
@@ -16,7 +16,7 @@ type ModuleContentType = {
     linksToResources: LinksToResourcesType[];
 }
 
-type ContentType = {
+export type ContentType = {
     _id: string;
     module: string;
     moduleHours: number;

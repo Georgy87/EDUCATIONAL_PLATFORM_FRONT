@@ -56,7 +56,7 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     uploadLesson(
-        courseId: string,
+        courseId: string | null,
         file: string,
         lesson: string,
         moduleId: string
