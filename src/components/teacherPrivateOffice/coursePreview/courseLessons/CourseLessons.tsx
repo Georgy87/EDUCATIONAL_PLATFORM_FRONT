@@ -1,21 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    deleteLesson,
-    lessonTitleRevision,
-    sendLinksToResources,
-    uploadLesson,
-} from "../../../../store/ducks/contentCourses/saga";
-import {
-    setTimeLesson,
-    setVideoName,
-} from "../../../../store/ducks/contentCourses/actions";
+import { useDispatch } from "react-redux";
+import { deleteLesson, lessonTitleRevision, sendLinksToResources } from "../../../../store/ducks/contentCourses/saga";
+import { setTimeLesson, setVideoName } from "../../../../store/ducks/contentCourses/actions";
 import EditIcon from "@material-ui/icons/Edit";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import Dropdown from "react-bootstrap/Dropdown";
 import { makeStyles } from "@material-ui/core/styles";
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import { LinksToResourcesType } from "../../../../store/ducks/contentCourses/reducer";
 
 import "./CourseLessons.css";
 
@@ -29,11 +22,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CourseLessons = (props) => {
-    const [status, setStatus] = useState(false);
-    const [statusValue, setStatusValue] = useState(props.lesson);
-    const [linksToResources, setLinksToResources] = useState("");
-    const [linkName, setlinksName] = useState("");
+type PropsType = {
+    courseId: string;
+    links: LinksToResourcesType[];
+    lessonId: string;
+    lessonTime: string;
+    fileVideo: string;
+    lesson: string;
+    moduleId: string;
+}
+
+const CourseLessons: React.FC<PropsType> = (props) => {
+    const [status, setStatus] = useState<Boolean>(false);
+    const [statusValue, setStatusValue] = useState<string>("");
+    const [linksToResources, setLinksToResources] = useState<string>("");
+    const [linkName, setlinksName] = useState<string>("");
 
     const courseId = props.courseId;
     const dispatch = useDispatch();
@@ -42,38 +45,16 @@ const CourseLessons = (props) => {
         setStatus(true);
     };
 
-    const onChangeValue = (e) => {
-        setStatusValue(e.target.value);
-    };
-
-    const onChangeBlurStatus = (moduleId, lessonId) => {
+    const onChangeBlurStatus = (moduleId: string, lessonId: string) => {
         setStatus(false);
-        dispatch(
-            lessonTitleRevision(statusValue, courseId, moduleId, lessonId)
-        );
+        dispatch(lessonTitleRevision(statusValue, courseId, moduleId, lessonId));
     };
 
-    const onChangeLink = (e) => {
-        setLinksToResources(e.target.value);
+    const sendLink = (moduleId: string, lessonId: string, linkName: string) => {
+        dispatch(sendLinksToResources(courseId, moduleId, lessonId, linkName, linksToResources));
     };
 
-    const onChangeLinkName = (e) => {
-        setlinksName(e.target.value);
-    };
-
-    const sendLink = (moduleId, lessonId) => {
-        dispatch(
-            sendLinksToResources(
-                courseId,
-                moduleId,
-                lessonId,
-                linkName,
-                linksToResources
-            )
-        );
-    };
-
-    const setVideoAndTimeLesson = (videoName) => {
+    const setVideoAndTimeLesson = (videoName: string) => {
         dispatch(setVideoName(videoName));
         dispatch(setTimeLesson(courseId, props.moduleId, props.lessonId));
     };
@@ -82,17 +63,7 @@ const CourseLessons = (props) => {
         const hours = Number(props.lessonTime.split(":")[0]);
         const minutes = Number(props.lessonTime.split(":")[1]);
         const seconds = Number(props.lessonTime.split(":")[2]);
-        dispatch(
-            deleteLesson(
-                courseId,
-                props.moduleId,
-                props.lessonId,
-                props.fileVideo,
-                hours,
-                minutes,
-                seconds
-            )
-        );
+        dispatch(deleteLesson(courseId, props.moduleId, props.lessonId, props.fileVideo, hours, minutes, seconds));
     };
 
     return (
@@ -102,11 +73,7 @@ const CourseLessons = (props) => {
                     <div className="lesson-content">
                         <div className="lesson-wrapper">
                             <div className="lesson-content">
-                                <div
-                                    onClick={() =>
-                                        setVideoAndTimeLesson(props.fileVideo)
-                                    }
-                                >
+                                <div onClick={() => setVideoAndTimeLesson(props.fileVideo)}>
                                     <div className="editing-lesson">
                                         {status === false ? (
                                             <div className="lesson-title">
@@ -118,13 +85,8 @@ const CourseLessons = (props) => {
                                                 <input
                                                     type="text"
                                                     defaultValue={statusValue}
-                                                    onChange={onChangeValue}
-                                                    onBlur={() =>
-                                                        onChangeBlurStatus(
-                                                            props.moduleId,
-                                                            props.lessonId
-                                                        )
-                                                    }
+                                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setStatusValue(e.target.value)}
+                                                    onBlur={() => onChangeBlurStatus(props.moduleId, props.lessonId)}
                                                 />
                                                 {/* <button>Сохранить</button> */}
                                             </div>
@@ -144,7 +106,7 @@ const CourseLessons = (props) => {
                                     </div>
                                     <input
                                         type="text"
-                                        onChange={onChangeLinkName}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setlinksName(e.target.value)}
                                     />
 
                                     <div className="add-links">
@@ -152,17 +114,11 @@ const CourseLessons = (props) => {
                                     </div>
                                     <input
                                         type="text"
-                                        onChange={onChangeLink}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLinksToResources(e.target.value)}
                                     />
 
                                     <button
-                                        onClick={() =>
-                                            sendLink(
-                                                props.moduleId,
-                                                props.lessonId,
-                                                linkName
-                                            )
-                                        }
+                                        onClick={() => sendLink(props.moduleId, props.lessonId, linkName)}
                                     >
                                         Добавить ссылку
                                     </button>
@@ -178,16 +134,9 @@ const CourseLessons = (props) => {
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         {props.links.map((el) => {
-                                            {
-                                                // console.log(el);
-                                            }
                                             return (
                                                 <div>
-                                                    <Dropdown.Item
-                                                        href={
-                                                            el.linksToResources
-                                                        }
-                                                    >
+                                                    <Dropdown.Item href={el.linksToResources}>
                                                         {el.linkName}
                                                     </Dropdown.Item>
                                                 </div>
@@ -206,16 +155,3 @@ const CourseLessons = (props) => {
 
 export default CourseLessons;
 
-// status === false ? (
-//     <div onClick={onChangeClickStatus} className="profile-status">
-//         {!props.status ? "Введите статус" : props.status}
-//     </div>
-// ) : (
-//     <input
-//         autoFocus={true}
-//         onChange={onChangeValue}
-//         defaultValue={statusValue}
-//         onBlur={onChangeBlurStatus}
-//         type="text"
-//     />
-// );

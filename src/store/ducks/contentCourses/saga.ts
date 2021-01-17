@@ -16,7 +16,7 @@ type ThunkType = ThunkAction<
     CourseContentActions
 >;
 
-export const uploadCourseContent = (courseId: string | null, file: any, lesson: string, module: string): ThunkType => {
+export const uploadCourseContent = (courseId: string, file: any, lesson: string, module: string): ThunkType => {
     return async (dispatch: DispatchType) => {
         try {
             const data = await CourseContentApi.uploadContent(courseId, file, lesson, module);
@@ -31,7 +31,7 @@ export const uploadLesson = (courseId: string, file: any,lesson: string,moduleId
     return async (dispatch: DispatchType) => {
         try {
             const data = await CourseContentApi.uploadLesson(
-                 courseId,
+                courseId,
                 file,
                 lesson,
                 moduleId
@@ -43,7 +43,7 @@ export const uploadLesson = (courseId: string, file: any,lesson: string,moduleId
     };
 };
 
-export const getCourseContent = (courseId: string | null): ThunkType => {
+export const getCourseContent = (courseId: string): ThunkType => {
     return async (dispatch: DispatchType) => {
         try {
             const data = await CourseContentApi.getCourseCoutent(courseId);
@@ -133,8 +133,8 @@ export const sendLinksToResources = (
 
 export const setTimeModuleAndLessons = (
     courseId: string,
-    moduleId: string,
-    lessonId: string,
+    moduleId: string | undefined,
+    lessonId: string | undefined,
     hours: number,
     minutes: number,
     seconds: number

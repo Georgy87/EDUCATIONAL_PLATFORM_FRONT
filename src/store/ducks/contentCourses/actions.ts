@@ -36,7 +36,7 @@ export const setVideoName = (videoName: string): SetVideoNameActionType => {
     };
 };
 
-export const setTimeLesson = (courseId: string, moduleId: string, lessonId: string,): SetTimeLesson => {
+export const setTimeLesson = (courseId: string | null, moduleId: string, lessonId: string,): SetTimeLesson => {
     return {
         type: CourseContentActionsType.SET_TIME_LESSON,
         payload: {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import CourseLessons from "../courseLessons/CourseLessons";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
@@ -7,10 +7,10 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
+import { uploadLesson } from "../../../../store/ducks/contentCourses/saga";
+import { ModuleContentType } from "../../../../store/ducks/contentCourses/reducer";
 
 import "./CourseModules.css";
-import { uploadLesson } from "../../../../store/ducks/contentCourses/saga";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,24 +24,33 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CourseModules = (props) => {
+
+type PropsType = {
+    courseId: string;
+    module: string;
+    moduleHours: number;
+    moduleMinutes: number;
+    moduleSeconds: number;
+    moduleContent: any;
+    moduleId: string;
+}
+
+const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes, moduleSeconds, module, moduleHours, moduleContent }) => {
     const classes = useStyles();
-    const [fileVideo, setFileVideo] = useState("");
-    const [lesson, setLesson] = useState("");
+    const [fileVideo, setFileVideo] = useState<File>();
+    const [lesson, setLesson] = useState<string>("");
 
     const dispatch = useDispatch();
 
     const addLesson = () => {
-        dispatch(
-            uploadLesson(props.courseId, fileVideo, lesson, props.moduleId)
-        );
+        dispatch(uploadLesson(courseId, fileVideo, lesson, moduleId));
     };
 
-    let hours = Math.trunc(props.moduleMinutes / 60);
-    let minutes = props.moduleMinutes % 60;
-    let seconds = props.moduleSeconds / 60;
+    let hours = Math.trunc(moduleMinutes / 60);
+    let minutes = moduleMinutes % 60;
+    let seconds = moduleSeconds / 60;
     let finalMinutes = minutes + Math.floor(seconds);
-    // console.log(props.moduleHours + hours + ":" + finalMinutes + ":" + Math.floor(seconds));
+
     return (
         <div>
             <Accordion>
@@ -55,9 +64,9 @@ const CourseModules = (props) => {
                     id="panel1a-header"
                 >
                     <Typography className={classes.heading}>
-                        {props.module}
+                        {module}
                         <div>
-                            {props.moduleHours +
+                            {moduleHours +
                                 hours +
                                 " ч " +
                                 finalMinutes +
@@ -65,19 +74,18 @@ const CourseModules = (props) => {
                         </div>
                     </Typography>
                 </AccordionSummary>
-                {/* <AccordionDetails></AccordionDetails> */}
 
                 <div className="set-lessons-wrapper">
                     <input
                         type="file"
-                        onChange={(e) => setFileVideo(e.target.files[0])}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFileVideo(e.target.files?.[0])}
                         className="custom-file-input"
                     />
                     <input
                         placeholder="Введите название лекции"
                         type="text"
                         className="set-lessons-module"
-                        onChange={(e) => setLesson(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLesson(e.target.value)}
                     />
                     <button
                         className="set-lessons-module-btn"
@@ -86,7 +94,7 @@ const CourseModules = (props) => {
                         Добавить лекцию
                     </button>
                 </div>
-                {props.moduleContent.map((el) => {
+                {moduleContent?.map((el: ModuleContentType) => {
                     return (
                         <div className={classes.root} key={el._id}>
                             <Accordion>
@@ -110,14 +118,14 @@ const CourseModules = (props) => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <CourseLessons
-                                        courseId={props.courseId}
+                                        courseId={courseId}
                                         links={el.linksToResources}
                                         key={el._id}
                                         lessonId={el._id}
                                         lessonTime={el.lessonTime}
                                         fileVideo={el.fileVideo}
                                         lesson={el.lesson}
-                                        moduleId={props.moduleId}
+                                        moduleId={moduleId}
                                     />
                                 </AccordionDetails>
                             </Accordion>

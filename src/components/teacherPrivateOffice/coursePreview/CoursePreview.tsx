@@ -1,36 +1,42 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import { deleteLesson } from "../../../actions/contentCourses";
-// import { setVideoName } from "../../../reducers/contentCoursesReducer";
+import { useSelector } from "react-redux";
+import { ModuleContentType } from "../../../store/ducks/contentCourses/reducer";
+import { selectCourseModule, selectLessonTime, selectVideoName } from "../../../store/ducks/contentCourses/selectors";
 import { MediaPlayer } from "../../courseVideoPleer/CourseVideoPleer";
-import CourseLessons from "./courseLessons/CourseLessons";
 import CourseModules from "./courseModules/CourseModules";
+
 import "./CoursePreview.css";
 
-const CoursePreview = (props) => {
-    const lessonsModule = useSelector(
-        (state) => state.contentCourses.courseContent
-    );
-    const videoName = useSelector((state) => state.contentCourses.videoName);
-    const lessonTime = useSelector((state) => state.contentCourses.lessonTime);
+type PropsType = {
+    changeCourseId: string;
+}
+
+const CoursePreview: React.FC<PropsType> = ({ changeCourseId }) => {
+    const lessonsModule = useSelector(selectCourseModule);
+    const videoName = useSelector(selectVideoName);
+
+    const lessonTime = useSelector(selectLessonTime);
 
     return (
         <div>
             <div className="teacher-course-preview">
-                <MediaPlayer videoName={videoName} lessonTime={lessonTime} />
+                <MediaPlayer
+                    videoName={videoName}
+                    lessonId={lessonTime?.lessonId}
+                    courseId={lessonTime?.courseId}
+                    moduleId={lessonTime?.moduleId}
+                />
                 <div className="teacher-course-list">
-                    {lessonsModule &&
-                        lessonsModule.content.map((element) => {
+                    {lessonsModule?.content.map((element) => {
                             return (
                                 <CourseModules
-                                    courseId={props.changeCourseId}
+                                    courseId={changeCourseId}
                                     key={element._id}
                                     module={element.module}
                                     moduleHours={element.moduleHours}
                                     moduleMinutes={element.moduleMinutes}
                                     moduleSeconds={element.moduleSeconds}
-                                    moduleContent={element.moduleContent}
+                                    moduleContent={element?.moduleContent}
                                     moduleId={element._id}
                                 />
                             );

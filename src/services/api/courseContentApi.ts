@@ -92,7 +92,7 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     deleteLesson(
-        courseId: string,
+        courseId: string | null,
         moduleId: string,
         lessonId: string,
         videoName: string,
@@ -158,9 +158,9 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     setTimeModuleAndLessons(
-        courseId: string,
-        moduleId: string,
-        lessonId: string,
+        courseId: string | null,
+        moduleId: string | undefined,
+        lessonId: string | undefined,
         hours: number,
         minutes: number,
         seconds: number

@@ -2,13 +2,13 @@ import produce, { Draft } from "immer";
 import { CourseContentActions } from "./actions";
 import { CourseContentActionsType } from "./types";
 
-type LinksToResourcesType = {
+export type LinksToResourcesType = {
     _id: string;
     linkName: string;
     linksToResources: string;
 };
 
-type ModuleContentType = {
+export type ModuleContentType = {
     _id: string;
     fileVideo: string;
     lesson: string;
@@ -16,7 +16,7 @@ type ModuleContentType = {
     linksToResources: LinksToResourcesType[];
 }
 
-type ContentType = {
+export type ContentType = {
     _id: string;
     module: string;
     moduleHours: number;
@@ -41,7 +41,7 @@ export type CoursesContentType = {
 };
 
 export type LessonTimeIdsType = {
-    courseId: string,
+    courseId: string | null,
     moduleId: string,
     lessonId: string,
 }
