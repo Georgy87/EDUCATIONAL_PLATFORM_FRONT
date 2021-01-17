@@ -158,9 +158,9 @@ export const CourseContentApi = {
             .then((response) => response.data);
     },
     setTimeModuleAndLessons(
-        courseId: string,
-        moduleId: string,
-        lessonId: string,
+        courseId: string | undefined,
+        moduleId: string | undefined,
+        lessonId: string | undefined,
         hours: number,
         minutes: number,
         seconds: number

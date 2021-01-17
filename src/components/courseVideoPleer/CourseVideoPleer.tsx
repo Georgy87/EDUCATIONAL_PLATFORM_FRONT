@@ -11,13 +11,13 @@ import "./CourseVideoPleer.css";
 const { Duration, SeekBar } = controls;
 
 type PropsType = {
-    courseId: string;
-    moduleId: string;
-    lessonId: string;
-    videoName: string;
+    courseId: string | undefined;
+    moduleId: string | undefined;
+    lessonId: string | undefined;
+    videoName: string | undefined;
 }
 export const MediaPlayer: React.FC<PropsType> = ({courseId, moduleId, lessonId, videoName }) => {
-
+    console.log(videoName);
     const dispatch = useDispatch();
 
     const onTimeHendler = (time: string) => {

@@ -132,9 +132,9 @@ export const sendLinksToResources = (
 };
 
 export const setTimeModuleAndLessons = (
-    courseId: string,
-    moduleId: string,
-    lessonId: string,
+    courseId: string | undefined,
+    moduleId: string | undefined,
+    lessonId: string | undefined,
     hours: number,
     minutes: number,
     seconds: number
