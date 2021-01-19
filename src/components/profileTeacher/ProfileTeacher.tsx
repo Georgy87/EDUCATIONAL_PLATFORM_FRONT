@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTeahcer } from "../../store/ducks/courseProfile/saga";
+import { actions } from "../../store/ducks/courseProfile/actions";
 import { RouteComponentProps } from 'react-router-dom';
 import { selectTeacherInfo, selectTeacherLoaded } from '../../store/ducks/courseProfile/selectors';
 import ProfileTeacherCourses from "./profileTeacherCourses/ProfileTeacherCourses";
@@ -30,7 +30,7 @@ const ProfileTeacher: React.FC<Props> = (props): React.ReactElement => {
     }
 
     useEffect(() => {
-        dispatch(getTeahcer(teacherId));
+        dispatch(actions.fetchGetTeacher(teacherId));
     }, []);
 
     return (

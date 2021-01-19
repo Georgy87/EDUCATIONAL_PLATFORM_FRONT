@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTeacherCourses, getCourseContent, uploadCourseContent } from "../../../store/ducks/contentCourses/saga";
+import { fetchGetAllTeacherCourses } from "../../../store/ducks/contentCourses/actions";
 import CoursePreview from "../coursePreview/CoursePreview";
-import { uploadNewCourse } from "../../../store/ducks/courses/saga";
+import { fetchUploadNewCourse } from "../../../store/ducks/courses/actions";
 import { Button } from '@material-ui/core';
 import { selectAllTeacherCourses } from "../../../store/ducks/contentCourses/selectors";
 import { useForm } from "react-hook-form";
@@ -13,6 +13,7 @@ import { CreateCourseSchema } from "../../../utils/FormSchemas";
 
 import "./CreateCourse.css";
 import { CreateModule } from "./createModule/CreateModule";
+import { fetchGetCourseContent } from "../../../store/ducks/contentCourses/actions";
 
 export interface CreateCourseFormProps {
     photoCourse: File[];
@@ -42,19 +43,19 @@ const CreateCourse = () => {
 
     const onSubmit = (data: CreateCourseFormProps) => {
         const { photoCourse, profession, author, price, shotDescription, fullDescription, module, fileVideo, lesson } = data;
-        dispatch(uploadNewCourse(photoCourse[0], profession, author, price, shotDescription, fullDescription, module, fileVideo[0], lesson));
+        dispatch(fetchUploadNewCourse({photoCourse: photoCourse[0], profession, author, price, shotDescription, fullDescription, module, fileVideo: fileVideo[0], lesson}));
     };
 
     const [changeCourseId, setChangeCourseId] = useState("");
 
     useEffect(() => {
-        dispatch(getAllTeacherCourses());
+        dispatch(fetchGetAllTeacherCourses());
     }, []);
 
-    const onChoiceCourse = (courseId: any) => {
+    const onChoiceCourse = (courseId: string) => {
         setChangeCourseId(courseId);
         localStorage.setItem("courseId", courseId);
-        dispatch(getCourseContent(courseId));
+        dispatch(fetchGetCourseContent(courseId));
     };
 
     // const onSetFileVideo = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +65,7 @@ const CreateCourse = () => {
 
     useEffect(() => {
         //@ts-ignore
-        dispatch(getCourseContent(localStorage.getItem("courseId")));
+        dispatch(fetchGetCourseContent(localStorage.getItem("courseId")));
         //@ts-ignore
         setChangeCourseId(localStorage.getItem("courseId"));
     }, [changeCourseId]);

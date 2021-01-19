@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getCourses } from "../../store/ducks/courses/saga";
+import { fetchGetCourses } from "../../store/ducks/courses/actions";
 import SimpleSlider from "../sliderCourses/SliderCourses";
 import Programms from "../programms/programms";
 import TeacherRegistration from "../teacherRegistration/TeacherRegistration";
@@ -17,7 +17,7 @@ const MainPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCourses());
+        dispatch(fetchGetCourses());
     }, []);
 
     return (

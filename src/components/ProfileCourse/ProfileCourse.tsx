@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { ModalForShoppingCart } from "./profileCourseMaterials/profileCourseInfoDop/modalForShoppingCart/ModalForShoppingCart";
-import { getProfileCourse } from "../../store/ducks/courseProfile/saga";
+import { actions } from "../../store/ducks/courseProfile/actions";
 import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { RouteComponentProps } from 'react-router-dom';
@@ -32,7 +32,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProfileCourse(profileId));
+        dispatch(actions.fetchGetProfileCourse(profileId));
     }, []);
 
     return (
@@ -40,14 +40,14 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
             <div>
                 <div className="profile-course-header">
                     <div className="profile-course-header-description">
-                        {loaded && profile?.smallDescription}
+                        {profile?.smallDescription}
                     </div>
                 </div>
                 {profile && (
                     <div className="profile-container">
                         <div className="profile-info-main">
                             <div className="small-description">
-                                <h1> {loaded && profile?.smallDescription}</h1>
+                                <h1> {profile?.smallDescription}</h1>
                                 <p style={{ color: "white" }}>
                                     {profile && profile.profession}
                                 </p>

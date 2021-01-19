@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
-import { uploadCourseContent } from '../../../../store/ducks/contentCourses/saga';
+import { fetchUploadCourseContent } from '../../../../store/ducks/contentCourses/actions';
 import { CreateModuleSchema } from '../../../../utils/FormSchemas';
 import { Button } from '@material-ui/core';
 
@@ -32,9 +32,8 @@ export const CreateModule: React.FC<PropsType> = ({ changeCourseId }) => {
 
     const onSubmit = (data: CreateModuleFormProps) => {
         const { fileVideo, module, lesson } = data;
-        dispatch(uploadCourseContent(changeCourseId, fileVideo[0], lesson, module));
+        dispatch(fetchUploadCourseContent({courseId: changeCourseId, file: fileVideo[0], lesson, module}));
     };
-
 
     return (
         <div className="create-module-container">

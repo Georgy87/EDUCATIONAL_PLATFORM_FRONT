@@ -8,7 +8,7 @@ import {
     image64toCanvasRef,
 } from "./ResuableUtils";
 import { connect } from "react-redux";
-import { uploadAvatar } from "../../../store/ducks/user/saga";
+import { fetchUploadAvatar } from "../../../store/ducks/user/actions";
 
 import "./UserProfilePhoto.css";
 
@@ -115,7 +115,7 @@ class ImgDropAndCrop extends Component {
                 myFilename
             );
 
-            this.props.uploadAvatar(myNewCroppedFile);
+            this.props.fetchUploadAvatar(myNewCroppedFile);
 
             // download file
             // downloadBase64File(imageData64, myFilename);
@@ -278,7 +278,7 @@ const mapStateToProps = (state) => {
     return {};
 };
 
-export default connect(mapStateToProps, { uploadAvatar})(ImgDropAndCrop);
+export default connect(mapStateToProps, { fetchUploadAvatar})(ImgDropAndCrop);
 
 // import React, { Component } from "react";
 

@@ -7,7 +7,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { uploadLesson } from "../../../../store/ducks/contentCourses/saga";
+import { fetchUploadLesson } from "../../../../store/ducks/contentCourses/actions";
 import { ModuleContentType } from "../../../../store/ducks/contentCourses/reducer";
 
 import "./CourseModules.css";
@@ -37,13 +37,13 @@ type PropsType = {
 
 const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes, moduleSeconds, module, moduleHours, moduleContent }) => {
     const classes = useStyles();
-    const [fileVideo, setFileVideo] = useState<File>();
+    const [fileVideo, setFileVideo] = useState<any>();
     const [lesson, setLesson] = useState<string>("");
 
     const dispatch = useDispatch();
 
     const addLesson = () => {
-        dispatch(uploadLesson(courseId, fileVideo, lesson, moduleId));
+        dispatch(fetchUploadLesson({courseId, file: fileVideo, lesson, moduleId}));
     };
 
     let hours = Math.trunc(moduleMinutes / 60);

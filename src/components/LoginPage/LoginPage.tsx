@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSubmitLoading } from "../../store/ducks/user/selectors";
 import { Button, CircularProgress } from "@material-ui/core";
-import { login } from "../../store/ducks/user/saga";
+import { fetchLogin } from "../../store/ducks/user/actions";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import "./LoginPage.css";
+import { FetchLoginType } from "../../store/ducks/user/types";
 
 export interface LoginFormProps {
     email: string;
@@ -29,9 +30,9 @@ export default function Registration() {
         resolver: yupResolver(RegisterFormSchema)
     });
 
-    const onSubmit = (data: LoginFormProps) => {
+    const onSubmit = (data: FetchLoginType['payload']) => {
         const { email, password } = data;
-        dispatch(login(email, password));
+        dispatch(fetchLogin({email, password}));
     };
 
     return (

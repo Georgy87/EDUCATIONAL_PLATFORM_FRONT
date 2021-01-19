@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectUserInfo, selectUserLoaded, selectCoursesData } from '../../store/ducks/user/selectors';
 import { useEffect } from 'react';
-import { deleteShoppingCartCourse, getShoppingCart } from '../../store/ducks/user/saga';
+import { fetchGetShoppingCart } from '../../store/ducks/user/actions';
+import { fetchDeleteShoppingCartCourse } from '../../store/ducks/user/actions';
 import { useDispatch } from 'react-redux';
 import { Button } from "@material-ui/core";
 import { useProfileCourseInfoDopStyles } from '../profileCourse/profileCourseMaterials/profileCourseInfoDop/theme';
@@ -17,7 +18,7 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getShoppingCart());
+        dispatch(fetchGetShoppingCart());
     }, []);
 
     return (
@@ -37,7 +38,7 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
                                 <div className="cart-shop-descr">
                                     <p>{element.smallDescription}</p>
                                 </div>
-                                <div className="cart-shop-delete" onClick={() => dispatch(deleteShoppingCartCourse(element.id))}>
+                                <div className="cart-shop-delete" onClick={() => dispatch(fetchDeleteShoppingCartCourse(element.id))}>
                                     <p>Удалить</p>
                                 </div>
                                 <div className="cart-shop-price">

@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { deleteCourse } from "../../../store/ducks/courses/saga";
+import { fetchDeleteCourse } from "../../../store/ducks/courses/actions";
 import { useDispatch } from "react-redux";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import { getProfileCourse } from "../../../store/ducks/courseProfile/saga";
+import { actions } from "../../../store/ducks/courseProfile/actions";
 
 import "./CourseItems.css";
 
@@ -20,12 +20,12 @@ const CourseItems: React.FC<PropsType> = ({ id, photo, author, smallDescription 
 
     const onDeleteCourse = (e: React.MouseEvent<HTMLElement>) => {
         e.stopPropagation();
-        dispatch(deleteCourse(id, photo));
+        dispatch(fetchDeleteCourse({courseId: id, photo}));
     };
 
     return (
         <div>
-            <div className="course-container" onClick={() => dispatch(getProfileCourse(id))}>
+            <div className="course-container" onClick={() => dispatch(actions.fetchGetProfileCourse(id))}>
                 <NavLink to={`/profile/${id}`}>
                     <div className="course-show">
                         <img

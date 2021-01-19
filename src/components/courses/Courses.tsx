@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CourseItems from "./CourseItems/CourseItems";
 import photo from "../../assets/Снимок экрана 2020-11-12 в 22.24.33.png"
 import { useEffect } from "react";
-import { filterByDirection } from "../../store/ducks/directions/saga";
+import { fetchFilterByDirection } from "../../store/ducks/directions/actions";
 import { selectFilterByDirection } from "../../store/ducks/directions/selectors";
 import { useParams } from "react-router-dom";
 
@@ -17,8 +17,9 @@ const Courses: React.FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(filterByDirection(params.filter));
+        dispatch(fetchFilterByDirection(params.filter));
     }, []);
+
     return (
         <div>
             <div className="course-wrap">

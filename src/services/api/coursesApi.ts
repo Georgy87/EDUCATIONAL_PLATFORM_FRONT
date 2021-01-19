@@ -23,7 +23,7 @@ export const CoursesApi = {
             return response.data;
         });
     },
-    deleteCourse(courseId: string, photo: string) {
-        return instance.delete(`course?id=${courseId}&name=${photo}`);
+    deleteCourse(payload: { courseId: string, photo: string }) {
+        return instance.delete(`course?id=${payload.courseId}&name=${payload.photo}`);
     },
 };

@@ -5,7 +5,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import photo from "../../../../assets/avatar/unnamed.jpg";
 import { NavLink } from 'react-router-dom';
-import { getTeahcer } from "../../../../store/ducks/courseProfile/saga";
+import { actions } from "../../../../store/ducks/courseProfile/actions";
 import { selectCourseProfile, selectTeacherLoaded } from "../../../../store/ducks/courseProfile/selectors";
 
 import "./ProfileCourseMaterials.css";
@@ -82,7 +82,7 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                     <div className="course-description-teacher-wrapper">
                         <h1>Преподаватель</h1>
                         <div className="course-description-teacher-info">
-                            <NavLink to={`/profile-teacher/${profile?.user}`} onClick={() => dispatch(getTeahcer(profile?.user))}>
+                            <NavLink to={`/profile-teacher/${profile?.user}`} onClick={() => dispatch(actions.fetchGetTeacher(profile?.user))}>
                                 <img src={avatar} alt=""/>
                             </NavLink>
                         </div>

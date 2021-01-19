@@ -3,18 +3,19 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSubmitLoading } from "../../store/ducks/user/selectors";
 import { Button, CircularProgress } from "@material-ui/core";
-import { registration } from "../../store/ducks/user/saga";
+import { fetchRegistration } from "../../store/ducks/user/actions";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import "./RegistrationPage.css";
 
-export interface RegisterFormProps {
+export type RegisterFormProps = {
     name: string;
     surname: string;
     email: string;
     password: string;
+    teacher: Boolean;
     // password2: string;
 }
 
@@ -35,8 +36,7 @@ export default function Registration() {
     });
 
     const onSubmit = (data: RegisterFormProps) => {
-        const { name, surname, email, password } = data;
-        dispatch(registration(name, surname, email, password, false));
+        dispatch(fetchRegistration(data));
     };
 
     return (

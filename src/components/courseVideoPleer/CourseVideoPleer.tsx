@@ -4,7 +4,7 @@ import CurrentTime from "./CurrentTime";
 import { Media, Player, controls } from "react-media-player";
 
 import { useDispatch } from "react-redux";
-import { setTimeModuleAndLessons } from "../../store/ducks/contentCourses/saga";
+import { fetchSetTimeModuleAndLessons } from "../../store/ducks/contentCourses/actions";
 
 import "./CourseVideoPleer.css";
 
@@ -21,14 +21,14 @@ export const MediaPlayer: React.FC<PropsType> = ({courseId, moduleId, lessonId, 
     const dispatch = useDispatch();
 
     const onTimeHendler = (time: string) => {
-        dispatch(setTimeModuleAndLessons(
+        dispatch(fetchSetTimeModuleAndLessons({
             courseId,
             moduleId,
             lessonId,
-            Number(time.substring(0, 2)),
-            Number(time.substring(3, 5)),
-            Number(time.substring(6, 8))),
-        );
+            hours: Number(time.substring(0, 2)),
+            minutes: Number(time.substring(3, 5)),
+            seconds: Number(time.substring(6, 8))
+        }))
     };
     return (
         <Media>

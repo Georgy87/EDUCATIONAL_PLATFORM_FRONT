@@ -6,9 +6,9 @@ import MainPage from "../mainPage/MainPage";
 import Registration from "../registrationPage/RegistrationPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { auth } from "../../store/ducks/user/saga";
+import { fetchAuth } from "../../store/ducks/user/actions";
 import Courses from "../courses/Courses";
-import { getCourses } from "../../store/ducks/courses/saga";
+import { fetchGetCourses } from "../../store/ducks/courses/actions";
 import ProfileCourse from "../profileCourse/ProfileCourse";
 import UserProfileNavbar from "../userProfile/UserProfileNavbar";
 import RegistrationPageForTeacher from "../registrationPageForTeacher/registrationTeacher/registrationTeacher";
@@ -29,9 +29,9 @@ function App() {
     const loading = useSelector(selectUserInfo);
 
     useEffect(() => {
-        dispatch(getCourses());
+        dispatch(fetchGetCourses());
         // history.push('/main');
-        dispatch(auth());
+        dispatch(fetchAuth());
     }, []);
 
     if (loading.loadingState === "NEVER") {

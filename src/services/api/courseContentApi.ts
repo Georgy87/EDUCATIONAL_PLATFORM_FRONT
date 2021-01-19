@@ -46,40 +46,59 @@ export type CoursesContentApiType = {
 };
 
 export const CourseContentApi = {
-    uploadContent(courseId: string | null, file: any, lesson: string, module: string) {
+    uploadContent(payload: {
+        courseId: string | null;
+        file: any;
+        lesson: string;
+        module: string;
+    }) {
         const formData = new FormData();
-        formData.append("module", module);
-        formData.append("file", file);
-        formData.append("lesson", lesson);
+        formData.append("module", payload.module);
+        formData.append("file", payload.file);
+        formData.append("lesson", payload.lesson);
         return instance
-            .post<CoursesContentApiType>(`teacher/content?courseId=${courseId}`, formData)
+            .post<CoursesContentApiType>(
+                `teacher/content?courseId=${payload.courseId}`,
+                formData
+            )
             .then((response) => response.data);
     },
-    uploadLesson(
-        courseId: string,
-        file: string,
-        lesson: string,
-        moduleId: string
-    ) {
+    fetchUploadLesson(payload: {
+        courseId: string;
+        file: any;
+        lesson: string;
+        moduleId: string;
+    }) {
         const formData = new FormData();
-        formData.append("file", file);
-        formData.append("lesson", lesson);
-        formData.append("moduleId", moduleId);
+        formData.append("file", payload.file);
+        formData.append("lesson", payload.lesson);
+        formData.append("moduleId", payload.moduleId);
         return instance
-            .post<CoursesContentApiType>(`teacher/lesson-upload?courseId=${courseId}`, formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            })
+            .post<CoursesContentApiType>(
+                `teacher/lesson-upload?courseId=${payload.courseId}`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            )
             .then((response) => response.data);
     },
-    getCourseCoutent(courseId: string | null) {
+    getCourseCoutent(courseId: string) {
         return instance
-            .get<CoursesContentApiType>(`teacher/courses?courseId=${courseId}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            })
+            .get<CoursesContentApiType>(
+                `teacher/courses?courseId=${courseId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            )
             .then((response) => response.data);
     },
     getAllTeacherCourses() {
@@ -91,19 +110,26 @@ export const CourseContentApi = {
             })
             .then((response) => response.data);
     },
-    deleteLesson(
-        courseId: string | null,
-        moduleId: string,
-        lessonId: string,
-        videoName: string,
-        hours: number,
-        minutes: number,
-        seconds: number
-    ) {
+    deleteLesson(payload: {
+        courseId: string;
+        moduleId: string;
+        lessonId: string;
+        videoName: string;
+        hours: number;
+        minutes: number;
+        seconds: number;
+    }) {
         return axios
             .post<CoursesContentApiType>(
-                `http://localhost:5000/api/teacher/lesson-delete?courseId=${courseId}`,
-                { moduleId, lessonId, videoName, hours, minutes, seconds },
+                `http://localhost:5000/api/teacher/lesson-delete?courseId=${payload.courseId}`,
+                {
+                    moduleId: payload.moduleId,
+                    lessonId: payload.lessonId,
+                    videoName: payload.videoName,
+                    hours: payload.hours,
+                    minutes: payload.minutes,
+                    seconds: payload.seconds,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -114,18 +140,13 @@ export const CourseContentApi = {
             )
             .then((response) => response.data);
     },
-    lessonTitleRevision(
-        newTitle: string,
-        courseId: string,
-        moduleId: string,
-        lessonId: string
-    ) {
+    lessonTitleRevision(payload: { newTitle: string, courseId: string, moduleId: string, lessonId: string }) {
         const formData = new FormData();
-        formData.append("newTitle", newTitle);
+        formData.append("newTitle", payload.newTitle);
         return axios
             .post<CoursesContentApiType>(
-                `http://localhost:5000/api/teacher/lesson?courseId=${courseId}`,
-                { newTitle, moduleId, lessonId },
+                `http://localhost:5000/api/teacher/lesson?courseId=${payload.courseId}`,
+                { newTitle: payload.newTitle, moduleId: payload.moduleId, lessonId: payload.lessonId},
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -136,17 +157,12 @@ export const CourseContentApi = {
             )
             .then((response) => response.data);
     },
-    sendLinksToResources(
-        courseId: string,
-        moduleId: string,
-        lessonId: string,
-        linkName: string,
-        linksToResources: string
-    ) {
+    sendLinksToResources(payload: {courseId: string, moduleId: string, lessonId: string, linkName: string, linksToResources: string}) {
+
         return axios
             .post<CoursesContentApiType>(
-                `http://localhost:5000/api/teacher/link?courseId=${courseId}`,
-                { moduleId, lessonId, linkName, linksToResources },
+                `http://localhost:5000/api/teacher/link?courseId=${payload.courseId}`,
+                { courseId: payload.courseId, moduleId: payload.moduleId, lessonId: payload.lessonId, linkName: payload.linkName, linksToResources: payload.linksToResources },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -157,18 +173,20 @@ export const CourseContentApi = {
             )
             .then((response) => response.data);
     },
-    setTimeModuleAndLessons(
-        courseId: string | null,
-        moduleId: string | undefined,
-        lessonId: string | undefined,
-        hours: number,
-        minutes: number,
-        seconds: number
+    setTimeModuleAndLessons(payload: {
+        courseId: string | null;
+        moduleId: string | undefined;
+        lessonId: string | undefined;
+        hours: number;
+        minutes: number;
+        seconds: number;
+    }
+
     ) {
         return axios
             .post<CoursesContentApiType>(
-                `http://localhost:5000/api/teacher/time?courseId=${courseId}`,
-                { moduleId, lessonId, hours, minutes, seconds },
+                `http://localhost:5000/api/teacher/time?courseId=${payload.courseId}`,
+                { moduleId: payload.moduleId, lessonId: payload.lessonId, hours: payload.hours, minutes: payload.minutes, seconds: payload.seconds },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
