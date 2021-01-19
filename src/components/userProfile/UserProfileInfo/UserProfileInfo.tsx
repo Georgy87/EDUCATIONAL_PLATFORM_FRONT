@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeInfoProfileUser } from '../../../store/ducks/user/saga';
+import { fetchChangeInfoProfileUser } from '../../../store/ducks/user/actions';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -29,7 +29,7 @@ function UserProfileInfo()  {
 
     const onSubmit = (data: UserProfileInfoProps) => {
         const { name, surname, professionalСompetence } = data;
-        dispatch(changeInfoProfileUser(name, surname, professionalСompetence))
+        dispatch(fetchChangeInfoProfileUser({ name, surname, professionalСompetence }))
     };
 
     return (

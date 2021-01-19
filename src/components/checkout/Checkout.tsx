@@ -4,7 +4,8 @@ import { Button } from '@material-ui/core';
 import { useProfileCourseInfoDopStyles } from '../profileCourse/profileCourseMaterials/profileCourseInfoDop/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCoursesData } from "../../store/ducks/user/selectors";
-import { getShoppingCart, purchasedCourses } from "../../store/ducks/user/saga";
+import { fetchGetShoppingCart } from "../../store/ducks/user/actions";
+import { fetchPurchasedCourses } from "../../store/ducks/user/actions";
 
 import "./Checkout.css";
 
@@ -21,7 +22,7 @@ const Checkout: React.FC = (): React.ReactElement => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getShoppingCart());
+        dispatch(fetchGetShoppingCart());
     }, []);
 
     const onPurchasedCourses = (): void => {
@@ -31,7 +32,7 @@ const Checkout: React.FC = (): React.ReactElement => {
                 console.log(el.id);
                 purchasedCoursesIds.push(el.id);
             });
-            dispatch(purchasedCourses(purchasedCoursesIds, courses.totalPrice));
+            dispatch(fetchPurchasedCourses({ids: purchasedCoursesIds, totalPrice: courses.totalPrice}));
         }
     }
 

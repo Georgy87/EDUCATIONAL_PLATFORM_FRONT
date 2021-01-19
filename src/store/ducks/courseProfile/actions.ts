@@ -2,6 +2,14 @@ import { InferActionsTypes } from "../../store";
 import { CourseProfileActionsType, CourseProfileStateType, TeacherType } from "./types";
 
 export const actions = {
+    fetchGetProfileCourse: (payload: string) => ({
+        type: CourseProfileActionsType.FETCH_GET_PROFILE_COURSE,
+        payload
+    } as const),
+    fetchGetTeacher: (payload: string | undefined) => ({
+        type: CourseProfileActionsType.FETCH_GET_TEACHER,
+        payload
+    } as const),
     setCourseProfile: (course: CourseProfileStateType) => ({
         type: CourseProfileActionsType.SET_COURSE_PROFILE,
         payload: course

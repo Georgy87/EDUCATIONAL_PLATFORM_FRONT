@@ -1,51 +1,93 @@
 import { addCourseDirections, deleteСourseDirections, setCourseDirections, setFilterByDirections } from "./actions";
-import axios from "axios";
-import { DispatchType } from "./types";
+import { DirectionsActionType, DispatchType, FetchDeleteDirectionType, FetchFilterByDirectionType, FetchUploadCourseDirectionsType } from "./types";
 import { directionsApi} from "../../../services/api/directionsApi";
+import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
-export const uploadCourseDirections = (file: File, direction: string) => {
-    return async (dispatch: DispatchType) => {
-        try {
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("direction", direction);
-            const data = await directionsApi.uploadCourseDirections(formData);
-            dispatch(addCourseDirections(data));
-        } catch (e) {
-            console.log(e);
-        }
-    };
+// THUNK
+
+// export const fetchUploadCourseDirections = (file: File, direction: string) => {
+//     return async (dispatch: DispatchType) => {
+//         try {
+//             const formData = new FormData();
+//             formData.append("file", file);
+//             formData.append("direction", direction);
+//             const data = await directionsApi.uploadCourseDirections(formData);
+//             dispatch(addCourseDirections(data));
+//         } catch (e) {
+//             console.log(e);
+//         }
+//     };
+// };
+
+export function* fetchUploadCourseDirectionsRequest({payload}: FetchUploadCourseDirectionsType) {
+    try {
+        const formData = new FormData();
+        formData.append("file", payload.file);
+        formData.append("direction", payload.direction);
+        const data = yield call(directionsApi.uploadCourseDirections, formData);
+        yield put(addCourseDirections(data));
+    } catch (e) {
+        yield console.log(e);
+    }
 };
 
-export const getCourseDirections = () => {
-    return async (dispatch: DispatchType) => {
-        try {
-            const data = await directionsApi.getCourseDirections();
-            dispatch(setCourseDirections(data));
-        } catch (e) {
-            console.log(e);
-        }
-    };
+// THUNK
+
+// export const fetchGetCourseDirections = () => {
+//     return async (dispatch: DispatchType) => {
+//         try {
+//             const data = await directionsApi.getCourseDirections();
+//             dispatch(setCourseDirections(data));
+//         } catch (e) {
+//             console.log(e);
+//         }
+//     };
+// };
+
+export function* fetchGetCourseDirectionsRequest() {
+    try {
+        const data = yield call(directionsApi.getCourseDirections);
+        yield put(setCourseDirections(data));
+    } catch (e) {
+        yield console.log(e);
+    }
 };
 
-export const filterByDirection = (search: string) => {
-    return async (dispatch: DispatchType) => {
-        try {
-            const data = await directionsApi.filterByDirection(search);
-            dispatch(setFilterByDirections(data));
-        } catch (e) {
-            console.log(e);
-        }
-    };
+// THUNK
+
+// export const fetchFilterByDirection = (search: string) => {
+//     return async (dispatch: DispatchType) => {
+//         try {
+//             const data = await directionsApi.filterByDirection(search);
+//             dispatch(setFilterByDirections(data));
+//         } catch (e) {
+//             console.log(e);
+//         }
+//     };
+// };
+
+
+export function* fetchFilterByDirectionRequest({payload}: FetchFilterByDirectionType) {
+    try {
+        const data = yield directionsApi.filterByDirection(payload);
+        yield put(setFilterByDirections(data));
+    } catch (e) {
+        console.log(e);
+    }
 };
 
-export const deleteDirection = (directionId: string, direction: string) => {
-    return async (dispatch: DispatchType) => {
-        try {
-            dispatch(deleteСourseDirections(directionId));
-            await directionsApi.deleteDirection(directionId, direction);
-        } catch (e) {
-            console.log(e);
-        }
-    };
+export function* fetchDeleteDirectionRequest({payload}: FetchDeleteDirectionType) {
+    try {
+        yield put(deleteСourseDirections(payload.directionId));
+        yield call(directionsApi.deleteDirection, payload);
+    } catch (e) {
+        yield console.log(e);
+    }
 };
+
+export function* DirectionsSaga() {
+    yield takeLatest(DirectionsActionType.FETCH_UPLOAD_COURSE_DIRECTIONS, fetchUploadCourseDirectionsRequest);
+    yield takeLatest(DirectionsActionType.FETCH_GET_COURSE_DIRECTIONS, fetchGetCourseDirectionsRequest);
+    yield takeLatest(DirectionsActionType.FETCH_FILTER_BY_DIRECTION, fetchFilterByDirectionRequest);
+    yield takeLatest(DirectionsActionType.FETCH_DELETE_DIRECTION, fetchDeleteDirectionRequest);
+}

@@ -2,6 +2,8 @@
 // Course profile types:
 
 export enum CourseProfileActionsType {
+    FETCH_GET_PROFILE_COURSE = "FETCH-GET-PROFILE-COURSE",
+    FETCH_GET_TEACHER = "FETCH-GET-TEACHER",
     SET_COURSE_PROFILE = "SET-COURSE-PROFILE",
     SET_COURSE_PROFILE_VIDEO = "SET-COURSE-PROFILE-VIDEO",
     SET_TEACHER = " SET-TEACHER",
@@ -75,6 +77,21 @@ export type CourseProfileState = {
     teacher: TeacherType | null;
     loadingState: string
 };
+
+// FETCH ACTIONS TYPES
+
+export type FetchGetProfileCourseType = {
+    type: CourseProfileActionsType.FETCH_GET_PROFILE_COURSE,
+    payload: string;
+}
+
+export type FetchGetTeacherType = {
+    type: CourseProfileActionsType.FETCH_GET_TEACHER;
+    payload: string | undefined;
+}
+
+// ACTIONS TYPES
+
 
 // export type setCourseProfileActionInterface = {
 //     type: CourseProfileActionsType.SET_COURSE_PROFILE;

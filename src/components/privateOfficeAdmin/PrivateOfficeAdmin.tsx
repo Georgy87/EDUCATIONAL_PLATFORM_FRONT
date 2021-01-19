@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { uploadCourseDirections } from "../../store/ducks/directions/saga";
+import { fetchUploadCourseDirections } from "../../store/ducks/directions/actions";
 
 import "./PrivateOfficeAdmin.css";
 
@@ -32,7 +32,7 @@ const PrivateOfficeAdmin: React.FC = (): React.ReactElement => {
                 defaultValue={directionName}
                 onChange={(e) => setDirectionName(e.target.value)}
             />
-            <button onClick={() => dispatch(uploadCourseDirections(photoDirection, directionName))}>Добавить направление</button>
+            <button onClick={() => dispatch(fetchUploadCourseDirections({file: photoDirection, direction: directionName}))}>Добавить направление</button>
         </div>
     );
 };

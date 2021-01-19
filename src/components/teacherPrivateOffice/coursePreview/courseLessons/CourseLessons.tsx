@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteLesson, lessonTitleRevision, sendLinksToResources } from "../../../../store/ducks/contentCourses/saga";
-import { setTimeLesson, setVideoName } from "../../../../store/ducks/contentCourses/actions";
+import { fetchSendLinksToResources } from "../../../../store/ducks/contentCourses/actions";
+import { fetchDeleteLesson, fetchLessonTitleRevision, setTimeLesson, setVideoName } from "../../../../store/ducks/contentCourses/actions";
 import EditIcon from "@material-ui/icons/Edit";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -47,11 +47,11 @@ const CourseLessons: React.FC<PropsType> = (props) => {
 
     const onChangeBlurStatus = (moduleId: string, lessonId: string) => {
         setStatus(false);
-        dispatch(lessonTitleRevision(statusValue, courseId, moduleId, lessonId));
+        dispatch(fetchLessonTitleRevision({newTitle: statusValue, courseId, moduleId, lessonId}));
     };
 
     const sendLink = (moduleId: string, lessonId: string, linkName: string) => {
-        dispatch(sendLinksToResources(courseId, moduleId, lessonId, linkName, linksToResources));
+        dispatch(fetchSendLinksToResources({courseId, moduleId, lessonId, linkName, linksToResources}));
     };
 
     const setVideoAndTimeLesson = (videoName: string) => {
@@ -63,7 +63,7 @@ const CourseLessons: React.FC<PropsType> = (props) => {
         const hours = Number(props.lessonTime.split(":")[0]);
         const minutes = Number(props.lessonTime.split(":")[1]);
         const seconds = Number(props.lessonTime.split(":")[2]);
-        dispatch(deleteLesson(courseId, props.moduleId, props.lessonId, props.fileVideo, hours, minutes, seconds));
+        dispatch(fetchDeleteLesson({courseId, moduleId: props.moduleId, lessonId: props.lessonId, videoName: props.fileVideo, hours, minutes, seconds}));
     };
 
     return (

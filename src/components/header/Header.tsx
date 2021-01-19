@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/ducks/user/actions";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { selectUserInfo, selectIsAuth, selectUserLoaded, selectUserAvatar } from "../../store/ducks/user/selectors";
-import { getPurchasedCourses, getShoppingCart } from '../../store/ducks/user/saga';
+import { fetchGetPurchasedCourses, fetchGetShoppingCart } from '../../store/ducks/user/actions';
 
 import "./Header.css";
 
@@ -36,7 +36,7 @@ const Header: React.FC = (): React.ReactElement => {
                     <span>Преподаватель</span>
                 </NavLink>}
                 {isAuth && <NavLink to="/purchased-courses">
-                    <span onClick={() => dispatch(getPurchasedCourses())}>Мое обучение</span>
+                    <span onClick={() => dispatch(fetchGetPurchasedCourses())}>Мое обучение</span>
                 </NavLink>}
             </div>
             <div className="header-avatar">
@@ -63,7 +63,7 @@ const Header: React.FC = (): React.ReactElement => {
                     <HomeWorkIcon />
                 </NavLink>
             </div>
-            <div className="header-shopping-cart" onClick={() => dispatch(getShoppingCart())}>
+            <div className="header-shopping-cart" onClick={() => dispatch(fetchGetShoppingCart())}>
                 <NavLink to="/shopping-cart">
                     <ShoppingCartIcon />
                 </NavLink>

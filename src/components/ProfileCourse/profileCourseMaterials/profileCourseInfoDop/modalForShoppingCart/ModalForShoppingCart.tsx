@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 import { useProfileCourseInfoDopStyles } from "../theme";
 import { NavLink, RouteComponentProps } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getShoppingCart } from "../../../../../store/ducks/user/saga";
+import { fetchGetShoppingCart } from "../../../../../store/ducks/user/actions";
 import { selectCourseProfileState, selectTeacherInfo } from "../../../../../store/ducks/courseProfile/selectors";
 import { useSelector } from 'react-redux';
 import "./ModalForShoppingCart.css";
@@ -41,7 +41,7 @@ export const ModalForShoppingCart: React.FC<PropsModalType> = (props): React.Rea
                     <Button
                             variant="contained"
                             className={classes.cartShopBtn}
-                            onClick={() => dispatch(getShoppingCart())}
+                            onClick={() => dispatch(fetchGetShoppingCart())}
                         >
                         <NavLink to="/shopping-cart">
                             Перейти в корзину

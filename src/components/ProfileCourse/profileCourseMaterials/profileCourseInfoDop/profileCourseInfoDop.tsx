@@ -2,12 +2,12 @@ import React from 'react'
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import { Button } from '@material-ui/core';
 import { useProfileCourseInfoDopStyles } from './theme';
-import { setShoppingCartIds } from '../../../../store/ducks/user/saga';
+import { fetchSetShoppingCartIds } from '../../../../store/ducks/user/actions';
 import "./profileCourseInfoDop.css";
 import { useDispatch } from 'react-redux';
 import { selectCourseProfile, selectUserAuth } from '../../../../store/ducks/courseProfile/selectors';
 import { useSelector } from 'react-redux';
-import { getTeahcer } from '../../../../store/ducks/courseProfile/saga';
+import { actions } from '../../../../store/ducks/courseProfile/actions';
 
 type PropsType = {
     setModalActiveVideoCourse: (value: boolean) => void;
@@ -24,10 +24,11 @@ const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActiveVideoCourse, 
     const dispatch = useDispatch();
 
     const onShoppingCartHandler = (): void => {
-        dispatch(setShoppingCartIds(profileId));
-        dispatch(getTeahcer(profile?.user));
+        dispatch(fetchSetShoppingCartIds(profileId));
+        dispatch(actions.fetchGetTeacher(profile?.user));
         setModalActiveShoppingCart(true);
     }
+
     return (
         <>
             <div

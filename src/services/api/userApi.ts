@@ -1,4 +1,6 @@
 import axios from "axios";
+import { LoginFormProps } from "../../components/loginPage/LoginPage";
+import { RegisterFormProps } from "../../components/registrationPage/RegistrationPage";
 import { CoursesDataType, PurchasedCoursesType } from "../../store/ducks/user/types";
 
 const instance = axios.create({
@@ -25,11 +27,17 @@ type UserTokenApiType = {
 };
 
 export const userApi = {
-    registrationUser(name: string, surname: string, email: string, password: string, teacher: boolean | false) {
-        return instance.post('auth/registration', { name, surname, email, password, teacher });
+    registrationUser(formData: RegisterFormProps) {
+        return instance.post('auth/registration', {
+            name: formData.name,
+            surname: formData.surname,
+            email: formData.email,
+            password: formData.password,
+            teacher: formData.teacher
+        });
     },
-    loginUser(email: string, password: string) {
-        return instance.post<UserTokenApiType>('auth/login', { email, password })
+    loginUser(payload: LoginFormProps) {
+        return instance.post<UserTokenApiType>('auth/login', {email: payload.email, password: payload.password})
             .then(response => response.data);
     },
     getUser() {
@@ -39,8 +47,8 @@ export const userApi = {
     uploadUserAvatar(formData: FormData) {
         return instance.post<UserTokenApiType>('course/avatar', formData);
     },
-    changeInfoUser(name: string, surname: string, professionalСompetence: string) {
-        return instance.put('auth/change-info', { name, surname, professionalСompetence });
+    changeInfoUser(payload: { name: string, surname: string, professionalСompetence: string }) {
+        return instance.put('auth/change-info', { name: payload.name, surname: payload.surname, professionalСompetence: payload.professionalСompetence });
     },
     setShoppingCartIds(id: string) {
         return instance.post(`auth/shopping-cart?shoppingCartId=${id}`);
@@ -53,8 +61,8 @@ export const userApi = {
         return instance.delete(`course/delete-shopping-cart?id=${id}`)
             .then(response => response.data);
     },
-    setPurchasedCourses(ids: string[], totalPrice: number) {
-        return instance.post('auth/purchased-courses', { ids, totalPrice })
+    setPurchasedCourses(payload: {ids: string[], totalPrice: number}) {
+        return instance.post('auth/purchased-courses', { ids: payload.ids, totalPrice: payload.totalPrice })
             .then(response => response.data);
     },
     getPurchasedCourses() {

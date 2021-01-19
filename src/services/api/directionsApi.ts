@@ -21,7 +21,7 @@ export const directionsApi = {
         return instance.get<FilterByDirectionType[]>(`direction/search?search=${search}`)
             .then(response => response.data);
     },
-    async deleteDirection(directionId: string, direction: string) {
-        return instance.delete(`direction?id=${directionId}&direction=${direction}`);
+    async deleteDirection(payload: { directionId: string, direction: string }) {
+        return instance.delete(`direction?id=${payload.directionId}&direction=${payload.direction}`);
     }
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProgrammsItems from "./ProgrammsItems/ProgrammsItems";
 import DirectionTitles from "./DirectionsTitles/DirectionTitles";
-import { getCourseDirections } from "../../store/ducks/directions/saga";
+import { fetchGetCourseDirections } from "../../store/ducks/directions/actions";
 import { selectCourseDirections } from "../../store/ducks/directions/selectors";
 
 import "./programms.css";
@@ -13,7 +13,7 @@ const Programms: React.FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCourseDirections());
+        dispatch(fetchGetCourseDirections());
     }, []);
     return (
         <div>

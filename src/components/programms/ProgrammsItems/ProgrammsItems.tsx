@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteDirection, filterByDirection } from "../../../store/ducks/directions/saga";
+import { fetchDeleteDirection } from "../../../store/ducks/directions/actions";
+import { fetchFilterByDirection } from "../../../store/ducks/directions/actions";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { NavLink } from "react-router-dom";
 
@@ -15,7 +16,7 @@ const ProgrammsItems: React.FC<PropsType> = ({ direction, name, _id }) => {
     const dispatch = useDispatch();
 
     const nameDirection = () => {
-        dispatch(filterByDirection(direction));
+        dispatch(fetchFilterByDirection(direction));
     };
     return (
         <div>
@@ -25,7 +26,7 @@ const ProgrammsItems: React.FC<PropsType> = ({ direction, name, _id }) => {
                 </NavLink>
                 <div className="title">{direction}</div>
                 <div className="direction-delete">
-                    <DeleteForeverIcon onClick={() => dispatch(deleteDirection(_id, direction))}/>
+                    <DeleteForeverIcon onClick={() => dispatch(fetchDeleteDirection({directionId: _id, direction}))}/>
                 </div>
             </div>
         </div>
