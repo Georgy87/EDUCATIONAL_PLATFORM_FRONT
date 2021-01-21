@@ -48,7 +48,7 @@ const ProfileMaterialsModules = (props) => {
     let finalMinutes = minutes + Math.floor(seconds);
     return (
         <>
-            <Accordion className={classes.root}>
+            <Accordion className={classes.root} style={{boxShadow: 'none'}}>
                 <AccordionSummary
                     style={{
                         backgroundColor: "#fbfbf8",

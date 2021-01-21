@@ -1,6 +1,3 @@
-import { Dispatch } from "react";
-import { ThunkAction } from "redux-thunk";
-import { AppStateType } from "../../store";
 import { CourseProfileStateType } from "../courseProfile/types";
 import { DeleteFilterByDirectionsActionType } from "../directions/types";
 

@@ -28,7 +28,7 @@ export const CoursesApi = {
     },
     getCourseForTraining(id: string) {
         return instance.get(`/course/training-course?id=${id}`).then(data => {
-            return data.data;
+            return data.data.course;
         })
     }
 };

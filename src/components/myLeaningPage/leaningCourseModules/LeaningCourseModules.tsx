@@ -1,31 +1,44 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import CourseLessons from "../courseLessons/CourseLessons";
-import { makeStyles } from "@material-ui/core/styles";
+
+import React from 'react'
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { fetchUploadLesson } from "../../../../store/ducks/contentCourses/actions";
-import { ModuleContentType } from "../../../../store/ducks/contentCourses/reducer";
+import { AccordionDetails } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { ModuleContentType } from '../../../store/ducks/contentCourses/reducer';
 
-import "./CourseModules.css";
+import "./LeaningCourseModules.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "100%",
+        // width: "100%",
         padding: "1px",
+        '& .MuiPaper-elevation1': {
+            backgroundColor: 'red',
+            color: 'red'
+        }
     },
     heading: {
-        fontSize: theme.typography.pxToRem(17),
-        fontWeight: 350,
-        color: "white",
+        fontSize: theme.typography.pxToRem(15),
+        fontWeight: 500,
+    },
+    headingModule: {
+        // display: "flex",
+    },
+    headingHours: {
+        // display: "flex",
+        fontWeight: 200,
+        marginLeft: "auto",
+    },
+    accordionSummary: {
+        // width: 900,
+        backgroundColor: "#f7f8fa",
+        boxShadow: 'none'
     },
 }));
 
 type PropsType = {
-    courseId: string;
     module: string;
     moduleHours: number;
     moduleMinutes: number;
@@ -34,31 +47,28 @@ type PropsType = {
     moduleId: string;
 }
 
-const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes, moduleSeconds, module, moduleHours, moduleContent }) => {
+export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId }) => {
     const classes = useStyles();
-    const [fileVideo, setFileVideo] = useState<any>();
-    const [lesson, setLesson] = useState<string>("");
-
-    const dispatch = useDispatch();
-
-    const addLesson = () => {
-        dispatch(fetchUploadLesson({courseId, file: fileVideo, lesson, moduleId}));
-    };
+    console.log(module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId)
+    let newHours;
 
     let hours = Math.trunc(moduleMinutes / 60);
+    if (moduleHours + hours === 0) {
+        newHours = "";
+    } else {
+        newHours = moduleHours + hours + " ч ";
+    }
+
     let minutes = moduleMinutes % 60;
     let seconds = moduleSeconds / 60;
     let finalMinutes = minutes + Math.floor(seconds);
 
     return (
-        <div>
-            <Accordion>
+        <div className="leaning-modules">
+            <Accordion style={{boxShadow: 'none'}}>
                 <AccordionSummary
-                    style={{
-                        backgroundColor: "rgba(12, 9, 9, 0.85)",
-                        boxShadow: "0px 0px 1px",
-                    }}
-                    expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+                    className={classes.accordionSummary}
+                    expandIcon={<ExpandMoreIcon style={{ color: "black" }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
@@ -73,36 +83,11 @@ const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes,
                         </div>
                     </Typography>
                 </AccordionSummary>
-
-                <div className="set-lessons-wrapper">
-                    <input
-                        type="file"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFileVideo(e.target.files?.[0])}
-                        className="custom-file-input"
-                    />
-                    <input
-                        placeholder="Введите название лекции"
-                        type="text"
-                        className="set-lessons-module"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLesson(e.target.value)}
-                    />
-                    <button
-                        className="set-lessons-module-btn"
-                        onClick={addLesson}
-                    >
-                        Добавить лекцию
-                    </button>
-                </div>
                 {moduleContent?.map((el: ModuleContentType) => {
                     return (
                         <div className={classes.root} key={el._id}>
                             <Accordion>
                                 <AccordionSummary
-                                    style={{
-                                        backgroundColor:
-                                            "rgba(17, 39, 9, 0.75)",
-                                        boxShadow: "0px 1px 2px",
-                                    }}
                                     expandIcon={
                                         <ExpandMoreIcon
                                             style={{ color: "white" }}
@@ -116,7 +101,7 @@ const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes,
                                     </Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <CourseLessons
+                                    {/* <CourseLessons
                                         courseId={courseId}
                                         links={el.linksToResources}
                                         key={el._id}
@@ -125,7 +110,7 @@ const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes,
                                         fileVideo={el.fileVideo}
                                         lesson={el.lesson}
                                         moduleId={moduleId}
-                                    />
+                                    /> */}
                                 </AccordionDetails>
                             </Accordion>
                         </div>
@@ -133,7 +118,5 @@ const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes,
                 })}
             </Accordion>
         </div>
-    );
-};
-
-export default CourseModules;
+    )
+}

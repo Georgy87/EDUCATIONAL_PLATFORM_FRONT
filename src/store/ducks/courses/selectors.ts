@@ -6,4 +6,5 @@ export const selectLoadingState = (state: AppStateType) => selectCourses(state).
 export const selectCourseLoading = (state: AppStateType) => selectLoadingState(state) ===  LoadingStateType.LOADING;
 
 export const selectCourseForTraining = (state: AppStateType) => state.course.courseForTraining?.content;
+export const selectLoadingTraining = (state: AppStateType) => state.course.loadingCourseForTraining;
 

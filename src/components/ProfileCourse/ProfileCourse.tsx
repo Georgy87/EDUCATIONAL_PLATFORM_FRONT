@@ -100,7 +100,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                     video={video}
                 />
                 <div className="material-container">
-                    <ProfileCourseMaterials fullDescription={loaded && profile?.fullDescription} />
+                    <ProfileCourseMaterials fullDescription={profile?.fullDescription} />
                 </div>
             </div>
         </>
