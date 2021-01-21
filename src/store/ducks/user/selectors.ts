@@ -10,3 +10,5 @@ export const selectLoadingState = (state: AppStateType) => selectUserInfo(state)
 export const selectSubmitLoading = (state: AppStateType) => selectUserInfo(state).submitLoading;
 export const selectUserLoaded = (state: AppStateType) => selectLoadingState(state) === UserActionType.SET_LOADED;
 export const selectUserStatus = (state: AppStateType) =>  selectUserInfo(state).loadingState;
+export const selectPurchasedCourses = (state: AppStateType) => selectUserInfo(state).purchasedCourses;
+export const selectPurchasedCoursesLoading = (state: AppStateType) => selectUserInfo(state).loadingPurchasedCourses;

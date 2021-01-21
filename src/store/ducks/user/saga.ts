@@ -1,26 +1,9 @@
-import { setPurchasedCourses, setShoppingCourses, setSubmitLoading, setUser } from "./actions";
+import { setLoadingPurchasedCourses, setPurchasedCourses, setShoppingCourses, setSubmitLoading, setUser } from "./actions";
 import { userApi } from "../../../services/api/userApi";
 import { setUserLoading, setUserLoaded } from "../user/actions";
 import { FetchChangeInfoProfileUserType, FetchDeleteShoppingCartCourseType, FetchLoginType, FetchPurchasedCoursesType, FetchRegistrationType, FetchSetShoppingCartIdsType, FetchUploadAvatarType, UserActionType } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { RegisterFormProps } from "../../../components/registrationPage/RegistrationPage";
-
-// THUNK
-
-// export const fetchRegistration = (name: string, surname: string, email: string, password: string, teacher: boolean | false): ThunkType => {
-//     return async (dispatch: DispatchType) => {
-//         dispatch(setSubmitLoading(true));
-//         try {
-//             await userApi.registrationUser(name, surname, email, password, teacher);
-//             console.log('loaded');
-//             dispatch(setSubmitLoading(false));
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
-// };
-
-// SAGA
 
 export function* fetchRegistrationRequest({payload}: FetchRegistrationType) {
     try {
@@ -28,43 +11,9 @@ export function* fetchRegistrationRequest({payload}: FetchRegistrationType) {
         yield call(userApi.registrationUser, payload);
         yield put(setSubmitLoading(false));
     } catch (error) {
-        // yield put(console.log(error));
         yield console.log(error);
     }
 }
-
-// THUNK
-
-// export const fetchLogin = (email: string, password: string): ThunkType => {
-//     return async (dispatch: DispatchType) => {
-//         dispatch(setSubmitLoading(true));
-//         try {
-//             const data = await userApi.loginUser(email, password);
-//             localStorage.setItem("token", data.token);
-//             dispatch(setUser(data));
-//             dispatch(setSubmitLoading(false));
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
-// };
-
-
-// THUNK
-
-// export const fetchAuth = (): ThunkType => {
-//     return async (dispatch: DispatchType) => {
-//         dispatch(setUserLoading());
-//         try {
-//             const data = await userApi.getUser();
-//             dispatch(setUser(data));
-//             localStorage.setItem("token", data.token);
-//             dispatch(setUserLoaded());
-//         } catch (e) {
-//             console.log(e);
-//         }
-//     };
-// };
 
 export function* fetchLoginRequest({payload}: FetchLoginType) {
     try {
@@ -90,23 +39,6 @@ export function* fetchAuthRequest() {
     }
 };
 
-// THUNK
-
-// export const fetchUploadAvatar = (file: File): ThunkType => {
-//     return async (dispatch: DispatchType) => {
-//         dispatch(setUserLoading());
-//         try {
-//             const formData = new FormData();
-//             formData.append("file", file);
-//             const data = await userApi.uploadUserAvatar(formData);
-//             dispatch(setUserLoaded());
-//             dispatch(setUser(data.data));
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
-// };
-
 export function* fetchUploadAvatarRequest({payload}: FetchUploadAvatarType) {
     try {
         yield put(setUserLoading());
@@ -120,18 +52,6 @@ export function* fetchUploadAvatarRequest({payload}: FetchUploadAvatarType) {
     }
 };
 
-// THUNK
-
-// export const fetchChangeInfoProfileUser = (name: string, surname: string, professionalСompetence: string): ThunkType => {
-//     return async () => {
-//         try {
-//             await userApi.changeInfoUser(name, surname, professionalСompetence);
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
-// };
-
 export function* fetchChangeInfoProfileUserRequest({payload}: FetchChangeInfoProfileUserType) {
     try {
         yield call(userApi.changeInfoUser, payload);
@@ -140,18 +60,6 @@ export function* fetchChangeInfoProfileUserRequest({payload}: FetchChangeInfoPro
     }
 };
 
-// Thunk
-
-// export const fetchSetShoppingCartIds = (id: string): ThunkType => {
-//     return async () => {
-//         try {
-//             await userApi.setShoppingCartIds(id);
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
-// };
-
 export function* fetchSetShoppingCartIdsRequest({payload}: FetchSetShoppingCartIdsType) {
     try {
         yield call(userApi.setShoppingCartIds, payload);
@@ -159,19 +67,6 @@ export function* fetchSetShoppingCartIdsRequest({payload}: FetchSetShoppingCartI
         yield console.log(error);
     }
 };
-
-// THUNK
-
-// export const fetchGetShoppingCart = (): ThunkType => {
-//     return async (dispatch: DispatchType) => {
-//         try {
-//             const data = await userApi.getShoppingCart();
-//             dispatch(setShoppingCourses(data));
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
-// };
 
 export function* fetchGetShoppingCartRequest() {
         try {
@@ -182,19 +77,6 @@ export function* fetchGetShoppingCartRequest() {
         }
 };
 
-// THUNK
-
-// export const fetchDeleteShoppingCartCourse = (id: string): ThunkType => {
-//     return async (dispatch: DispatchType) => {
-//         try {
-//             const data = await userApi.deleteShoppingCart(id);
-//             dispatch(setShoppingCourses(data));
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
-// };
-
 export function* fetchDeleteShoppingCartCourseRequest({payload}: FetchDeleteShoppingCartCourseType) {
         try {
             const data = yield call(userApi.deleteShoppingCart, payload);
@@ -204,18 +86,6 @@ export function* fetchDeleteShoppingCartCourseRequest({payload}: FetchDeleteShop
         }
 };
 
-// THUNK
-
-// export const fetchPurchasedCourses = (ids: string[], totalPrice: number): ThunkType => {
-//     return async () => {
-//         try {
-//             await userApi.setPurchasedCourses(ids, totalPrice);
-//         } catch (error) {
-//             console.log("Purchased courses error");
-//         }
-//     };
-// };
-
 export function* fetchPurchasedCoursesRequest({payload}: FetchPurchasedCoursesType) {
     try {
         yield call(userApi.setPurchasedCourses, payload);
@@ -224,23 +94,11 @@ export function* fetchPurchasedCoursesRequest({payload}: FetchPurchasedCoursesTy
     }
 };
 
-// THUNK
-
-// export const fetchGetPurchasedCourses = (): ThunkType => {
-//     return async (dispatch: DispatchType) => {
-//         try {
-//             const data = await userApi.getPurchasedCourses();
-//             dispatch(setPurchasedCourses(data));
-//         } catch (error) {
-//             console.log("Purchased courses error");
-//         }
-//     };
-// };
-
-export function* fetchGetPurchasedCourses() {
+export function* fetchGetPurchasedCoursesRequest() {
     try {
         const data = yield call(userApi.getPurchasedCourses);
         yield put(setPurchasedCourses(data));
+        yield put(setLoadingPurchasedCourses());
     } catch (error) {
         yield console.log(error);
     }
@@ -256,7 +114,7 @@ export function* UserSaga() {
     yield takeLatest(UserActionType.FETCH_GET_SHOPPING_CART, fetchGetShoppingCartRequest);
     yield takeLatest(UserActionType.FETCH_DELETE_SHOPPING_CART, fetchDeleteShoppingCartCourseRequest);
     yield takeLatest(UserActionType.FETCH_PURCHASED_COURSES, fetchPurchasedCoursesRequest);
-    yield takeLatest(UserActionType.FETCH_GET_PURCHASED_COURSES, fetchGetPurchasedCourses);
+    yield takeLatest(UserActionType.FETCH_GET_PURCHASED_COURSES, fetchGetPurchasedCoursesRequest);
 }
 
 

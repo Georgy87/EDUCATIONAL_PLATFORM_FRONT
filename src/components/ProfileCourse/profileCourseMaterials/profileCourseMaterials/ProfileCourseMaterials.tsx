@@ -21,7 +21,7 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
 
     let avatar = photo;
 
-    if(profile) {
+    if (profile) {
         avatar = `http://localhost:5000/${profile?.avatar}`;
     }
 
@@ -29,20 +29,19 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
         <>
             <div>
                 <h1>Материалы курса</h1>
-                {loaded &&
-                    profile?.content.map((element) => {
-                        return (
-                            <ProfileMaterialsModules
-                                key={element._id}
-                                module={element.module}
-                                moduleHours={element.moduleHours}
-                                moduleMinutes={element.moduleMinutes}
-                                moduleSeconds={element.moduleSeconds}
-                                moduleContent={element.moduleContent}
-                                moduleId={element._id}
-                            />
-                        );
-                    })}
+                {profile?.content.map((element) => {
+                    return (
+                        <ProfileMaterialsModules
+                            key={element._id}
+                            module={element.module}
+                            moduleHours={element.moduleHours}
+                            moduleMinutes={element.moduleMinutes}
+                            moduleSeconds={element.moduleSeconds}
+                            moduleContent={element.moduleContent}
+                            moduleId={element._id}
+                        />
+                    );
+                })}
                 <div className="course-description-container">
                     <h1>Описание</h1>
                     <div
@@ -66,24 +65,24 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                                 </div>
                             </div>
                         ) : (
-                            <div className="roll-up-description">
-                                <div>
-                                    <ExpandLessIcon />
+                                <div className="roll-up-description">
+                                    <div>
+                                        <ExpandLessIcon />
+                                    </div>
+                                    <div
+                                        className="course-description-text"
+                                        onClick={() => setCollapsetext("")}
+                                    >
+                                        Свернуть
                                 </div>
-                                <div
-                                    className="course-description-text"
-                                    onClick={() => setCollapsetext("")}
-                                >
-                                    Свернуть
                                 </div>
-                            </div>
-                        )}
+                            )}
                     </div>
                     <div className="course-description-teacher-wrapper">
                         <h1>Преподаватель</h1>
                         <div className="course-description-teacher-info">
                             <NavLink to={`/profile-teacher/${profile?.user}`} onClick={() => dispatch(actions.fetchGetTeacher(profile?.user))}>
-                                <img src={avatar} alt=""/>
+                                <img src={avatar} alt="" />
                             </NavLink>
                         </div>
                         <div className="course-description-teacher-competence">
