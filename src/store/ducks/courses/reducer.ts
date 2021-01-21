@@ -7,6 +7,8 @@ const initialState: CoursesStateType = {
     courses: [] as Array<CourseProfileStateType>,
     isFilter: false,
     loadingState: LoadingStateType.NEVER,
+    courseForTraining: null,
+    loadingCourseForTraining: false
 };
 const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: CoursesActions) => {
     switch (action.type) {
@@ -26,6 +28,12 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
                     (course: any) => course._id !== action.payload
                 ),
             ];
+            break;
+        case CoursesActionType.SET_COURSE_FOR_TRAINING:
+            draftState.courseForTraining = action.payload;
+            break;
+        case CoursesActionType.LOADING_FOR_TRAINING:
+            draftState.loadingCourseForTraining = true;
             break;
         default:
             break;

@@ -26,4 +26,9 @@ export const CoursesApi = {
     deleteCourse(payload: { courseId: string, photo: string }) {
         return instance.delete(`course?id=${payload.courseId}&name=${payload.photo}`);
     },
+    getCourseForTraining(id: string) {
+        return instance.get(`/course/training-course?id=${id}`).then(data => {
+            return data.data;
+        })
+    }
 };
