@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -7,6 +6,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { AccordionDetails } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { ModuleContentType } from '../../../store/ducks/contentCourses/reducer';
+import LeaningCourseLessons from '../leaningCourseLessons/LeaningCourseLessons';
 
 import "./LeaningCourseModules.css";
 
@@ -49,7 +49,7 @@ type PropsType = {
 
 export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId }) => {
     const classes = useStyles();
-    console.log(module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId)
+
     let newHours;
 
     let hours = Math.trunc(moduleMinutes / 60);
@@ -65,7 +65,7 @@ export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours,
 
     return (
         <div className="leaning-modules">
-            <Accordion style={{boxShadow: 'none'}}>
+            <Accordion style={{ boxShadow: 'none' }}>
                 <AccordionSummary
                     className={classes.accordionSummary}
                     expandIcon={<ExpandMoreIcon style={{ color: "black" }} />}
@@ -75,9 +75,7 @@ export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours,
                     <Typography className={classes.heading}>
                         {module}
                         <div>
-                            {moduleHours +
-                                hours +
-                                " ч " +
+                            {newHours +
                                 finalMinutes +
                                 " мин "}
                         </div>
@@ -86,37 +84,19 @@ export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours,
                 {moduleContent?.map((el: ModuleContentType) => {
                     return (
                         <div className={classes.root} key={el._id}>
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={
-                                        <ExpandMoreIcon
-                                            style={{ color: "white" }}
-                                        />
-                                    }
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography className={classes.heading}>
-                                        {el.lesson}
-                                    </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    {/* <CourseLessons
-                                        courseId={courseId}
-                                        links={el.linksToResources}
-                                        key={el._id}
-                                        lessonId={el._id}
-                                        lessonTime={el.lessonTime}
-                                        fileVideo={el.fileVideo}
-                                        lesson={el.lesson}
-                                        moduleId={moduleId}
-                                    /> */}
-                                </AccordionDetails>
-                            </Accordion>
+                            <LeaningCourseLessons
+                                links={el.linksToResources}
+                                key={el._id}
+                                lessonId={el._id}
+                                lessonTime={el.lessonTime}
+                                fileVideo={el.fileVideo}
+                                lesson={el.lesson}
+                                moduleId={moduleId}
+                            />
                         </div>
                     );
                 })}
             </Accordion>
-        </div>
+        </div >
     )
 }

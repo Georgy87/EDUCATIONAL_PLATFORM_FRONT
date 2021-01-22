@@ -99,5 +99,6 @@ export type CoursesActions =
     | SetDeleteActionType
     | DeleteFilterByDirectionsActionType
     | SetCourseForTrainingType
-    | SetLoadingCourseForTrainingType;
+    | SetLoadingCourseForTrainingType
+    | FetchGetCourseForTraining;
 

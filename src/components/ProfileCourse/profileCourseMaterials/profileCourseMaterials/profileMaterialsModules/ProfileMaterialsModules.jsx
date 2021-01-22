@@ -87,4 +87,5 @@ const ProfileMaterialsModules = (props) => {
         </>
     );
 };
+
 export default ProfileMaterialsModules;

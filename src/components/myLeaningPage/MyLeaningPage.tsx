@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { fetchGetCourseForTraining } from '../../store/ducks/courses/actions';
 import { selectCourseForTraining, selectLoadingTraining } from '../../store/ducks/courses/selectors';
 import { LeaningCourseModules } from './leaningCourseModules/LeaningCourseModules';
+import { CircularProgress } from '@material-ui/core';
 
 import "./MyLeaningPage.css";
 
@@ -23,7 +24,7 @@ export const MyLeaningPage: React.FC = () => {
 
     return (
         <div className="leaning">
-            {loading && course?.map(el => {
+            {loading ? course?.map((el) => {
                 return (
                     <LeaningCourseModules
                         key={el._id}
@@ -35,7 +36,9 @@ export const MyLeaningPage: React.FC = () => {
                         moduleId={el._id}
                     />
                 )
-            })}
+            }) : (
+                <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
+            )}
         </div>
     )
 }

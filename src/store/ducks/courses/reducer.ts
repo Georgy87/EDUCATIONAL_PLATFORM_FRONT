@@ -29,6 +29,9 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
                 ),
             ];
             break;
+        case CoursesActionType.FETCH_COURSE_FOR_TRAINING:
+            draftState.courseForTraining = null;
+            break;
         case CoursesActionType.SET_COURSE_FOR_TRAINING:
             draftState.courseForTraining = action.payload;
             break;

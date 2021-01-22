@@ -13,12 +13,10 @@ const MyTrainingPage: React.FC = (): React.ReactElement => {
 
     const dispatch = useDispatch();
 
-    console.log(loading);
-
-
     useEffect(() => {
         dispatch(fetchGetPurchasedCourses());
     }, []);
+    
     return (
         <div className="training">
             <div className="training-header">
@@ -40,7 +38,6 @@ const MyTrainingPage: React.FC = (): React.ReactElement => {
                             <CircularProgress style={{display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50}} />
                         )}
                 </div>
-
         </div>
     )
 }
