@@ -16,6 +16,8 @@ export type CoursesStateType = {
     loadingState: LoadingStateType;
     courseForTraining: CourseProfileStateType | null;
     loadingCourseForTraining: Boolean;
+    courseVideosList: string[];
+    videoForPleer: string | undefined;
 };
 
 export enum CoursesActionType {
@@ -29,7 +31,8 @@ export enum CoursesActionType {
     DELETE_COURSE = "DELETE-COURSE",
     COURSE_FOR_TRAINING = "COURSE_FOR_TRAINING",
     SET_COURSE_FOR_TRAINING = "SET_COURSE_FOR_TRAINING",
-    LOADING_FOR_TRAINING = "LOADING_FOR_TRAINING"
+    LOADING_FOR_TRAINING = "LOADING_FOR_TRAINING",
+    ALL_VIDEO_LIST = "ALL_VIDEO_LIST"
 }
 
 // FETCH ACTIONS TYPES
@@ -92,6 +95,11 @@ export type SetLoadingCourseForTrainingType = {
     type: CoursesActionType.LOADING_FOR_TRAINING
 }
 
+export type SetCourseVideosType = {
+    type: CoursesActionType.ALL_VIDEO_LIST;
+    payload: { video: string[], indexLesson: number };
+}
+
 export type CoursesActions =
     | SetLoadingActionType
     | SetCoursesActionType
@@ -100,5 +108,6 @@ export type CoursesActions =
     | DeleteFilterByDirectionsActionType
     | SetCourseForTrainingType
     | SetLoadingCourseForTrainingType
-    | FetchGetCourseForTraining;
+    | FetchGetCourseForTraining
+    | SetCourseVideosType;
 

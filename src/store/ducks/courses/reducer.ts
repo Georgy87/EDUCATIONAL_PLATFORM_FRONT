@@ -8,7 +8,9 @@ const initialState: CoursesStateType = {
     isFilter: false,
     loadingState: LoadingStateType.NEVER,
     courseForTraining: null,
-    loadingCourseForTraining: false
+    loadingCourseForTraining: false,
+    courseVideosList: [],
+    videoForPleer: undefined
 };
 const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: CoursesActions) => {
     switch (action.type) {
@@ -30,6 +32,7 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
             ];
             break;
         case CoursesActionType.FETCH_COURSE_FOR_TRAINING:
+            draftState.courseVideosList = [];
             draftState.courseForTraining = null;
             break;
         case CoursesActionType.SET_COURSE_FOR_TRAINING:
@@ -37,6 +40,10 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
             break;
         case CoursesActionType.LOADING_FOR_TRAINING:
             draftState.loadingCourseForTraining = true;
+            break;
+        case CoursesActionType.ALL_VIDEO_LIST:
+            draftState.courseVideosList = draftState.courseVideosList.concat(action.payload.video);
+            draftState.videoForPleer = draftState.courseVideosList[action.payload.indexLesson];
             break;
         default:
             break;
