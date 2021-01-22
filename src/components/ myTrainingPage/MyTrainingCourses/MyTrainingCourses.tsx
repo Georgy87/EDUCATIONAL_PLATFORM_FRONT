@@ -11,9 +11,13 @@ type PropsType ={
 }
 
 export const MyTrainingCourses: React.FC<PropsType> = ({ photo, author, smallDescription, id}) => {
+    const onDeleteLessonStorage = () => {
+        window.localStorage.removeItem('lesson');
+    }
+
     return (
         <div className="training-cart-wrapper">
-            <NavLink to={`/purchased-courses/leaning/${id}`}>
+            <NavLink to={`/purchased-courses/leaning/${id}`} onClick={onDeleteLessonStorage}>
                 <img src={`http://localhost:5000/${photo}`} alt=""/>
             </NavLink>
                 <div className="training-descr-wrapper">

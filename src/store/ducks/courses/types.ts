@@ -32,7 +32,8 @@ export enum CoursesActionType {
     COURSE_FOR_TRAINING = "COURSE_FOR_TRAINING",
     SET_COURSE_FOR_TRAINING = "SET_COURSE_FOR_TRAINING",
     LOADING_FOR_TRAINING = "LOADING_FOR_TRAINING",
-    ALL_VIDEO_LIST = "ALL_VIDEO_LIST"
+    ALL_VIDEO_LIST = "ALL_VIDEO_LIST",
+    VIDEO_FOR_PLEER = "VIDEO_FOR_PLEER"
 }
 
 // FETCH ACTIONS TYPES
@@ -100,6 +101,11 @@ export type SetCourseVideosType = {
     payload: { video: string[], indexLesson: number };
 }
 
+export type SetVideoForPleerType = {
+    type: CoursesActionType.VIDEO_FOR_PLEER;
+    payload: number;
+}
+
 export type CoursesActions =
     | SetLoadingActionType
     | SetCoursesActionType
@@ -109,5 +115,6 @@ export type CoursesActions =
     | SetCourseForTrainingType
     | SetLoadingCourseForTrainingType
     | FetchGetCourseForTraining
-    | SetCourseVideosType;
+    | SetCourseVideosType
+    | SetVideoForPleerType;
 

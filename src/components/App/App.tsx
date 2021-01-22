@@ -33,7 +33,6 @@ function App() {
         if (history.location.pathname === '/') {
             history.push('/main');
         }
-
         dispatch(fetchGetCourses());
         // history.push('/main');
         dispatch(fetchAuth());
