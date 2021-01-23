@@ -1,6 +1,6 @@
 import { CoursesApi } from "../../../services/api/coursesApi";
 import { deleteFilterByDirections } from "../directions/actions";
-import { deleteCourseAction, setCourseForTraining, setCourses, setLoaded, SetLoadingCourseForTraining } from "./actions";
+import { deleteCourseAction, setCourseForTraining, setCourses, setLoaded, setLoadingCourseForTraining } from "./actions";
 import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTraining } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
@@ -47,7 +47,7 @@ export function* fetchGetCourseForTrainingRequest({payload}: FetchGetCourseForTr
     try {
         const data = yield call(CoursesApi.getCourseForTraining, payload);
         yield put((setCourseForTraining(data)));
-        yield put(SetLoadingCourseForTraining());
+        yield put(setLoadingCourseForTraining());
     } catch (e) {
         yield console.log(e);
     }

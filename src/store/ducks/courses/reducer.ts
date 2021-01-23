@@ -48,6 +48,9 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
         case CoursesActionType.VIDEO_FOR_PLEER:
             draftState.videoForPleer = draftState.courseVideosList[action.payload];
             break;
+        case CoursesActionType.VIDEO_BY_CLICK:
+            draftState.videoForPleer = action.payload;
+            break;
         default:
             break;
     }

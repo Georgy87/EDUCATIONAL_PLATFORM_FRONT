@@ -45,9 +45,10 @@ type PropsType = {
     moduleSeconds: number;
     moduleContent: any;
     moduleId: string;
+    countVideo: number;
 }
 
-export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId }) => {
+export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId, countVideo }) => {
     const classes = useStyles();
 
     let newHours;
@@ -85,6 +86,7 @@ export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours,
                     return (
                         <div className={classes.root} key={el._id}>
                             <LeaningCourseLessons
+                                countVideo={countVideo}
                                 links={el.linksToResources}
                                 key={el._id}
                                 lessonId={el._id}

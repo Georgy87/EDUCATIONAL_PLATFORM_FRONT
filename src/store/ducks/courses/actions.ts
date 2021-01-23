@@ -1,5 +1,5 @@
 import { CourseProfileStateType } from "../courseProfile/types";
-import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTraining, SetLoadingCourseForTrainingType, SetVideoForPleerType } from "./types";
+import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTraining, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType } from "./types";
 
 // FETCH ACTIONS
 
@@ -75,7 +75,7 @@ export const setCourseForTraining = (payload: CourseProfileStateType): SetCourse
     }
 }
 
-export const SetLoadingCourseForTraining = (): SetLoadingCourseForTrainingType => {
+export const setLoadingCourseForTraining = (): SetLoadingCourseForTrainingType => {
     return {
         type: CoursesActionType.LOADING_FOR_TRAINING,
     }
@@ -91,6 +91,13 @@ export const setCourseVideos = (payload: { video: string[], indexLesson: number 
 export const setVideoForPleer = (payload: number): SetVideoForPleerType => {
     return {
         type: CoursesActionType.VIDEO_FOR_PLEER,
+        payload
+    }
+}
+
+export const setVideoForPleerByClick = (payload: string): SetVideoForPleerByClickType => {
+    return {
+        type: CoursesActionType.VIDEO_BY_CLICK,
         payload
     }
 }
