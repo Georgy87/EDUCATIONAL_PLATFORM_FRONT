@@ -5,11 +5,11 @@
     margin-top: 250px;
 }
 .teacher-container img {
-    width: 520px;
-    height: 430px;
+    width: 300px;
+    height: 400px;
     display: flex;
     margin-left: 0 auto;
-    margin-bottom: 200px;
+    margin-bottom: 300px;
     /* box-shadow: 0 20px 20px rgba(82, 87, 76, 0.4); */
 }
 .teacher-content {
@@ -33,10 +33,10 @@
 .teacher-content button {
     margin-top: 30px;
     width: 220px;
-    height: 40px;
-    background-color: rgb(38, 67, 145);
+    height: 60px;
+    background-color: #9fe7ee;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 1px;
     color: white;
     border: none;
 }

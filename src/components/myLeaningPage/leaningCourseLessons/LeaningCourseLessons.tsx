@@ -31,6 +31,9 @@ const LeaningCourseLessons: React.FC<PropsType> = ({ lesson, fileVideo, lessonTi
 	useEffect(() => {
 		dispatch(setCourseVideos({ video: arr, indexLesson: countVideo }));
 		dispatch(setVideoForPleerByClick(String(window.localStorage.getItem('lesson-name'))));
+		// if (!window.localStorage.getItem('lesson-name')) {
+		// 	dispatch(setCourseVideos({ video: arr, indexLesson: countVideo }));
+		// }
 	}, []);
 
 	return (
@@ -41,7 +44,6 @@ const LeaningCourseLessons: React.FC<PropsType> = ({ lesson, fileVideo, lessonTi
 				<div className="lessons-time">
 					{newLessonTime} мин
 				</div>
-				<div>{countVideo}</div>
 			</div>
 		</div>
 	)

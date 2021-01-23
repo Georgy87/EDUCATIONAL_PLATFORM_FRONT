@@ -9,3 +9,5 @@ export const selectCourseForTraining = (state: AppStateType) => state.course.cou
 export const selectLoadingTraining = (state: AppStateType) => state.course.loadingCourseForTraining;
 export const selectVideoForPleer = (state: AppStateType) => state.course.videoForPleer;
 
+export const selectLessonsList = (state: AppStateType) => state.course.courseVideosList;
+

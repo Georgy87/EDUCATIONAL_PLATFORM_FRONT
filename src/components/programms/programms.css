@@ -57,7 +57,7 @@
     letter-spacing: 3px;
     font-weight: 500;
     color: #524f4e;
-    background: white;
+    background: transparent;
     /* box-shadow: 0 14px 15px rgba(202, 59, 59, 0.1); */
     transition: 0.3s;
     padding: 5px 10px;

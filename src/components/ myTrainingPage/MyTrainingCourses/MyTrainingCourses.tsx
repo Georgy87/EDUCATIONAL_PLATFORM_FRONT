@@ -12,7 +12,7 @@ type PropsType ={
 
 export const MyTrainingCourses: React.FC<PropsType> = ({ photo, author, smallDescription, id}) => {
     const onDeleteLessonStorage = () => {
-        window.localStorage.removeItem('lesson');
+        window.localStorage.removeItem('lesson-name');
     }
 
     return (
