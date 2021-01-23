@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 type PropsType = {
     courseId: string;
     module: string;

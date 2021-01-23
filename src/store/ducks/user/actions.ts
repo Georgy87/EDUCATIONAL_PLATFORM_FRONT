@@ -14,6 +14,7 @@ import {
     FetchDeleteShoppingCartCourseType,
     FetchPurchasedCoursesType,
     FetchGetPurchasedCoursesType,
+    SetLoadingPurchasedCourses,
 } from "../user/types";
 import { CoursesDataType, UserType } from "./types";
 import { LogoutType, SetUserActionType, UserActionType, PurchasedCoursesType, SetPurchasedCourses } from "./types";
@@ -46,7 +47,7 @@ export const fetchUploadAvatar = (payload: File): FetchUploadAvatarType => {
     }
 }
 
-export const fetchChangeInfoProfileUser = ( payload: { name: string, surname: string, professionalСompetence: string }): FetchChangeInfoProfileUserType => {
+export const fetchChangeInfoProfileUser = (payload: { name: string, surname: string, professionalСompetence: string }): FetchChangeInfoProfileUserType => {
     return {
         type: UserActionType.FETCH_CHANGE_INFO_PROFILE_USER,
         payload
@@ -120,20 +121,22 @@ export const setUserLoaded = (): SetLoadedActionType => {
     };
 };
 
-export const setShoppingCourses = (
-    courses: CoursesDataType
-): SetShoppingCartCourses => {
+export const setShoppingCourses = (courses: CoursesDataType): SetShoppingCartCourses => {
     return {
         type: UserActionType.SET_SHOPPING_CART_COURSES,
         payload: courses,
     };
 };
 
-export const setPurchasedCourses = (
-    courses: PurchasedCoursesType[]
-): SetPurchasedCourses => {
+export const setPurchasedCourses = (courses: PurchasedCoursesType[]): SetPurchasedCourses => {
     return {
         type: UserActionType.SET_PURCHASED_COURSES,
         payload: courses,
     };
 };
+
+export const setLoadingPurchasedCourses = (): SetLoadingPurchasedCourses => {
+    return {
+        type: UserActionType.SET_LOADING_PURCHASED_COURSES
+    }
+}

@@ -1,21 +1,26 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react'
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ProfileMaterialsLessons from "./profileMaterialsLessons/ProfileMaterialsLessons";
 import { AccordionDetails } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { ModuleContentType } from '../../../store/ducks/contentCourses/reducer';
+import LeaningCourseLessons from '../leaningCourseLessons/LeaningCourseLessons';
+
+import "./LeaningCourseModules.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         // width: "100%",
         padding: "1px",
+        '& .MuiPaper-elevation1': {
+            backgroundColor: 'red',
+            color: 'red'
+        }
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-
         fontWeight: 500,
     },
     headingModule: {
@@ -27,65 +32,71 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "auto",
     },
     accordionSummary: {
-        width: 900,
-        backgroundColor: "#fbfbf8",
+        // width: 900,
+        backgroundColor: "#f7f8fa",
+        boxShadow: 'none'
     },
 }));
 
-const ProfileMaterialsModules = (props) => {
+type PropsType = {
+    module: string;
+    moduleHours: number;
+    moduleMinutes: number;
+    moduleSeconds: number;
+    moduleContent: any;
+    moduleId: string;
+}
+
+export const LeaningCourseModules: React.FC<PropsType> = ({ module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId }) => {
     const classes = useStyles();
+
     let newHours;
 
-    let hours = Math.trunc(props.moduleMinutes / 60);
-    if (props.moduleHours + hours === 0) {
+    let hours = Math.trunc(moduleMinutes / 60);
+    if (moduleHours + hours === 0) {
         newHours = "";
     } else {
-        newHours = props.moduleHours + hours + " ч ";
+        newHours = moduleHours + hours + " ч ";
     }
 
-    let minutes = props.moduleMinutes % 60;
-    let seconds = props.moduleSeconds / 60;
+    let minutes = moduleMinutes % 60;
+    let seconds = moduleSeconds / 60;
     let finalMinutes = minutes + Math.floor(seconds);
+
     return (
-        <>
-            <Accordion className={classes.root} style={{boxShadow: 'none'}}>
+        <div className="leaning-modules">
+            <Accordion style={{ boxShadow: 'none' }}>
                 <AccordionSummary
-                    style={{
-                        backgroundColor: "#fbfbf8",
-                    }}
                     className={classes.accordionSummary}
                     expandIcon={<ExpandMoreIcon style={{ color: "black" }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <div className={classes.heading}>
-                        <div className={classes.headingModule}>
-                            {props.module}
+                    <Typography className={classes.heading}>
+                        {module}
+                        <div>
+                            {newHours +
+                                finalMinutes +
+                                " мин "}
                         </div>
-                        <div className={classes.headingHours}>
-                            {newHours + finalMinutes + " мин "}
-                        </div>
-                    </div>
+                    </Typography>
                 </AccordionSummary>
-                {props.moduleContent.map((el) => {
+                {moduleContent?.map((el: ModuleContentType) => {
                     return (
                         <div className={classes.root} key={el._id}>
-                            <ProfileMaterialsLessons
-                                courseId={props.courseId}
+                            <LeaningCourseLessons
                                 links={el.linksToResources}
                                 key={el._id}
                                 lessonId={el._id}
                                 lessonTime={el.lessonTime}
                                 fileVideo={el.fileVideo}
                                 lesson={el.lesson}
-                                moduleId={props.moduleId}
+                                moduleId={moduleId}
                             />
                         </div>
                     );
                 })}
             </Accordion>
-        </>
-    );
-};
-
-export default ProfileMaterialsModules;
+        </div >
+    )
+}

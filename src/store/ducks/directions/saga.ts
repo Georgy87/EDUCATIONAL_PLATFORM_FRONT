@@ -1,23 +1,7 @@
 import { addCourseDirections, deleteСourseDirections, setCourseDirections, setFilterByDirections } from "./actions";
-import { DirectionsActionType, DispatchType, FetchDeleteDirectionType, FetchFilterByDirectionType, FetchUploadCourseDirectionsType } from "./types";
+import { DirectionsActionType, FetchDeleteDirectionType, FetchFilterByDirectionType, FetchUploadCourseDirectionsType } from "./types";
 import { directionsApi} from "../../../services/api/directionsApi";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
-
-// THUNK
-
-// export const fetchUploadCourseDirections = (file: File, direction: string) => {
-//     return async (dispatch: DispatchType) => {
-//         try {
-//             const formData = new FormData();
-//             formData.append("file", file);
-//             formData.append("direction", direction);
-//             const data = await directionsApi.uploadCourseDirections(formData);
-//             dispatch(addCourseDirections(data));
-//         } catch (e) {
-//             console.log(e);
-//         }
-//     };
-// };
 
 export function* fetchUploadCourseDirectionsRequest({payload}: FetchUploadCourseDirectionsType) {
     try {
@@ -31,19 +15,6 @@ export function* fetchUploadCourseDirectionsRequest({payload}: FetchUploadCourse
     }
 };
 
-// THUNK
-
-// export const fetchGetCourseDirections = () => {
-//     return async (dispatch: DispatchType) => {
-//         try {
-//             const data = await directionsApi.getCourseDirections();
-//             dispatch(setCourseDirections(data));
-//         } catch (e) {
-//             console.log(e);
-//         }
-//     };
-// };
-
 export function* fetchGetCourseDirectionsRequest() {
     try {
         const data = yield call(directionsApi.getCourseDirections);
@@ -52,20 +23,6 @@ export function* fetchGetCourseDirectionsRequest() {
         yield console.log(e);
     }
 };
-
-// THUNK
-
-// export const fetchFilterByDirection = (search: string) => {
-//     return async (dispatch: DispatchType) => {
-//         try {
-//             const data = await directionsApi.filterByDirection(search);
-//             dispatch(setFilterByDirections(data));
-//         } catch (e) {
-//             console.log(e);
-//         }
-//     };
-// };
-
 
 export function* fetchFilterByDirectionRequest({payload}: FetchFilterByDirectionType) {
     try {

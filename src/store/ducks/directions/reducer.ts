@@ -43,6 +43,10 @@ const directionsReducer = produce((draftState = initialState, action:  Direction
                 action.payload,
             ];
             break;
+        case DirectionsActionType.FETCH_FILTER_BY_DIRECTION:
+            draftState.filterByDirection = [];
+            draftState.isFilter = false;
+            break;
         case DirectionsActionType.SET_FILTER_BY_DIRECTIONS:
             draftState.filterByDirection = action.payload;
             draftState.isFilter = true;

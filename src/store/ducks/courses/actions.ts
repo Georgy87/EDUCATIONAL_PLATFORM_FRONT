@@ -1,6 +1,5 @@
 import { CourseProfileStateType } from "../courseProfile/types";
-import { CoursesActionType, FetchUploadNewCourseType, CoursesStateType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType } from "./types";
-
+import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTraining, SetLoadingCourseForTrainingType, SetVideoForPleerType } from "./types";
 
 // FETCH ACTIONS
 
@@ -34,6 +33,13 @@ export const fetchDeleteCourse = (payload: { courseId: string; photo: string }):
     }
 }
 
+export const fetchGetCourseForTraining = (payload: string): FetchGetCourseForTraining => {
+    return {
+        type: CoursesActionType.FETCH_COURSE_FOR_TRAINING,
+        payload
+    }
+}
+
 // ACTIONS
 
 export const setLoading = (): SetLoadingActionType => {
@@ -62,4 +68,30 @@ export const deleteCourseAction = (payload: string): SetDeleteActionType => {
     };
 };
 
+export const setCourseForTraining = (payload: CourseProfileStateType): SetCourseForTrainingType => {
+    return {
+        type: CoursesActionType.SET_COURSE_FOR_TRAINING,
+        payload
+    }
+}
+
+export const SetLoadingCourseForTraining = (): SetLoadingCourseForTrainingType => {
+    return {
+        type: CoursesActionType.LOADING_FOR_TRAINING,
+    }
+}
+
+export const setCourseVideos = (payload: { video: string[], indexLesson: number }): SetCourseVideosType => {
+    return {
+        type: CoursesActionType.ALL_VIDEO_LIST,
+        payload
+    }
+}
+
+export const setVideoForPleer = (payload: number): SetVideoForPleerType => {
+    return {
+        type: CoursesActionType.VIDEO_FOR_PLEER,
+        payload
+    }
+}
 

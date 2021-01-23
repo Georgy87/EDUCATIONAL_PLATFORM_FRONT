@@ -22,6 +22,7 @@ import PrivateOfficeAdmin from '../privateOfficeAdmin/PrivateOfficeAdmin';
 import TeacherPrivateOfficeAdmin from '../teacherPrivateOffice/TeacherPrivateOffice';
 
 import "./App.css";
+import { MyLeaningPage } from "../myLeaningPage/MyLeaningPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
     const loading = useSelector(selectUserInfo);
 
     useEffect(() => {
+        if (history.location.pathname === '/') {
+            history.push('/main');
+        }
         dispatch(fetchGetCourses());
         // history.push('/main');
         dispatch(fetchAuth());
@@ -60,7 +64,7 @@ function App() {
                     <Route path="/shopping-cart" component={ShoppingCart} />
                     <Route path="/checkout" component={Checkout} exact />
                     <Route path="/purchased-courses" component={MyTrainingPage} exact />
-
+                    <Route path="/purchased-courses/leaning/:id" component={MyLeaningPage} exact />
                     {/* <Redirect to="/main" /> */}
                 </Switch>
             </div>

@@ -1,3 +1,34 @@
 .training {
     margin-top: 200px;
 }
+
+.training-header {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background-color: rgb(135, 171, 146);
+    color: white;
+    height: 100px;
+    top: 70px;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid rgb(206, 204, 204);
+}
+
+.training-header {
+    padding: 25px;
+}
+
+.training-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 1000px;
+    min-height: 500px;
+}
+
+.training-wrapper svg{
+    display: flex;
+    margin: 0 auto;
+}

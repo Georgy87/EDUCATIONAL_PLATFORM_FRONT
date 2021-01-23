@@ -9,6 +9,7 @@ const initialState: UserStateType = {
     shoppingCartCourses: null,
     purchasedCourses: null,
     submitLoading: false,
+    loadingPurchasedCourses: false
 };
 
 const userReducer = produce(
@@ -37,6 +38,9 @@ const userReducer = produce(
                 break;
             case UserActionType.SET_PURCHASED_COURSES:
                 draftState.purchasedCourses = action.payload;
+                break;
+            case UserActionType.SET_LOADING_PURCHASED_COURSES:
+                draftState.loadingPurchasedCourses = true;
                 break;
             default:
                 break;

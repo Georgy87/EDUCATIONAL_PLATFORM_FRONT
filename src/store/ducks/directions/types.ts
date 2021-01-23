@@ -1,6 +1,3 @@
-import { Dispatch } from "react";
-import { ThunkAction } from "redux-thunk";
-import { AppStateType } from "../../store";
 import { CourseDirectionsType, FilterByDirectionType } from "./reducer";
 
 export enum DirectionsActionType {
@@ -68,14 +65,8 @@ export type DirectionsActionsType =
     | SetCourseDirectionsActionType
     | SetFilterByDirectionsActionType
     | DeleteFilterByDirectionsActionType
-    | DeleteСourseDirectionsActionType;
+    | DeleteСourseDirectionsActionType
+    | FetchFilterByDirectionType;
 
-// Thunk types
 
-export type DispatchType = Dispatch<DirectionsActionsType>;
-export type ThunkType = ThunkAction<
-    Promise<void>,
-    AppStateType,
-    unknown,
-    DirectionsActionsType
->;
+
