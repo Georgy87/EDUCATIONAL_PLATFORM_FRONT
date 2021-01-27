@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CourseProfileStateType } from "../../store/ducks/courseProfile/types";
+import { GetCommentsType } from "../../store/ducks/courses/types";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -23,12 +24,21 @@ export const CoursesApi = {
             return response.data;
         });
     },
-    deleteCourse(payload: { courseId: string, photo: string }) {
-        return instance.delete(`course?id=${payload.courseId}&name=${payload.photo}`);
+    deleteCourse(payload: { courseId: string; photo: string }) {
+        return instance.delete(
+            `course?id=${payload.courseId}&name=${payload.photo}`
+        );
     },
     getCourseForTraining(id: string) {
-        return instance.get(`/course/training-course?id=${id}`).then(data => {
+        return instance.get(`/course/training-course?id=${id}`).then((data) => {
             return data.data.course;
-        })
-    }
+        });
+    },
+    getComments(id: string) {
+        console.log(id);
+        return instance.get<GetCommentsType[]>(`/course/comment?courseId=${id}`).then((data) => {
+            console.log(data);
+            return data.data;
+        });
+    },
 };

@@ -10,7 +10,8 @@ const initialState: CoursesStateType = {
     courseForTraining: null,
     loadingCourseForTraining: false,
     courseVideosList: [],
-    videoForPleer: undefined
+    videoForPleer: undefined,
+    comments: []
 };
 const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: CoursesActions) => {
     switch (action.type) {

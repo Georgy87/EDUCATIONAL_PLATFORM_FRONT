@@ -23,6 +23,7 @@ import TeacherPrivateOfficeAdmin from '../teacherPrivateOffice/TeacherPrivateOff
 
 import "./App.css";
 import { MyLeaningPage } from "../myLeaningPage/MyLeaningPage";
+import { CourseCommentPage } from "../myLeaningPage/courseCommentPage/CourseCommentPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -66,6 +67,9 @@ function App() {
                     <Route path="/purchased-courses" component={MyTrainingPage} exact />
                     <Route path="/purchased-courses/leaning/:id" component={MyLeaningPage} exact />
                     {/* <Redirect to="/main" /> */}
+
+                    <Route path={`/purchased-courses/leaning/materials/:id`} component={() => <MyLeaningPage />} />
+                    <Route path={`/purchased-courses/leaning/comments/:id`} component={() => <MyLeaningPage />} />
                 </Switch>
             </div>
     );

@@ -1,5 +1,7 @@
 .lessons-leaning-wrapper {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
     min-height: 50px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -10,17 +12,8 @@
     display: block;
 }
 
-/* .material-lesson-wrapper {
-    display: flex;
-    min-height: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
+.lessons-leaning-wrapper:hover {
+    cursor: pointer;
+    background-color: #f7f9fa;
+
 }
-.material-lesson-item {
-    display: flex;
-}
-.material-lesson-time {
-    display: flex;
-    margin-left: auto;
-} */

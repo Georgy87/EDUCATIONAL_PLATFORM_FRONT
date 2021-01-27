@@ -10,7 +10,7 @@
     display: flex;
     background-size: cover;
     background-position: center;
-    background-image: url('../../assets/Снимок экрана 2020-11-15 в 15.42.21.png');
+    background-image: url('https://images.unsplash.com/photo-1533563697671-dc05a2cd7b01?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2850&q=80');
     width: 60%;
 }
 .login {

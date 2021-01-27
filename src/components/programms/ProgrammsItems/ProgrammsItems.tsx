@@ -20,7 +20,7 @@ const ProgrammsItems: React.FC<PropsType> = ({ direction, name, _id }) => {
     };
     return (
         <div>
-            <div className="direction-wrap" >
+            <div className="direction-wrap">
                 <NavLink to={`/courses/${direction}`} onClick={nameDirection}>
                     <img src={`http://localhost:5000/${name}`} />
                 </NavLink>
