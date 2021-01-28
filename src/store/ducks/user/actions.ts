@@ -140,3 +140,5 @@ export const setLoadingPurchasedCourses = (): SetLoadingPurchasedCourses => {
         type: UserActionType.SET_LOADING_PURCHASED_COURSES
     }
 }
+
+

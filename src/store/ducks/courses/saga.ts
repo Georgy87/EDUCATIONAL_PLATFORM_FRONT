@@ -1,7 +1,7 @@
 import { CoursesApi } from "../../../services/api/coursesApi";
 import { deleteFilterByDirections } from "../directions/actions";
-import { deleteCourseAction, setCourseForTraining, setCourses, setLoaded, SetLoadingCourseForTraining } from "./actions";
-import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTraining } from "./types";
+import { deleteCourseAction, setComments, setCommentsLoading, setCourseForTraining, setCourses, setLoaded, setLoadingCourseForTraining } from "./actions";
+import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTrainingType, FetchGetCommentsType } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 export function* fetchUploadNewCourseRequest({payload}: FetchUploadNewCourseType) {
@@ -43,21 +43,33 @@ export function* fetchDeleteCourseRequest({payload}: FetchDeleteCourseType) {
     }
 };
 
-export function* fetchGetCourseForTrainingRequest({payload}: FetchGetCourseForTraining) {
+export function* fetchGetCourseForTrainingRequest({payload}: FetchGetCourseForTrainingType) {
     try {
         const data = yield call(CoursesApi.getCourseForTraining, payload);
         yield put((setCourseForTraining(data)));
-        yield put(SetLoadingCourseForTraining());
+        yield put(setLoadingCourseForTraining());
     } catch (e) {
         yield console.log(e);
     }
 };
+
+export function* fetchGetCommentsRequest({payload}: FetchGetCommentsType) {
+    try {
+        const data = yield call(CoursesApi.getComments, payload);
+        yield put(setComments(data.data));
+        yield put(setCommentsLoading(true));
+    } catch (e) {
+        yield console.log(e);
+    }
+};
+
 
 export function* CoursesSaga() {
     yield takeLatest(CoursesActionType.FETCH_UPLOAD_NEW_COURSE, fetchUploadNewCourseRequest);
     yield takeLatest(CoursesActionType.FETCH_GET_COURSES, fetchGetCoursesRequest);
     yield takeLatest(CoursesActionType.FETCH_DELETE_COURSE, fetchDeleteCourseRequest);
     yield takeLatest(CoursesActionType.FETCH_COURSE_FOR_TRAINING, fetchGetCourseForTrainingRequest);
+    yield takeLatest(CoursesActionType.FETCH_GET_COMMENTS, fetchGetCommentsRequest);
 }
 
 

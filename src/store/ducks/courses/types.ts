@@ -1,5 +1,6 @@
 import { CourseProfileStateType } from "../courseProfile/types";
 import { DeleteFilterByDirectionsActionType } from "../directions/types";
+import { UserInfoType, UserType } from "../user/types";
 
 export enum LoadingStateType {
     LOADED = "LOADED",
@@ -7,18 +8,6 @@ export enum LoadingStateType {
     ERROR = "ERROR",
     NEVER = "NEVER",
 }
-
-// STATE TYPES
-
-export type CoursesStateType = {
-    courses: CourseProfileStateType[];
-    isFilter: boolean;
-    loadingState: LoadingStateType;
-    courseForTraining: CourseProfileStateType | null;
-    loadingCourseForTraining: Boolean;
-    courseVideosList: string[];
-    videoForPleer: string | undefined;
-};
 
 export enum CoursesActionType {
     FETCH_UPLOAD_NEW_COURSE = "FETCH_UPLOAD_NEW_COURSE",
@@ -33,8 +22,41 @@ export enum CoursesActionType {
     SET_COURSE_FOR_TRAINING = "SET_COURSE_FOR_TRAINING",
     LOADING_FOR_TRAINING = "LOADING_FOR_TRAINING",
     ALL_VIDEO_LIST = "ALL_VIDEO_LIST",
-    VIDEO_FOR_PLEER = "VIDEO_FOR_PLEER"
+    VIDEO_FOR_PLEER = "VIDEO_FOR_PLEER",
+    VIDEO_BY_CLICK = "VIDEO_BY_CLICK",
+    FETCH_GET_COMMENTS = "FETCH_GET_COMMENTS",
+    SET_COMMENTS = "SET_COMMENTS",
+    SET_COMMENTS_LOADING = "SET_COMMENTS_LOADING"
 }
+
+// STATE TYPES
+
+export type RepliesToCommentType = {
+    _id: string;
+    text: string;
+    user: UserInfoType;
+    created: string;
+};
+
+export type GetCommentsType = {
+    _id: string;
+    text: string;
+    user: UserInfoType;
+    created: string;
+    comments: RepliesToCommentType[];
+};
+
+export type CoursesStateType = {
+    courses: CourseProfileStateType[];
+    isFilter: boolean;
+    loadingState: LoadingStateType;
+    courseForTraining: CourseProfileStateType | null;
+    loadingCourseForTraining: Boolean;
+    courseVideosList: string[];
+    videoForPleer: string | undefined;
+    comments: GetCommentsType[];
+    loadingComments: Boolean;
+};
 
 // FETCH ACTIONS TYPES
 
@@ -62,8 +84,13 @@ export type FetchDeleteCourseType = {
     payload: { courseId: string; photo: string };
 };
 
-export type FetchGetCourseForTraining = {
+export type FetchGetCourseForTrainingType = {
     type: CoursesActionType.FETCH_COURSE_FOR_TRAINING;
+    payload: string;
+};
+
+export type FetchGetCommentsType = {
+    type: CoursesActionType.FETCH_GET_COMMENTS;
     payload: string;
 };
 
@@ -93,18 +120,34 @@ export type SetCourseForTrainingType = {
 };
 
 export type SetLoadingCourseForTrainingType = {
-    type: CoursesActionType.LOADING_FOR_TRAINING
-}
+    type: CoursesActionType.LOADING_FOR_TRAINING;
+};
 
 export type SetCourseVideosType = {
     type: CoursesActionType.ALL_VIDEO_LIST;
-    payload: { video: string[], indexLesson: number };
-}
+    payload: { video: string[]; indexLesson: number };
+};
 
 export type SetVideoForPleerType = {
     type: CoursesActionType.VIDEO_FOR_PLEER;
     payload: number;
-}
+};
+
+export type SetVideoForPleerByClickType = {
+    type: CoursesActionType.VIDEO_BY_CLICK;
+    payload: string;
+};
+
+export type SetCommentsType = {
+    type: CoursesActionType.SET_COMMENTS;
+    payload: GetCommentsType[];
+};
+
+export type SetLoadingCommentsType = {
+    type: CoursesActionType.SET_COMMENTS_LOADING;
+    payload: boolean;
+};
+
 
 export type CoursesActions =
     | SetLoadingActionType
@@ -114,7 +157,10 @@ export type CoursesActions =
     | DeleteFilterByDirectionsActionType
     | SetCourseForTrainingType
     | SetLoadingCourseForTrainingType
-    | FetchGetCourseForTraining
+    | FetchGetCourseForTrainingType
     | SetCourseVideosType
-    | SetVideoForPleerType;
-
+    | SetVideoForPleerType
+    | SetVideoForPleerByClickType
+    | SetCommentsType
+    | FetchGetCommentsType
+    | SetLoadingCommentsType;

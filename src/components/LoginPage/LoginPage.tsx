@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSubmitLoading } from "../../store/ducks/user/selectors";
 import { Button, CircularProgress } from "@material-ui/core";
-import { fetchLogin } from "../../store/ducks/user/actions";
+import { fetchGetPurchasedCourses, fetchLogin } from "../../store/ducks/user/actions";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -22,8 +22,10 @@ const RegisterFormSchema = yup.object().shape({
 
 });
 
-export default function Registration() {
+export default function LoginPage() {
+    const history = useHistory();
     const dispatch = useDispatch();
+
     const loading = useSelector(selectSubmitLoading);
 
     const { register, handleSubmit, errors } = useForm<LoginFormProps>({
@@ -32,7 +34,10 @@ export default function Registration() {
 
     const onSubmit = (data: FetchLoginType['payload']) => {
         const { email, password } = data;
-        dispatch(fetchLogin({email, password}));
+        dispatch(fetchLogin({ email, password }));
+        if (history.location.pathname === '/login') {
+            history.push('/main');
+        }
     };
 
     return (

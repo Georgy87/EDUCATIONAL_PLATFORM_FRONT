@@ -1,5 +1,8 @@
 import axios from "axios";
-import { CourseProfileStateType, TeacherType } from "../../store/ducks/courseProfile/types";
+import {
+    CourseProfileStateType,
+    TeacherType,
+} from "../../store/ducks/courseProfile/types";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -8,18 +11,23 @@ const instance = axios.create({
     },
 });
 
-
 export const CourseProfileApi = {
     getProfile(courseId: string) {
         return instance
-            .get<CourseProfileStateType>(
-                `course/profile?id=${courseId}`
-            )
-            .then(response => response.data);
+            .get<CourseProfileStateType>(`course/profile?id=${courseId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
+            .then((response) => response.data);
     },
     getTeacher(teacherId: string | undefined) {
         return instance
-            .get<TeacherType>(`course/teacher-profile?teacherId=${teacherId}`)
-            .then(response => response.data);
+            .get<TeacherType>(`course/teacher-profile?teacherId=${teacherId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
+            .then((response) => response.data);
     },
 };

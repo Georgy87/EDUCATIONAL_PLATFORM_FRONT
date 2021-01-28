@@ -32,7 +32,7 @@ export function* fetchAuthRequest() {
         yield put(setUserLoading());
         const data = yield call(userApi.getUser);
         yield put(setUser(data));
-        localStorage.setItem("token", data.token);
+        yield localStorage.setItem("token", data.token);
         yield put(setUserLoaded());
     } catch (e) {
         yield console.log(e);

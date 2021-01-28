@@ -6,7 +6,7 @@ import MainPage from "../mainPage/MainPage";
 import Registration from "../registrationPage/RegistrationPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchAuth } from "../../store/ducks/user/actions";
+import { fetchAuth, fetchGetPurchasedCourses } from "../../store/ducks/user/actions";
 import Courses from "../courses/Courses";
 import { fetchGetCourses } from "../../store/ducks/courses/actions";
 import ProfileCourse from "../profileCourse/ProfileCourse";
@@ -23,12 +23,12 @@ import TeacherPrivateOfficeAdmin from '../teacherPrivateOffice/TeacherPrivateOff
 
 import "./App.css";
 import { MyLeaningPage } from "../myLeaningPage/MyLeaningPage";
+import { CourseCommentPage } from "../myLeaningPage/courseCommentPage/CourseCommentPage";
 
 function App() {
     const dispatch = useDispatch();
     let history = useHistory();
     const loading = useSelector(selectUserInfo);
-
     useEffect(() => {
         if (history.location.pathname === '/') {
             history.push('/main');
@@ -66,6 +66,9 @@ function App() {
                     <Route path="/purchased-courses" component={MyTrainingPage} exact />
                     <Route path="/purchased-courses/leaning/:id" component={MyLeaningPage} exact />
                     {/* <Redirect to="/main" /> */}
+
+                    <Route path={`/purchased-courses/leaning/materials/:id`} component={() => <MyLeaningPage />} />
+                    <Route exact path={`/purchased-courses/leaning/comments/:id`} component={() => <MyLeaningPage />} />
                 </Switch>
             </div>
     );

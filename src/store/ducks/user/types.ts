@@ -35,6 +35,8 @@ export type UserInfoType = {
     teacher: string;
     isAuth: string;
     competence: string;
+    shoppingCart: string[];
+    purchasedCourses: string[];
 };
 
 export type UserType = {

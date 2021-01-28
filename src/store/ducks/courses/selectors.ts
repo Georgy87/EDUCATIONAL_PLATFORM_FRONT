@@ -7,4 +7,12 @@ export const selectCourseLoading = (state: AppStateType) => selectLoadingState(s
 
 export const selectCourseForTraining = (state: AppStateType) => state.course.courseForTraining?.content;
 export const selectLoadingTraining = (state: AppStateType) => state.course.loadingCourseForTraining;
+export const selectVideoForPleer = (state: AppStateType) => state.course.videoForPleer;
+
+export const selectLessonsList = (state: AppStateType) => state.course.courseVideosList;
+
+export const selectComments = (state: AppStateType) => state.course.comments;
+export const selectLoadingComments = (state: AppStateType) => state.course.loadingComments;
+// export const selectRepliesToComment = (state: AppStateType) => state.course.comments;
+
 

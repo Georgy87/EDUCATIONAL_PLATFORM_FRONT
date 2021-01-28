@@ -1,5 +1,5 @@
 import { CourseProfileStateType } from "../courseProfile/types";
-import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTraining, SetLoadingCourseForTrainingType, SetVideoForPleerType } from "./types";
+import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType } from "./types";
 
 // FETCH ACTIONS
 
@@ -33,9 +33,16 @@ export const fetchDeleteCourse = (payload: { courseId: string; photo: string }):
     }
 }
 
-export const fetchGetCourseForTraining = (payload: string): FetchGetCourseForTraining => {
+export const fetchGetCourseForTraining = (payload: string): FetchGetCourseForTrainingType => {
     return {
         type: CoursesActionType.FETCH_COURSE_FOR_TRAINING,
+        payload
+    }
+}
+
+export const fetchGetComments = (payload: string): FetchGetCommentsType => {
+    return {
+        type: CoursesActionType.FETCH_GET_COMMENTS,
         payload
     }
 }
@@ -75,7 +82,7 @@ export const setCourseForTraining = (payload: CourseProfileStateType): SetCourse
     }
 }
 
-export const SetLoadingCourseForTraining = (): SetLoadingCourseForTrainingType => {
+export const setLoadingCourseForTraining = (): SetLoadingCourseForTrainingType => {
     return {
         type: CoursesActionType.LOADING_FOR_TRAINING,
     }
@@ -91,6 +98,27 @@ export const setCourseVideos = (payload: { video: string[], indexLesson: number 
 export const setVideoForPleer = (payload: number): SetVideoForPleerType => {
     return {
         type: CoursesActionType.VIDEO_FOR_PLEER,
+        payload
+    }
+}
+
+export const setVideoForPleerByClick = (payload: string): SetVideoForPleerByClickType => {
+    return {
+        type: CoursesActionType.VIDEO_BY_CLICK,
+        payload
+    }
+}
+
+export const setComments = (payload: GetCommentsType[]): SetCommentsType => {
+    return {
+        type: CoursesActionType.SET_COMMENTS,
+        payload
+    }
+}
+
+export const setCommentsLoading = (payload: boolean): SetLoadingCommentsType => {
+    return {
+        type: CoursesActionType.SET_COMMENTS_LOADING,
         payload
     }
 }

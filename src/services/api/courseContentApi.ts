@@ -59,7 +59,14 @@ export const CourseContentApi = {
         return instance
             .post<CoursesContentApiType>(
                 `teacher/content?courseId=${payload.courseId}`,
-                formData
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
             )
             .then((response) => response.data);
     },
@@ -140,13 +147,22 @@ export const CourseContentApi = {
             )
             .then((response) => response.data);
     },
-    lessonTitleRevision(payload: { newTitle: string, courseId: string, moduleId: string, lessonId: string }) {
+    lessonTitleRevision(payload: {
+        newTitle: string;
+        courseId: string;
+        moduleId: string;
+        lessonId: string;
+    }) {
         const formData = new FormData();
         formData.append("newTitle", payload.newTitle);
         return axios
             .post<CoursesContentApiType>(
                 `http://localhost:5000/api/teacher/lesson?courseId=${payload.courseId}`,
-                { newTitle: payload.newTitle, moduleId: payload.moduleId, lessonId: payload.lessonId},
+                {
+                    newTitle: payload.newTitle,
+                    moduleId: payload.moduleId,
+                    lessonId: payload.lessonId,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -157,12 +173,23 @@ export const CourseContentApi = {
             )
             .then((response) => response.data);
     },
-    sendLinksToResources(payload: {courseId: string, moduleId: string, lessonId: string, linkName: string, linksToResources: string}) {
-
+    sendLinksToResources(payload: {
+        courseId: string;
+        moduleId: string;
+        lessonId: string;
+        linkName: string;
+        linksToResources: string;
+    }) {
         return axios
             .post<CoursesContentApiType>(
                 `http://localhost:5000/api/teacher/link?courseId=${payload.courseId}`,
-                { courseId: payload.courseId, moduleId: payload.moduleId, lessonId: payload.lessonId, linkName: payload.linkName, linksToResources: payload.linksToResources },
+                {
+                    courseId: payload.courseId,
+                    moduleId: payload.moduleId,
+                    lessonId: payload.lessonId,
+                    linkName: payload.linkName,
+                    linksToResources: payload.linksToResources,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -180,13 +207,17 @@ export const CourseContentApi = {
         hours: number;
         minutes: number;
         seconds: number;
-    }
-
-    ) {
+    }) {
         return axios
             .post<CoursesContentApiType>(
                 `http://localhost:5000/api/teacher/time?courseId=${payload.courseId}`,
-                { moduleId: payload.moduleId, lessonId: payload.lessonId, hours: payload.hours, minutes: payload.minutes, seconds: payload.seconds },
+                {
+                    moduleId: payload.moduleId,
+                    lessonId: payload.lessonId,
+                    hours: payload.hours,
+                    minutes: payload.minutes,
+                    seconds: payload.seconds,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
