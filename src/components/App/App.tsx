@@ -6,7 +6,7 @@ import MainPage from "../mainPage/MainPage";
 import Registration from "../registrationPage/RegistrationPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchAuth } from "../../store/ducks/user/actions";
+import { fetchAuth, fetchGetPurchasedCourses } from "../../store/ducks/user/actions";
 import Courses from "../courses/Courses";
 import { fetchGetCourses } from "../../store/ducks/courses/actions";
 import ProfileCourse from "../profileCourse/ProfileCourse";
@@ -29,7 +29,6 @@ function App() {
     const dispatch = useDispatch();
     let history = useHistory();
     const loading = useSelector(selectUserInfo);
-
     useEffect(() => {
         if (history.location.pathname === '/') {
             history.push('/main');
@@ -69,7 +68,7 @@ function App() {
                     {/* <Redirect to="/main" /> */}
 
                     <Route path={`/purchased-courses/leaning/materials/:id`} component={() => <MyLeaningPage />} />
-                    <Route path={`/purchased-courses/leaning/comments/:id`} component={() => <MyLeaningPage />} />
+                    <Route exact path={`/purchased-courses/leaning/comments/:id`} component={() => <MyLeaningPage />} />
                 </Switch>
             </div>
     );

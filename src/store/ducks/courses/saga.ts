@@ -1,6 +1,6 @@
 import { CoursesApi } from "../../../services/api/coursesApi";
 import { deleteFilterByDirections } from "../directions/actions";
-import { deleteCourseAction, setCourseForTraining, setCourses, setLoaded, setLoadingCourseForTraining } from "./actions";
+import { deleteCourseAction, setComments, setCommentsLoading, setCourseForTraining, setCourses, setLoaded, setLoadingCourseForTraining } from "./actions";
 import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTrainingType, FetchGetCommentsType } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
@@ -56,6 +56,8 @@ export function* fetchGetCourseForTrainingRequest({payload}: FetchGetCourseForTr
 export function* fetchGetCommentsRequest({payload}: FetchGetCommentsType) {
     try {
         const data = yield call(CoursesApi.getComments, payload);
+        yield put(setComments(data.data));
+        yield put(setCommentsLoading(true));
     } catch (e) {
         yield console.log(e);
     }

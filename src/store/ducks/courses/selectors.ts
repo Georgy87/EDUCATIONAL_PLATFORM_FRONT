@@ -11,3 +11,8 @@ export const selectVideoForPleer = (state: AppStateType) => state.course.videoFo
 
 export const selectLessonsList = (state: AppStateType) => state.course.courseVideosList;
 
+export const selectComments = (state: AppStateType) => state.course.comments;
+export const selectLoadingComments = (state: AppStateType) => state.course.loadingComments;
+// export const selectRepliesToComment = (state: AppStateType) => state.course.comments;
+
+

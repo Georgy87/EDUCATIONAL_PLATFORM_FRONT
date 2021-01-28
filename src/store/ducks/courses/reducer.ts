@@ -11,7 +11,8 @@ const initialState: CoursesStateType = {
     loadingCourseForTraining: false,
     courseVideosList: [],
     videoForPleer: undefined,
-    comments: []
+    comments: [],
+    loadingComments: false
 };
 const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: CoursesActions) => {
     switch (action.type) {
@@ -51,6 +52,12 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
             break;
         case CoursesActionType.VIDEO_BY_CLICK:
             draftState.videoForPleer = action.payload;
+            break;
+        case CoursesActionType.SET_COMMENTS:
+            draftState.comments = action.payload;
+            break;
+        case CoursesActionType.SET_COMMENTS_LOADING:
+            draftState.loadingComments = action.payload;
             break;
         default:
             break;

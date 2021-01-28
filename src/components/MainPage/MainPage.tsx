@@ -15,7 +15,7 @@ const MainPage = () => {
     const isLoading = useSelector(selectCourseLoading);
 
     const dispatch = useDispatch();
-
+   
     useEffect(() => {
         dispatch(fetchGetCourses());
     }, []);

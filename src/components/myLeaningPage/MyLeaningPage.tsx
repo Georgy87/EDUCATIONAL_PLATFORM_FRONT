@@ -79,7 +79,6 @@ export const MyLeaningPage: React.FC = () => {
 
     return (
         <div className="leaning">
-
             <div className="leaning-pleer">
                 <ReactWebMediaPlayer
                     style={{ display: 'block', margin: '0 auto', marginLeft: '-70px', top: '-130px' }}
@@ -106,7 +105,7 @@ export const MyLeaningPage: React.FC = () => {
             <div className="leaning-modules-section">
                 <Route exact
                     path={['/purchased-courses/leaning/:id', `/purchased-courses/leaning/materials/:id`]}
-                    component={() => <CourseCommentPage />}
+                    // component={() => <CourseCommentPage />}
                 >
                     {loading ? course?.map((el) => {
                         return (
@@ -126,7 +125,7 @@ export const MyLeaningPage: React.FC = () => {
                         )}
                 </Route>
 
-                <Route exact path={`/purchased-courses/leaning/comments/:id`} component={() => <CourseCommentPage />} />
+                <Route path={`/purchased-courses/leaning/comments/:id`} component={() => <CourseCommentPage />} />
             </div>
         </div>
     )
