@@ -71,6 +71,13 @@ export const MyLeaningPage: React.FC = () => {
         // event.preventDefault();
     }
 
+    const styleLessons = {
+        display: '',
+        justifyContent: '',
+        marginLeft: '',
+        width: ''
+    }
+
     return (
         <div className="leaning">
             <div className="leaning-pleer">
@@ -111,6 +118,9 @@ export const MyLeaningPage: React.FC = () => {
                                 moduleSeconds={el.moduleSeconds}
                                 moduleContent={el.moduleContent}
                                 moduleId={el._id}
+                                backgroundForAccordion="#f7f8fa"
+                                links={true}
+                                styleLessons={styleLessons}
                             />
                         )
                     }) : (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { CircularProgress, makeStyles } from '@material-ui/core';
 import { timeFunction } from '../../../utils/helpers/helpers';
 import Accordion from "@material-ui/core/Accordion";
@@ -10,6 +10,13 @@ import { LessonsBlockContainer } from "../lessons/LessonsContainer";
 
 import "./ModulesContainer.css";
 
+type StyleLessonType = {
+    display: string;
+    justifyContent: string;
+    marginLeft: string;
+    width: string;
+}
+
 export type PropsModulesType = {
     module: string;
     moduleHours: number;
@@ -17,7 +24,10 @@ export type PropsModulesType = {
     moduleSeconds: number;
     moduleContent: any;
     moduleId: string;
-    countVideo: number;
+    countVideo?: number;
+    backgroundForAccordion: string;
+    links: boolean;
+    styleLessons: any;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -41,15 +51,15 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 200,
         marginLeft: "auto",
     },
-    accordionSummary: {
-        // width: 900,
-        backgroundColor: "#f7f8fa",
-        boxShadow: 'none'
-    },
+    // accordionSummary: {
+    //     // width: 900,
+    //     backgroundColor: "#f7f8fa",
+    //     boxShadow: 'none'
+    // },
 }));
 
 export const MaterialsBlockContainer: React.FC<PropsModulesType> = ({ children, ...props }) => {
-    const { module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId, countVideo } = props;
+    const { module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId, countVideo, backgroundForAccordion, links, styleLessons } = props;
     const { newHours, finalMinutes } = timeFunction(moduleHours, moduleMinutes, moduleSeconds);
 
     const classes = useStyles();
@@ -60,7 +70,8 @@ export const MaterialsBlockContainer: React.FC<PropsModulesType> = ({ children, 
             <div className="leaning-modules">
                 <Accordion style={{ boxShadow: 'none' }}>
                     <AccordionSummary
-                        className={classes.accordionSummary}
+                        // className={classes.accordionSummary}
+                        style={{ backgroundColor: backgroundForAccordion }}
                         expandIcon={<ExpandMoreIcon style={{ color: "black" }} />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
@@ -86,6 +97,8 @@ export const MaterialsBlockContainer: React.FC<PropsModulesType> = ({ children, 
                                     fileVideo={el.fileVideo}
                                     lesson={el.lesson}
                                     moduleId={moduleId}
+                                    linkFlag={links}
+                                    styleLessons={styleLessons}
                                 />
                             </div>
                         );

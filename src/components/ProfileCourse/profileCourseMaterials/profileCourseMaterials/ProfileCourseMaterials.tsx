@@ -9,6 +9,7 @@ import { actions } from "../../../../store/ducks/courseProfile/actions";
 import { selectCourseProfile, selectTeacherLoaded } from "../../../../store/ducks/courseProfile/selectors";
 
 import "./ProfileCourseMaterials.css";
+import { MaterialsBlockContainer } from "../../../../hocs/materials/modules/ModulesContainer";
 
 type PropsType = {
     fullDescription: string | false | undefined;
@@ -25,13 +26,20 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
         avatar = `http://localhost:5000/${profile?.avatar}`;
     }
 
+const styleLessons = {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginLeft: '0 auto',
+        width: '850px'
+    }
+
     return (
         <>
             <div>
                 <h1>Материалы курса</h1>
                 {profile?.content.map((element) => {
                     return (
-                        <ProfileMaterialsModules
+                        <MaterialsBlockContainer
                             key={element._id}
                             module={element.module}
                             moduleHours={element.moduleHours}
@@ -39,6 +47,9 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                             moduleSeconds={element.moduleSeconds}
                             moduleContent={element.moduleContent}
                             moduleId={element._id}
+                            backgroundForAccordion="#fbfbf8"
+                            links={false}
+                            styleLessons={styleLessons}
                         />
                     );
                 })}

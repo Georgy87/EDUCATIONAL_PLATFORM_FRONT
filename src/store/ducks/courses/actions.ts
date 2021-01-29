@@ -88,7 +88,7 @@ export const setLoadingCourseForTraining = (): SetLoadingCourseForTrainingType =
     }
 }
 
-export const setCourseVideos = (payload: { video: string[], indexLesson: number }): SetCourseVideosType => {
+export const setCourseVideos = (payload: { video: string[], indexLesson: number | undefined }): SetCourseVideosType => {
     return {
         type: CoursesActionType.ALL_VIDEO_LIST,
         payload

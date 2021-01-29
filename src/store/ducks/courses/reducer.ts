@@ -45,7 +45,7 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
             break;
         case CoursesActionType.ALL_VIDEO_LIST:
             draftState.courseVideosList = draftState.courseVideosList.concat(action.payload.video);
-            draftState.videoForPleer = draftState.courseVideosList[action.payload.indexLesson];
+            draftState.videoForPleer = draftState.courseVideosList[action.payload.indexLesson!];
             break;
         case CoursesActionType.VIDEO_FOR_PLEER:
             draftState.videoForPleer = draftState.courseVideosList[action.payload];

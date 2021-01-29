@@ -125,7 +125,7 @@ export type SetLoadingCourseForTrainingType = {
 
 export type SetCourseVideosType = {
     type: CoursesActionType.ALL_VIDEO_LIST;
-    payload: { video: string[]; indexLesson: number };
+    payload: { video: string[]; indexLesson: number | undefined };
 };
 
 export type SetVideoForPleerType = {

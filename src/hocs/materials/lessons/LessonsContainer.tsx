@@ -14,11 +14,13 @@ export type PropsLessonsType = {
     fileVideo: string;
     lesson: string;
     moduleId: string;
-    countVideo: number;
+    countVideo?: number;
+    linkFlag: boolean;
+    styleLessons: any;
 }
 
 export const LessonsBlockContainer: React.FC<PropsLessonsType> = ({ children, ...props }) => {
-    const { lesson, fileVideo, lessonTime, countVideo, links } = props;
+    const { lesson, fileVideo, lessonTime, countVideo, links, linkFlag, styleLessons } = props;
 
     const dispatch = useDispatch();
 
@@ -43,15 +45,15 @@ export const LessonsBlockContainer: React.FC<PropsLessonsType> = ({ children, ..
             <div>
                 {/* <Link to="header" spy={true} smooth={true} offset={50} duration={500}> */}
                 <div className="lessons-leaning-wrapper" onClick={() => setVideoName(fileVideo)}>
-                    <div className="lessons-leaning-left-wrapper">
+                    <div style={styleLessons}>
                         <PlayCircleFilledIcon color="action" style={{ marginRight: 7, marginBottom: 3 }} />
                         {lesson}
                         <div className="lessons-time">
                             {newLessonTime} мин
-					</div>
+					    </div>
                     </div>
                     <div className="lessons-leaning-right-wrapper">
-                        <Dropdown>
+                        {linkFlag && <Dropdown>
                             <Dropdown.Toggle
                                 variant="info"
                                 id="dropdown-basic"
@@ -70,12 +72,11 @@ export const LessonsBlockContainer: React.FC<PropsLessonsType> = ({ children, ..
                                     );
                                 })}
                             </Dropdown.Menu>
-                        </Dropdown>
+                        </Dropdown>}
                     </div>
                 </div>
                 {/* </Link> */}
             </div>
-
         </div>
     )
 }

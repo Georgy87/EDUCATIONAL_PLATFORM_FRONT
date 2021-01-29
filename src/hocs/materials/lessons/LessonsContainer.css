@@ -9,11 +9,34 @@
 }
 
 .lessons-time {
-    display: block;
+    display: flex;
+    margin-left: auto;
 }
 
 .lessons-leaning-wrapper:hover {
     cursor: pointer;
     background-color: #f7f9fa;
-
 }
+
+/* .lessons-leaning-left-wrapper {
+    display: flex;
+    min-height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+} */
+
+/* .material-lesson-wrapper {
+    display: flex;
+    min-height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.material-lesson-item {
+    display: flex;
+}
+.material-lesson-time {
+    display: flex;
+    margin-left: auto;
+} */
