@@ -13,6 +13,13 @@ const initialState: CourseProfileState = {
 const courseProfile = produce(
     (draftState: Draft<CourseProfileState>, action: CourseProfileActions) => {
         switch (action.type) {
+            case CourseProfileActionsType.FETCH_GET_PROFILE_COURSE:
+                draftState.courseProfileVideo = "";
+                draftState.courseProfile = null;
+                break;
+            case CourseProfileActionsType.FETCH_GET_TEACHER:
+                draftState.teacher = null;
+                break;
             case CourseProfileActionsType.SET_COURSE_PROFILE:
                 draftState.courseProfile = action.payload;
                 break;

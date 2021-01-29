@@ -160,7 +160,7 @@ export type CoursesForCartShop = {
     price: string;
     smallDescription: string;
     profession: string;
-    id: string;
+    _id: string;
 };
 
 export type GetShoppingCartType = {
@@ -176,7 +176,8 @@ export type UserActionsTypes =
     | SetShoppingCartCourses
     | SetPurchasedCourses
     | SetSubmitLoadingActionType
-    | SetLoadingPurchasedCourses;
+    | SetLoadingPurchasedCourses
+    | FetchGetShoppingCartType;
 
 // Thunk types
 

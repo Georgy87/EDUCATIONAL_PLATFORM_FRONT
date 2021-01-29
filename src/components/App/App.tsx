@@ -64,11 +64,11 @@ function App() {
                     <Route path="/shopping-cart" component={ShoppingCart} />
                     <Route path="/checkout" component={Checkout} exact />
                     <Route path="/purchased-courses" component={MyTrainingPage} exact />
-                    <Route path="/purchased-courses/leaning/:id" component={MyLeaningPage} exact />
+                    <Route path="/purchased-courses/leaning/:id?" render={() => <MyLeaningPage/>} exact/>
                     {/* <Redirect to="/main" /> */}
 
-                    <Route path={`/purchased-courses/leaning/materials/:id`} component={() => <MyLeaningPage />} />
-                    <Route exact path={`/purchased-courses/leaning/comments/:id`} component={() => <MyLeaningPage />} />
+                    <Route path={`/purchased-courses/leaning/materials/:id`} render={() => <MyLeaningPage />} />
+                    <Route path={`/purchased-courses/leaning/comments/:id`} render={() => <MyLeaningPage />} />
                 </Switch>
             </div>
     );

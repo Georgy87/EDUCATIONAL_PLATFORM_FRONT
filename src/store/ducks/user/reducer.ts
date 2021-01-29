@@ -33,6 +33,9 @@ const userReducer = produce(
             case UserActionType.SET_LOADED:
                 draftState.loadingState = UserActionType.SET_LOADED;
                 break;
+            case UserActionType.FETCH_GET_SHOPPING_CART:
+                draftState.shoppingCartCourses = null;
+                break;
             case UserActionType.SET_SHOPPING_CART_COURSES:
                 draftState.shoppingCartCourses = action.payload;
                 break;

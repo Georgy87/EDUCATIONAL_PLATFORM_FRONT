@@ -59,6 +59,9 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
         case CoursesActionType.SET_COMMENTS_LOADING:
             draftState.loadingComments = action.payload;
             break;
+        case CoursesActionType.FETCH_GET_COMMENTS:
+            draftState.comments = [];
+            break;
         default:
             break;
     }

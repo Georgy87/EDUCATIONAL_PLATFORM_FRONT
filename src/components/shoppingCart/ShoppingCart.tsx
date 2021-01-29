@@ -30,6 +30,7 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
                 <div className="cart-shop-items">
 
                     {courses?.coursesDestructured.length != 0 ? courses?.coursesDestructured.map(element => {
+                    
                         return (
                             <div className="cart-shop-item">
                                 <div className="cart-shop-photo">
@@ -38,7 +39,7 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
                                 <div className="cart-shop-descr">
                                     <p>{element.smallDescription}</p>
                                 </div>
-                                <div className="cart-shop-delete" onClick={() => dispatch(fetchDeleteShoppingCartCourse(element.id))}>
+                                <div className="cart-shop-delete" onClick={() => dispatch(fetchDeleteShoppingCartCourse(element._id))}>
                                     <p>Удалить</p>
                                 </div>
                                 <div className="cart-shop-price">
