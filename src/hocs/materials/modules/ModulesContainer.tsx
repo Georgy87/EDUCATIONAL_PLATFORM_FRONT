@@ -10,13 +10,6 @@ import { LessonsBlockContainer } from "../lessons/LessonsContainer";
 
 import "./ModulesContainer.css";
 
-type StyleLessonType = {
-    display: string;
-    justifyContent: string;
-    marginLeft: string;
-    width: string;
-}
-
 export type PropsModulesType = {
     module: string;
     moduleHours: number;
@@ -25,9 +18,8 @@ export type PropsModulesType = {
     moduleContent: any;
     moduleId: string;
     countVideo?: number;
-    backgroundForAccordion: string;
     links: boolean;
-    styleLessons: any;
+    pageName: string;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -59,11 +51,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const MaterialsBlockContainer: React.FC<PropsModulesType> = ({ children, ...props }) => {
-    const { module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId, countVideo, backgroundForAccordion, links, styleLessons } = props;
+    const { module, moduleHours, moduleMinutes, moduleSeconds, moduleContent, moduleId, countVideo, links, pageName } = props;
     const { newHours, finalMinutes } = timeFunction(moduleHours, moduleMinutes, moduleSeconds);
 
     const classes = useStyles();
 
+    let backgroundForAccordion: string = "";
+
+    if (pageName === "leaning") {
+        backgroundForAccordion = "#f7f8fa";
+    }
+
+    if (pageName === "profile") {
+        backgroundForAccordion = "#fbfbf8";
+    }
+    
     return (
         <div>
             {children}
@@ -97,8 +99,7 @@ export const MaterialsBlockContainer: React.FC<PropsModulesType> = ({ children, 
                                     fileVideo={el.fileVideo}
                                     lesson={el.lesson}
                                     moduleId={moduleId}
-                                    linkFlag={links}
-                                    styleLessons={styleLessons}
+                                    pageName={pageName}
                                 />
                             </div>
                         );

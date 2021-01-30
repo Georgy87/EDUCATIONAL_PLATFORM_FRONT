@@ -71,12 +71,6 @@ export const MyLeaningPage: React.FC = () => {
         // event.preventDefault();
     }
 
-    const styleLessons = {
-        display: '',
-        justifyContent: '',
-        marginLeft: '',
-        width: ''
-    }
 
     return (
         <div className="leaning">
@@ -118,16 +112,13 @@ export const MyLeaningPage: React.FC = () => {
                                 moduleSeconds={el.moduleSeconds}
                                 moduleContent={el.moduleContent}
                                 moduleId={el._id}
-                                backgroundForAccordion="#f7f8fa"
+                                pageName="leaning"
                                 links={true}
-                                styleLessons={styleLessons}
                             />
                         )
                     }) : (
                             <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
                         )}
-
-
                 </Route>
                 <Route path={`/purchased-courses/leaning/comments/:id`} render={() => <CourseCommentPage />} />
             </div>

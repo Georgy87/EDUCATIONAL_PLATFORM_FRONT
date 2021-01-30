@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ProfileMaterialsModules from "./profileMaterialsModules/ProfileMaterialsModules";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import photo from "../../../../assets/avatar/unnamed.jpg";
@@ -8,12 +7,14 @@ import { NavLink } from 'react-router-dom';
 import { actions } from "../../../../store/ducks/courseProfile/actions";
 import { selectCourseProfile, selectTeacherLoaded } from "../../../../store/ducks/courseProfile/selectors";
 
-import "./ProfileCourseMaterials.css";
 import { MaterialsBlockContainer } from "../../../../hocs/materials/modules/ModulesContainer";
+
+import "./ProfileCourseMaterials.css";
 
 type PropsType = {
     fullDescription: string | false | undefined;
 }
+
 const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React.ReactElement => {
     const [collapseText, setCollapsetext] = useState<string>("");
     const profile = useSelector(selectCourseProfile);
@@ -24,13 +25,6 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
 
     if (profile) {
         avatar = `http://localhost:5000/${profile?.avatar}`;
-    }
-
-const styleLessons = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        marginLeft: '0 auto',
-        width: '850px'
     }
 
     return (
@@ -47,9 +41,8 @@ const styleLessons = {
                             moduleSeconds={element.moduleSeconds}
                             moduleContent={element.moduleContent}
                             moduleId={element._id}
-                            backgroundForAccordion="#fbfbf8"
                             links={false}
-                            styleLessons={styleLessons}
+                            pageName="profile"
                         />
                     );
                 })}

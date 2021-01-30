@@ -18,6 +18,13 @@
     background-color: #f7f9fa;
 }
 
+/* .lessons-leaning-pr {
+    display: 'flex';
+    justify-content: 'space-between';
+    margin-left: '0 auto';
+    width: '850px';
+} */
+
 /* .lessons-leaning-left-wrapper {
     display: flex;
     min-height: 50px;

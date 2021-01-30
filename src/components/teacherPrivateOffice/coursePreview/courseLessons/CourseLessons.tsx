@@ -108,7 +108,6 @@ const CourseLessons: React.FC<PropsType> = (props) => {
                                         type="text"
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setlinksName(e.target.value)}
                                     />
-
                                     <div className="add-links">
                                         Добавить ссылку на ресурс.
                                     </div>
@@ -116,7 +115,6 @@ const CourseLessons: React.FC<PropsType> = (props) => {
                                         type="text"
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLinksToResources(e.target.value)}
                                     />
-
                                     <button
                                         onClick={() => sendLink(props.moduleId, props.lessonId, linkName)}
                                     >

@@ -1,5 +1,5 @@
 import { CourseProfileStateType } from "../courseProfile/types";
-import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType } from "./types";
+import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType } from "./types";
 
 // FETCH ACTIONS
 
@@ -43,6 +43,13 @@ export const fetchGetCourseForTraining = (payload: string): FetchGetCourseForTra
 export const fetchGetComments = (payload: string): FetchGetCommentsType => {
     return {
         type: CoursesActionType.FETCH_GET_COMMENTS,
+        payload
+    }
+}
+
+export const fetchAddComment = (payload: { courseId: string; text: string }): FetchAddCommentType => {
+    return {
+        type: CoursesActionType.FETCH_ADD_COMMENT,
         payload
     }
 }
