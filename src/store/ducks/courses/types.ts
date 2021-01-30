@@ -26,7 +26,8 @@ export enum CoursesActionType {
     VIDEO_BY_CLICK = "VIDEO_BY_CLICK",
     FETCH_GET_COMMENTS = "FETCH_GET_COMMENTS",
     SET_COMMENTS = "SET_COMMENTS",
-    SET_COMMENTS_LOADING = "SET_COMMENTS_LOADING"
+    SET_COMMENTS_LOADING = "SET_COMMENTS_LOADING",
+    FETCH_ADD_COMMENT = "FETCH_ADD_COMMENT",
 }
 
 // STATE TYPES
@@ -94,6 +95,11 @@ export type FetchGetCommentsType = {
     payload: string;
 };
 
+export type FetchAddCommentType = {
+    type: CoursesActionType.FETCH_ADD_COMMENT;
+    payload: { courseId: string; text: string };
+};
+
 // ACTIONS TYPES
 
 export type SetLoadingActionType = {
@@ -125,7 +131,7 @@ export type SetLoadingCourseForTrainingType = {
 
 export type SetCourseVideosType = {
     type: CoursesActionType.ALL_VIDEO_LIST;
-    payload: { video: string[]; indexLesson: number };
+    payload: { video: string[]; indexLesson: number | undefined };
 };
 
 export type SetVideoForPleerType = {
@@ -148,7 +154,6 @@ export type SetLoadingCommentsType = {
     payload: boolean;
 };
 
-
 export type CoursesActions =
     | SetLoadingActionType
     | SetCoursesActionType
@@ -163,4 +168,5 @@ export type CoursesActions =
     | SetVideoForPleerByClickType
     | SetCommentsType
     | FetchGetCommentsType
-    | SetLoadingCommentsType;
+    | SetLoadingCommentsType
+    | FetchAddCommentType;

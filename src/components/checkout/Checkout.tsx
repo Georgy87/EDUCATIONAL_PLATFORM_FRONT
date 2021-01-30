@@ -29,8 +29,8 @@ const Checkout: React.FC = (): React.ReactElement => {
         let purchasedCoursesIds: string[] = [];
         if (courses) {
             courses?.coursesDestructured.map(el => {
-                console.log(el.id);
-                purchasedCoursesIds.push(el.id);
+
+                purchasedCoursesIds.push(el._id);
             });
             dispatch(fetchPurchasedCourses({ids: purchasedCoursesIds, totalPrice: courses.totalPrice}));
         }

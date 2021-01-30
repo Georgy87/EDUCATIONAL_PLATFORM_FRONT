@@ -1,0 +1,49 @@
+.lessons-leaning-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    min-height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.lessons-time {
+    display: flex;
+    margin-left: auto;
+}
+
+.lessons-leaning-wrapper:hover {
+    cursor: pointer;
+    background-color: #f7f9fa;
+}
+
+/* .lessons-leaning-pr {
+    display: 'flex';
+    justify-content: 'space-between';
+    margin-left: '0 auto';
+    width: '850px';
+} */
+
+/* .lessons-leaning-left-wrapper {
+    display: flex;
+    min-height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+} */
+
+/* .material-lesson-wrapper {
+    display: flex;
+    min-height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.material-lesson-item {
+    display: flex;
+}
+.material-lesson-time {
+    display: flex;
+    margin-left: auto;
+} */

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ProfileMaterialsModules from "./profileMaterialsModules/ProfileMaterialsModules";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import photo from "../../../../assets/avatar/unnamed.jpg";
@@ -8,11 +7,14 @@ import { NavLink } from 'react-router-dom';
 import { actions } from "../../../../store/ducks/courseProfile/actions";
 import { selectCourseProfile, selectTeacherLoaded } from "../../../../store/ducks/courseProfile/selectors";
 
+import { MaterialsBlockContainer } from "../../../../hocs/materials/modules/ModulesContainer";
+
 import "./ProfileCourseMaterials.css";
 
 type PropsType = {
     fullDescription: string | false | undefined;
 }
+
 const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React.ReactElement => {
     const [collapseText, setCollapsetext] = useState<string>("");
     const profile = useSelector(selectCourseProfile);
@@ -31,7 +33,7 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                 <h1>Материалы курса</h1>
                 {profile?.content.map((element) => {
                     return (
-                        <ProfileMaterialsModules
+                        <MaterialsBlockContainer
                             key={element._id}
                             module={element.module}
                             moduleHours={element.moduleHours}
@@ -39,6 +41,8 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                             moduleSeconds={element.moduleSeconds}
                             moduleContent={element.moduleContent}
                             moduleId={element._id}
+                            links={false}
+                            pageName="profile"
                         />
                     );
                 })}

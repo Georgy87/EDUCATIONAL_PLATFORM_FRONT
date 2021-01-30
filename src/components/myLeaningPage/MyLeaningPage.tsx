@@ -1,22 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { fetchGetCourseForTraining, setVideoForPleer } from '../../store/ducks/courses/actions';
+import { fetchGetCourseForTraining, setCourseVideos, setVideoForPleer, setVideoForPleerByClick } from '../../store/ducks/courses/actions';
 import { selectCourseForTraining, selectLoadingTraining, selectVideoForPleer, selectLessonsList } from '../../store/ducks/courses/selectors';
-import { LeaningCourseModules } from './leaningCourseModules/LeaningCourseModules';
 import { CircularProgress } from '@material-ui/core';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import UserProfilePhoto from '../userProfile/UserProfilePhoto/UserProfilePhoto';
-import UserProfileInfo from '../userProfile/UserProfileInfo/UserProfileInfo';
 import { CourseCommentPage } from './courseCommentPage/CourseCommentPage';
-
+import { MaterialsBlockContainer } from "../../hocs/materials/modules/ModulesContainer";
 //@ts-ignore
 import ReactWebMediaPlayer from 'react-web-media-player';
 
 import "./MyLeaningPage.css";
-
 
 export const MyLeaningPage: React.FC = () => {
     const videoForPleer = useSelector(selectVideoForPleer);
@@ -77,6 +71,7 @@ export const MyLeaningPage: React.FC = () => {
         // event.preventDefault();
     }
 
+
     return (
         <div className="leaning">
             <div className="leaning-pleer">
@@ -105,11 +100,10 @@ export const MyLeaningPage: React.FC = () => {
             <div className="leaning-modules-section">
                 <Route exact
                     path={['/purchased-courses/leaning/:id', `/purchased-courses/leaning/materials/:id`]}
-                    // component={() => <CourseCommentPage />}
                 >
                     {loading ? course?.map((el) => {
                         return (
-                            <LeaningCourseModules
+                            <MaterialsBlockContainer
                                 key={el._id}
                                 countVideo={countVideo}
                                 module={el.module}
@@ -118,15 +112,20 @@ export const MyLeaningPage: React.FC = () => {
                                 moduleSeconds={el.moduleSeconds}
                                 moduleContent={el.moduleContent}
                                 moduleId={el._id}
+                                pageName="leaning"
+                                links={true}
                             />
                         )
                     }) : (
                             <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
                         )}
                 </Route>
-
-                <Route path={`/purchased-courses/leaning/comments/:id`} component={() => <CourseCommentPage />} />
+                <Route path={`/purchased-courses/leaning/comments/:id`} render={() => <CourseCommentPage />} />
             </div>
         </div>
     )
 }
+
+
+
+

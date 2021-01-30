@@ -1,7 +1,7 @@
 import { CoursesApi } from "../../../services/api/coursesApi";
 import { deleteFilterByDirections } from "../directions/actions";
 import { deleteCourseAction, setComments, setCommentsLoading, setCourseForTraining, setCourses, setLoaded, setLoadingCourseForTraining } from "./actions";
-import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTrainingType, FetchGetCommentsType } from "./types";
+import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTrainingType, FetchGetCommentsType, FetchAddCommentType } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 export function* fetchUploadNewCourseRequest({payload}: FetchUploadNewCourseType) {
@@ -63,6 +63,15 @@ export function* fetchGetCommentsRequest({payload}: FetchGetCommentsType) {
     }
 };
 
+export function* fetchAddCommentRequest({payload}: FetchAddCommentType) {
+    try {
+        const { comments } = yield call(CoursesApi.addComment, payload);
+        yield put(setComments(comments));
+        yield put(setCommentsLoading(true));
+    } catch (e) {
+        yield console.log(e);
+    }
+};
 
 export function* CoursesSaga() {
     yield takeLatest(CoursesActionType.FETCH_UPLOAD_NEW_COURSE, fetchUploadNewCourseRequest);
@@ -70,6 +79,7 @@ export function* CoursesSaga() {
     yield takeLatest(CoursesActionType.FETCH_DELETE_COURSE, fetchDeleteCourseRequest);
     yield takeLatest(CoursesActionType.FETCH_COURSE_FOR_TRAINING, fetchGetCourseForTrainingRequest);
     yield takeLatest(CoursesActionType.FETCH_GET_COMMENTS, fetchGetCommentsRequest);
+    yield takeLatest(CoursesActionType.FETCH_ADD_COMMENT, fetchAddCommentRequest);
 }
 
 

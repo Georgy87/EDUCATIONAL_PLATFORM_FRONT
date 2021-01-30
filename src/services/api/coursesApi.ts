@@ -55,15 +55,27 @@ export const CoursesApi = {
                 return data.data.course;
             });
     },
-    getComments(id: string) {
-        return instance
-            .get<GetCommentsType[]>(`/course/comment?courseId=${id}`, {
+    async getComments(id: string) {
+        const { data } = await instance.get<GetCommentsType[]>(
+            `/course/comment?courseId=${id}`,
+            {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
-            })
-            .then((data) => {
-                return data.data;
-            });
+            }
+        );
+        return data;
+    },
+    async addComment(payload: { courseId: string; text: string }) {
+        const { data } = await instance.post(
+            `/course/comment?courseId=${payload.courseId}`,
+            { text: payload.text },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        );
+        return data.data;
     },
 };
