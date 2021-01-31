@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchAddComment, fetchGetComments, fetchGetCourseForTraining, GetReplyToComment } from '../../../store/ducks/courses/actions';
-import { selectLoadingComments, selectComments } from '../../../store/ducks/courses/selectors';
+import { selectLoadingComments, selectComments, selectLoadingAddComment } from '../../../store/ducks/courses/selectors';
 import { CircularProgress } from '@material-ui/core';
 import messageIcon from "../../../assets/comment-icon/icons8-edit-chat-history-100.png";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
@@ -22,9 +22,9 @@ export const CourseCommentPage: React.FC = () => {
     const loading = useSelector(selectLoadingComments);
     const comments = useSelector(selectComments);
     const userAvatar = useSelector(selectUserAvatar);
+    const loadingAddComment = useSelector(selectLoadingAddComment);
 
     const params: { id: string } = useParams();
-    const history = useHistory();
 
     const id = params.id;
 
@@ -40,10 +40,11 @@ export const CourseCommentPage: React.FC = () => {
             const courseId: any = window.localStorage.getItem("course-comment-id");
             dispatch(fetchGetCourseForTraining(courseId));
         }
-
     }, [loading]);
 
     const onAddComment = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
         setComment(e.target.value);
     }
 
@@ -58,13 +59,17 @@ export const CourseCommentPage: React.FC = () => {
                     <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onAddComment(e)} />
                 </div>
             </div>
+
             <div className="comments-add-btn">
                 <button onClick={() => dispatch(fetchAddComment({ courseId: id, text: comment }))}>Оставить комментарий</button>
             </div>
+
+            {loadingAddComment === "LOADING" && <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />}
+            
             {
                 loading ? comments.map(el => (
-                    <div className="comments-wrapper">
-                        <div className="comments-item">
+                    <ul className="comments-wrapper">
+                        <li className="comments-item">
                             <div className="comments-avatar-wrapper">
                                 <img src={`http://localhost:5000/${el.user.avatar}`} alt="comment-avatar" />
                             </div>
@@ -84,8 +89,8 @@ export const CourseCommentPage: React.FC = () => {
                                     </div>
                                 </Link>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 )) : <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
             }
         </div>

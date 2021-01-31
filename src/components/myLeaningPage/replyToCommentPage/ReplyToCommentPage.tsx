@@ -21,6 +21,7 @@ export const ReplyToCommentPage = () => {
             dispatch(fetchGetReplyToComment({courseId: courseId, commentId: id}))
         }
     }, []);
+    
     return (
         <div>
             Reply To Comment
