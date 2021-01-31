@@ -78,4 +78,15 @@ export const CoursesApi = {
         );
         return data.data;
     },
+    async getReplyToComment(payload: { courseId: string; commentId: string }) {
+        const { data } = await instance.get(`course/comment/answer?courseId=${payload.courseId}&commentId=${payload.commentId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        );
+        console.log(data);
+        return data.data;
+    },
 };

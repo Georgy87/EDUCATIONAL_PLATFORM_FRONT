@@ -2,15 +2,18 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { fetchGetCourseForTraining, setCourseVideos, setVideoForPleer, setVideoForPleerByClick } from '../../store/ducks/courses/actions';
-import { selectCourseForTraining, selectLoadingTraining, selectVideoForPleer, selectLessonsList } from '../../store/ducks/courses/selectors';
+import { fetchGetCourseForTraining, setCourseVideos, setVideoForPleer, setVideoForPleerByClick, GetReplyToComment, fetchGetComments } from '../../store/ducks/courses/actions';
+import { selectCourseForTraining, selectLoadingTraining, selectVideoForPleer, selectLessonsList, selectCourseForTrainingId } from '../../store/ducks/courses/selectors';
 import { CircularProgress } from '@material-ui/core';
 import { CourseCommentPage } from './courseCommentPage/CourseCommentPage';
 import { MaterialsBlockContainer } from "../../hocs/materials/modules/ModulesContainer";
+import { ReplyToCommentPage } from './replyToCommentPage/ReplyToCommentPage';
 //@ts-ignore
 import ReactWebMediaPlayer from 'react-web-media-player';
 
 import "./MyLeaningPage.css";
+import { WSAEINVALIDPROCTABLE } from 'constants';
+
 
 export const MyLeaningPage: React.FC = () => {
     const videoForPleer = useSelector(selectVideoForPleer);
@@ -22,8 +25,9 @@ export const MyLeaningPage: React.FC = () => {
 
     const loading = useSelector(selectLoadingTraining);
     const course = useSelector(selectCourseForTraining);
+    const courseId = useSelector(selectCourseForTrainingId);
 
-    const params: { id?: string } = useParams();
+    const params: { id: any} = useParams();
     const id = params.id;
 
     const setNextVideo = () => {
@@ -57,10 +61,11 @@ export const MyLeaningPage: React.FC = () => {
     }
 
     useEffect(() => {
-        if (id) {
+        if (id && window.location.pathname === `/purchased-courses/leaning/${id}` || window.location.pathname === `/purchased-courses/leaning/materials/${id}`) {
+            window.localStorage.setItem("course-comment-id", id);
             dispatch(fetchGetCourseForTraining(id));
         }
-    }, [dispatch]);
+    }, []);
 
     if (window.localStorage.getItem('lesson-name') === null) {
         photo = "https://images.unsplash.com/photo-1611300494368-a84f7109804c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1510&q=80";
@@ -70,7 +75,6 @@ export const MyLeaningPage: React.FC = () => {
         event.stopPropagation();
         // event.preventDefault();
     }
-
 
     return (
         <div className="leaning">
@@ -89,14 +93,13 @@ export const MyLeaningPage: React.FC = () => {
                 <button className="leaning-next-btn" onClick={setNextVideo}>Next</button>
             </div>
             <div className="leaning-tabs-for-page">
-                <NavLink to={`/purchased-courses/leaning/materials/${id}`} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => onHandlerMaterials(event)}>
+                <NavLink to={`/purchased-courses/leaning/materials/${courseId}`} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => onHandlerMaterials(event)}>
                     <div>Материалы курсы</div>
                 </NavLink>
-                <NavLink to={`/purchased-courses/leaning/comments/${id}`}>
-                    <div>Комментарии</div>
+                <NavLink to={`/purchased-courses/leaning/comments/${courseId}`}>
+                    <div onClick={() =>  dispatch(fetchGetComments(id))}>Комментарии</div>
                 </NavLink>
             </div>
-
             <div className="leaning-modules-section">
                 <Route exact
                     path={['/purchased-courses/leaning/:id', `/purchased-courses/leaning/materials/:id`]}
@@ -120,7 +123,8 @@ export const MyLeaningPage: React.FC = () => {
                             <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
                         )}
                 </Route>
-                <Route path={`/purchased-courses/leaning/comments/:id`} render={() => <CourseCommentPage />} />
+                <Route exact path={`/purchased-courses/leaning/comments/:id?`} render={() => <CourseCommentPage />} />
+                <Route exact path={`/purchased-courses/leaning/comments/reply-to-comment/:id?`} render={() => <ReplyToCommentPage />} />
             </div>
         </div>
     )

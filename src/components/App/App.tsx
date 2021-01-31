@@ -24,6 +24,7 @@ import TeacherPrivateOfficeAdmin from '../teacherPrivateOffice/TeacherPrivateOff
 import "./App.css";
 import { MyLeaningPage } from "../myLeaningPage/MyLeaningPage";
 import { CourseCommentPage } from "../myLeaningPage/courseCommentPage/CourseCommentPage";
+import { ReplyToCommentPage } from "../myLeaningPage/replyToCommentPage/ReplyToCommentPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -67,8 +68,9 @@ function App() {
                     <Route path="/purchased-courses/leaning/:id?" render={() => <MyLeaningPage/>} exact/>
                     {/* <Redirect to="/main" /> */}
 
-                    <Route path={`/purchased-courses/leaning/materials/:id`} render={() => <MyLeaningPage />} />
-                    <Route path={`/purchased-courses/leaning/comments/:id`} render={() => <MyLeaningPage />} />
+                    <Route exact path={`/purchased-courses/leaning/materials/:id?`} render={() => <MyLeaningPage />} />
+                    <Route exact path={`/purchased-courses/leaning/comments/:id?`} render={() => <MyLeaningPage />} />
+                    <Route path={`/purchased-courses/leaning/comments/reply-to-comment/:id?`} render={() => <MyLeaningPage />} />
                 </Switch>
             </div>
     );

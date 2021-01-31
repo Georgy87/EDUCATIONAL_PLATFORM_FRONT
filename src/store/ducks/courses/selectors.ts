@@ -14,5 +14,6 @@ export const selectLessonsList = (state: AppStateType) => state.course.courseVid
 export const selectComments = (state: AppStateType) => state.course.comments;
 export const selectLoadingComments = (state: AppStateType) => state.course.loadingComments;
 // export const selectRepliesToComment = (state: AppStateType) => state.course.comments;
+export const selectCourseForTrainingId = (state: AppStateType) => state.course.courseForTraining?._id;
 
 

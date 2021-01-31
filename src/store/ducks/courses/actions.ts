@@ -1,5 +1,5 @@
 import { CourseProfileStateType } from "../courseProfile/types";
-import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType } from "./types";
+import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType, FetchGetReplyToCommentType, GetReplyToCommentType } from "./types";
 
 // FETCH ACTIONS
 
@@ -50,6 +50,13 @@ export const fetchGetComments = (payload: string): FetchGetCommentsType => {
 export const fetchAddComment = (payload: { courseId: string; text: string }): FetchAddCommentType => {
     return {
         type: CoursesActionType.FETCH_ADD_COMMENT,
+        payload
+    }
+}
+
+export const fetchGetReplyToComment = ( payload: { courseId: string; commentId: string }): FetchGetReplyToCommentType => {
+    return {
+        type: CoursesActionType.FETCH_GET_REPLY_TO_COMMENT,
         payload
     }
 }
@@ -126,6 +133,13 @@ export const setComments = (payload: GetCommentsType[]): SetCommentsType => {
 export const setCommentsLoading = (payload: boolean): SetLoadingCommentsType => {
     return {
         type: CoursesActionType.SET_COMMENTS_LOADING,
+        payload
+    }
+}
+
+export const GetReplyToComment = (payload: string): GetReplyToCommentType => {
+    return {
+        type: CoursesActionType.GET_REPLY_TO_COMMENT,
         payload
     }
 }

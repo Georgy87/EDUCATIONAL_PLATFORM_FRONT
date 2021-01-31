@@ -12,7 +12,8 @@ const initialState: CoursesStateType = {
     courseVideosList: [],
     videoForPleer: undefined,
     comments: [],
-    loadingComments: false
+    loadingComments: false,
+    replyToComment: null
 };
 const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: CoursesActions) => {
     switch (action.type) {
@@ -62,6 +63,9 @@ const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: Cou
         case CoursesActionType.FETCH_GET_COMMENTS:
             draftState.comments = [];
             break;
+        // case CoursesActionType.GET_REPLY_TO_COMMENT:
+        //     draftState.replyToComment = draftState.comments.map(el => el._id);
+        //     break;
         default:
             break;
     }

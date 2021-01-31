@@ -28,6 +28,8 @@ export enum CoursesActionType {
     SET_COMMENTS = "SET_COMMENTS",
     SET_COMMENTS_LOADING = "SET_COMMENTS_LOADING",
     FETCH_ADD_COMMENT = "FETCH_ADD_COMMENT",
+    FETCH_GET_REPLY_TO_COMMENT = "FETCH_GET_REPLY_TO_COMMENT",
+    GET_REPLY_TO_COMMENT = "GET_REPLY_TO_COMMENT",
 }
 
 // STATE TYPES
@@ -57,6 +59,7 @@ export type CoursesStateType = {
     videoForPleer: string | undefined;
     comments: GetCommentsType[];
     loadingComments: Boolean;
+    replyToComment: any;
 };
 
 // FETCH ACTIONS TYPES
@@ -98,6 +101,11 @@ export type FetchGetCommentsType = {
 export type FetchAddCommentType = {
     type: CoursesActionType.FETCH_ADD_COMMENT;
     payload: { courseId: string; text: string };
+};
+
+export type FetchGetReplyToCommentType = {
+    type: CoursesActionType.FETCH_GET_REPLY_TO_COMMENT;
+    payload: { courseId: string; commentId: string };
 };
 
 // ACTIONS TYPES
@@ -154,6 +162,11 @@ export type SetLoadingCommentsType = {
     payload: boolean;
 };
 
+export type GetReplyToCommentType = {
+    type: CoursesActionType.GET_REPLY_TO_COMMENT;
+    payload: string;
+};
+
 export type CoursesActions =
     | SetLoadingActionType
     | SetCoursesActionType
@@ -169,4 +182,5 @@ export type CoursesActions =
     | SetCommentsType
     | FetchGetCommentsType
     | SetLoadingCommentsType
-    | FetchAddCommentType;
+    | FetchAddCommentType
+    | GetReplyToCommentType;
