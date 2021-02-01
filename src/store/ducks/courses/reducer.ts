@@ -1,7 +1,13 @@
-import produce, {Draft} from "immer";
+import produce, { Draft } from "immer";
+import { LoadingStatus } from "../../types";
 import { CourseProfileStateType } from "../courseProfile/types";
 // import { CourseProfileType } from "../courseProfile/types";
-import { CoursesActions, CoursesActionType, CoursesStateType, LoadingStateType } from "./types";
+import {
+    CoursesActions,
+    CoursesActionType,
+    CoursesStateType,
+    LoadingStateType,
+} from "./types";
 
 const initialState: CoursesStateType = {
     courses: [] as Array<CourseProfileStateType>,
@@ -12,59 +18,86 @@ const initialState: CoursesStateType = {
     courseVideosList: [],
     videoForPleer: undefined,
     comments: [],
-    loadingComments: false
+    loadingComments: false,
+    replyToComment: null,
+    loadingAddComment: LoadingStatus.NEVER,
+    loadingReplyToComment: LoadingStatus.NEVER,
+    loadingAddReplyToComment: LoadingStatus.NEVER,
 };
-const coursesReducer = produce((draftState: Draft<CoursesStateType>, action: CoursesActions) => {
-    switch (action.type) {
-        case CoursesActionType.SET_COURSES_LOADING:
-            draftState.loadingState = LoadingStateType.LOADING;
-            break;
-        case CoursesActionType.SET_COURSES_LOADED:
-            draftState.loadingState = LoadingStateType.LOADED;
-            break;
-        case CoursesActionType.SET_COURSES:
-            draftState.courses = action.payload;
-            draftState.loadingState = LoadingStateType.LOADED;
-            break;
-        case CoursesActionType.DELETE_COURSE:
-            draftState.courses = [
-                ...draftState.courses.filter(
-                    (course: any) => course._id !== action.payload
-                ),
-            ];
-            break;
-        case CoursesActionType.FETCH_COURSE_FOR_TRAINING:
-            draftState.courseVideosList = [];
-            draftState.courseForTraining = null;
-            break;
-        case CoursesActionType.SET_COURSE_FOR_TRAINING:
-            draftState.courseForTraining = action.payload;
-            break;
-        case CoursesActionType.LOADING_FOR_TRAINING:
-            draftState.loadingCourseForTraining = true;
-            break;
-        case CoursesActionType.ALL_VIDEO_LIST:
-            draftState.courseVideosList = draftState.courseVideosList.concat(action.payload.video);
-            draftState.videoForPleer = draftState.courseVideosList[action.payload.indexLesson!];
-            break;
-        case CoursesActionType.VIDEO_FOR_PLEER:
-            draftState.videoForPleer = draftState.courseVideosList[action.payload];
-            break;
-        case CoursesActionType.VIDEO_BY_CLICK:
-            draftState.videoForPleer = action.payload;
-            break;
-        case CoursesActionType.SET_COMMENTS:
-            draftState.comments = action.payload;
-            break;
-        case CoursesActionType.SET_COMMENTS_LOADING:
-            draftState.loadingComments = action.payload;
-            break;
-        case CoursesActionType.FETCH_GET_COMMENTS:
-            draftState.comments = [];
-            break;
-        default:
-            break;
-    }
-}, initialState);
+
+const coursesReducer = produce(
+    (draftState: Draft<CoursesStateType>, action: CoursesActions) => {
+        switch (action.type) {
+            case CoursesActionType.SET_COURSES_LOADING:
+                draftState.loadingState = LoadingStateType.LOADING;
+                break;
+            case CoursesActionType.SET_COURSES_LOADED:
+                draftState.loadingState = LoadingStateType.LOADED;
+                break;
+            case CoursesActionType.SET_COURSES:
+                draftState.courses = action.payload;
+                draftState.loadingState = LoadingStateType.LOADED;
+                break;
+            case CoursesActionType.DELETE_COURSE:
+                draftState.courses = [
+                    ...draftState.courses.filter(
+                        (course: any) => course._id !== action.payload
+                    ),
+                ];
+                break;
+            case CoursesActionType.FETCH_COURSE_FOR_TRAINING:
+                draftState.courseVideosList = [];
+                draftState.courseForTraining = null;
+                break;
+            case CoursesActionType.SET_COURSE_FOR_TRAINING:
+                draftState.courseForTraining = action.payload;
+                break;
+            case CoursesActionType.LOADING_FOR_TRAINING:
+                draftState.loadingCourseForTraining = true;
+                break;
+            case CoursesActionType.ALL_VIDEO_LIST:
+                draftState.courseVideosList = draftState.courseVideosList.concat(
+                    action.payload.video
+                );
+                draftState.videoForPleer =
+                    draftState.courseVideosList[action.payload.indexLesson!];
+                break;
+            case CoursesActionType.VIDEO_FOR_PLEER:
+                draftState.videoForPleer =
+                    draftState.courseVideosList[action.payload];
+                break;
+            case CoursesActionType.VIDEO_BY_CLICK:
+                draftState.videoForPleer = action.payload;
+                break;
+            case CoursesActionType.SET_COMMENTS:
+                draftState.comments = action.payload;
+                break;
+            case CoursesActionType.SET_COMMENTS_LOADING:
+                draftState.loadingComments = action.payload;
+                break;
+            case CoursesActionType.FETCH_GET_COMMENTS:
+                draftState.comments = [];
+                break;
+            case CoursesActionType.ADD_COMMENT_LOADING:
+                draftState.loadingAddComment = action.payload;
+                break;
+            case CoursesActionType.SET_REPLY_TO_COMMENT:
+                draftState.replyToComment = action.payload;
+                break;
+            case CoursesActionType.ADD_REPLY_TO_COMMENT_LOADING:
+                draftState.loadingAddReplyToComment = action.payload;
+                break;
+            case CoursesActionType.FETCH_GET_REPLY_TO_COMMENT:
+                draftState.replyToComment = null;
+                break;
+            case CoursesActionType.REPLY_TO_COMMENT_LOADING:
+                draftState.loadingReplyToComment = action.payload;
+                break;
+            default:
+                break;
+        }
+    },
+    initialState
+);
 
 export default coursesReducer;

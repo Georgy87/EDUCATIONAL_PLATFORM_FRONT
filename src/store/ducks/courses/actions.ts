@@ -1,5 +1,5 @@
 import { CourseProfileStateType } from "../courseProfile/types";
-import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType } from "./types";
+import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType, FetchGetReplyToCommentType, SetReplyToCommentType, AddCommentLoadingType, FetchAddReplyToCommentType, AddReplyToCommentLoadingType, ReplyToCommentLoadingType } from "./types";
 
 // FETCH ACTIONS
 
@@ -53,6 +53,20 @@ export const fetchAddComment = (payload: { courseId: string; text: string }): Fe
         payload
     }
 }
+
+export const fetchGetReplyToComment = ( payload: { courseId: string; commentId: string }): FetchGetReplyToCommentType => {
+    return {
+        type: CoursesActionType.FETCH_GET_REPLY_TO_COMMENT,
+        payload
+    }
+}
+
+export const fetchAddReplyToComment = (payload: { courseId: string; commentId: string; text: string }): FetchAddReplyToCommentType => {
+    return {
+        type: CoursesActionType.FETCH_ADD_REPLY_TO_COMMENT,
+        payload
+    }
+};
 
 // ACTIONS
 
@@ -129,4 +143,33 @@ export const setCommentsLoading = (payload: boolean): SetLoadingCommentsType => 
         payload
     }
 }
+
+export const addCommentsLoading = (payload: string): AddCommentLoadingType => {
+    return {
+        type: CoursesActionType.ADD_COMMENT_LOADING,
+        payload
+    }
+}
+
+export const setReplyToComment = (payload: GetCommentsType): SetReplyToCommentType => {
+    return {
+        type: CoursesActionType.SET_REPLY_TO_COMMENT,
+        payload
+    }
+}
+
+export const replyToCommentLoading = (payload: string): ReplyToCommentLoadingType => {
+    return {
+        type: CoursesActionType.REPLY_TO_COMMENT_LOADING,
+        payload
+    }
+}
+
+export const addReplyToCommentLoading = (payload: string): AddReplyToCommentLoadingType => {
+    return {
+        type: CoursesActionType.ADD_REPLY_TO_COMMENT_LOADING,
+        payload
+    }
+}
+
 
