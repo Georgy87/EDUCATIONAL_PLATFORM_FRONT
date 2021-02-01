@@ -79,13 +79,28 @@ export const CoursesApi = {
         return data.data;
     },
     async getReplyToComment(payload: { courseId: string; commentId: string }) {
-        const { data } = await instance.get<GetCommentsType>(`course/comment/answer?courseId=${payload.courseId}&commentId=${payload.commentId}`,
+        const { data } = await instance.get<GetCommentsType>(
+            `course/comment/answer?courseId=${payload.courseId}&commentId=${payload.commentId}`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             }
         );
+        return data;
+    },
+    async addReplyToComment(payload: { courseId: string; commentId: string; text: string }) {
+        const { data } = await instance.post<GetCommentsType>(`course/comment/answer?courseId=${payload.courseId}&commentId=${payload.commentId}`,
+            {
+                text: payload.text,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        );
+        console.log(data);
         return data;
     },
 };

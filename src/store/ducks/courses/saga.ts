@@ -1,7 +1,7 @@
 import { CoursesApi } from "../../../services/api/coursesApi";
 import { deleteFilterByDirections } from "../directions/actions";
 import { addCommentsLoading, deleteCourseAction, setReplyToComment, setComments, setCommentsLoading, setCourseForTraining, setCourses, setLoaded, setLoadingCourseForTraining } from "./actions";
-import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTrainingType, FetchGetCommentsType, FetchAddCommentType, FetchGetReplyToCommentType } from "./types";
+import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTrainingType, FetchGetCommentsType, FetchAddCommentType, FetchGetReplyToCommentType, FetchAddReplyToCommentType } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 export function* fetchUploadNewCourseRequest({payload}: FetchUploadNewCourseType) {
@@ -77,7 +77,15 @@ export function* fetchAddCommentRequest({payload}: FetchAddCommentType) {
 export function* fetchGetReplyToCommentRequest({payload}: FetchGetReplyToCommentType) {
     try {
         const { data } = yield call(CoursesApi.getReplyToComment, payload);
-        console.log(data);
+        yield put(setReplyToComment(data));
+    } catch (e) {
+        yield console.log(e);
+    }
+};
+
+export function* fetchAddReplyToCommentRequest({payload}: FetchAddReplyToCommentType) {
+    try {
+        const { data } = yield call(CoursesApi.addReplyToComment, payload);
         yield put(setReplyToComment(data));
     } catch (e) {
         yield console.log(e);
@@ -92,6 +100,7 @@ export function* CoursesSaga() {
     yield takeLatest(CoursesActionType.FETCH_GET_COMMENTS, fetchGetCommentsRequest);
     yield takeLatest(CoursesActionType.FETCH_ADD_COMMENT, fetchAddCommentRequest);
     yield takeLatest(CoursesActionType.FETCH_GET_REPLY_TO_COMMENT, fetchGetReplyToCommentRequest);
+    yield takeLatest(CoursesActionType.FETCH_ADD_REPLY_TO_COMMENT, fetchAddReplyToCommentRequest);
 }
 
 

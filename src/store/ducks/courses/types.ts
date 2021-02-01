@@ -31,7 +31,8 @@ export enum CoursesActionType {
     FETCH_GET_REPLY_TO_COMMENT = "FETCH_GET_REPLY_TO_COMMENT",
     GET_REPLY_TO_COMMENT = "GET_REPLY_TO_COMMENT",
     ADD_COMMENT_LOADING = "ADD_COMMENT_LOADING",
-    SET_REPLY_TO_COMMENT = "SET_REPLY_TO_COMMENT"
+    SET_REPLY_TO_COMMENT = "SET_REPLY_TO_COMMENT",
+    FETCH_ADD_REPLY_TO_COMMENT = "FETCH_ADD_REPLY_TO_COMMENT"
 }
 
 // STATE TYPES
@@ -109,6 +110,11 @@ export type FetchAddCommentType = {
 export type FetchGetReplyToCommentType = {
     type: CoursesActionType.FETCH_GET_REPLY_TO_COMMENT;
     payload: { courseId: string; commentId: string };
+};
+
+export type FetchAddReplyToCommentType = {
+    type: CoursesActionType.FETCH_ADD_REPLY_TO_COMMENT;
+    payload: { courseId: string; commentId: string; text: string };
 };
 
 // ACTIONS TYPES

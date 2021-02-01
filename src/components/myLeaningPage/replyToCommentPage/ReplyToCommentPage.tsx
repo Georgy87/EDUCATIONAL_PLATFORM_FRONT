@@ -1,12 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-
-import { fetchGetCourseForTraining, fetchGetReplyToComment } from '../../../store/ducks/courses/actions';
+import { fetchAddReplyToComment, fetchGetCourseForTraining, fetchGetReplyToComment } from '../../../store/ducks/courses/actions';
 import { useEffect } from 'react';
 import { selectReplyToComment } from '../../../store/ducks/courses/selectors';
 import { useParams } from 'react-router-dom';
 import ruLocale from 'date-fns/locale/ru';
- //@ts-ignore
+//@ts-ignore
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import "./ReplyToCommentPage.css";
@@ -22,6 +21,9 @@ export const ReplyToCommentPage = () => {
 
     const id = params.id;
 
+    let courseId: any = '';
+    courseId = window.localStorage.getItem("course-comment-id");
+
     let date: string = '2021-01-31T17:56:01.688+00:00';
 
     if (replyToComment?.created) {
@@ -36,7 +38,6 @@ export const ReplyToCommentPage = () => {
 
     useEffect(() => {
         if (id && window.localStorage.getItem("course-comment-id")) {
-            const courseId: any = window.localStorage.getItem("course-comment-id");
             dispatch(fetchGetCourseForTraining(courseId));
             dispatch(fetchGetReplyToComment({ courseId: courseId, commentId: id }))
         }
@@ -55,9 +56,9 @@ export const ReplyToCommentPage = () => {
 
                         <div className="reply-date">
                             {formatDistanceToNow(new Date(date), {
-                            locale: ruLocale,
-                            addSuffix: true,
-                        })}</div>
+                                locale: ruLocale,
+                                addSuffix: true,
+                            })}</div>
                     </div>
                 </li>
             </ul>
@@ -92,9 +93,8 @@ export const ReplyToCommentPage = () => {
             </div>
 
             <div className="reply-add-btn">
-                <button>Добавить комментарий</button>
+                <button onClick={() => dispatch(fetchAddReplyToComment({ courseId: courseId, commentId: id, text: comment }))}>Добавить комментарий</button>
             </div>
         </div>
-
     )
 }
