@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 
 import "./CourseCommentPage.css";
 import { fetchGetReplyToComment } from '../../../store/ducks/courses/actions';
+import { LoadingStatus } from '../../../store/types';
 
 export const CourseCommentPage: React.FC = () => {
     const [comment, setComment] = React.useState<string>("");
@@ -35,10 +36,10 @@ export const CourseCommentPage: React.FC = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchGetComments(id));
-        if (window.localStorage.getItem("course-comment-id")) {
+        if (id && window.localStorage.getItem("course-comment-id")) {
             const courseId: any = window.localStorage.getItem("course-comment-id");
             dispatch(fetchGetCourseForTraining(courseId));
+            dispatch(fetchGetComments(id));
         }
     }, [loading]);
 
@@ -64,8 +65,8 @@ export const CourseCommentPage: React.FC = () => {
                 <button onClick={() => dispatch(fetchAddComment({ courseId: id, text: comment }))}>Оставить комментарий</button>
             </div>
 
-            {loadingAddComment === "LOADING" && <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />}
-
+            {loadingAddComment === LoadingStatus.LOADING && <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />}
+        
             {
                 loading ? comments.map(el => (
                     <ul className="comments-wrapper">

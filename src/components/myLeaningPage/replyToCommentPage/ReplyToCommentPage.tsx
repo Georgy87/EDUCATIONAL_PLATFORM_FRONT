@@ -2,9 +2,11 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddReplyToComment, fetchGetCourseForTraining, fetchGetReplyToComment } from '../../../store/ducks/courses/actions';
 import { useEffect } from 'react';
-import { selectReplyToComment } from '../../../store/ducks/courses/selectors';
+import { selectAddReplyToCommentLoading, selectReplyToComment, selectReplyToCommentLoading } from '../../../store/ducks/courses/selectors';
 import { useParams } from 'react-router-dom';
 import ruLocale from 'date-fns/locale/ru';
+import { CircularProgress } from '@material-ui/core';
+import { LoadingStatus } from '../../../store/types';
 //@ts-ignore
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
@@ -16,6 +18,9 @@ export const ReplyToCommentPage = () => {
     const dispatch = useDispatch();
 
     const replyToComment = useSelector(selectReplyToComment);
+
+    const loadingReplyToComment = useSelector(selectReplyToCommentLoading);
+    const loadingAddReplyToComment = useSelector(selectAddReplyToCommentLoading);
 
     const params: { id: string } = useParams();
 
@@ -64,7 +69,7 @@ export const ReplyToCommentPage = () => {
             </ul>
             <div className="reply-length">{`${replyToComment?.comments.length} ответ`}</div>
             {
-                replyToComment?.comments.map(el => (
+                loadingReplyToComment === LoadingStatus.LOADED ? replyToComment?.comments.map(el => (
                     <ul className="reply-wrapper">
                         <li className="reply-item">
                             <div className="reply-avatar-wrapper">
@@ -80,8 +85,10 @@ export const ReplyToCommentPage = () => {
                             </div>
                         </li>
                     </ul>
-                ))
+                )) : <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
             }
+
+            {loadingAddReplyToComment  === LoadingStatus.LOADING && <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />}
 
             <div className="reply-add">
                 <div className="reply-add-avatar">

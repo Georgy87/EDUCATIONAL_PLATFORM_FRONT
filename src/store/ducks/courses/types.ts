@@ -32,7 +32,9 @@ export enum CoursesActionType {
     GET_REPLY_TO_COMMENT = "GET_REPLY_TO_COMMENT",
     ADD_COMMENT_LOADING = "ADD_COMMENT_LOADING",
     SET_REPLY_TO_COMMENT = "SET_REPLY_TO_COMMENT",
-    FETCH_ADD_REPLY_TO_COMMENT = "FETCH_ADD_REPLY_TO_COMMENT"
+    FETCH_ADD_REPLY_TO_COMMENT = "FETCH_ADD_REPLY_TO_COMMENT",
+    ADD_REPLY_TO_COMMENT_LOADING = "ADD_REPLY_TO_COMMENT_LOADING",
+    REPLY_TO_COMMENT_LOADING = "REPLY_TO_COMMENT_LOADING"
 }
 
 // STATE TYPES
@@ -64,6 +66,8 @@ export type CoursesStateType = {
     loadingComments: Boolean;
     replyToComment: GetCommentsType | null;
     loadingAddComment: string;
+    loadingAddReplyToComment: string;
+    loadingReplyToComment: string;
 };
 
 // FETCH ACTIONS TYPES
@@ -181,6 +185,16 @@ export type SetReplyToCommentType = {
     payload: GetCommentsType;
 };
 
+export type ReplyToCommentLoadingType = {
+    type: CoursesActionType.REPLY_TO_COMMENT_LOADING;
+    payload: string;
+};
+
+export type AddReplyToCommentLoadingType = {
+    type: CoursesActionType.ADD_REPLY_TO_COMMENT_LOADING;
+    payload: string;
+};
+
 export type CoursesActions =
     | SetLoadingActionType
     | SetCoursesActionType
@@ -198,4 +212,8 @@ export type CoursesActions =
     | SetLoadingCommentsType
     | FetchAddCommentType
     | SetReplyToCommentType
-    | AddCommentLoadingType;
+    | AddCommentLoadingType
+    | AddReplyToCommentLoadingType
+    | FetchGetReplyToCommentType
+    | ReplyToCommentLoadingType;
+

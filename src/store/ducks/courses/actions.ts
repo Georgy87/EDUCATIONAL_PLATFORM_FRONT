@@ -1,5 +1,5 @@
 import { CourseProfileStateType } from "../courseProfile/types";
-import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType, FetchGetReplyToCommentType, SetReplyToCommentType, AddCommentLoadingType, FetchAddReplyToCommentType } from "./types";
+import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType, FetchGetReplyToCommentType, SetReplyToCommentType, AddCommentLoadingType, FetchAddReplyToCommentType, AddReplyToCommentLoadingType, ReplyToCommentLoadingType } from "./types";
 
 // FETCH ACTIONS
 
@@ -157,4 +157,19 @@ export const setReplyToComment = (payload: GetCommentsType): SetReplyToCommentTy
         payload
     }
 }
+
+export const replyToCommentLoading = (payload: string): ReplyToCommentLoadingType => {
+    return {
+        type: CoursesActionType.REPLY_TO_COMMENT_LOADING,
+        payload
+    }
+}
+
+export const addReplyToCommentLoading = (payload: string): AddReplyToCommentLoadingType => {
+    return {
+        type: CoursesActionType.ADD_REPLY_TO_COMMENT_LOADING,
+        payload
+    }
+}
+
 

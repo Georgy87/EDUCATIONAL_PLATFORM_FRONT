@@ -1,8 +1,9 @@
 import { CoursesApi } from "../../../services/api/coursesApi";
 import { deleteFilterByDirections } from "../directions/actions";
-import { addCommentsLoading, deleteCourseAction, setReplyToComment, setComments, setCommentsLoading, setCourseForTraining, setCourses, setLoaded, setLoadingCourseForTraining } from "./actions";
+import { addCommentsLoading, deleteCourseAction, setReplyToComment, setComments, setCommentsLoading, setCourseForTraining, setCourses, setLoaded, setLoadingCourseForTraining, addReplyToCommentLoading, replyToCommentLoading } from "./actions";
 import { FetchUploadNewCourseType, CoursesActionType, FetchDeleteCourseType, FetchGetCourseForTrainingType, FetchGetCommentsType, FetchAddCommentType, FetchGetReplyToCommentType, FetchAddReplyToCommentType } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { LoadingStatus } from "../../types";
 
 export function* fetchUploadNewCourseRequest({payload}: FetchUploadNewCourseType) {
     const formData = new FormData();
@@ -65,10 +66,10 @@ export function* fetchGetCommentsRequest({payload}: FetchGetCommentsType) {
 
 export function* fetchAddCommentRequest({payload}: FetchAddCommentType) {
     try {
-        yield put(addCommentsLoading("LOADING"));
+        yield put(addCommentsLoading(LoadingStatus.LOADING));
         const { comments } = yield call(CoursesApi.addComment, payload);
         yield put(setComments(comments));
-        yield put(addCommentsLoading("LOADED"));
+        yield put(addCommentsLoading(LoadingStatus.LOADED));
     } catch (e) {
         yield console.log(e);
     }
@@ -76,8 +77,10 @@ export function* fetchAddCommentRequest({payload}: FetchAddCommentType) {
 
 export function* fetchGetReplyToCommentRequest({payload}: FetchGetReplyToCommentType) {
     try {
+        yield put(replyToCommentLoading(LoadingStatus.LOADING));
         const { data } = yield call(CoursesApi.getReplyToComment, payload);
         yield put(setReplyToComment(data));
+        yield put(replyToCommentLoading(LoadingStatus.LOADED));
     } catch (e) {
         yield console.log(e);
     }
@@ -85,8 +88,10 @@ export function* fetchGetReplyToCommentRequest({payload}: FetchGetReplyToComment
 
 export function* fetchAddReplyToCommentRequest({payload}: FetchAddReplyToCommentType) {
     try {
+        yield put(addReplyToCommentLoading(LoadingStatus.LOADING));
         const { data } = yield call(CoursesApi.addReplyToComment, payload);
         yield put(setReplyToComment(data));
+        yield put(addReplyToCommentLoading(LoadingStatus.LOADED));
     } catch (e) {
         yield console.log(e);
     }

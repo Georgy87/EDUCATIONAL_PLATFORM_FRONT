@@ -1,4 +1,5 @@
 import produce, { Draft } from "immer";
+import { LoadingStatus } from "../../types";
 import { CourseProfileStateType } from "../courseProfile/types";
 // import { CourseProfileType } from "../courseProfile/types";
 import {
@@ -19,8 +20,11 @@ const initialState: CoursesStateType = {
     comments: [],
     loadingComments: false,
     replyToComment: null,
-    loadingAddComment: "NEVER"
+    loadingAddComment: LoadingStatus.NEVER,
+    loadingReplyToComment: LoadingStatus.NEVER,
+    loadingAddReplyToComment: LoadingStatus.NEVER,
 };
+
 const coursesReducer = produce(
     (draftState: Draft<CoursesStateType>, action: CoursesActions) => {
         switch (action.type) {
@@ -79,6 +83,15 @@ const coursesReducer = produce(
                 break;
             case CoursesActionType.SET_REPLY_TO_COMMENT:
                 draftState.replyToComment = action.payload;
+                break;
+            case CoursesActionType.ADD_REPLY_TO_COMMENT_LOADING:
+                draftState.loadingAddReplyToComment = action.payload;
+                break;
+            case CoursesActionType.FETCH_GET_REPLY_TO_COMMENT:
+                draftState.replyToComment = null;
+                break;
+            case CoursesActionType.REPLY_TO_COMMENT_LOADING:
+                draftState.loadingReplyToComment = action.payload;
                 break;
             default:
                 break;

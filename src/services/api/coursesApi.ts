@@ -100,7 +100,6 @@ export const CoursesApi = {
                 },
             }
         );
-        console.log(data);
         return data;
     },
 };
