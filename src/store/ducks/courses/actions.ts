@@ -1,5 +1,5 @@
 import { CourseProfileStateType } from "../courseProfile/types";
-import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType, FetchGetReplyToCommentType, GetReplyToCommentType, AddCommentLoadingType } from "./types";
+import { CoursesActionType, SetCourseVideosType, FetchUploadNewCourseType, FetchGetCoursesType, SetCoursesActionType, SetDeleteActionType, SetLoadedActionType, SetLoadingActionType, FetchDeleteCourseType, SetCourseForTrainingType, FetchGetCourseForTrainingType, SetLoadingCourseForTrainingType, SetVideoForPleerType, SetVideoForPleerByClickType, FetchGetCommentsType, GetCommentsType, SetCommentsType, SetLoadingCommentsType, FetchAddCommentType, FetchGetReplyToCommentType, SetReplyToCommentType, AddCommentLoadingType } from "./types";
 
 // FETCH ACTIONS
 
@@ -144,9 +144,9 @@ export const addCommentsLoading = (payload: string): AddCommentLoadingType => {
     }
 }
 
-export const GetReplyToComment = (payload: string): GetReplyToCommentType => {
+export const setReplyToComment = (payload: GetCommentsType): SetReplyToCommentType => {
     return {
-        type: CoursesActionType.GET_REPLY_TO_COMMENT,
+        type: CoursesActionType.SET_REPLY_TO_COMMENT,
         payload
     }
 }

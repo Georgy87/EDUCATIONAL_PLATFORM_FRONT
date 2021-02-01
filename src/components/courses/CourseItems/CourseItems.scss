@@ -1,0 +1,68 @@
+.course {
+    display: flex;
+    min-width: 1200px;
+    margin-top: 10px;
+    &__show {
+        img {
+            display: flex;
+            cursor: pointer;
+            width: 290px;
+            height: 160px;
+            border-radius: 5px;
+            box-shadow: 0 1px 1px rgba(223, 172, 147, 0.4);
+            opacity: 1;
+            transition: 1s opacity;
+        }
+    }
+    &:hover {
+        content: "";
+        z-index: 100;
+        opacity: 0.7;
+    }
+    &:hover svg {
+        opacity: 1;
+        visibility: visible;
+    }
+    &:hover img {
+        content: "";
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 100;
+        opacity: 0.7;
+    }
+    &__title {
+        word-break: break-all;
+        padding-bottom: 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: Bold;
+        color: rgb(66, 65, 65);
+    }
+    &__descr {
+        margin-left: 20px;
+    }
+    &__author {
+        word-break: break-all;
+        color: rgb(97, 94, 94);
+        margin-top: 10px;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+            "Lucida Sans", Arial, sans-serif;
+    }
+    &__line {
+        border: 1px solid rgb(221, 220, 220);
+        margin-top: 30px;
+    }
+    &__delete {
+        margin-top: 12px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-left: auto;
+        svg {
+            color: rgb(184, 52, 52);
+            width: 25px;
+            height: 25px;
+            opacity: 0;
+            visibility: hidden;
+            transition: 1s opacity, 1s visibility;
+        }
+    }
+}

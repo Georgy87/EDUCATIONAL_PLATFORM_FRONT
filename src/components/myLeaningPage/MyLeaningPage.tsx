@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { fetchGetCourseForTraining, setCourseVideos, setVideoForPleer, setVideoForPleerByClick, GetReplyToComment, fetchGetComments } from '../../store/ducks/courses/actions';
+import { fetchGetCourseForTraining, setVideoForPleer, fetchGetComments } from '../../store/ducks/courses/actions';
 import { selectCourseForTraining, selectLoadingTraining, selectVideoForPleer, selectLessonsList, selectCourseForTrainingId } from '../../store/ducks/courses/selectors';
 import { CircularProgress } from '@material-ui/core';
 import { CourseCommentPage } from './courseCommentPage/CourseCommentPage';
@@ -12,8 +12,6 @@ import { ReplyToCommentPage } from './replyToCommentPage/ReplyToCommentPage';
 import ReactWebMediaPlayer from 'react-web-media-player';
 
 import "./MyLeaningPage.css";
-import { WSAEINVALIDPROCTABLE } from 'constants';
-
 
 export const MyLeaningPage: React.FC = () => {
     const videoForPleer = useSelector(selectVideoForPleer);

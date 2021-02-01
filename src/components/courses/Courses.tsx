@@ -7,12 +7,11 @@ import { fetchFilterByDirection } from "../../store/ducks/directions/actions";
 import { selectFilterByDirection } from "../../store/ducks/directions/selectors";
 import { useParams } from "react-router-dom";
 
-import "./Courses.css";
+import "./Courses.scss";
 
 const Courses: React.FC = () => {
     const state = useSelector(selectFilterByDirection);
     const params: { filter: string } = useParams();
-    console.log(params.filter);
 
     const dispatch = useDispatch();
 
@@ -22,10 +21,8 @@ const Courses: React.FC = () => {
 
     return (
         <div>
-            <div className="course-wrap">
-                <div className="course-photo">
-                    {/* <img src={photo} alt=""/> */}
-                </div>
+            <div className="courses">
+                <div className="courses__photo"></div>
                 <h1>Все курсы по направлению </h1>
                 <input type="text" placeholder="Search" />
                 <div className="courses">

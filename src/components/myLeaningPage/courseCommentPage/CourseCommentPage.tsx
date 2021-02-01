@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { fetchAddComment, fetchGetComments, fetchGetCourseForTraining, GetReplyToComment } from '../../../store/ducks/courses/actions';
+import { useParams } from 'react-router-dom';
+import { fetchAddComment, fetchGetComments, fetchGetCourseForTraining } from '../../../store/ducks/courses/actions';
 import { selectLoadingComments, selectComments, selectLoadingAddComment } from '../../../store/ducks/courses/selectors';
 import { CircularProgress } from '@material-ui/core';
 import messageIcon from "../../../assets/comment-icon/icons8-edit-chat-history-100.png";
@@ -65,7 +65,7 @@ export const CourseCommentPage: React.FC = () => {
             </div>
 
             {loadingAddComment === "LOADING" && <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />}
-            
+
             {
                 loading ? comments.map(el => (
                     <ul className="comments-wrapper">

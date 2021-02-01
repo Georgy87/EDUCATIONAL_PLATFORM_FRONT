@@ -77,9 +77,9 @@ const coursesReducer = produce(
             case CoursesActionType.ADD_COMMENT_LOADING:
                 draftState.loadingAddComment = action.payload;
                 break;
-            // case CoursesActionType.GET_REPLY_TO_COMMENT:
-            //     draftState.replyToComment = draftState.comments.map(el => el._id);
-            //     break;
+            case CoursesActionType.SET_REPLY_TO_COMMENT:
+                draftState.replyToComment = action.payload;
+                break;
             default:
                 break;
         }
