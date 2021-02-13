@@ -57,3 +57,14 @@ export const CreateModuleSchema = (
         module: yup.string().required("Введите название модуля"),
         lesson: yup.string().required("Введите название лекции"),
     });
+
+export const LoginFormSchema = yup.object().shape({
+    email: yup
+        .string()
+        .email("Неверная почта")
+        .required("Введите почту"),
+    password: yup
+        .string()
+        .min(6, "​Минимальная длина пароля 6 символов")
+        .required(),
+});
