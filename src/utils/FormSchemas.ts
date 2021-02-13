@@ -48,7 +48,7 @@ export const CreateModuleSchema = (
             .required("Добавьте видео к модулю")
             .test("fileSize", "File Size is too large", (value: any): any => {
                 if (value.length === 0) {
-                    setErrorVideoCourse("Добавьте фото к курсу");
+                    setErrorVideoCourse("Добавьте видео к модулю");
                 } else {
                     setErrorVideoCourse("");
                 }

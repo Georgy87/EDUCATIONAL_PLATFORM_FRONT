@@ -42,7 +42,7 @@ const CourseItems: React.FC<PropsType> = ({ id, photo, author, smallDescription 
                     <DeleteForeverIcon />
                 </div>
             </div>
-            <div className="course__line"></div>
+            {/* <div className="course__line"></div> */}
         </div>
     );
 };

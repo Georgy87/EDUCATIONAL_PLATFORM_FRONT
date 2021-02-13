@@ -1,15 +1,17 @@
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSubmitLoading } from "../../store/ducks/user/selectors";
-import { Button, CircularProgress } from "@material-ui/core";
-import { fetchGetPurchasedCourses, fetchLogin } from "../../store/ducks/user/actions";
 import { useForm } from "react-hook-form";
+import { CircularProgress } from "@material-ui/core";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
-import "./LoginPage.css";
+import { selectSubmitLoading } from "../../store/ducks/user/selectors";
+import { fetchLogin } from "../../store/ducks/user/actions";
 import { FetchLoginType } from "../../store/ducks/user/types";
+import { Button } from "../button/Button";
+
+import "./LoginPage.css";
 
 export interface LoginFormProps {
     email: string;
@@ -56,7 +58,7 @@ export default function LoginPage() {
                             <input name="password" ref={register} type="text" />
                             <p>{errors.password?.message}</p>
 
-                            <Button type="submit">
+                            <Button type="submit" typeStyle="login-register">
                                 {loading ? (
                                     <CircularProgress color="inherit" size={16} />
                                 ) : (

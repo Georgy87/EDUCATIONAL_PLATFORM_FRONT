@@ -65,7 +65,7 @@ const ProfileCourse: React.FC<Props> = (props): React.ReactElement => {
                                     >{` ${profile.author}`}</p>
                                 </div>
                                 <div className="profile-like-btn">
-                                    <Button variant="outlined" color="primary" >
+                                    <Button variant="outlined" color="primary" disabled={false}>
                                         Добавить в избранное
                                         <FavoriteIcon
                                             style={{

@@ -117,12 +117,5 @@
 }
 
 .comments-add-btn button {
-    color: white;
     height: 40px;
-    flex: 1;
-    border: none;
-    opacity: 1;
-    cursor: pointer;
-    margin-top: 20px;
-    background-color: #ec5252;
 }

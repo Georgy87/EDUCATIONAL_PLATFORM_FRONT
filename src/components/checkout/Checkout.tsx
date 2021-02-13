@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { countries } from './ listOfCountries';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
+import { Button } from "../button/Button";
 import { useProfileCourseInfoDopStyles } from '../profileCourse/profileCourseMaterials/profileCourseInfoDop/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCoursesData } from "../../store/ducks/user/selectors";
@@ -32,8 +33,9 @@ const Checkout: React.FC = (): React.ReactElement => {
 
                 purchasedCoursesIds.push(el._id);
             });
-            dispatch(fetchPurchasedCourses({ids: purchasedCoursesIds, totalPrice: courses.totalPrice}));
+            dispatch(fetchPurchasedCourses({ ids: purchasedCoursesIds, totalPrice: courses.totalPrice }));
         }
+        console.log('button');
     }
 
     return (
@@ -51,15 +53,15 @@ const Checkout: React.FC = (): React.ReactElement => {
                 <div className="checkout-list-wrapper">
                     <ul>
                         <li>
-                            <input type="checkbox"/>
+                            <input type="checkbox" />
                             <p>VISA заканчивающаяся на 3954</p>
                         </li>
                         <li>
-                            <input type="checkbox"/>
+                            <input type="checkbox" />
                             <p>Оплатить через Yandex Money</p>
                         </li>
                         <li>
-                            <input type="checkbox"/>
+                            <input type="checkbox" />
                             <p>PayPal</p>
                         </li>
                         <span>Добавить новую карту</span>
@@ -68,15 +70,15 @@ const Checkout: React.FC = (): React.ReactElement => {
             </div>
             <div className="checkout-small-descr">
                 <h3>Итого: {courses?.totalPrice}</h3>
-                    <div className="checkout-small-descr-btn">
-                        <Button
-                            onClick={onPurchasedCourses}
-                            variant="contained"
-                            className={classes.cartShopBtn}
-                        >
-                            Завершить оплату
-                        </Button>
-                    </div>
+                <div>
+                    <Button
+                        action={onPurchasedCourses}
+                        typeStyle="primary"
+                        type={undefined}
+                    >
+                        Завершить оплату
+                    </Button>
+                </div>
             </div>
         </div>
     )

@@ -1,12 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSubmitLoading } from "../../store/ducks/user/selectors";
-import { Button, CircularProgress } from "@material-ui/core";
-import { fetchRegistration } from "../../store/ducks/user/actions";
-import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { CircularProgress } from "@material-ui/core";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
+
+import { selectSubmitLoading } from "../../store/ducks/user/selectors";
+import { fetchRegistration } from "../../store/ducks/user/actions";
+import { Button } from "../button/Button";
 
 import "./RegistrationPage.css";
 
@@ -28,8 +30,9 @@ const RegisterFormSchema = yup.object().shape({
 });
 
 export default function Registration() {
-    const dispatch = useDispatch();
     const loading = useSelector(selectSubmitLoading);
+
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, errors } = useForm<RegisterFormProps>({
         resolver: yupResolver(RegisterFormSchema)
@@ -62,7 +65,7 @@ export default function Registration() {
                             <input name="password" ref={register} type="text" />
                             <p>{errors.password?.message}</p>
 
-                            <Button type="submit">
+                            <Button type="submit" typeStyle="login-register">
                                 {loading ? (
                                     <CircularProgress color="inherit" size={16} />
                                 ) : (

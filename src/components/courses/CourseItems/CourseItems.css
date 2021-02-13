@@ -58,10 +58,10 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
-.course__line {
+/* .course__line {
   border: 1px solid #dddcdc;
   margin-top: 30px;
-}
+} */
 
 .course__delete {
   margin-top: 12px;

@@ -25,6 +25,10 @@
     visibility: hidden;
 }
 
+.teacher-course-add input[type="file" i] {
+    width: 500px;
+}
+
 .custom-file-input::before {
     content: "Добавить файл";
     display: inline-block;
@@ -41,32 +45,6 @@
     font-size: 10pt;
     text-align: center;
     /* opacity: none; */
-}
-
-.teacher-course-add button {
-    text-decoration: none;
-    outline: none;
-    display: flex;
-    min-width: 140px;
-    align-items: center;
-    height: 45px;
-    margin-top: 30px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 11px;
-    letter-spacing: 3px;
-    border: none;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-    background: #b81f33;
-    color: rgb(196, 190, 190);
-    filter: grayscale(50%);
-}
-
-.teacher-course-add button:hover {
-    /* color: white; */
-    background-color: #d5152f;
-    color: white;
-    cursor: pointer;
 }
 
 .teacher-course-choice {

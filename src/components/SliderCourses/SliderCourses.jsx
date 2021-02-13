@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import SliderItems from "./SliderItems/SliderItems";
 
 import "slick-carousel/slick/slick.css";
@@ -16,7 +15,7 @@ export default class SimpleSlider extends Component {
     render() {
         const settings = {
             autoplay: true,
-            dots: true,
+            // dots: true,
             infinite: true,
             speed: 500,
             slidesToShow: 4,
@@ -30,7 +29,6 @@ export default class SimpleSlider extends Component {
             <div>
                 <div
                     style={{
-                        // width: "1200px",
                         margin: "0 auto",
                         marginTop: "150px",
                     }}

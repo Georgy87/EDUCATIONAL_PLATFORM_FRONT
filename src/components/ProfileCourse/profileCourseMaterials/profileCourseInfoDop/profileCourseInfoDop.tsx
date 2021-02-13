@@ -1,13 +1,14 @@
 import React from 'react'
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import { Button } from '@material-ui/core';
 import { useProfileCourseInfoDopStyles } from './theme';
 import { fetchSetShoppingCartIds } from '../../../../store/ducks/user/actions';
-import "./profileCourseInfoDop.css";
 import { useDispatch } from 'react-redux';
 import { selectCourseProfile, selectUserAuth } from '../../../../store/ducks/courseProfile/selectors';
 import { useSelector } from 'react-redux';
 import { actions } from '../../../../store/ducks/courseProfile/actions';
+import { Button } from '../../../button/Button';
+
+import "./profileCourseInfoDop.css";
 
 type PropsType = {
     setModalActiveVideoCourse: (value: boolean) => void;
@@ -50,10 +51,10 @@ const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActiveVideoCourse, 
                 </div>
                 <div className="info-dop-content-information">
                     <Button
-                        variant="contained"
                         disabled={!isAuth}
-                        className={classes.cartShopBtn}
-                        onClick={onShoppingCartHandler}
+                        typeStyle="primary"
+                        type={undefined}
+                        action={onShoppingCartHandler}
                     >
                         Добавить в корзину
                     </Button>

@@ -1,25 +1,44 @@
 .direction-wrap {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     margin-top: 40px;
-    /* border: 1px solid black; */
-    border-radius: 20px;
-    padding: 15px;
+    background-color: white;
+    width: 400px;
     height: 410px;
+    margin: 15px;
 }
 
-
-.direction-delete svg{
+.direction-delete {
+    padding: 10px;
+}
+.direction-delete svg {
     margin-top: 5px;
-    color: rgb(184, 52, 52);
+    color: #49c5b6;
     width: 25px;
     height: 25px;
     opacity: 0;
     visibility: hidden;
     transition: 1s opacity, 1s visibility;
 }
+
 .direction-wrap:hover .direction-delete  svg{
     opacity: 1;
     visibility: visible;
+}
+
+.direction-wrap .title {
+    padding: 10px;
+}
+
+.direction-wrap img {
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    height: 260px;
+    box-shadow: 0 1px 1px rgba(80, 79, 79, 0.4);
+    transition: 0.6s all;
+}
+
+.direction-wrap img:hover {
+    transform: translateY(-3px);
 }
