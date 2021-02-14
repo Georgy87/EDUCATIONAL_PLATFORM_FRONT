@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGetAllTeacherCourses } from "../../../store/ducks/contentCourses/actions";
 import CoursePreview from "../coursePreview/CoursePreview";
 import { fetchUploadNewCourse } from "../../../store/ducks/courses/actions";
-import { Button } from '@material-ui/core';
+import { Button } from '../../button/Button';
 import { selectAllTeacherCourses } from "../../../store/ducks/contentCourses/selectors";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -72,7 +72,7 @@ const CreateCourse = () => {
 
     return (
         <div>
-            <form className="teacher-course-add " onSubmit={handleSubmit(onSubmit)}>
+            <form className="teacher-course-add" onSubmit={handleSubmit(onSubmit)}>
                 <input
                     name="photoCourse"
                     type="file"
@@ -142,7 +142,7 @@ const CreateCourse = () => {
                 />
                 <p>{errors.lesson?.message}</p>
 
-                <Button type="submit">Создать курс</Button>
+                <Button typeStyle="secondary" type="submit">Создать курс</Button>
 
                 <div className="teacher-course-choice">
                     <h1>Выберите курс</h1>

@@ -1,29 +1,31 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchAddComment, fetchGetComments, fetchGetCourseForTraining } from '../../../store/ducks/courses/actions';
-import { selectLoadingComments, selectComments, selectLoadingAddComment } from '../../../store/ducks/courses/selectors';
 import { CircularProgress } from '@material-ui/core';
-import messageIcon from "../../../assets/comment-icon/icons8-edit-chat-history-100.png";
+import { Link } from 'react-router-dom';
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import ruLocale from "date-fns/locale/ru";
+
+import { fetchAddComment, fetchGetComments, fetchGetCourseForTraining } from '../../../store/ducks/courses/actions';
+import { selectLoadingComments, selectComments, selectLoadingAddComment } from '../../../store/ducks/courses/selectors';
+import messageIcon from "../../../assets/comment-icon/icons8-edit-chat-history-100.png";
 import photo from "../../../assets/avatar/unnamed.jpg";
 import { selectUserAvatar } from '../../../store/ducks/user/selectors';
-import { Link } from 'react-router-dom';
-
-import "./CourseCommentPage.css";
 import { fetchGetReplyToComment } from '../../../store/ducks/courses/actions';
 import { LoadingStatus } from '../../../store/types';
+import { Button } from "../../button/Button";
+
+import "./CourseCommentPage.css";
 
 export const CourseCommentPage: React.FC = () => {
     const [comment, setComment] = React.useState<string>("");
-
-    const dispatch = useDispatch();
 
     const loading = useSelector(selectLoadingComments);
     const comments = useSelector(selectComments);
     const userAvatar = useSelector(selectUserAvatar);
     const loadingAddComment = useSelector(selectLoadingAddComment);
+
+    const dispatch = useDispatch();
 
     const params: { id: string } = useParams();
 
@@ -49,6 +51,10 @@ export const CourseCommentPage: React.FC = () => {
         setComment(e.target.value);
     }
 
+    const onfetchAddComment = () => {
+        dispatch(fetchAddComment({ courseId: id, text: comment }));
+    }
+
     return (
         <div className="comments">
             <div className="comments-length">{`В этом курсе ${comments.length} вопроса`}</div>
@@ -62,11 +68,11 @@ export const CourseCommentPage: React.FC = () => {
             </div>
 
             <div className="comments-add-btn">
-                <button onClick={() => dispatch(fetchAddComment({ courseId: id, text: comment }))}>Оставить комментарий</button>
+                <Button type={undefined} typeStyle="primary" action={onfetchAddComment}>Оставить комментарий</Button>
             </div>
 
             {loadingAddComment === LoadingStatus.LOADING && <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />}
-        
+
             {
                 loading ? comments.map(el => (
                     <ul className="comments-wrapper">
@@ -93,7 +99,8 @@ export const CourseCommentPage: React.FC = () => {
                         </li>
                     </ul>
                 )) : <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
-            }
+            }import { Button} from '@material-ui/core';
+
         </div>
     )
 }

@@ -1,0 +1,97 @@
+@import "../../styles/variables.scss";
+
+.platform__button {
+    &--primary {
+        background-color: $primary;
+        color: white;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        height: 50px;
+        opacity: 1;
+        border: none;
+        border-radius: 4px;
+        &:hover {
+            background-color: $primary;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+        &:focus {
+            outline: "none";
+        }
+    }
+    &--secondary {
+        text-decoration: none;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        min-width: 140px;
+        align-items: center;
+        height: 45px;
+        margin-top: 30px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 11px;
+        letter-spacing: 3px;
+        border: none;
+        transition: 0.3s;
+        background: $secondary;
+        color: #fff;
+        &:hover {
+            background-color: $secondary;
+            color: white;
+            cursor: pointer;
+        }
+    }
+    &--disabled {
+        background-color: grey;
+        color: white;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        height: 50px;
+        opacity: 1;
+        border: none;
+        border-radius: 4px;
+        &:hover {
+            background-color: rgb(153, 152, 152);
+            opacity: 0.9;
+            cursor: pointer;
+        }
+        &:focus {
+            outline: "none";
+        }
+    }
+    &--teacher {
+        margin-top: 30px;
+        width: 220px;
+        height: 60px;
+        background-color: #9fe7ee;
+        cursor: pointer;
+        border-radius: 1px;
+        color: white;
+        border: none;
+    }
+    &--login-register {
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        align-items: center;
+        min-width: 140px;
+        height: 45px;
+        border-radius: 45px;
+        margin-top: 30px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #524f4e;
+        background: white;
+        box-shadow: 0 14px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        &:hover {
+            box-shadow: 0 5px 2px rgba(214, 215, 218, 0.4);
+            cursor: pointer;
+            transform: translateY(-1px);
+        }
+    }
+}

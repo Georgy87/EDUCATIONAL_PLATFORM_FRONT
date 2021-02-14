@@ -21,6 +21,7 @@
     "antd": "^4.11.2",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "classnames": "^2.2.6",
     "cropperjs": "^1.5.9",
     "doka": "^0.1.0",
     "immer": "^8.0.0",
@@ -78,6 +79,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-scroll": "^1.8.2"
+    "@types/react-scroll": "^1.8.2",
+    "prettier": "2.2.1"
   }
 }

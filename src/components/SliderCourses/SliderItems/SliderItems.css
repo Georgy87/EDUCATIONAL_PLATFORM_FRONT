@@ -1,0 +1,31 @@
+.slider-wrapper {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    margin-top: 300px;
+}
+.my-settings-slider {
+    display: flex;
+    margin-top: 100px;
+    flex-direction: column;
+    background-color: #fff;
+    width: 300px;
+    margin: 30px;
+}
+.my-settings-slider-items {
+    margin-top: 6px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+.my-settings-slider-item {
+    word-break: break-all;
+    padding-bottom: 2px;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    font-size: 0.9rem;
+}
+.my-settings-slider-item-descr {
+    word-break: break-all;
+    color: rgb(97, 94, 94);
+    margin-top: 4px;
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+}

@@ -18,23 +18,17 @@ const Programms: React.FC = () => {
     return (
         <div>
             <div className="programms">
-                <h1>Все программы</h1>
+                <h1>Профессии</h1>
                 <div className="programms-line"></div>
                 <div className="directions">
-                    {/* <div className="directions-titles">
 
-                        {directions.map(el => {
-                            return <DirectionTitles key={el._id} direction={el.direction} />
+                    {/* <h1 style={{ fontSize: "40px" }}>Профессии</h1> */}
+                    <div className="directions-item">
+                        {directions.map((el) => {
+                            return <ProgrammsItems key={el._id} name={el.name} direction={el.direction} _id={el._id} />;
                         })}
-                    </div> */}
-                    <div className="directions-content">
-                        <h1 style={{ fontSize: "40px" }}>Профессии</h1>
-                            <div className="item">
-                                {directions.map((el) => {
-                                    return <ProgrammsItems key={el._id} name={el.name} direction={el.direction} _id={el._id} />;
-                                })}
-                            </div>
                     </div>
+
                 </div>
             </div>
         </div>

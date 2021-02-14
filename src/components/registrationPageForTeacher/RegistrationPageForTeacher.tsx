@@ -1,8 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { InjectedFormProps, reduxForm } from "redux-form";
+
 import { requireEmail, minLength } from "../validate/validateInput";
 import { createField, Input } from "../inputs/inputs";
+import { Button } from "../button/Button";
 
 import "./RegistrationPageForTeacher.css";
 
@@ -37,7 +39,7 @@ const RegistrationTeacherForm: React.FC<InjectedFormProps<RegistrationFormValues
                             <div className="teacher-checkbox">
                             {createField<LoginFormValuesTypeKeys>("rememberMe", Input, [], { type: "checkbox" })}
                             </div>
-                            <button type="submit">Submit</button>
+                            <Button typeStyle="primary" type="submit">Зарегистрироваться</Button>
                         </form>
                     </div>
                 </div>

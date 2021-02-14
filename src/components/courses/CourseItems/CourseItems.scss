@@ -1,15 +1,18 @@
 .course {
     display: flex;
-    min-width: 1200px;
-    margin-top: 10px;
+    align-items: center;
+    background-color: #fff;
+    height: 150px;
+    padding-left: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0 5px 20px rgba(233, 233, 233, 0.4);
     &__show {
         img {
             display: flex;
             cursor: pointer;
-            width: 290px;
-            height: 160px;
+            width: 230px;
+            height: 130px;
             border-radius: 5px;
-            box-shadow: 0 1px 1px rgba(223, 172, 147, 0.4);
             opacity: 1;
             transition: 1s opacity;
         }
@@ -32,7 +35,6 @@
     &__title {
         word-break: break-all;
         padding-bottom: 2px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-weight: Bold;
         color: rgb(66, 65, 65);
     }
@@ -41,10 +43,8 @@
     }
     &__author {
         word-break: break-all;
-        color: rgb(97, 94, 94);
+        color: #49c5b6;
         margin-top: 10px;
-        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-            "Lucida Sans", Arial, sans-serif;
     }
     &__line {
         border: 1px solid rgb(221, 220, 220);

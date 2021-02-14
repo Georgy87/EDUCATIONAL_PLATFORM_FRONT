@@ -1,16 +1,17 @@
 import React from "react";
 
+import "./SliderItems.css";
+
 const SliderItems = ({ props }) => {
     return (
         <div>
             <div className="my-settings-slider">
                 <img
                     style={{
-                        width: "250px",
-                        height: "150px",
+                        width: "100%",
+                        height: "180px",
                         backgroundPosition: "center",
                         margin: "0 auto",
-                        borderRadius: "4px",
                     }}
                     src={`http://localhost:5000/${props.photo}`}
                     alt=""

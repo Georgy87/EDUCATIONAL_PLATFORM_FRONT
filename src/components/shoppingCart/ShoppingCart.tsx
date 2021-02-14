@@ -1,18 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectUserInfo, selectUserLoaded, selectCoursesData } from '../../store/ducks/user/selectors';
 import { useEffect } from 'react';
-import { fetchGetShoppingCart } from '../../store/ducks/user/actions';
-import { fetchDeleteShoppingCartCourse } from '../../store/ducks/user/actions';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Button } from "@material-ui/core";
-import { useProfileCourseInfoDopStyles } from '../profileCourse/profileCourseMaterials/profileCourseInfoDop/theme';
-
-import "./ShoppingCart.css";
 import { NavLink } from 'react-router-dom';
 
+import { selectCoursesData } from '../../store/ducks/user/selectors';
+import { fetchGetShoppingCart } from '../../store/ducks/user/actions';
+import { fetchDeleteShoppingCartCourse } from '../../store/ducks/user/actions';
+import { Button } from '../button/Button';
+
+import "./ShoppingCart.css";
+
 const ShoppingCart: React.FC = (): React.ReactElement => {
-    const classes = useProfileCourseInfoDopStyles();
     const courses = useSelector(selectCoursesData);
 
     const dispatch = useDispatch();
@@ -30,7 +29,7 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
                 <div className="cart-shop-items">
 
                     {courses?.coursesDestructured.length != 0 ? courses?.coursesDestructured.map(element => {
-                    
+
                         return (
                             <div className="cart-shop-item">
                                 <div className="cart-shop-photo">
@@ -62,9 +61,8 @@ const ShoppingCart: React.FC = (): React.ReactElement => {
                 <div className="cart-shop-total-btn">
                     <NavLink to="/checkout">
                         <Button
-
-                            variant="contained"
-                            className={classes.cartShopBtn}
+                            typeStyle="primary"
+                            type={undefined}
                         >
                             Оформление заказа
                         </Button>

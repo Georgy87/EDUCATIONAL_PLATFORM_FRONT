@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { fetchUploadCourseContent } from '../../../../store/ducks/contentCourses/actions';
 import { CreateModuleSchema } from '../../../../utils/FormSchemas';
-import { Button } from '@material-ui/core';
+import { Button } from '../../../button/Button';
 
 import "./CreateModule.css";
 
@@ -61,7 +61,7 @@ export const CreateModule: React.FC<PropsType> = ({ changeCourseId }) => {
                 />
                 <p>{errors.lesson?.message}</p>
 
-                <Button type="submit">
+                <Button type="submit" typeStyle="secondary">
                     Добавить модуль к курсу
                 </Button>
             </form>

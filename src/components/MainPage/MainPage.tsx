@@ -15,15 +15,17 @@ const MainPage = () => {
     const isLoading = useSelector(selectCourseLoading);
 
     const dispatch = useDispatch();
-   
+
     useEffect(() => {
         dispatch(fetchGetCourses());
     }, []);
 
     return (
-        <div>
+        <div className="main-page">
             <div className="main-background"></div>
-            <SimpleSlider stateCourses={courses} isLoading={isLoading}/>
+            <div className="main-slider">
+                <SimpleSlider stateCourses={courses} isLoading={isLoading} />
+            </div>
             <Programms />
             <TeacherRegistration />
         </div>
