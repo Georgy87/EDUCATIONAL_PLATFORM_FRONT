@@ -1,10 +1,8 @@
 import axios from "axios";
-import { LoginFormProps } from "../../components/loginPage/LoginPage";
-import { RegisterFormProps } from "../../components/registrationPage/RegistrationPage";
-import {
-    CoursesDataType,
-    PurchasedCoursesType,
-} from "../../store/ducks/user/types";
+import { LoginProps } from "../../components/loginPage/LoginPage";
+
+import { RegistrationFormProps } from "../../components/registrationPage/RegistrationPage";
+import { CoursesDataType, PurchasedCoursesType } from "../../store/ducks/user/types";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/",
@@ -30,7 +28,7 @@ type UserTokenApiType = {
 };
 
 export const userApi = {
-    registrationUser(formData: RegisterFormProps) {
+    registrationUser(formData: RegistrationFormProps) {
         return instance.post("auth/registration", {
             name: formData.name,
             surname: formData.surname,
@@ -39,7 +37,7 @@ export const userApi = {
             teacher: formData.teacher,
         });
     },
-    loginUser(payload: LoginFormProps) {
+    loginUser(payload: LoginProps) {
         return instance
             .post<UserTokenApiType>(
                 "auth/login",

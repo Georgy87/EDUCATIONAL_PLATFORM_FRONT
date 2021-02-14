@@ -2,26 +2,35 @@ import React from 'react'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
 
-import { LoginFormProps } from '../../components/loginPage/LoginPage';
 import { selectSubmitLoading } from '../../store/ducks/user/selectors';
-import { SchemaType } from "../../components/loginPage/LoginPage";
+import { LoginProps, LoginSchemaType } from "../../components/loginPage/LoginPage";
+import { RegisterSchemaType } from "../../components/registrationPage/RegistrationPage";
 import { Button } from '../../components/button/Button';
 
 import "./AuthorizationBlock.css";
 
-type PropsType = {
-    formSchema: SchemaType;
-    onSubmit: (data: LoginFormProps) => void;
-    pageName: string;
+export type FormProps = {
+    name?: string;
+    surname?: string;
+    email: string;
+    password: string;
+    teacher?: Boolean;
+    // password2: string;
 }
 
-export const AuthorizationBlock: React.FC<PropsType> = ({ formSchema, onSubmit }) => {
+type PropsType = {
+    formSchema: LoginSchemaType | RegisterSchemaType;
+    onSubmit: ((data: FormProps) => void) | ((data: LoginProps) => void);
+    pageName: string;
+    inOrOut: string;
+}
+
+export const AuthorizationBlock: React.FC<PropsType> = ({ onSubmit, pageName, formSchema, inOrOut }) => {
     const loading = useSelector(selectSubmitLoading);
 
-    const { register, handleSubmit, errors } = useForm<LoginFormProps>({
+    const { register, handleSubmit, errors } = useForm<FormProps>({
         resolver: yupResolver(formSchema)
     });
 
@@ -31,6 +40,17 @@ export const AuthorizationBlock: React.FC<PropsType> = ({ formSchema, onSubmit }
             <div className="login">
                 <div className="login-wrapper">
                     <form className="login-inputs" onSubmit={handleSubmit(onSubmit)}>
+                        {pageName === "registration" &&
+                            <>
+                                <label>name</label>
+                                <input name="name" ref={register} type="text" />
+                                <p>{errors.name?.message}</p>
+
+                                <label>surname</label>
+                                <input name="surname" ref={register} type="text" />
+                                <p>{errors.surname?.message}</p>
+                            </>
+                        }
                         <label>email</label>
                         <input name="email" ref={register} type="text" />
                         <p>{errors.email?.message}</p>
@@ -43,14 +63,10 @@ export const AuthorizationBlock: React.FC<PropsType> = ({ formSchema, onSubmit }
                             {loading ? (
                                 <CircularProgress color="inherit" size={16} />
                             ) : (
-                                    'Вход'
+                                    <div>{inOrOut}</div>
                                 )}
                         </Button>
                     </form>
-                </div>
-                <div className="login-registrations">
-                    <span>У вас еще нет аккаунта?</span>
-                    <NavLink to="/registration">Зарегистрироваться</NavLink>
                 </div>
             </div>
         </div>

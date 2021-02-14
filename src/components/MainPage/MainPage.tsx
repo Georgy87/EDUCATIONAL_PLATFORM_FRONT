@@ -7,8 +7,6 @@ import SimpleSlider from "../sliderCourses/SliderCourses";
 import Programms from "../programms/programms";
 import TeacherRegistration from "../teacherRegistration/TeacherRegistration";
 import { selectCourseLoading, selectCourses } from "../../store/ducks/courses/selectors";
-//@ts-ignore
-import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons";
 
 import "./MainPage.css";
 

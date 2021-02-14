@@ -3,7 +3,6 @@ import { userApi } from "../../../services/api/userApi";
 import { setUserLoading, setUserLoaded } from "../user/actions";
 import { FetchChangeInfoProfileUserType, FetchDeleteShoppingCartCourseType, FetchLoginType, FetchPurchasedCoursesType, FetchRegistrationType, FetchSetShoppingCartIdsType, FetchUploadAvatarType, UserActionType } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import { RegisterFormProps } from "../../../components/registrationPage/RegistrationPage";
 
 export function* fetchRegistrationRequest({payload}: FetchRegistrationType) {
     try {

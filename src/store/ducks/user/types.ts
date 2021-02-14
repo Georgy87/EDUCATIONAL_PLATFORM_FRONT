@@ -1,6 +1,8 @@
 import { Dispatch } from "react";
+
 import { ThunkAction } from "redux-thunk";
-import { RegisterFormProps } from "../../../components/registrationPage/RegistrationPage";
+import { LoginProps } from "../../../components/loginPage/LoginPage";
+import { RegistrationFormProps } from "../../../components/registrationPage/RegistrationPage";
 import { AppStateType } from "../../store";
 
 export enum UserActionType {
@@ -69,12 +71,12 @@ export type UserStateType = {
 
 export type FetchRegistrationType = {
     type: UserActionType.FETCH_REGISTRATION;
-    payload: RegisterFormProps;
+    payload: RegistrationFormProps;
 };
 
 export type FetchLoginType = {
     type: UserActionType.FETCH_LOGIN;
-    payload: { email: string; password: string };
+    payload: LoginProps;
 };
 
 export type FetchAuthType = {

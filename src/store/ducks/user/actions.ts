@@ -1,5 +1,5 @@
-import { LoginFormProps } from "../../../components/loginPage/LoginPage";
-import { RegisterFormProps } from "../../../components/registrationPage/RegistrationPage";
+import { LoginProps } from "../../../components/loginPage/LoginPage";
+import { RegistrationFormProps } from "../../../components/registrationPage/RegistrationPage";
 import {
     FetchRegistrationType,
     FetchLoginType,
@@ -22,12 +22,12 @@ import { SetShoppingCartCourses } from "./types";
 
 // FETCH ACTIONS
 
-export const fetchRegistration = (payload: RegisterFormProps): FetchRegistrationType => ({
+export const fetchRegistration = (payload: RegistrationFormProps): FetchRegistrationType => ({
     type: UserActionType.FETCH_REGISTRATION,
     payload
 });
 
-export const fetchLogin = (payload: LoginFormProps): FetchLoginType => {
+export const fetchLogin = (payload: LoginProps): FetchLoginType => {
     return {
         type: UserActionType.FETCH_LOGIN,
         payload,
