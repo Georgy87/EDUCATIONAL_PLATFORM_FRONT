@@ -15,6 +15,8 @@ import {
     FetchPurchasedCoursesType,
     FetchGetPurchasedCoursesType,
     SetLoadingPurchasedCourses,
+    FetchVerifyType,
+    SetVerifyType,
 } from "../user/types";
 import { CoursesDataType, UserType } from "./types";
 import { LogoutType, SetUserActionType, UserActionType, PurchasedCoursesType, SetPurchasedCourses } from "./types";
@@ -26,6 +28,13 @@ export const fetchRegistration = (payload: RegistrationFormProps): FetchRegistra
     type: UserActionType.FETCH_REGISTRATION,
     payload
 });
+
+export const fetchVerify = (payload: string): FetchVerifyType => {
+    return {
+        type: UserActionType.FETCH_VERIFY,
+        payload
+    }
+};
 
 export const fetchLogin = (payload: LoginProps): FetchLoginType => {
     return {
@@ -88,6 +97,14 @@ export const fetchGetPurchasedCourses = (): FetchGetPurchasedCoursesType => {
 }
 
 // ACTIONS
+
+export const setVerifyUser = (payload: boolean): SetVerifyType => {
+    return {
+        type: UserActionType.SET_VERIFY,
+        payload
+    };
+};
+
 
 export const setUser = (user: UserType): SetUserActionType => {
     return {

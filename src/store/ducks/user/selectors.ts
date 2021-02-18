@@ -2,6 +2,7 @@ import { AppStateType } from '../../store';
 import { UserActionType } from './types';
 
 export const selectUserInfo = (state: AppStateType) => state.user;
+export const selectVerify = (state: AppStateType) =>  selectUserInfo(state).verify;
 export const selectIsAuth = (state: AppStateType) => state.user.isAuth;
 export const selectUserAvatar = (state: AppStateType) => state.user.user?.user.avatar;
 export const selectCoursesData = (state: AppStateType) => state.user.shoppingCartCourses?.coursesData;

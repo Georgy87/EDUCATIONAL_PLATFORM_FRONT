@@ -3,18 +3,22 @@ import { UserActionsTypes } from "./types";
 import { UserActionType, UserStateType } from "./types";
 
 const initialState: UserStateType = {
+    verify: false,
     user: null,
     isAuth: false,
     loadingState: "NEVER",
     shoppingCartCourses: null,
     purchasedCourses: null,
     submitLoading: false,
-    loadingPurchasedCourses: false
+    loadingPurchasedCourses: false,
 };
 
 const userReducer = produce(
     (draftState: Draft<UserStateType>, action: UserActionsTypes) => {
         switch (action.type) {
+            case UserActionType.SET_VERIFY:
+                draftState.verify = action.payload;
+                break;
             case UserActionType.SET_USER:
                 draftState.user = action.payload;
                 draftState.isAuth = true;

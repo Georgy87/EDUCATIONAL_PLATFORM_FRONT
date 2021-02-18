@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 // import {store} from "./reducers/index";
 import { store } from './store/store';
 
-
 import "./index.css"
 
 ReactDOM.render(

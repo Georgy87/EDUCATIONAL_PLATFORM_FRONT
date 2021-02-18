@@ -1,10 +1,10 @@
-import { setLoadingPurchasedCourses, setPurchasedCourses, setShoppingCourses, setSubmitLoading, setUser } from "./actions";
+import { setLoadingPurchasedCourses, setPurchasedCourses, setShoppingCourses, setSubmitLoading, setUser, setVerifyUser } from "./actions";
 import { userApi } from "../../../services/api/userApi";
 import { setUserLoading, setUserLoaded } from "../user/actions";
-import { FetchChangeInfoProfileUserType, FetchDeleteShoppingCartCourseType, FetchLoginType, FetchPurchasedCoursesType, FetchRegistrationType, FetchSetShoppingCartIdsType, FetchUploadAvatarType, UserActionType } from "./types";
+import { FetchChangeInfoProfileUserType, FetchDeleteShoppingCartCourseType, FetchLoginType, FetchPurchasedCoursesType, FetchRegistrationType, FetchSetShoppingCartIdsType, FetchUploadAvatarType, FetchVerifyType, UserActionType } from "./types";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
-export function* fetchRegistrationRequest({payload}: FetchRegistrationType) {
+export function* fetchRegistrationRequest({ payload }: FetchRegistrationType) {
     try {
         yield put(setSubmitLoading(true));
         yield call(userApi.registrationUser, payload);
@@ -14,12 +14,23 @@ export function* fetchRegistrationRequest({payload}: FetchRegistrationType) {
     }
 }
 
-export function* fetchLoginRequest({payload}: FetchLoginType) {
+export function* fetchVerifyRequest({ payload }: FetchVerifyType) {
+    try {
+        yield call(userApi.verifyUser, payload);
+        yield put(setVerifyUser(true));
+    } catch (error) {
+        yield console.log(error);
+    }
+}
+
+export function* fetchLoginRequest({ payload }: FetchLoginType) {
     try {
         yield put(setSubmitLoading(true));
-        const data =  yield call(userApi.loginUser, payload);
+        yield put(setUserLoading());
+        const data = yield call(userApi.loginUser, payload);
         localStorage.setItem("token", data.token);
         yield put(setUser(data));
+        yield put(setUserLoaded());
         yield put(setSubmitLoading(false));
     } catch (error) {
         yield console.log(error);
@@ -38,7 +49,7 @@ export function* fetchAuthRequest() {
     }
 };
 
-export function* fetchUploadAvatarRequest({payload}: FetchUploadAvatarType) {
+export function* fetchUploadAvatarRequest({ payload }: FetchUploadAvatarType) {
     try {
         yield put(setUserLoading());
         const formData = new FormData();
@@ -51,7 +62,7 @@ export function* fetchUploadAvatarRequest({payload}: FetchUploadAvatarType) {
     }
 };
 
-export function* fetchChangeInfoProfileUserRequest({payload}: FetchChangeInfoProfileUserType) {
+export function* fetchChangeInfoProfileUserRequest({ payload }: FetchChangeInfoProfileUserType) {
     try {
         yield call(userApi.changeInfoUser, payload);
     } catch (error) {
@@ -59,7 +70,7 @@ export function* fetchChangeInfoProfileUserRequest({payload}: FetchChangeInfoPro
     }
 };
 
-export function* fetchSetShoppingCartIdsRequest({payload}: FetchSetShoppingCartIdsType) {
+export function* fetchSetShoppingCartIdsRequest({ payload }: FetchSetShoppingCartIdsType) {
     try {
         yield call(userApi.setShoppingCartIds, payload);
     } catch (error) {
@@ -68,24 +79,24 @@ export function* fetchSetShoppingCartIdsRequest({payload}: FetchSetShoppingCartI
 };
 
 export function* fetchGetShoppingCartRequest() {
-        try {
-            const data = yield call(userApi.getShoppingCart);
-            yield put(setShoppingCourses(data));
-        } catch (error) {
-            yield console.log(error);
-        }
+    try {
+        const data = yield call(userApi.getShoppingCart);
+        yield put(setShoppingCourses(data));
+    } catch (error) {
+        yield console.log(error);
+    }
 };
 
-export function* fetchDeleteShoppingCartCourseRequest({payload}: FetchDeleteShoppingCartCourseType) {
-        try {
-            const data = yield call(userApi.deleteShoppingCart, payload);
-            yield put(setShoppingCourses(data));
-        } catch (error) {
-            yield console.log(error);
-        }
+export function* fetchDeleteShoppingCartCourseRequest({ payload }: FetchDeleteShoppingCartCourseType) {
+    try {
+        const data = yield call(userApi.deleteShoppingCart, payload);
+        yield put(setShoppingCourses(data));
+    } catch (error) {
+        yield console.log(error);
+    }
 };
 
-export function* fetchPurchasedCoursesRequest({payload}: FetchPurchasedCoursesType) {
+export function* fetchPurchasedCoursesRequest({ payload }: FetchPurchasedCoursesType) {
     try {
         yield call(userApi.setPurchasedCourses, payload);
     } catch (error) {
@@ -105,6 +116,7 @@ export function* fetchGetPurchasedCoursesRequest() {
 
 export function* UserSaga() {
     yield takeLatest(UserActionType.FETCH_REGISTRATION, fetchRegistrationRequest);
+    yield takeLatest(UserActionType.FETCH_VERIFY, fetchVerifyRequest);
     yield takeLatest(UserActionType.FETCH_LOGIN, fetchLoginRequest);
     yield takeLatest(UserActionType.FETCH_AUTH, fetchAuthRequest);
     yield takeLatest(UserActionType.FETCH_UPLOAD_AVATAR, fetchUploadAvatarRequest);

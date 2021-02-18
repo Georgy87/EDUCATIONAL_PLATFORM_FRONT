@@ -51,5 +51,5 @@ export const RegisterFormSchema = yup.object().shape({
     surname: yup.string().required('Введите свою фамилию'),
     email: yup.string().email('Неверная почта').required('Введите почту'),
     password: yup.string().min(6, '​Минимальная длина пароля 6 символов').required(),
-    // password2: yup.string().oneOf([yup.ref('password'), null], 'Пароли не соответствуют'),
+    password2: yup.string().oneOf([yup.ref('password'), null], 'Пароли не соответствуют'),
 });
