@@ -66,7 +66,7 @@ function App() {
                 <Route path="/shopping-cart" component={ShoppingCart} />
                 <Route path="/checkout" component={Checkout} exact />
                 <Route path="/purchased-courses" component={MyTrainingPage} exact />
-                <Route path="/signup/verify" component={CheckEmailInfo} exact />
+                <Route path="/verify" component={CheckEmailInfo} exact />
 
                 {/* <Route path="/purchased-courses/leaning/:id?" render={() => <MyLeaningPage />} exact /> */}
                 {/* <Route exact path={`/purchased-courses/leaning/materials/:id?`} render={() => <MyLeaningPage />} />

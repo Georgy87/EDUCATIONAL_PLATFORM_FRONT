@@ -1,13 +1,21 @@
 import React, { useState } from 'react'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { Result, Button, Spin } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 import { fetchVerify } from '../../store/ducks/user/actions';
 import { selectVerify } from '../../store/ducks/user/selectors';
 
 import "./CheckEmailInfo.scss";
+import { ResultStatusType } from 'antd/lib/result';
 
-const renderTextInfo = ({ hash, verified }: { hash: string; verified: boolean | undefined }) => {
+
+const renderTextInfo = ({ hash, verified }: { hash: string; verified: boolean | undefined }): {
+    status: ResultStatusType;
+    title: string;
+    message: string;
+} => {
     if (hash) {
         if (verified) {
             return {
@@ -17,7 +25,7 @@ const renderTextInfo = ({ hash, verified }: { hash: string; verified: boolean | 
             };
         } else {
             return {
-                status: 'error',
+                status: '403',
                 title: 'Ошибка',
                 message: 'Вы указали несуществующий или неверный хеш.',
             };
@@ -32,12 +40,13 @@ const renderTextInfo = ({ hash, verified }: { hash: string; verified: boolean | 
 };
 
 export const CheckEmailInfo: React.FC = () => {
-    const verify = true;
+    const verify = useSelector(selectVerify);
 
     const hash = window.location.search.split('?hash=')[1];
+    const history = useHistory();
 
     const [info, setInfo] = useState<{
-        status: string;
+        status: ResultStatusType;
         title: string;
         message: string;
     }>();
@@ -53,12 +62,26 @@ export const CheckEmailInfo: React.FC = () => {
             const inf = renderTextInfo({ hash, verified: false });
             setInfo(inf);
         }
+    }, [verify]);
 
-    }, [verify])
-    console.log(info);
     return (
         <div className="check-email">
-            <div>Hello</div>
+            <Result
+                status={info?.status}
+                title={info?.message}
+                extra={
+                    verify ?
+                        [
+                            <Button type="primary" key="console" onClick={() => history.push('/login')}>
+                                Логин
+                            </Button>,
+                        ] :
+                        (   <Button type="primary" key="console" onClick={() => history.push('/registration')}>
+                                Регистрация
+                            </Button>
+                        )
+                }
+            />,
         </div>
     )
 }
