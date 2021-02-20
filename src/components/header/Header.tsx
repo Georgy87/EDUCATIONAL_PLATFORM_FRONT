@@ -16,7 +16,7 @@ const Header: React.FC = (): React.ReactElement => {
     const userInfo = useSelector(selectUserInfo);
     const userAvatar = useSelector(selectUserAvatar);
     const loaded = useSelector(selectUserLoaded);
-
+    
     let avatar = photo;
 
     if (loaded) {

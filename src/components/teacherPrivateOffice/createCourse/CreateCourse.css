@@ -77,7 +77,15 @@
     background-color: rgb(240, 240, 240)
 }
 
-.teacher-course-add p {
+.teacher-course-add-full-description {
+    width: 1000px;
+}
+
+.teacher-course-add-full-description span {
+    color: black;
+}
+
+.teacher-course-add-error {
     margin-top: 10px;
     color: rgb(160, 17, 17);
 }

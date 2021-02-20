@@ -8,6 +8,10 @@ import { Button } from '../../button/Button';
 import { selectAllTeacherCourses } from "../../../store/ducks/contentCourses/selectors";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+//@ts-ignore
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+//@ts-ignore
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 
 import { CreateCourseSchema } from "../../../utils/FormSchemas";
 
@@ -32,7 +36,8 @@ const CreateCourse = () => {
 
     const [errorPhotoCourse, setErrorPhotoCourse] = React.useState<string>('');
     const [errorVideoCourse, setErrorVideoCourse] = React.useState<string>('');
-
+    const [fullDescription, setFullDescription] = useState<string>("");
+    
     const dispatch = useDispatch();
 
     const schema = CreateCourseSchema(setErrorPhotoCourse, setErrorVideoCourse);
@@ -42,8 +47,9 @@ const CreateCourse = () => {
     });
 
     const onSubmit = (data: CreateCourseFormProps) => {
-        const { photoCourse, profession, author, price, shotDescription, fullDescription, module, fileVideo, lesson } = data;
-        dispatch(fetchUploadNewCourse({photoCourse: photoCourse[0], profession, author, price, shotDescription, fullDescription, module, fileVideo: fileVideo[0], lesson}));
+        const { photoCourse, profession, author, price, shotDescription, module, fileVideo, lesson } = data;
+
+        dispatch(fetchUploadNewCourse({ photoCourse: photoCourse[0], profession, author, price, shotDescription, fullDescription, module, fileVideo: fileVideo[0], lesson }));
     };
 
     const [changeCourseId, setChangeCourseId] = useState("");
@@ -79,42 +85,47 @@ const CreateCourse = () => {
                     ref={register}
                     className="custom-file-input"
                 />
-                <p>{errorPhotoCourse}</p>
+                <p className="teacher-course-add-error">{errorPhotoCourse}</p>
 
                 <textarea
                     name="profession"
                     placeholder="Профессия"
                     ref={register}
                 />
-                <p>{errors.profession?.message}</p>
+                <p className="teacher-course-add-error">{errors.profession?.message}</p>
 
                 <textarea
                     name="author"
                     placeholder="Автор курса"
                     ref={register}
                 />
-                <p>{errors.author?.message}</p>
+                <p className="teacher-course-add-error">{errors.author?.message}</p>
 
                 <textarea
                     name="price"
                     placeholder="Цена курса"
                     ref={register}
                 />
-                <p>{errors.price?.message}</p>
+                <p className="teacher-course-add-error">{errors.price?.message}</p>
 
                 <textarea
                     name="shotDescription"
                     placeholder="Краткое описание"
                     ref={register}
                 />
-                <p>{errors.shotDescription?.message}</p>
+                <p className="teacher-course-add-error">{errors.shotDescription?.message}</p>
 
-                <textarea
-                    name="fullDescription"
-                    placeholder="Полное описание"
-                    ref={register}
-                />
-                <p>{errors.fullDescription?.message}</p>
+                <div className="teacher-course-add-full-description">
+                    <span>Полное описание курса</span>
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={fullDescription}
+                        onChange={(event: any, editor: any) => {
+                            const data = editor.getData()
+                            setFullDescription(data)
+                        }}
+                    />
+                </div>
 
                 <div style={{ marginTop: "60px", marginBottom: "60px" }}>
                     * Добавьте первый модуль и вводную лекцию
@@ -126,21 +137,21 @@ const CreateCourse = () => {
                     className="custom-file-input"
                     ref={register}
                 />
-                <p>{errorVideoCourse}</p>
+                <p className="teacher-course-add-error">{errorVideoCourse}</p>
 
                 <textarea
                     name="module"
                     placeholder="Название модуля"
                     ref={register}
                 />
-                <p>{errors.module?.message}</p>
+                <p className="teacher-course-add-error">{errors.module?.message}</p>
 
                 <textarea
                     name="lesson"
                     placeholder="Лекция"
                     ref={register}
                 />
-                <p>{errors.lesson?.message}</p>
+                <p className="teacher-course-add-error">{errors.lesson?.message}</p>
 
                 <Button typeStyle="secondary" type="submit">Создать курс</Button>
 
@@ -165,7 +176,7 @@ const CreateCourse = () => {
                 </div>
             </form>
             <CoursePreview changeCourseId={changeCourseId} />
-            <CreateModule changeCourseId={changeCourseId}/>
+            <CreateModule changeCourseId={changeCourseId} />
         </div>
     );
 };

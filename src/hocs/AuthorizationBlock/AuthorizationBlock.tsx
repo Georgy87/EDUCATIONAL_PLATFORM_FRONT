@@ -9,7 +9,8 @@ import { LoginProps, LoginSchemaType } from "../../components/loginPage/LoginPag
 import { RegisterSchemaType } from "../../components/registrationPage/RegistrationPage";
 import { Button } from '../../components/button/Button';
 
-import "./AuthorizationBlock.css";
+import "./AuthorizationBlock.scss";
+import { CheckEmailInfo } from '../../components/checkEmailInfo/CheckEmailInfo';
 
 export type FormProps = {
     name?: string;
@@ -27,7 +28,7 @@ type PropsType = {
     inOrOut: string;
 }
 
-export const AuthorizationBlock: React.FC<PropsType> = ({ onSubmit, pageName, formSchema, inOrOut }) => {
+export const AuthorizationBlock: React.FC<PropsType> = ({ onSubmit, pageName, formSchema, inOrOut, children }) => {
     const loading = useSelector(selectSubmitLoading);
 
     const { register, handleSubmit, errors } = useForm<FormProps>({
@@ -35,10 +36,10 @@ export const AuthorizationBlock: React.FC<PropsType> = ({ onSubmit, pageName, fo
     });
 
     return (
-        <div className="login-container">
-            <div className="login-background"></div>
-            <div className="login">
-                <div className="login-wrapper">
+        <div className="authorization">
+            <div className="authorization__background"></div>
+            <div className="authorization__container">
+                <div className="authorization__container-form">
                     <form className="login-inputs" onSubmit={handleSubmit(onSubmit)}>
                         {pageName === "registration" &&
                             <>
@@ -56,7 +57,7 @@ export const AuthorizationBlock: React.FC<PropsType> = ({ onSubmit, pageName, fo
                         <p>{errors.email?.message}</p>
 
                         <label>password</label>
-                        <input name="password" ref={register} type="text" />
+                        <input name="password" ref={register} type="password" />
                         <p>{errors.password?.message}</p>
 
                         <Button type="submit" typeStyle="login-register">
@@ -68,6 +69,7 @@ export const AuthorizationBlock: React.FC<PropsType> = ({ onSubmit, pageName, fo
                         </Button>
                     </form>
                 </div>
+                {children}
             </div>
         </div>
     )

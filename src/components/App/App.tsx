@@ -22,6 +22,7 @@ import { selectUserInfo } from '../../store/ducks/user/selectors';
 import PrivateOfficeAdmin from '../privateOfficeAdmin/PrivateOfficeAdmin';
 import TeacherPrivateOfficeAdmin from '../teacherPrivateOffice/TeacherPrivateOffice';
 import { MyLeaningPage } from "../myLeaningPage/MyLeaningPage";
+import { CheckEmailInfo } from '../checkEmailInfo/CheckEmailInfo';
 
 import "./App.css";
 
@@ -29,6 +30,7 @@ function App() {
     const dispatch = useDispatch();
     let history = useHistory();
     const loading = useSelector(selectUserInfo);
+
     useEffect(() => {
         if (history.location.pathname === '/') {
             history.push('/main');
@@ -64,12 +66,13 @@ function App() {
                 <Route path="/shopping-cart" component={ShoppingCart} />
                 <Route path="/checkout" component={Checkout} exact />
                 <Route path="/purchased-courses" component={MyTrainingPage} exact />
-                <Route path="/purchased-courses/leaning/:id?" render={() => <MyLeaningPage />} exact />
-                {/* <Redirect to="/main" /> */}
+                <Route path="/verify" component={CheckEmailInfo} exact />
 
-                <Route exact path={`/purchased-courses/leaning/materials/:id?`} render={() => <MyLeaningPage />} />
+                {/* <Route path="/purchased-courses/leaning/:id?" render={() => <MyLeaningPage />} exact /> */}
+                {/* <Route exact path={`/purchased-courses/leaning/materials/:id?`} render={() => <MyLeaningPage />} />
                 <Route exact path={`/purchased-courses/leaning/comments/:id?`} render={() => <MyLeaningPage />} />
-                <Route path={`/purchased-courses/leaning/comments/reply-to-comment/:id?`} render={() => <MyLeaningPage />} />
+                <Route path={`/purchased-courses/leaning/comments/reply-to-comment/:id?`} render={() => <MyLeaningPage />} /> */}
+                <Route exact path={[`/purchased-courses/leaning/comments/reply-to-comment/:id?`, `/purchased-courses/leaning/comments/:id?`, `/purchased-courses/leaning/materials/:id?`, "/purchased-courses/leaning/:id?"]} render={() => <MyLeaningPage />} />
             </Switch>
         </div>
     );

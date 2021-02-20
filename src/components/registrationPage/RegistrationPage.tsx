@@ -6,7 +6,7 @@ import { fetchRegistration } from "../../store/ducks/user/actions";
 import { AuthorizationBlock } from "../../hocs/AuthorizationBlock/AuthorizationBlock";
 import { RegisterFormSchema } from "../../utils/FormSchemas";
 
-import "./RegistrationPage.css";
+import "./RegistrationPage.scss";
 
 export type RegistrationFormProps = {
     name?: string;
@@ -31,11 +31,12 @@ export default function Registration() {
             <AuthorizationBlock onSubmit={onSubmit}
                 inOrOut="Регистрация"
                 formSchema={RegisterFormSchema}
-                pageName="registration" />
-              <div className="registration-registrations">
-                        <span>У вас уже есть аккаунт?</span>
-                        <NavLink to="/login">Войти</NavLink>
-                    </div>
+                pageName="registration" >
+                <div className="registration">
+                    <span>У вас уже есть аккаунт?</span>
+                    <NavLink to="/login">Войти</NavLink>
+                </div>
+            </AuthorizationBlock>
         </div>
     );
 };

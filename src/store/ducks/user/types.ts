@@ -7,6 +7,7 @@ import { AppStateType } from "../../store";
 
 export enum UserActionType {
     FETCH_REGISTRATION = "FETCH_REGISTRATION",
+    FETCH_VERIFY= "FETCH_VERIFY",
     FETCH_LOGIN = "FETCH-LOGIN",
     FETCH_AUTH = "FETCH-AUTH",
     FETCH_UPLOAD_AVATAR = "FETCH-UPLOAD-AVATAR",
@@ -16,6 +17,7 @@ export enum UserActionType {
     FETCH_DELETE_SHOPPING_CART = "FETCH-DELETE-SHOPPING-CART",
     FETCH_PURCHASED_COURSES = "FETCH-PURCHASED-COURSES",
     FETCH_GET_PURCHASED_COURSES = "FETCH-GET-PURCHASED-COURSES",
+    SET_VERIFY = "SET_VERIFY",
     SET_USER = "SET-USER",
     LOGOUT = "LOGOUT",
     SET_LOADING = "LOADING",
@@ -31,7 +33,7 @@ export enum UserActionType {
 export type UserInfoType = {
     avatar: string;
     email: string;
-    id: string;
+    _id: string;
     name: string;
     surname: string;
     teacher: string;
@@ -54,10 +56,11 @@ export type PurchasedCoursesType = {
     photo: string;
     author: string;
     smallDescription: string;
-    id: string;
+    _id: string;
 };
 
 export type UserStateType = {
+    verify: boolean;
     user: UserType | null;
     isAuth: boolean;
     loadingState: string;
@@ -72,6 +75,11 @@ export type UserStateType = {
 export type FetchRegistrationType = {
     type: UserActionType.FETCH_REGISTRATION;
     payload: RegistrationFormProps;
+};
+
+export type FetchVerifyType = {
+    type: UserActionType.FETCH_VERIFY;
+    payload: string;
 };
 
 export type FetchLoginType = {
@@ -117,6 +125,11 @@ export type FetchGetPurchasedCoursesType = {
 };
 
 // ACTIONS TYPES
+
+export type SetVerifyType = {
+    type: UserActionType.SET_VERIFY;
+    payload: boolean;
+};
 
 export type SetUserActionType = {
     type: UserActionType.SET_USER;
@@ -179,14 +192,7 @@ export type UserActionsTypes =
     | SetPurchasedCourses
     | SetSubmitLoadingActionType
     | SetLoadingPurchasedCourses
-    | FetchGetShoppingCartType;
+    | FetchGetShoppingCartType
+    | FetchVerifyType
+    | SetVerifyType;
 
-// Thunk types
-
-export type DispatchType = Dispatch<UserActionsTypes>;
-export type ThunkType = ThunkAction<
-    Promise<void>,
-    AppStateType,
-    unknown,
-    UserActionsTypes
->;

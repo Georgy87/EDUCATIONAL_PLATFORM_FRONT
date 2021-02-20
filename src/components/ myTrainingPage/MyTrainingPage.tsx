@@ -16,7 +16,7 @@ const MyTrainingPage: React.FC = (): React.ReactElement => {
     useEffect(() => {
         dispatch(fetchGetPurchasedCourses());
     }, []);
-    
+
     return (
         <div className="training">
             <div className="training-header">
@@ -26,11 +26,11 @@ const MyTrainingPage: React.FC = (): React.ReactElement => {
                     {loading ? courses?.map(el =>
                     (
                         <MyTrainingCourses
-                            key={el.id}
+                            key={el._id}
                             photo={el.photo}
                             author={el.author}
                             smallDescription={el.smallDescription}
-                            id={el.id}
+                            _id={el._id}
                         />
                     ))
                         :

@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { fetchUploadLesson } from "../../../../store/ducks/contentCourses/actions";
 import { ModuleContentType } from "../../../../store/ducks/contentCourses/reducer";
+import { Button } from '../../../button/Button';
 
 import "./CourseModules.css";
 
@@ -18,9 +19,21 @@ const useStyles = makeStyles((theme) => ({
         padding: "1px",
     },
     heading: {
-        fontSize: theme.typography.pxToRem(17),
+        fontSize: theme.typography.pxToRem(15),
         fontWeight: 350,
-        color: "white",
+
+    },
+    headingLesson: {
+        borderBottom: "1px solid rgb(228, 225, 225)",
+    },
+    module: {
+        boxShadow: "none"
+    },
+    accordionSummaryHeader: {
+        backgroundColor: "#f7f8fa",
+    },
+    accordionSummaryLessonHeader: {
+
     },
 }));
 
@@ -52,13 +65,10 @@ const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes,
 
     return (
         <div>
-            <Accordion>
+            <Accordion className={classes.module} >
                 <AccordionSummary
-                    style={{
-                        backgroundColor: "rgba(12, 9, 9, 0.85)",
-                        boxShadow: "0px 0px 1px",
-                    }}
-                    expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+                    className={classes.accordionSummaryHeader}
+                    expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
@@ -86,32 +96,27 @@ const CourseModules: React.FC<PropsType> = ({ courseId, moduleId, moduleMinutes,
                         className="set-lessons-module"
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLesson(e.target.value)}
                     />
-                    <button
-                        className="set-lessons-module-btn"
-                        onClick={addLesson}
+                    <Button
+                        type={undefined}
+                        action={addLesson}
+                        typeStyle="create-lesson"
                     >
                         Добавить лекцию
-                    </button>
+                    </Button>
                 </div>
                 {moduleContent?.map((el: ModuleContentType) => {
                     return (
-                        <div className={classes.root} key={el._id}>
-                            <Accordion>
+                        <div className={classes.root} key={el._id} >
+                            <Accordion className={classes.module} >
                                 <AccordionSummary
-                                    style={{
-                                        backgroundColor:
-                                            "rgba(17, 39, 9, 0.75)",
-                                        boxShadow: "0px 1px 2px",
-                                    }}
+                                    className={classes.accordionSummaryLessonHeader}
                                     expandIcon={
-                                        <ExpandMoreIcon
-                                            style={{ color: "white" }}
-                                        />
+                                        <ExpandMoreIcon />
                                     }
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography className={classes.heading}>
+                                    <Typography className={classes.headingLesson}>
                                         {el.lesson}
                                     </Typography>
                                 </AccordionSummary>

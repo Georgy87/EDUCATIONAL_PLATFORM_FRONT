@@ -6,6 +6,8 @@ import { fetchLogin } from "../../store/ducks/user/actions";
 import { AuthorizationBlock } from "../../hocs/AuthorizationBlock/AuthorizationBlock";
 import { LoginFormSchema } from "../../utils/FormSchemas";
 
+import "./LoginPage.scss";
+
 export type LoginSchemaType = typeof LoginFormSchema;
 
 export type LoginProps = {
@@ -20,9 +22,9 @@ export const LoginPage = () => {
     const onSubmit = (data: LoginProps) => {
         const { email, password } = data;
         dispatch(fetchLogin({ email, password }));
-        if (history.location.pathname === "/login") {
-            history.push("/main");
-        }
+        // if (history.location.pathname === "/login") {
+        //     history.push("/main");
+        // }
     };
 
     return (
@@ -30,11 +32,12 @@ export const LoginPage = () => {
             <AuthorizationBlock onSubmit={onSubmit}
                 formSchema={LoginFormSchema}
                 inOrOut="Вход"
-                pageName="login" />
-            <div className="login-registrations">
+                pageName="login">
+            <div className="login">
                 <span>У вас еще нет аккаунта?</span>
                 <NavLink to="/registration">Зарегистрироваться</NavLink>
             </div>
+            </AuthorizationBlock>
         </div>
     );
 };

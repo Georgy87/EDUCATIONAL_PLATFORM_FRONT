@@ -14,7 +14,7 @@ export const CreateCourseSchema = (setErrorPhotoCourse : (text : string) => void
     author: yup.string().required("Введите автора"),
     price: yup.string().required("Введите цену"),
     shotDescription: yup.string().required("Введите введите название курса"),
-    fullDescription: yup.string().required("Введите полное описание курса"),
+    // fullDescription: yup.string().required("Введите полное описание курса"),
 
     fileVideo: yup.mixed().required("Добавьте видео к лекции").test("fileSize", "File Size is too large", (value : any) : any => {
         if (value.length === 0) {
@@ -51,5 +51,5 @@ export const RegisterFormSchema = yup.object().shape({
     surname: yup.string().required('Введите свою фамилию'),
     email: yup.string().email('Неверная почта').required('Введите почту'),
     password: yup.string().min(6, '​Минимальная длина пароля 6 символов').required(),
-    // password2: yup.string().oneOf([yup.ref('password'), null], 'Пароли не соответствуют'),
+    password2: yup.string().oneOf([yup.ref('password'), null], 'Пароли не соответствуют'),
 });

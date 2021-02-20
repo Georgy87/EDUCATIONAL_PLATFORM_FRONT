@@ -22,7 +22,7 @@ const ProfileTeacher: React.FC<Props> = (props): React.ReactElement => {
     const dispatch = useDispatch();
 
     let teacherId = props.match.params.teacherId;
-
+    console.log(teacherId);
     let avatar = photo;
 
     if(teacherInfo) {
