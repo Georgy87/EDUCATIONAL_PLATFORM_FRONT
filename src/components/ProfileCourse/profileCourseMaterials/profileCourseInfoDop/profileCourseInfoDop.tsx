@@ -26,7 +26,7 @@ const ProfileCourseInfoDop: React.FC<PropsType> = ({ setModalActiveVideoCourse, 
 
     const onShoppingCartHandler = (): void => {
         dispatch(fetchSetShoppingCartIds(profileId));
-        dispatch(actions.fetchGetTeacher(profile?.user));
+        dispatch(actions.fetchGetTeacher(profile?.user._id));
         setModalActiveShoppingCart(true);
     }
 

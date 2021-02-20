@@ -85,12 +85,12 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                     <div className="course-description-teacher-wrapper">
                         <h1>Преподаватель</h1>
                         <div className="course-description-teacher-info">
-                            <NavLink to={`/profile-teacher/${profile?.user}`} onClick={() => dispatch(actions.fetchGetTeacher(profile?.user))}>
+                            <NavLink to={`/profile-teacher/${profile?.user._id}`} onClick={() => dispatch(actions.fetchGetTeacher(profile?.user._id))}>
                                 <img src={avatar} alt="" />
                             </NavLink>
                         </div>
                         <div className="course-description-teacher-competence">
-                            {profile?.competence}
+                            {profile?.user.competence}
                         </div>
                     </div>
                 </div>

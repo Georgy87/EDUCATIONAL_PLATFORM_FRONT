@@ -33,7 +33,7 @@ export enum UserActionType {
 export type UserInfoType = {
     avatar: string;
     email: string;
-    id: string;
+    _id: string;
     name: string;
     surname: string;
     teacher: string;
@@ -56,7 +56,7 @@ export type PurchasedCoursesType = {
     photo: string;
     author: string;
     smallDescription: string;
-    id: string;
+    _id: string;
 };
 
 export type UserStateType = {

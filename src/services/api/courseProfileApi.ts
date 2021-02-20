@@ -28,6 +28,7 @@ export const CourseProfileApi = {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             })
+
             .then((response) => response.data);
     },
 };

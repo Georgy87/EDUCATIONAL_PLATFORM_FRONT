@@ -4,7 +4,7 @@ import classNames from "classnames";
 import "./Button.scss";
 
 type PropsType = {
-    typeStyle: string;
+    typeStyle:  "primary" |  "secondary" | "primary" |  "teacher" | "login-register" | "create-lesson";
     action?: () => void;
     type: "button" | "submit" | "reset" | undefined;
     disabled?: boolean;
@@ -19,6 +19,7 @@ export const Button: React.FC<PropsType> = ({ type, children, typeStyle, action,
                 "platform__button--disabled": typeStyle === "primary" && disabled,
                 "platform__button--teacher": typeStyle === "teacher",
                 "platform__button--login-register": typeStyle === "login-register",
+                "platform__button--create-lesson": typeStyle === "create-lesson"
             })}>
             {children}
         </button>

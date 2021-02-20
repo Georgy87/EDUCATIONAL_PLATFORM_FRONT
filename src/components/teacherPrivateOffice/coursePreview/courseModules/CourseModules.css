@@ -6,7 +6,8 @@
 
 .set-lessons-module {
     border: none;
-    background-color: rgb(241, 244, 240);
+    /* background-color: rgb(241, 244, 240); */
+    border-bottom: 1px solid black;
     height: 35px;
     width: 600px;
     margin-top: 20px;

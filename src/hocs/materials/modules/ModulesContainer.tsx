@@ -24,7 +24,6 @@ export type PropsModulesType = {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        // width: "100%",
         padding: "1px",
         '& .MuiPaper-elevation1': {
             backgroundColor: 'red',
@@ -33,21 +32,16 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-        fontWeight: 500,
     },
     headingModule: {
-        // display: "flex",
     },
     headingHours: {
-        // display: "flex",
         fontWeight: 200,
         marginLeft: "auto",
     },
-    // accordionSummary: {
-    //     // width: 900,
-    //     backgroundColor: "#f7f8fa",
-    //     boxShadow: 'none'
-    // },
+    module: {
+        boxShadow: "none"
+    },
 }));
 
 export const MaterialsBlockContainer: React.FC<PropsModulesType> = ({ children, ...props }) => {
@@ -65,12 +59,12 @@ export const MaterialsBlockContainer: React.FC<PropsModulesType> = ({ children, 
     if (pageName === "profile") {
         backgroundForAccordion = "#fbfbf8";
     }
-    
+
     return (
         <div>
             {children}
-            <div className="leaning-modules">
-                <Accordion style={{ boxShadow: 'none' }}>
+            <div className="leaning-modules" >
+                <Accordion className={classes.module}>
                     <AccordionSummary
                         // className={classes.accordionSummary}
                         style={{ backgroundColor: backgroundForAccordion }}

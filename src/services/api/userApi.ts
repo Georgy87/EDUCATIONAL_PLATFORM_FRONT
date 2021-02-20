@@ -93,7 +93,7 @@ export const userApi = {
 		return data;
 	},
 	uploadUserAvatar(formData: FormData) {
-		return instance.post<UserTokenApiType>("course/avatar", formData, {
+		return instance.post<UserTokenApiType>("auth/avatar", formData, {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
 			},

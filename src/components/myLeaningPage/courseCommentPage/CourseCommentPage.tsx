@@ -99,7 +99,7 @@ export const CourseCommentPage: React.FC = () => {
                         </li>
                     </ul>
                 )) : <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
-            }import { Button} from '@material-ui/core';
+            }
 
         </div>
     )

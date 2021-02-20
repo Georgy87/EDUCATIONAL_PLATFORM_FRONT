@@ -1,6 +1,8 @@
 
 // Course profile types:
 
+import { UserInfoType } from "../user/types";
+
 export enum CourseProfileActionsType {
     FETCH_GET_PROFILE_COURSE = "FETCH-GET-PROFILE-COURSE",
     FETCH_GET_TEACHER = "FETCH-GET-TEACHER",
@@ -44,7 +46,7 @@ export type CourseProfileStateType = {
     profession: string;
     smallDescription: string;
     competence: string;
-    user: string;
+    user: UserInfoType;
     __v: number;
     _id: string;
 };

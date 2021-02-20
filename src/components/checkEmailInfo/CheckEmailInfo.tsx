@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Result, Button, Spin } from 'antd';
+import { Result, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 
 import { fetchVerify } from '../../store/ducks/user/actions';
 import { selectVerify } from '../../store/ducks/user/selectors';
-
-import "./CheckEmailInfo.scss";
 import { ResultStatusType } from 'antd/lib/result';
 
+import "./CheckEmailInfo.scss";
 
 const renderTextInfo = ({ hash, verified }: { hash: string; verified: boolean | undefined }): {
     status: ResultStatusType;
