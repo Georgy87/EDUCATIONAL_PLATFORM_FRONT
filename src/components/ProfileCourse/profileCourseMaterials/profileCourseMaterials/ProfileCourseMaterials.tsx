@@ -6,6 +6,8 @@ import photo from "../../../../assets/avatar/unnamed.jpg";
 import { NavLink } from 'react-router-dom';
 import { actions } from "../../../../store/ducks/courseProfile/actions";
 import { selectCourseProfile, selectTeacherLoaded } from "../../../../store/ducks/courseProfile/selectors";
+//@ts-ignore
+import parse from "html-react-parser"
 
 import { MaterialsBlockContainer } from "../../../../hocs/materials/modules/ModulesContainer";
 
@@ -26,6 +28,11 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
     if (profile) {
         avatar = `http://localhost:5000/${profile?.avatar}`;
     }
+    let text = "";
+    if (profile) {
+        text = profile.fullDescription;
+    }
+
 
     return (
         <>
@@ -52,7 +59,8 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                         className={`course-description-wrapper ${collapseText}`}
                     >
                         <div className="course-description">
-                            {profile?.fullDescription}
+
+                            {parse(text)}
                         </div>
                     </div>
                     <div>

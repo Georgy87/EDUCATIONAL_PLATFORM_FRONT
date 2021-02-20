@@ -22,7 +22,7 @@ const PrivateOfficeAdmin: React.FC = (): React.ReactElement => {
     const onFetchUploadCourseDirections = () => {
         dispatch(fetchUploadCourseDirections({ file: photoDirection, direction: directionName }));
     }
-
+    
     return (
         <div className="office">
             <input
