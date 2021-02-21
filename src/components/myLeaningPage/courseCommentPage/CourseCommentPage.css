@@ -119,3 +119,11 @@
 .comments-add-btn button {
     height: 40px;
 }
+.comments-add-photo {
+    display: flex;
+    align-items: start !important;
+}
+.comments-add-photo input {
+    display: flex;
+
+}

@@ -66,10 +66,10 @@ export const CoursesApi = {
         );
         return data;
     },
-    async addComment(payload: { courseId: string; text: string }) {
+    async addComment(formData: FormData) {
         const { data } = await instance.post(
-            `/course/comment?courseId=${payload.courseId}`,
-            { text: payload.text },
+            '/course/comment',
+            formData,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,

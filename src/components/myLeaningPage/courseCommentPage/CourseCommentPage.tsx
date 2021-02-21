@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
@@ -19,6 +19,7 @@ import "./CourseCommentPage.css";
 
 export const CourseCommentPage: React.FC = () => {
     const [comment, setComment] = React.useState<string>("");
+    const [photoDirection, setFile] = useState<any>();
 
     const loading = useSelector(selectLoadingComments);
     const comments = useSelector(selectComments);
@@ -52,7 +53,14 @@ export const CourseCommentPage: React.FC = () => {
     }
 
     const onfetchAddComment = () => {
-        dispatch(fetchAddComment({ courseId: id, text: comment }));
+        dispatch(fetchAddComment({ courseId: id, text: comment, commentPhoto: photoDirection }));
+    }
+
+    const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files === null) {
+            throw new Error("Error finding e.target.files");
+        }
+        return setFile(e.target.files[0]);
     }
 
     return (
@@ -66,7 +74,9 @@ export const CourseCommentPage: React.FC = () => {
                     <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onAddComment(e)} />
                 </div>
             </div>
-
+            <div className="comments-add-photo">
+                <input type="file" onChange={onChangeFile}/>
+            </div>
             <div className="comments-add-btn">
                 <Button type={undefined} typeStyle="primary" action={onfetchAddComment}>Оставить комментарий</Button>
             </div>

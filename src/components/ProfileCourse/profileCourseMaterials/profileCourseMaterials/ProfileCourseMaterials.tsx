@@ -59,7 +59,6 @@ const ProfileCourseMaterials: React.FC<PropsType> = ({ fullDescription }): React
                         className={`course-description-wrapper ${collapseText}`}
                     >
                         <div className="course-description">
-
                             {parse(text)}
                         </div>
                     </div>
