@@ -11,7 +11,7 @@ import { ReplyToCommentPage } from './replyToCommentPage/ReplyToCommentPage';
 //@ts-ignore
 import ReactWebMediaPlayer from 'react-web-media-player';
 
-import "./MyLeaningPage.css";
+import "./MyLeaningPage.scss";
 
 export const MyLeaningPage: React.FC = () => {
     const videoForPleer = useSelector(selectVideoForPleer);
@@ -76,7 +76,7 @@ export const MyLeaningPage: React.FC = () => {
 
     return (
         <div className="leaning">
-            <div className="leaning-pleer">
+            <div className="leaning__pleer">
                 <ReactWebMediaPlayer
                     style={{ display: 'block', margin: '0 auto', marginLeft: '-70px', top: '-130px' }}
                     title="Платформа"
@@ -86,11 +86,11 @@ export const MyLeaningPage: React.FC = () => {
                     thumbnail={photo}
                 />
             </div>
-            <div className="leaning-btns-wrapper">
+            <div className="leaning__btns-wrapper">
                 <button className="leaning-prev-btn" onClick={setPrevVideo}>Prev</button>
                 <button className="leaning-next-btn" onClick={setNextVideo}>Next</button>
             </div>
-            <div className="leaning-tabs-for-page">
+            <div className="leaning__tabs-for-page">
                 <NavLink to={`/purchased-courses/leaning/materials/${courseId}`} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => onHandlerMaterials(event)}>
                     <div>Материалы курсы</div>
                 </NavLink>
@@ -98,7 +98,7 @@ export const MyLeaningPage: React.FC = () => {
                     <div onClick={() =>  dispatch(fetchGetComments(id))}>Комментарии</div>
                 </NavLink>
             </div>
-            <div className="leaning-modules-section">
+            <div className="leaning__modules-section">
                 <Route exact
                     path={['/purchased-courses/leaning/:id', `/purchased-courses/leaning/materials/:id`]}
                 >

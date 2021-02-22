@@ -15,7 +15,7 @@ import { fetchGetReplyToComment } from '../../../store/ducks/courses/actions';
 import { LoadingStatus } from '../../../store/types';
 import { Button } from "../../button/Button";
 
-import "./CourseCommentPage.css";
+import "./CourseCommentPage.scss";
 
 export const CourseCommentPage: React.FC = () => {
     const [comment, setComment] = React.useState<string>("");
@@ -65,19 +65,19 @@ export const CourseCommentPage: React.FC = () => {
 
     return (
         <div className="comments">
-            <div className="comments-length">{`В этом курсе ${comments.length} вопроса`}</div>
-            <div className="comments-add">
-                <div className="comments-add-avatar">
+            <div className="comments__length">{`В этом курсе ${comments.length} вопроса`}</div>
+            <div className="comments__add">
+                <div className="comments__add-avatar">
                     <img src={avatar} alt="" />
                 </div>
-                <div className="comments-add-text">
+                <div className="comments__add-text">
                     <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onAddComment(e)} />
                 </div>
             </div>
-            <div className="comments-add-photo">
+            <div className="comments__add-photo">
                 <input type="file" onChange={onChangeFile}/>
             </div>
-            <div className="comments-add-btn">
+            <div className="comments__add-btn">
                 <Button type={undefined} typeStyle="primary" action={onfetchAddComment}>Оставить комментарий</Button>
             </div>
 
@@ -85,21 +85,22 @@ export const CourseCommentPage: React.FC = () => {
 
             {
                 loading ? comments.map(el => (
-                    <ul className="comments-wrapper">
-                        <li className="comments-item">
-                            <div className="comments-avatar-wrapper">
+                    <ul className="comment-item__wrapper">
+                        <li className="comment-item">
+                            <div className="comment-item__avatar">
                                 <img src={`http://localhost:5000/${el.user.avatar}`} alt="comment-avatar" />
                             </div>
-                            <div className="comments-descr-wrapper" >
-                                <div className="comments-user-fullname">{`${el.user.name} ${el.user.surname}`}</div>
-                                <div className="comments-text">{`${el.text}`}</div>
-                                <div className="comments-date">{formatDistanceToNow(new Date(el.created), {
+                            <div className="comment-item__descr-wrapper" >
+                                <div className="comment-item__user-fullname">{`${el.user.name} ${el.user.surname}`}</div>
+                                <div className="comment-item__text">{`${el.text}`}</div>
+                                {el.photo && <img className="comment-item__img" src={`http://localhost:5000/${el.photo}`} alt={`comment-photo-${el.photo}`}/>}
+                                <div className="comment-item__date">{formatDistanceToNow(new Date(el.created), {
                                     locale: ruLocale,
                                     addSuffix: true,
                                 })}</div>
                             </div>
-                            <div className="comments-right-panel-wrapper">
-                                <div className="comments-replies">{el.comments.length}</div>
+                            <div className="comment-item__right-panel-wrapper">
+                                <div className="comment-item__comment-replies">{el.comments.length}</div>
                                 <Link to={`/purchased-courses/leaning/comments/reply-to-comment/${el._id}`} >
                                     <div onClick={() => dispatch(fetchGetReplyToComment({ courseId: id, commentId: el._id }))}>
                                         <img src={messageIcon} alt="message-icon" />

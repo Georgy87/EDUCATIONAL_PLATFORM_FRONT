@@ -49,6 +49,7 @@ export type RepliesToCommentType = {
 export type GetCommentsType = {
     _id: string;
     text: string;
+    photo: string;
     user: UserInfoType;
     created: string;
     comments: RepliesToCommentType[];

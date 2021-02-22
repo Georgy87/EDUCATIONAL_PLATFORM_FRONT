@@ -65,12 +65,11 @@ export function* fetchGetCommentsRequest({payload}: FetchGetCommentsType) {
 };
 
 export function* fetchAddCommentRequest({payload}: FetchAddCommentType) {
-    const formData = new FormData();
-    formData.append("profession", payload.text);
-    formData.append("file", payload.commentPhoto);
-    formData.append("courseId", payload.courseId);
-
     try {
+        const formData = new FormData();
+        formData.append("text", payload.text);
+        formData.append("file", payload.commentPhoto);
+        formData.append("courseId", payload.courseId);
         yield put(addCommentsLoading(LoadingStatus.LOADING));
         const { comments } = yield call(CoursesApi.addComment, formData);
         yield put(setComments(comments));
