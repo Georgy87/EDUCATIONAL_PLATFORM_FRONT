@@ -1,0 +1,61 @@
+.leaning {
+    margin-top: 200px;
+
+    &__pleer {
+        display: flex;
+        margin: 0 auto;
+        top: -30;
+    }
+
+    &__btns-wrapper {
+        display: flex;
+        cursor: pointer;
+        position: absolute;
+        margin: auto;
+        top: -10%;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 50px;
+        width: 1350px;
+        justify-content: space-between;
+        background-color: none;
+    }
+
+    &__btns-wrapper button {
+        background-color: transparent;
+        color: rgb(182, 179, 179);
+        border: none;
+    }
+
+    &__btns-wrapper button:hover {
+        cursor: pointer;
+        color: white;
+    }
+
+    &__modules-section {
+        margin-top: 70px;
+    }
+
+    &__tabs-for-page {
+        display: flex;
+        margin-top: -100px;
+        justify-content: center;
+        height: 50px;
+    }
+
+    &__tabs-for-page a {
+        padding: 15px;
+        font-weight: 500;
+        color: black;
+    }
+
+    &__tabs-for-page a:hover {
+        text-decoration: none;
+
+        border-bottom: 1px solid black;
+    }
+    &__tabs-for-page a:focus {
+        border-bottom: 1px solid black;
+    }
+}

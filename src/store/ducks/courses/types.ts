@@ -49,6 +49,7 @@ export type RepliesToCommentType = {
 export type GetCommentsType = {
     _id: string;
     text: string;
+    photo: string;
     user: UserInfoType;
     created: string;
     comments: RepliesToCommentType[];
@@ -108,7 +109,7 @@ export type FetchGetCommentsType = {
 
 export type FetchAddCommentType = {
     type: CoursesActionType.FETCH_ADD_COMMENT;
-    payload: { courseId: string; text: string };
+    payload: { courseId: string; text: string; commentPhoto: any };
 };
 
 export type FetchGetReplyToCommentType = {

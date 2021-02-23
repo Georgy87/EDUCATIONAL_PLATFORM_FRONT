@@ -9,10 +9,12 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import { fetchAddReplyToComment, fetchGetCourseForTraining, fetchGetReplyToComment } from '../../../store/ducks/courses/actions';
 import { selectAddReplyToCommentLoading, selectReplyToComment, selectReplyToCommentLoading } from '../../../store/ducks/courses/selectors';
+import { selectUserAvatar } from '../../../store/ducks/user/selectors';
+import photo from "../../../assets/avatar/unnamed.jpg";
 import { LoadingStatus } from '../../../store/types';
 import { Button } from "../../button/Button";
 
-import "./ReplyToCommentPage.css";
+import "./ReplyToCommentPage.scss";
 
 export const ReplyToCommentPage = () => {
     const [comment, setComment] = React.useState<string>("");
@@ -20,6 +22,13 @@ export const ReplyToCommentPage = () => {
     const dispatch = useDispatch();
 
     const replyToComment = useSelector(selectReplyToComment);
+    const userAvatar = useSelector(selectUserAvatar);
+
+    let avatar = photo;
+
+    if (userAvatar) {
+        avatar = `http://localhost:5000/${userAvatar}`;
+    }
 
     const loadingReplyToComment = useSelector(selectReplyToCommentLoading);
     const loadingAddReplyToComment = useSelector(selectAddReplyToCommentLoading);
@@ -57,16 +66,16 @@ export const ReplyToCommentPage = () => {
     return (
         <div className="reply">
             {loadingReplyToComment === LoadingStatus.LOADED &&
-                <ul className="reply-wrapper">
-                    <li className="reply-item">
-                        <div className="reply-avatar-wrapper">
+                <ul>
+                    <li>
+                        <div className="reply__avatar">
                             <img src={`http://localhost:5000/${replyToComment?.user.avatar}`} alt="comment-avatar" />
                         </div>
-                        <div className="reply-descr-wrapper" >
-                            <div className="reply-user-fullname">{`${replyToComment?.user.name} ${replyToComment?.user.surname}`}</div>
-                            <div className="reply-text">{`${replyToComment?.text}`}</div>
+                        <div className="reply__descr">
+                            <div className="reply__descr-fullname">{`${replyToComment?.user.name} ${replyToComment?.user.surname}`}</div>
+                            <div className="reply__descr-text">{`${replyToComment?.text}`}</div>
 
-                            <div className="reply-date">
+                            <div className="reply__descr-date">
                                 {formatDistanceToNow(new Date(date), {
                                     locale: ruLocale,
                                     addSuffix: true,
@@ -76,19 +85,19 @@ export const ReplyToCommentPage = () => {
                 </ul>
             }
 
-            {loadingReplyToComment === LoadingStatus.LOADED && <div className="reply-length">{`${replyToComment?.comments.length} ответ`}</div>}
+            {loadingReplyToComment === LoadingStatus.LOADED && <div className="reply__length">{`${replyToComment?.comments.length} ответ`}</div>}
 
             {
                 loadingReplyToComment === LoadingStatus.LOADED ? replyToComment?.comments.map(el => (
-                    <ul className="reply-wrapper">
-                        <li className="reply-item">
-                            <div className="reply-avatar-wrapper">
+                    <ul>
+                        <li>
+                            <div className="reply__avatar">
                                 <img src={`http://localhost:5000/${el.user.avatar}`} alt="comment-avatar" />
                             </div>
-                            <div className="reply-descr-wrapper" >
-                                <div className="reply-user-fullname">{`${el.user.name} ${el.user.surname}`}</div>
-                                <div className="reply-text">{`${el.text}`}</div>
-                                <div className="reply-date">{formatDistanceToNow(new Date(el.created), {
+                            <div className="reply__descr" >
+                                <div className="reply__descr-fullname">{`${el.user.name} ${el.user.surname}`}</div>
+                                <div className="reply__descr-text">{`${el.text}`}</div>
+                                <div className="reply__descr-date">{formatDistanceToNow(new Date(el.created), {
                                     locale: ruLocale,
                                     addSuffix: true,
                                 })}</div>
@@ -100,16 +109,16 @@ export const ReplyToCommentPage = () => {
 
             {loadingAddReplyToComment === LoadingStatus.LOADING && <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />}
 
-            <div className="reply-add">
-                <div className="reply-add-avatar">
-                    <img src={replyToComment?.user.avatar} alt="" />
+            <div className="reply__add">
+                <div className="reply__add-avatar">
+                    <img src={avatar} alt="" />
                 </div>
                 <div className="reply-add-text">
                     <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onAddComment(e)} />
                 </div>
             </div>
 
-            <div className="reply-add-btn">
+            <div className="reply__add__btn">
                 <Button type={undefined} typeStyle="primary" action={onFetchAddReplyToComment}>Добавить комментарий</Button>
             </div>
         </div>

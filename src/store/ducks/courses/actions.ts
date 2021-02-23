@@ -47,7 +47,7 @@ export const fetchGetComments = (payload: string): FetchGetCommentsType => {
     }
 }
 
-export const fetchAddComment = (payload: { courseId: string; text: string }): FetchAddCommentType => {
+export const fetchAddComment = (payload: { courseId: string; text: string; commentPhoto: any }): FetchAddCommentType => {
     return {
         type: CoursesActionType.FETCH_ADD_COMMENT,
         payload
