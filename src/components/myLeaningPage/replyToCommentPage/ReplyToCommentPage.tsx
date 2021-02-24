@@ -14,6 +14,9 @@ import photo from "../../../assets/avatar/unnamed.jpg";
 import { LoadingStatus } from '../../../store/types';
 import { Button } from "../../button/Button";
 
+
+import { CommentItemBlock } from '../../../hocs/CommentItem/CommentItemBlock';
+
 import "./ReplyToCommentPage.scss";
 
 export const ReplyToCommentPage = () => {
@@ -66,44 +69,32 @@ export const ReplyToCommentPage = () => {
     return (
         <div className="reply">
             {loadingReplyToComment === LoadingStatus.LOADED &&
-                <ul>
-                    <li>
-                        <div className="reply__avatar">
-                            <img src={`http://localhost:5000/${replyToComment?.user.avatar}`} alt="comment-avatar" />
-                        </div>
-                        <div className="reply__descr">
-                            <div className="reply__descr-fullname">{`${replyToComment?.user.name} ${replyToComment?.user.surname}`}</div>
-                            <div className="reply__descr-text">{`${replyToComment?.text}`}</div>
-
-                            <div className="reply__descr-date">
-                                {formatDistanceToNow(new Date(date), {
-                                    locale: ruLocale,
-                                    addSuffix: true,
-                                })}</div>
-                        </div>
-                    </li>
-                </ul>
+                <CommentItemBlock
+                    name="replyToComment"
+                    userAvatar={replyToComment?.user.avatar}
+                    userName={replyToComment?.user.name}
+                    userSurname={replyToComment?.user.surname}
+                    commentText={replyToComment?.text}
+                    commentDate={date}
+                    courseId=""
+                    replyToCommentId=""
+                />
             }
 
             {loadingReplyToComment === LoadingStatus.LOADED && <div className="reply__length">{`${replyToComment?.comments.length} ответ`}</div>}
 
             {
                 loadingReplyToComment === LoadingStatus.LOADED ? replyToComment?.comments.map(el => (
-                    <ul>
-                        <li>
-                            <div className="reply__avatar">
-                                <img src={`http://localhost:5000/${el.user.avatar}`} alt="comment-avatar" />
-                            </div>
-                            <div className="reply__descr" >
-                                <div className="reply__descr-fullname">{`${el.user.name} ${el.user.surname}`}</div>
-                                <div className="reply__descr-text">{`${el.text}`}</div>
-                                <div className="reply__descr-date">{formatDistanceToNow(new Date(el.created), {
-                                    locale: ruLocale,
-                                    addSuffix: true,
-                                })}</div>
-                            </div>
-                        </li>
-                    </ul>
+                    <CommentItemBlock
+                        name="replyToComment"
+                        userAvatar={el.user.avatar}
+                        userName={el.user.name}
+                        userSurname={el.user.surname}
+                        commentText={el.text}
+                        commentDate={el.created}
+                        replyToCommentId={el._id}
+                        courseId={id}
+                    />
                 )) : <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
             }
 
@@ -113,12 +104,12 @@ export const ReplyToCommentPage = () => {
                 <div className="reply__add-avatar">
                     <img src={avatar} alt="" />
                 </div>
-                <div className="reply-add-text">
+                <div className="reply__add-text">
                     <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onAddComment(e)} />
                 </div>
             </div>
 
-            <div className="reply__add__btn">
+            <div className="reply__add-btn">
                 <Button type={undefined} typeStyle="primary" action={onFetchAddReplyToComment}>Добавить комментарий</Button>
             </div>
         </div>

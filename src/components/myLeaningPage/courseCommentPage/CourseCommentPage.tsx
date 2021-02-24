@@ -78,53 +78,22 @@ export const CourseCommentPage: React.FC = () => {
             </div>
 
             {loadingAddComment === LoadingStatus.LOADING && <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />}
-
-            {
-                loading ? comments.map(el => (
-                    // <ul>
-                    //     <li>
-                    //         <div className="comment__avatar">
-                    //             <img src={`http://localhost:5000/${el.user.avatar}`} alt="comment-avatar" />
-                    //         </div>
-                    //         <div className="comment__descr">
-                    //             <div className="comment__descr-fullname">{`${el.user.name} ${el.user.surname}`}</div>
-                    //             <div className="comment__descr-text">{`${el.text}`}</div>
-                    //             {el.photo && (
-
-                    //                 <Zoom zoomMargin={100} >
-                    //                     <img width="200" className="comment-item__img" src={`http://localhost:5000/${el.photo}`} alt={`comment-photo-${el.photo}`} />
-                    //                 </Zoom>
-                    //             )}
-                    //             <div className="comment__descr-date">{formatDistanceToNow(new Date(el.created), {
-                    //                 locale: ruLocale,
-                    //                 addSuffix: true,
-                    //             })}</div>
-                    //         </div>
-                    //         <div className="comment__right">
-                    //             <div className="comment__right-length">{el.comments.length}</div>
-                    //             <Link to={`/purchased-courses/leaning/comments/reply-to-comment/${el._id}`} >
-                    //                 <div onClick={() => dispatch(fetchGetReplyToComment({ courseId: id, commentId: el._id }))}>
-                    //                     <img src={messageIcon} alt="message-icon" />
-                    //                 </div>
-                    //             </Link>
-                    //         </div>
-                    //     </li>
-                    // </ul>
-                    <CommentItemBlock
-                        userAvatar={el.user.avatar}
-                        userName={el.user.name}
-                        userSurname={el.user.surname}
-                        commentText={el.text}
-                        commentPhoto={el.photo}
-                        commentDate={el.created}
-                        commentsLength={el.comments.length}
-                        replyToCommentId={el._id}
-                        courseId={id}
-                        />
-                )) : <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
-            }
-
-
-        </div>
+                {
+                    loading ? comments.map(el => (
+                        <CommentItemBlock
+                            name="comment"
+                            userAvatar={el.user.avatar}
+                            userName={el.user.name}
+                            userSurname={el.user.surname}
+                            commentText={el.text}
+                            commentPhoto={el.photo}
+                            commentDate={el.created}
+                            commentsLength={el.comments.length}
+                            replyToCommentId={el._id}
+                            courseId={id}
+                            />
+                    )) : <CircularProgress style={{ display: 'flex !important', margin: '0 auto', color: 'black', marginTop: 50 }} />
+                }
+            </div>
     )
 }

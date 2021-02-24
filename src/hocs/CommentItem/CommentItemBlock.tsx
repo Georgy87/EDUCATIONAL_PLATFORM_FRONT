@@ -8,25 +8,26 @@ import { useDispatch } from 'react-redux';
 import messageIcon from "../../assets/comment-icon/icons8-edit-chat-history-100.png";
 import { fetchGetReplyToComment } from '../../store/ducks/courses/actions';
 
-import "./CommentItemBlock.scss";
 import 'react-medium-image-zoom/dist/styles.css'
 
+import "./CommentItemBlock.scss";
+
 type PropsType = {
-    userAvatar: string;
-    userName: string;
-    userSurname: string;
-    commentText: string;
-    commentPhoto: string;
+    name: "comment" | "replyToComment";
+    userAvatar?: string;
+    userName?: string;
+    userSurname?: string;
+    commentText?: string;
+    commentPhoto?: string;
     commentDate: string;
-    commentsLength: number;
+    commentsLength?: number;
     replyToCommentId: string;
     courseId: string;
 }
 
-export const CommentItemBlock: React.FC<PropsType> = ({ userAvatar, userName, userSurname, commentText, commentPhoto, commentDate, commentsLength, replyToCommentId, courseId }) => {
+export const CommentItemBlock: React.FC<PropsType> = ({ userAvatar, userName, userSurname, commentText, commentPhoto, commentDate, commentsLength, replyToCommentId, courseId, name }) => {
     const dispatch = useDispatch();
     return (
-
         <ul>
             <li>
                 <div className="comment__avatar">
@@ -45,16 +46,17 @@ export const CommentItemBlock: React.FC<PropsType> = ({ userAvatar, userName, us
                         addSuffix: true,
                     })}</div>
                 </div>
-                <div className="comment__right">
-                    <div className="comment__right-length">{commentsLength}</div>
-                    <Link to={`/purchased-courses/leaning/comments/reply-to-comment/${replyToCommentId}`} >
-                        <div onClick={() => dispatch(fetchGetReplyToComment({ courseId: courseId, commentId: replyToCommentId }))}>
-                            <img src={messageIcon} alt="message-icon" />
-                        </div>
-                    </Link>
-                </div>
+                {name === "comment" && (
+                    <div className="comment__right">
+                        <div className="comment__right-length">{commentsLength}</div>
+                        <Link to={`/purchased-courses/leaning/comments/reply-to-comment/${replyToCommentId}`} >
+                            <div onClick={() => dispatch(fetchGetReplyToComment({ courseId: courseId, commentId: replyToCommentId }))}>
+                                <img src={messageIcon} alt="message-icon" />
+                            </div>
+                        </Link>
+                    </div>
+                )}
             </li>
         </ul>
-
     )
 }

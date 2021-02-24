@@ -1,129 +1,79 @@
-.comments {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // margin: 0 auto;
-    // width: 900px;
-    // &__length {
-    //     margin: 0;
-    //     font-weight: 700;
-    // }
-    // ul {
-    //     li {
-    //         display: flex;
-    //         border-bottom: 1px solid rgb(225, 225, 225);
-    //         padding-top: 20px;
-    //         padding-bottom: 5px;
-    //         transition: 0.9s all;
-    //         width: 900px;
-    //         .comment__avatar {
-    //             display: flex;
-    //             width: 10%;
-    //             margin-right: 10px;
-    //             margin-left: 7px;
-    //             img {
-    //                 width: 80px;
-    //                 height: 80px;
-    //                 border-radius: 100%;
-    //             }
-    //         }
-
-    //         .comment__descr {
-    //             display: flex;
-    //             flex-direction: column;
-    //             width: 80%;
-    //             img {
-    //                 border-radius: 0;
-    //                 height: 200px;
-    //                 width: 220px;
-    //             }
-
-    //             &-fullname {
-    //                 font-weight: 500;
-    //             }
-
-    //             &-text {
-    //                 font-size: 13px;
-    //             }
-
-    //             &-date {
-    //                 margin-top: 20px;
-    //                 color: #007791;
-    //                 font-size: 12px;
-    //             }
-    //         }
-
-    //         .comment__right {
-    //             display: flex;
-    //             align-items: center;
-    //             margin-left: 10px;
-    //             img {
-    //                 height: 30px;
-    //                 width: 30px;
-    //                 transition: 0.9s all;
-    //             }
-    //             &:hover img {
-    //                 background-color: rgb(229, 244, 241)
-    //             }
-    //             &-length {
-    //                 font-weight: 500;
-    //                 font-size: 15px;
-    //             }
-    //         }
-    //         &__date {
-    //             margin-top: 20px;
-    //             color: #007791;
-    //             font-size: 12px;
-    //         }
-    //     }
-    // }
-
-    &__add {
-        display: flex;
-        align-items: center;
-        max-width: 900px;
-
-        img {
-            width: 80px;
-            height: 80px;
-            border-radius: 100%;
-        }
-
-        input {
-            width: 900px;
-            border: none;
-            border-bottom: 1px solid black;
-        }
-    }
-
-    &__add-avatar {
-        display: flex;
-        width: 10%;
-        margin-right: 10px;
-        margin-left: 7px;
-    }
-
-    &__add-text {
-        display: flex;
-        width: 88%;
-    }
-
-
-    &__add-btn {
-        display: flex;
-        width: 250px;
-        margin-left: auto;
-        button {
-            height: 40px;
-        }
-    }
-
-    &__add-photo {
-        display: flex;
-        align-items: start !important;
-        input {
+%ulItemComment {
+    ul {
+        li {
             display: flex;
+            border-bottom: 1px solid rgb(225, 225, 225);
+            padding-top: 20px;
+            padding-bottom: 5px;
+            transition: 0.9s all;
+            width: 900px;
+            .comment__avatar {
+                display: flex;
+                width: 10%;
+                margin-right: 10px;
+                margin-left: 7px;
+                img {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 100%;
+                }
+            }
 
+            .comment__descr {
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+                img {
+                    border-radius: 0;
+                    height: 200px;
+                    width: 220px;
+                }
+
+                &-fullname {
+                    font-weight: 500;
+                }
+
+                &-text {
+                    font-size: 13px;
+                }
+
+                &-date {
+                    margin-top: 20px;
+                    color: #007791;
+                    font-size: 12px;
+                }
+            }
+
+            .comment__right {
+                display: flex;
+                align-items: center;
+                margin-left: 10px;
+                img {
+                    height: 30px;
+                    width: 30px;
+                    transition: 0.9s all;
+                }
+                &:hover img {
+                    background-color: rgb(229, 244, 241)
+                }
+                &-length {
+                    font-weight: 500;
+                    font-size: 15px;
+                }
+            }
+            &__date {
+                margin-top: 20px;
+                color: #007791;
+                font-size: 12px;
+            }
         }
     }
+}
+
+.reply {
+    @extend %ulItemComment;
+}
+
+.comments {
+    @extend %ulItemComment
 }
